@@ -10,13 +10,14 @@ library(targets)
 # Set target options:
 tar_option_set(
   packages = c("tibble", "dplyr", "sf", "jsonlite",
-               "processx"), # packages that your targets need to run
+               "processx", "readr", "stringr", "tidycensus"), # packages that your targets need to run
   format = "rds" # default storage format
   # Set other options as needed.
 )
 
 # tar_make_clustermq() configuration (okay to leave alone):
 options(clustermq.scheduler = "multicore")
+options(tigris_use_cache = TRUE)
 
 # tar_make_future() configuration (okay to leave alone):
 # Install packages {{future}}, {{future.callr}}, and {{future.batchtools}} to allow use_targets() to configure tar_make_future() options.
@@ -28,12 +29,18 @@ for (file in list.files("R", full.names = TRUE)) source(file)
 # Replace the target list below with your own:
 list(
 
-  # Groceries ===========================
-  # Gather data on grocery stores and impute missing information
-  # 
+  # 1. Locations ===========================
+  # Gather data on grocery stores and block groups and impute missing information
+  # 1.1 Block group centroids
+  tar_target(bgcentroids, get_bgcentroids()),
+  # 1.2 Block group ACS data
+  tar_target(bg_acs, get_acsdata(bgcentroids)),
+  # 1.3 Grocery stores (with NEMS data)
+  # 1.4 Other grocery stores
+  # 1.5 Imputation
   
 
-  # Travel times ========================
+  # 2. Travel times ========================
   # Construct a travel time matrix from open street maps
   # 1. Check network data
   tar_target(osmium_script, "sh/get_osm.sh", format = "file"),
@@ -41,12 +48,13 @@ list(
   tar_target(gtfs, get_gtfs("r5/gtfs.zip"), format = "file"),
   
   # 2. Build travel times
+  
   # 3. Build logsums
   tar_target(util_file, "data/mode_utilities.json", format = "file"),
   tar_target(utilities, read_utilities(util_file)),
 
 
-  # Models ==============================
+  # 3. Accessibilities ==============================
   # Link the trip matrices and groceries together and compute accessibilities
   # 
   # 
