@@ -38,6 +38,7 @@ list(
   # 1. Check network data
   tar_target(osmium_script, "sh/get_osm.sh", format = "file"),
   tar_target(merged_osm_file, run_shell_script(osmium_script, "r5/merged.osm.pbf"), format = "file"),
+  tar_target(gtfs, get_gtfs("r5/gtfs.zip"), format = "file"),
   
   # 2. Build travel times
   # 3. Build logsums
