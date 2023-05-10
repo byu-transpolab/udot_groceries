@@ -2,5 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+.Renviron
+
 
 _targets/
+data/osm/
+r5/

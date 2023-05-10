@@ -9,7 +9,8 @@ library(targets)
 
 # Set target options:
 tar_option_set(
-  packages = c("tibble", "dplyr", "sf"), # packages that your targets need to run
+  packages = c("tibble", "dplyr", "sf", "jsonlite",
+               "processx"), # packages that your targets need to run
   format = "rds" # default storage format
   # Set other options as needed.
 )
@@ -26,16 +27,6 @@ for (file in list.files("R", full.names = TRUE)) source(file)
 
 # Replace the target list below with your own:
 list(
-#   tar_target(
-#     name = data,
-#     command = tibble(x = rnorm(100), y = rnorm(100))
-# #   format = "feather" # efficient storage of large data frames # nolint
-#   ),
-#   tar_target(
-#     name = model,
-#     command = coefficients(lm(y ~ x, data = data))
-#   ),
-
 
   # Groceries ===========================
   # Gather data on grocery stores and impute missing information
@@ -45,13 +36,28 @@ list(
   # Travel times ========================
   # Construct a travel time matrix from open street maps
   # 1. Check network data
+  tar_target(osmium_script, "sh/get_osm.sh", format = "file"),
+  tar_target(merged_osm_file, run_shell_script(osmium_script, "r5/merged.osm.pbf"), format = "file"),
+  
   # 2. Build travel times
   # 3. Build logsums
-  
+  tar_target(util_file, "data/mode_utilities.json", format = "file"),
+  tar_target(utilities, read_utilities(util_file)),
 
 
   # Models ==============================
   # Link the trip matrices and groceries together and compute accessibilities
   # 
   # 
+  
+  # Dummy targets so we don't end a list with a comma-------
+  tar_target(
+    name = data,
+    command = tibble(x = rnorm(100), y = rnorm(100))
+  ),
+  tar_target(
+    name = model,
+    command = coefficients(lm(y ~ x, data = data))
+  )
+
 )
