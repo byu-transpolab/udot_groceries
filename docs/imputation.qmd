@@ -1,0 +1,140 @@
+---
+title: "Multiple Imputation of Grocery Store Information"
+author: "Macfarlane"
+format: html
+editor: visual
+---
+
+```{r setup, include = FALSE}
+library(here)
+library(tidyverse)
+library(targets)
+library(sf)
+library(nngeo)
+library(mice)
+```
+
+
+We collected detailed store attributes for stores in Utah County, San Juan County, and a portion of Salt Lake County using the NEMS-S survey instrument. These attributes formed the basis of the choice models used to determine access in Salt Lake City. 
+
+To build a statewide model of access to nutrition, we need information
+on all the stores in Utah, but the attributes available from a web search / mapping service are essentially limited to:
+
+  - Store location
+  - Brand name
+  - Store type
+  
+Using the information that we have, we will attempt to impute the missing information. The hope is that the price and availability information we have on Smith's stores will be transferable to other Smith's stores in the state. We can also include demographic variables from the surrounding neighborhoods. 
+  
+To execute this imputation, we will use the `mice` package for R. We have two datasets: 
+
+  1. A dataset of grocery stores, most with no information than store name, type, and location.
+  2. A dataset of block group socioeconomic data for the state of Utah.
+  
+```{r loaddata}
+tar_load(all_groceries, store = here("_targets/"))
+all_groceries
+tar_load(bgcentroids, store = here("_targets/"))
+tar_load(bg_acs, store = here("_targets/"))
+bg <- left_join(bgcentroids, bg_acs, by = c("id" = "geoid")) |> 
+  filter(population > 0, !is.na(population))
+```
+  
+## Catchment area for stores
+We would like to know something about the neighborhood where each store is located.
+Let's join the block group information to the groceries stores in the following way:
+
+  1. get the 9 nearest block groups (using population-weighted centroids) to the store. We are using knn instead of a distance buffer to mitigate the role population density may play.
+  2. for these block groups, compute the average and average median income, discounted by the distance from the store.
+
+```{r join}
+# find knn
+knn <- nngeo::st_nn( all_groceries, bg, k = 9, returnDist = TRUE, 
+                     progress = FALSE)
+
+neighborstats  <- lapply(seq_along(knn$nn), function(i){
+  bgs <- knn$nn[[i]]
+  dists <- knn$dist[[i]] 
+  
+  # get block groups within the range
+  bg[bgs,] |> 
+    sf::st_set_geometry(NULL) |> 
+    summarise(
+      population = sum(population / (dists * 0.1)),
+      households = sum(households / (dists * 0.1)),
+      density = weighted.mean(density, w = 1 / dists, na.rm = TRUE),
+      income = weighted.mean(income, w = 1 / dists, na.rm = TRUE)
+    ) 
+}) |> 
+  bind_rows()
+
+(knn_groceries <- bind_cols(all_groceries, neighborstats) |> 
+    select(id, county, type, pharmacy:brand, population:income) |> 
+    st_set_geometry(NULL))
+```
+
+## Imputation
+
+The plot below shows the missingness pattern for the data. The
+192 complete observations are those that we have NEMS data for,
+and the 970 remaining are the other stores in the state.
+
+```{r md_pattern, message=FALSE}
+md.pattern(knn_groceries, rotate.names = TRUE, plot = TRUE)
+```
+
+Let's just try to run through MICE here. We will generate 10 imputed data sets with 30 imputation iterations each.
+
+```{r mice}
+imp <- mice(knn_groceries, maxit = 30, printFlag = FALSE, m = 10)
+```
+
+Ideally there is not a trend line in the iterations and that the trace lines mingle well. This appears to be the case.
+
+```{r trends}
+ plot(imp)
+```
+
+Let's also look at the distribution of imputed values. The graph below shows the number of registers assigned to stores by imputation number, with the observed (non-imputed) values in blue and the imputed values in red. We can look at a couple of other variables as well.
+
+```{r str1}
+stripplot(imp, registers ~ .imp)
+```
+
+Like the NEMS availability score.
+```{r str2}
+stripplot(imp, availability ~ .imp)
+```
+
+These univariate measures seem to look good. Let's see how much variance there is between a handful of stores. We sample 15 stores and then remove stores that were a part of our original complete set.
+
+```{r precision}
+set.seed(42)
+combined <- lapply(seq_along(imp), function(i) complete(imp, i)) |> 
+  bind_rows(.id = "imputation") |> 
+  as_tibble()
+
+sampled_store_ids <- sample(combined$id, 15)
+sampled_combined  <- combined |> 
+  filter(id %in% sampled_store_ids) |> 
+  filter(!grepl("SL|UT|SJ", id)) |> 
+  arrange(id)
+```
+
+The number of registers for the predicted stores has a fair amount 
+of variance.
+
+```{r precision}
+ggplot(sampled_combined, aes(x = registers, fill = type)) +
+  geom_histogram(alpha = 0.5) + facet_wrap(~id, scales = "free") +
+  theme_bw()
+```
+
+There is a little more peaking in the prediction of the market basket costs, especially for grocery stores and convenience stores.
+
+```{r precision}
+ggplot(sampled_combined, aes(x = market, fill = type)) +
+  geom_density(alpha = 0.5) + facet_wrap(~id) + theme_bw()
+```
+
+At the end of the day, we probably need a way to incorporate this uncertainty in the models. 

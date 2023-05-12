@@ -9,7 +9,7 @@ library(targets)
 
 # Set target options:
 tar_option_set(
-  packages = c("tibble", "dplyr", "sf", "jsonlite",
+  packages = c("tibble", "dplyr", "sf", "jsonlite", "nngeo",
                "processx", "readr", "stringr", "tidycensus"), # packages that your targets need to run
   format = "rds" # default storage format
   # Set other options as needed.
@@ -47,8 +47,9 @@ list(
   # 1.4 Other grocery stores
   tar_target(grocery_sourcedata, "data/utah_allgroceries.geojson", format = "file"),
   tar_target(all_groceries, get_all_groceries(grocery_sourcedata, nems_groceries, bg_acs, this_crs)),
+ 
   # 1.5 Imputation
-  
+  tar_target(imputed_groceries, impute_store_data(all_groceries, bgcentroids, bg_acs)),
 
   # 2. Travel times ========================
   # Construct a travel time matrix from open street maps

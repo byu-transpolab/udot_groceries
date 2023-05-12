@@ -1,3 +1,48 @@
+#' Impute store data
+#' 
+#' @param all_groceries grocery stores
+#' @param bgcentroids population-weighted block group centroids
+#' @param bg_acs ACS data for block groups
+#' 
+#' 
+impute_store_data <- function(all_groceries, bgcentroids, bg_acs) {
+  
+  
+  # make a coherent block group matcher ==============
+  bg <- left_join(bgcentroids, bg_acs, by = c("id" = "geoid")) |> 
+    filter(population > 0, !is.na(population))
+  
+  # compute statistics for knn data list =====================
+  knn <- nngeo::st_nn( all_groceries, bg, k = 9, returnDist = TRUE, 
+                       progress = FALSE)
+  
+  neighborstats  <- lapply(seq_along(knn$nn), function(i){
+    bgs <- knn$nn[[i]]
+    dists <- knn$dist[[i]] 
+    
+    # get block groups within the range
+    bg[bgs,] |> 
+      sf::st_set_geometry(NULL) |> 
+      dplyr::summarise(
+        population = sum(population / (dists * 0.1)),
+        households = sum(households / (dists * 0.1)),
+        density = weighted.mean(density, w = 1 / dists, na.rm = TRUE),
+        income = weighted.mean(income, w = 1 / dists, na.rm = TRUE)
+      ) 
+  }) |> 
+    dplyr::bind_rows()
+  
+  knn_groceries <- dplyr::bind_cols(all_groceries, neighborstats) |> 
+      dplyr::select(id, county, type, pharmacy:brand, population:income) |> 
+      sf::st_set_geometry(NULL)
+  
+  
+  # impute missing data ==================
+  imp <- mice::mice(knn_groceries, maxit = 30, printFlag = FALSE, m = 10)
+  
+  imp
+}
+
 #' Get grocery stores from all of Utah
 #' 
 #' @param grocery_sourcedata Path to file of all grocery stores
