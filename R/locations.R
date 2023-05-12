@@ -1,3 +1,119 @@
+#' Get grocery stores from all of Utah
+#' 
+#' @param grocery_sourcedata Path to file of all grocery stores
+#' @param nems_groceries 
+#' 
+get_all_groceries <- function(grocery_sourcedata, nems_groceries, bg_acs, this_crs) {
+  
+  # read in the file and adjust the variables ========================
+  groceries <- sf::st_read(grocery_sourcedata) |> 
+    sf::st_transform(this_crs) |> 
+    dplyr::select(id = OBJECTID, Name = NAME, type = TYPE, ethnic) |> 
+    dplyr::mutate(
+      id = as.character(id),
+      pharmacy = NA,
+      ethnic = ifelse(grepl("Specialty", type) | !is.na(ethnic), TRUE, FALSE),
+      type = dplyr::case_when(
+        Name %in% c("DOLLAR TREE", "FAMILY DOLLAR") ~ "Dollar Store",
+        type %in%  c("Health Food", "Supermarket", "Retail") ~ "Grocery Store",
+        type == "Convenience Grocery" ~ "Convenience",
+        type %in% c("Salvage Grocery", "Specialty Grocery") ~ "Other",
+        TRUE ~ type,
+      ),
+      merch = NA, 
+      registers = NA,
+      selfchecko = NA,
+      total_registers = NA,
+      availability = NA,
+      cost = NA,
+      market = NA, 
+      brand = dplyr::case_when(
+        grepl("DOLLAR TREE", Name) ~ "Dollar Tree",
+        grepl("FAMILY DOLLAR", Name) ~ "Family Dollar",
+        grepl("WALMART|WAL-MART", Name) ~ "Walmart",
+        grepl("MACEY", Name) ~ "Macey's",
+        grepl("HARMON", Name) ~ "Harmons",
+        grepl("SMITH", Name) ~ "Smith's",
+        grepl("TARGET", Name)~  "Target",
+        grepl("WINCO", Name) ~ "Winco",
+        TRUE ~ "Other"
+      )
+    )
+  
+  # get county of grocery stores
+  counties <- tigris::counties("utah") |> 
+    sf::st_transform(this_crs) |> 
+    dplyr::transmute(
+      county = NAME
+    )
+    
+  groceries <- groceries |> 
+    sf::st_join(counties)
+  
+  # exclude groceries that we surveyed ====================
+  buf <- nems_groceries |> 
+    sf::st_buffer(dist = 500) 
+  
+  discard <- sapply(sf::st_within(groceries, buf), function(x) length(x) > 0)
+  groceries <- groceries[!discard, ]
+  
+  # reconcile and bind ===================
+  bind_rows(
+    nems_groceries |> 
+      dplyr::mutate(
+        type = dplyr::case_when(
+          type == "Convenience Store" ~ "Convenience",
+          type == "Dollar Store" ~ "Dollar Store",
+          type == "Grocery Store" ~ "Grocery Store", 
+          TRUE ~ "Other"
+        )
+      ),
+    groceries
+  ) |> 
+    sf::st_transform(4326)
+  
+}
+
+
+
+#' Get grocery stores with NEMS data
+#' 
+#' @param nems_utah
+#' @param nems_saltlake
+#' @param nems_sanjuan
+#' 
+get_nems_groceries <- function(nems_saltlake, nems_sanjuan, nems_utah, this_crs) {
+  
+  nems <- dplyr::bind_rows(
+    list(
+      "Salt Lake" = readr::read_csv(nems_saltlake),
+      "San Juan"  = readr::read_csv(nems_sanjuan),
+      "Utah"      = readr::read_csv(nems_utah)
+    ),
+    .id = "county"
+  )  |> 
+    select(-Latitude, -Longitude)
+  
+  
+  geojson <- lapply(
+    list("Salt Lake" = "data/groceries_saltlake.geojson", 
+         "San Juan"  = "data/groceries_sanjuan.geojson",
+         "Utah" = "data/groceries_utah.geojson"),
+    function(x) sf::st_read(x) 
+  ) |> 
+    dplyr::bind_rows() |> 
+    dplyr::filter(!is.na(ID_1)) |> 
+    dplyr::select(id = ID_1)
+  
+  
+  dplyr::left_join(nems, geojson, by = "id") |> 
+    sf::st_as_sf() |> 
+    sf::st_transform(this_crs) |> 
+    sf::st_make_valid() |> 
+    sf::st_centroid()
+}
+
+
 #' Get American Community Survey data for the study.
 #' 
 #' @param state Which state to pull for

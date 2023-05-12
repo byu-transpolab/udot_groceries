@@ -26,6 +26,9 @@ options(tigris_use_cache = TRUE)
 for (file in list.files("R", full.names = TRUE)) source(file)
 # source("other_functions.R") # Source other scripts as needed. # nolint
 
+this_crs = 3675
+
+
 # Replace the target list below with your own:
 list(
 
@@ -36,20 +39,28 @@ list(
   # 1.2 Block group ACS data
   tar_target(bg_acs, get_acsdata(bgcentroids)),
   # 1.3 Grocery stores (with NEMS data)
+  tar_target(nems_saltlake, "data/nems_saltlake.csv", format = "file"),
+  tar_target(nems_sanjuan,  "data/nems_sanjuan.csv",  format = "file"),
+  tar_target(nems_utah,     "data/nems_utah.csv",     format = "file"),
+  tar_target(nems_groceries, get_nems_groceries(nems_saltlake, nems_sanjuan, nems_utah, this_crs)),
+  
   # 1.4 Other grocery stores
+  tar_target(grocery_sourcedata, "data/utah_allgroceries.geojson", format = "file"),
+  tar_target(all_groceries, get_all_groceries(grocery_sourcedata, nems_groceries, bg_acs, this_crs)),
   # 1.5 Imputation
   
 
   # 2. Travel times ========================
   # Construct a travel time matrix from open street maps
-  # 1. Check network data
+  # 2.1. Gather network data
   tar_target(osmium_script, "sh/get_osm.sh", format = "file"),
   tar_target(merged_osm_file, run_shell_script(osmium_script, "r5/merged.osm.pbf"), format = "file"),
   tar_target(gtfs, get_gtfs("r5/gtfs.zip"), format = "file"),
   
-  # 2. Build travel times
+  # 2.2 Build travel times
   
-  # 3. Build logsums
+  
+  # 2.2 Build logsums
   tar_target(util_file, "data/mode_utilities.json", format = "file"),
   tar_target(utilities, read_utilities(util_file)),
 
