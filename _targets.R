@@ -6,10 +6,12 @@
 # Load packages required to define the pipeline:
 library(targets)
 # library(tarchetypes) # Load other packages as needed. # nolint
+options(tigris_use_cache = TRUE)
+options(java.parameters = '-Xmx10G')
 
 # Set target options:
 tar_option_set(
-  packages = c("tibble", "dplyr", "sf", "jsonlite", "nngeo",
+  packages = c("tibble", "dplyr", "sf", "jsonlite", "nngeo", "r5r",
                "processx", "readr", "stringr", "tidycensus"), # packages that your targets need to run
   format = "rds" # default storage format
   # Set other options as needed.
@@ -17,8 +19,6 @@ tar_option_set(
 
 # tar_make_clustermq() configuration (okay to leave alone):
 options(clustermq.scheduler = "multicore")
-options(tigris_use_cache = TRUE)
-
 # tar_make_future() configuration (okay to leave alone):
 # Install packages {{future}}, {{future.callr}}, and {{future.batchtools}} to allow use_targets() to configure tar_make_future() options.
 
@@ -59,11 +59,15 @@ list(
   tar_target(gtfs, get_gtfs("r5/gtfs.zip"), format = "file"),
   
   # 2.2 Build travel times
-  
+  tar_target(times, calculate_times(all_groceries, bgcentroids, 
+                                    merged_osm_file, gtfs, 
+                                    landuselimit = NULL, bglimit = NULL,
+                                    max_trip_duration = 120)),
   
   # 2.2 Build logsums
   tar_target(util_file, "data/mode_utilities.json", format = "file"),
   tar_target(utilities, read_utilities(util_file)),
+  tar_target()
 
 
   # 3. Accessibilities ==============================

@@ -1,4 +1,154 @@
 
+#' Calculate multimodal travel times between bgcentroids and destinations
+#' 
+#' @param landuse Destination features
+#' @param bgcentroids Population-weighted blockgroup centroid
+#' @param merged_osm_file path to osm pbf file
+#' @param gtfs path to gtfs zip file
+#' @param landuselimit The maximum number of resources to sample. Default NULL means all included
+#' @param bglimit The maximum number of block groups included in sample. deafult NULL means all included
+#' 
+#' @return A tibble with times between Block groups and resources by multiple modes
+#' 
+#' @details Parallelized, will use parallel::detectCores() - 1
+#' 
+calculate_times <- function(landuse, bgcentroids, merged_osm_file, gtfs = NULL,  
+                            landuselimit = NULL, bglimit = NULL,
+                            max_trip_duration = 120){
+  
+  # start connection to r5
+  if(!file.exists(merged_osm_file)) stop("OSM file not present.")
+  if(!file.exists(gtfs)) stop("GTFS file not present.")
+  r5r_core <- r5r::setup_r5(dirname(merged_osm_file), verbose = FALSE)
+  
+  
+  # get lat / long for the landuse and the centroids
+  ll <- get_latlong(landuse)
+  bg <- get_latlong(bgcentroids)
+  
+  # limit the number of cells for the time calculations (for debugging)
+  if(!is.null(landuselimit)) ll <- ll |>  dplyr::sample_n(landuselimit)
+  if(!is.null(bglimit)) bg <- bg |>  dplyr::sample_n(bglimit)
+  
+  # routing inputs
+  departure_datetime <- as.POSIXct("10-05-2023 08:00:00",
+                                   format = "%d-%m-%Y %H:%M:%S")
+  time_window <- 60L # how many minutes are scanned
+  percentiles <- 25L # assumes riders have some knowledge of transit schedules
+  
+  
+  # get the car travel times
+  car_tt <- r5r::travel_time_matrix(
+    r5r_core,
+    bg,
+    ll,
+    mode = "CAR",
+    departure_datetime = departure_datetime,
+    time_window = time_window,
+    percentiles = percentiles,
+    breakdown = FALSE, # don't need detail for car trips
+    breakdown_stat = "min",
+    max_trip_duration = max_trip_duration,
+    verbose = FALSE,
+    progress = TRUE
+  ) |> 
+    dplyr::mutate(mode = "CAR")
+  
+  # get the walk times
+  walk_tt <- r5r::travel_time_matrix(
+    r5r_core,
+    bg,
+    ll,
+    mode = "WALK",
+    departure_datetime = departure_datetime,
+    time_window = time_window,
+    percentiles = percentiles,
+    breakdown = FALSE,
+    breakdown_stat = "min",
+    max_walk_dist = 10000, # in meters
+    max_trip_duration = max_trip_duration,
+    walk_speed = 3.6, # meters per second
+    verbose = FALSE,
+    progress = TRUE
+  ) |> 
+    mutate(mode = "WALK")
+  
+  
+  # get the transit times
+  transit_tt <- r5r::travel_time_matrix(
+    r5r_core,
+    bg,
+    ll,
+    mode = "TRANSIT",
+    mode_egress = "WALK",
+    departure_datetime = departure_datetime,
+    time_window = time_window,
+    percentiles = percentiles,
+    breakdown = TRUE,
+    breakdown_stat = "mean",
+    max_walk_dist = 1000, # in meters
+    max_trip_duration = max_trip_duration,
+    walk_speed = 3.6, # meters per second
+    verbose = FALSE,
+    progress = TRUE
+  ) |> 
+    mutate(mode = "TRANSIT")  %>%
+    filter(n_rides > 0)
+  
+  
+  alltimes <- bind_rows(
+    transit_tt, 
+    car_tt, 
+    walk_tt,
+  ) |> 
+    transmute(
+      blockgroup = fromId,
+      resource = toId,
+      mode = mode,
+      duration = travel_time,
+      transfers = n_rides,
+      walktime = access_time + egress_time,
+      waittime = wait_time,
+      transittime = ride_time
+    ) |> 
+    # keep only the shortest itinerary by origin / destination / mode
+    # this is necessary because the parks have multiple points.
+    group_by(resource, blockgroup, mode) |> 
+    arrange(duration, .by_group = TRUE) |> 
+    slice(1) |> 
+    as_tibble()
+  
+  stop_r5()
+  alltimes
+}
+
+
+#' Function to get lat / long from sf data as matrix
+#' 
+#' @param sfc A simple features collection
+#' @return A data frame with three columns, id, LATITUDE and LONGITUDE
+#' 
+#' @details If sfc is a polygon, will first calculate the centroid.
+#' 
+get_latlong <- function(sfc){
+  
+  suppressWarnings(
+    tib <- sfc |>
+      sf::st_centroid() |> # will always warn for constant geometry
+      sf::st_transform(4326) |>
+      dplyr::transmute(
+        id = as.character(id),
+        lat = sf::st_coordinates(geometry)[, 2],
+        lon = sf::st_coordinates(geometry)[, 1],
+      ) |>
+      sf::st_set_geometry(NULL)
+  )
+  
+  tib
+}
+
+
+
 #' Calculate mode choice logsums
 #' 
 #' @param times A tibble returned from calculate_times
