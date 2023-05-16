@@ -67,7 +67,7 @@ list(
   # 2.2 Build logsums
   tar_target(util_file, "data/mode_utilities.json", format = "file"),
   tar_target(utilities, read_utilities(util_file)),
-  tar_target()
+  tar_target(modechoice_logsums, calculate_logsums(times, utilities)),
 
 
   # 3. Accessibilities ==============================

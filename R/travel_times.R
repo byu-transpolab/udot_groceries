@@ -160,16 +160,16 @@ get_latlong <- function(sfc){
 calculate_logsums <- function(times, utilities, walkspeed = 2.8) {
   
   w_times <- times |>
-    pivot_wider(id_cols = c("resource", "blockgroup"), names_from = mode,
+    tidyr::pivot_wider(id_cols = c("resource", "blockgroup"), names_from = mode,
                 values_from = c(duration, transfers, walktime, waittime, transittime)) |>
-    filter(!is.na(duration_CAR))
+    dplyr::filter(!is.na(duration_CAR))
   
   if(is.null(w_times$transittime_TRANSIT)) w_times$transittime_TRANSIT <- NA
   if(is.null(w_times$waittime_TRANSIT)) w_times$waittime_TRANSIT <- NA
   if(is.null(w_times$walktime_TRANSIT)) w_times$walktime_TRANSIT <- NA
   
   lsum <- w_times %>%
-    mutate(
+    dplyr::mutate(
       utility_CAR = as.numeric(
         utilities$CAR$constant + duration_CAR * utilities$CAR$ivtt
       ),
@@ -190,13 +190,13 @@ calculate_logsums <- function(times, utilities, walkspeed = 2.8) {
       ), 
       
     ) %>%
-    select(blockgroup, resource, contains("utility")) %>%
-    pivot_longer(cols = contains("utility"), 
+    dplyr::select(blockgroup, resource, contains("utility")) %>%
+    tidyr::pivot_longer(cols = contains("utility"), 
                  names_to = "mode", names_prefix = "utility_", values_to = "utility") %>%
-    group_by(resource, blockgroup) %>%
-    summarise(mclogsum = logsum(utility))
+    dplyr::group_by(resource, blockgroup) %>%
+    dplyr::summarise(mclogsum = logsum(utility))
   
-  left_join(w_times, lsum, by = c("resource", "blockgroup"))
+  dplyr::left_join(w_times, lsum, by = c("resource", "blockgroup"))
   
 }
 
