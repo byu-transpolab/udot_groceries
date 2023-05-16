@@ -12,6 +12,7 @@ options(java.parameters = '-Xmx10G')
 # Set target options:
 tar_option_set(
   packages = c("tibble", "dplyr", "sf", "jsonlite", "nngeo", "r5r",
+               "mlogit",
                "processx", "readr", "stringr", "tidycensus"), # packages that your targets need to run
   format = "rds" # default storage format
   # Set other options as needed.
@@ -73,7 +74,13 @@ list(
   # 3. Accessibilities ==============================
   # Link the trip matrices and groceries together and compute accessibilities
   # 
-  # 
+  # 3.1 load models
+  tar_target(ut_model, "data/utcomodels.rds", format = "file"),
+  tar_target(sl_model, "data/slmodels.rds", format = "file"),
+  tar_target(sj_model, "data/sjmodels.rds", format = "file"),
+  tar_target(ut_dc, read_dc_fit(ut_model)),
+  tar_target(sl_dc, read_dc_fit(sl_model)),
+  tar_target(sj_dc, read_dc_fit(sj_model)),
   
   # Dummy targets so we don't end a list with a comma-------
   tar_target(
