@@ -40,10 +40,10 @@ list(
   # 1.2 Block group ACS data
   tar_target(bg_acs, get_acsdata(bgcentroids)),
   # 1.3 Grocery stores (with NEMS data)
-  tar_target(nems_saltlake, "data/nems_saltlake.csv", format = "file"),
-  tar_target(nems_sanjuan,  "data/nems_sanjuan.csv",  format = "file"),
-  tar_target(nems_utah,     "data/nems_utah.csv",     format = "file"),
-  tar_target(nems_groceries, get_nems_groceries(nems_saltlake, nems_sanjuan, nems_utah, this_crs)),
+  tar_target(n1, "data/nems.sav",  format = "file"),
+  tar_target(n2, "data/nems2.sav", format = "file"),
+  tar_target(brands, "data/brands.csv", format = "file"),
+  tar_target(nems_groceries, get_nems_groceries(list(n1, n2), brands, this_crs)),
   
   # 1.4 Other grocery stores
   tar_target(grocery_sourcedata, "data/utah_allgroceries.geojson", format = "file"),

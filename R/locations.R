@@ -66,8 +66,6 @@ get_all_groceries <- function(grocery_sourcedata, nems_groceries, bg_acs, this_c
         TRUE ~ type,
       ),
       merch = NA, 
-      registers = NA,
-      selfchecko = NA,
       total_registers = NA,
       availability = NA,
       cost = NA,
@@ -97,6 +95,7 @@ get_all_groceries <- function(grocery_sourcedata, nems_groceries, bg_acs, this_c
   
   # exclude groceries that we surveyed ====================
   buf <- nems_groceries |> 
+    sf::st_transform(this_crs) |> 
     sf::st_buffer(dist = 500) 
   
   discard <- sapply(sf::st_within(groceries, buf), function(x) length(x) > 0)
@@ -123,22 +122,43 @@ get_all_groceries <- function(grocery_sourcedata, nems_groceries, bg_acs, this_c
 
 #' Get grocery stores with NEMS data
 #' 
-#' @param nems_utah
-#' @param nems_saltlake
-#' @param nems_sanjuan
+#' @param nems_list A list of NEMS files
 #' 
-get_nems_groceries <- function(nems_saltlake, nems_sanjuan, nems_utah, this_crs) {
+#' 
+get_nems_groceries <- function(nems_list, brands, this_crs) {
   
-  nems <- dplyr::bind_rows(
-    list(
-      "Salt Lake" = readr::read_csv(nems_saltlake),
-      "San Juan"  = readr::read_csv(nems_sanjuan),
-      "Utah"      = readr::read_csv(nems_utah)
-    ),
-    .id = "county"
-  )  |> 
-    select(-Latitude, -Longitude)
+  # get raw data from Qualtrics surveys and do NEMS-r stuff to it
+  nems <- lapply(nems_list, function(n) {
+    stores <- nemsr::read_nemss(n) 
+    nems <- nemsr::calculate_nems_score(stores)
+    mkt <- nemsr::calculate_market_basket(stores)
+    
+    stores |> 
+      transmute(
+        id = STORE_ID, 
+        type = store_type,
+        pharmacy, ethnic = as.logical(ethnic), merch, 
+        total_registers = as.numeric(register) + as.numeric(self_checkout),
+        availability = nems$Total_Availability_Score,
+        cost = nems$Total_Cost_Score,
+        market = mkt$total
+      )
+  }) |> 
+    dplyr::bind_rows() |> 
+    dplyr::group_by(id) |> 
+    dplyr::slice(1) |> 
+    dplyr::mutate(
+      county = dplyr::case_when(
+        substr(id, 1, 2) == "SL" ~ "Salt Lake",
+        substr(id, 1, 2) == "UT" ~ "Utah",
+        substr(id, 1, 2) == "SJ" ~ "San Juan"
+      )
+    )
+    
+  # brands were stored separately  
+  brands_df <- readr::read_csv(brands)
   
+  nems <- dplyr::left_join(nems, brands_df, by = "id")
   
   geojson <- lapply(
     list("Salt Lake" = "data/groceries_saltlake.geojson", 
@@ -147,11 +167,12 @@ get_nems_groceries <- function(nems_saltlake, nems_sanjuan, nems_utah, this_crs)
     function(x) sf::st_read(x) 
   ) |> 
     dplyr::bind_rows() |> 
-    dplyr::filter(!is.na(ID_1)) |> 
-    dplyr::select(id = ID_1)
+    dplyr::filter(sf::st_geometry_type(geometry) == "MULTIPOLYGON") |> 
+    dplyr::select(id = ID_1) 
   
+  geojson <- geojson[!duplicated(geojson),]
   
-  dplyr::left_join(nems, geojson, by = "id") |> 
+  dplyr::inner_join(nems, geojson, by = "id") |> 
     sf::st_as_sf() |> 
     sf::st_transform(this_crs) |> 
     sf::st_make_valid() |> 
