@@ -84,7 +84,9 @@ make_access_data <- function(bg_acs, imputed_groceries, mcls, geoids, max_car = 
 estimate_model <- function(estdata) {
   
   df <- dfidx::dfidx(estdata, idx = c("obs_id", "alt")) |> 
-    mutate(type = forcats::as_factor(type))
+    mutate(type = ifelse(type == "Trading Post", "Other", type),
+           type = forcats::as_factor(type), 
+           type = forcats::fct_relevel(type, "Grocery Store"))
   
   m <- mlogit::mlogit(chosen ~ mclogsum + market + cost + availability + type + total_registers | -1,
                       data = df)

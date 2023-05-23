@@ -63,7 +63,7 @@ list(
   tar_target(times, calculate_times(all_groceries, bgcentroids, 
                                     merged_osm_file, gtfs, 
                                     landuselimit = NULL, bglimit = NULL,
-                                    max_trip_duration = 120)),
+                                    max_trip_duration = 180)),
   
   # 2.2 Build logsums
   tar_target(util_file, "data/mode_utilities.json", format = "file"),
@@ -89,7 +89,7 @@ list(
   tar_target(estdata_sj, make_estdata(flows_sj, mcls, nems_groceries |> filter(county == "San Juan"), bg_acs, n_obs = 10000, n_alts = 11)),
   tar_target(sl_dc, estimate_model(estdata_sl)),
   tar_target(ut_dc, estimate_model(estdata_ut)),
-  tar_target(sj_dc, estimate_model(estdata_sl)),
+  tar_target(sj_dc, estimate_model(estdata_sj)),
   
   # 3.2 allocate counties to models
   # Salt Lake County
@@ -105,7 +105,7 @@ list(
   tar_target(ru_orig, make_access_data(
     bg_acs, imputed_groceries, mcls,  
     geoids = ut_counties |> filter(!NAME %in% c("Salt Lake", "Utah", "Weber", "Davis")) |> 
-      pull(GEOID))),
+      pull(GEOID), max_car = 180)),
   
   
   # 3.3 compute accessibility logsums
@@ -114,7 +114,5 @@ list(
   tar_target(ru_access, compute_dclogsum(ru_orig, sj_dc)),
   tar_target(access, dplyr::bind_rows(sl_access, wf_access, ru_access))
   
-  
-  #
 
 )

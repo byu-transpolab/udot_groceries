@@ -220,6 +220,7 @@ get_acsdata <- function(bgcentroids) {
     variables = variables, 
     geometry = TRUE,
     state = states,
+    year = 2019,
     county = counties
     
   ) |>
@@ -258,7 +259,9 @@ get_acsdata <- function(bgcentroids) {
 #' for all block groups in Utah.
 #' 
 get_bgcentroids <- function(){
-  bgcentroid <- readr::read_csv("https://www2.census.gov/geo/docs/reference/cenpop2020/blkgrp/CenPop2020_Mean_BG49.txt")
+  bgcentroid <- readr::read_csv("https://www2.census.gov/geo/docs/reference/cenpop2010/blkgrp/CenPop2010_Mean_BG49.txt")
+  
+  
   
   sf::st_as_sf(bgcentroid, coords = c("LONGITUDE", "LATITUDE"), crs = 4326) |> 
     dplyr::mutate(id = stringr::str_c(STATEFP, COUNTYFP, TRACTCE, BLKGRPCE)) |> 
