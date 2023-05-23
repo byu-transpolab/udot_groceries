@@ -109,19 +109,12 @@ list(
   
   
   # 3.3 compute accessibility logsums
-  # tar_target(sl_access, compute_dclogsum(bg_acs, imputed_groceries, mcls, sl_model)),
+  tar_target(sl_access, compute_dclogsum(sl_orig, sl_dc)),
+  tar_target(wf_access, compute_dclogsum(wf_orig, ut_dc)),
+  tar_target(ru_access, compute_dclogsum(ru_orig, sj_dc)),
+  tar_target(access, dplyr::bind_rows(sl_access, wf_access, ru_access))
   
   
-  
-  
-  # Dummy targets so we don't end a list with a comma-------
-  tar_target(
-    name = data,
-    command = tibble(x = rnorm(100), y = rnorm(100))
-  ),
-  tar_target(
-    name = model,
-    command = coefficients(lm(y ~ x, data = data))
-  )
+  #
 
 )

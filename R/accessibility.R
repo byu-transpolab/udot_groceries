@@ -3,23 +3,29 @@
 #' @param access_data A data frame created by make_access_data()
 #' @param model An estimated model
 #' 
-compute_dclogsum <- function(access_data){
+compute_dclogsum <- function(access_data, model){
+  
+  if (!any(grepl("Convenience", names(coefficients(model))))) {
+    access_data <- access_data |> 
+      mutate(type = ifelse(type == "Convenience", "Other", type))
+  }
   
   adidx <- dfidx::dfidx(
     access_data |> 
-      mutate(chosen = FALSE,
-             type = ifelse(n)) , idx = c("blockgroup", "resource") ) 
+      mutate(chosen = FALSE),
+    idx = c("blockgroup", "resource"), idnames = c("obs_id", "alt") ) 
+    
+  
+  
   require(mlogit)
   
   adf <- broom::augment(model, newdata = adidx)
-  x <- update(model, start = coef(x, fixed = TRUE), data = adidx, iterlim = 0,
-              print.level = 0)
   
-  
-  
-   
-  
-  
+  adf |> 
+    mutate(id, alternative, expu = exp(.fitted)) |> 
+    group_by(id) |> 
+    filter(!is.na(expu)) |> 
+    summarise(dclogsum = log(sum(expu)))
 }
 
 
