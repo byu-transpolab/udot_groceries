@@ -28,7 +28,7 @@ for (file in list.files("R", full.names = TRUE)) source(file)
 # source("other_functions.R") # Source other scripts as needed. # nolint
 
 this_crs = 3675
-
+ut_counties = tigris::counties("Utah") |> dplyr::select(NAME, GEOID)
 
 # Replace the target list below with your own:
 list(
@@ -68,19 +68,51 @@ list(
   # 2.2 Build logsums
   tar_target(util_file, "data/mode_utilities.json", format = "file"),
   tar_target(utilities, read_utilities(util_file)),
-  tar_target(modechoice_logsums, calculate_logsums(times, utilities)),
+  tar_target(mcls, calculate_logsums(times, utilities)),
+  # tar_target(nocarmcls, calculate_logsums(times, utilities, nocar = TRUE)),
 
 
   # 3. Accessibilities ==============================
   # Link the trip matrices and groceries together and compute accessibilities
   # 
-  # 3.1 load models
-  tar_target(ut_model, "data/utcomodels.rds", format = "file"),
-  tar_target(sl_model, "data/slmodels.rds", format = "file"),
-  tar_target(sj_model, "data/sjmodels.rds", format = "file"),
-  tar_target(ut_dc, read_dc_fit(ut_model)),
-  tar_target(sl_dc, read_dc_fit(sl_model)),
-  tar_target(sj_dc, read_dc_fit(sj_model)),
+  # 3.0 Flows
+  tar_target(streetlight_sl, "data/streetlight/streetlight_groceries_saltlake.csv", format = "file"),
+  tar_target(streetlight_ut, "data/streetlight/streetlight_groceries_utah.csv",     format = "file"),
+  tar_target(streetlight_sj, "data/streetlight/streetlight_groceries_sanjuan.csv", format = "file"),
+  tar_target(flows_sl, read_sl_data(streetlight_sl, mcls)),
+  tar_target(flows_ut, read_sl_data(streetlight_ut, mcls, "UT-")),
+  tar_target(flows_sj, read_sl_data(streetlight_sj, mcls)),
+   
+  # 3.1 estimate models
+  tar_target(estdata_sl, make_estdata(flows_sl, mcls, nems_groceries |> filter(county == "Salt Lake"), bg_acs, n_obs = 10000, n_alts = 11)),
+  tar_target(estdata_ut, make_estdata(flows_ut, mcls, nems_groceries |> filter(county == "Utah"), bg_acs, n_obs = 10000, n_alts = 11)),
+  tar_target(estdata_sj, make_estdata(flows_sj, mcls, nems_groceries |> filter(county == "San Juan"), bg_acs, n_obs = 10000, n_alts = 11)),
+  tar_target(sl_dc, estimate_model(estdata_sl)),
+  tar_target(ut_dc, estimate_model(estdata_ut)),
+  tar_target(sj_dc, estimate_model(estdata_sl)),
+  
+  # 3.2 allocate counties to models
+  # Salt Lake County
+  tar_target(sl_orig, make_access_data(
+    bg_acs, imputed_groceries, mcls,  
+    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID))),
+  # Other Wasatch Front Counties
+  tar_target(wf_orig, make_access_data(
+    bg_acs, imputed_groceries, mcls,  
+    geoids = ut_counties |> filter(NAME %in% c("Utah", "Weber", "Davis")) |> 
+      pull(GEOID))),
+  # Rural Utah
+  tar_target(ru_orig, make_access_data(
+    bg_acs, imputed_groceries, mcls,  
+    geoids = ut_counties |> filter(!NAME %in% c("Salt Lake", "Utah", "Weber", "Davis")) |> 
+      pull(GEOID))),
+  
+  
+  # 3.3 compute accessibility logsums
+  # tar_target(sl_access, compute_dclogsum(bg_acs, imputed_groceries, mcls, sl_model)),
+  
+  
+  
   
   # Dummy targets so we don't end a list with a comma-------
   tar_target(
