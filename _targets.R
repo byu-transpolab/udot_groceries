@@ -87,9 +87,14 @@ list(
   tar_target(estdata_sl, make_estdata(flows_sl, mcls, nems_groceries |> filter(county == "Salt Lake"), bg_acs, n_obs = 10000, n_alts = 11)),
   tar_target(estdata_ut, make_estdata(flows_ut, mcls, nems_groceries |> filter(county == "Utah"), bg_acs, n_obs = 10000, n_alts = 11)),
   tar_target(estdata_sj, make_estdata(flows_sj, mcls, nems_groceries |> filter(county == "San Juan"), bg_acs, n_obs = 10000, n_alts = 11)),
-  tar_target(sl_dc, estimate_model(estdata_sl)),
-  tar_target(ut_dc, estimate_model(estdata_ut)),
-  tar_target(sj_dc, estimate_model(estdata_sj)),
+  
+  tar_target(sl_models, estimate_model(estdata_sl)),
+  tar_target(ut_models, estimate_model(estdata_ut)),
+  tar_target(sj_models, estimate_model(estdata_sj)),
+  
+  tar_target(sl_dc, sl_models[["All"]]),
+  tar_target(ut_dc, ut_models[["All"]]),
+  tar_target(sj_dc, sj_models[["All"]]),
   
   # 3.2 allocate counties to models
   # Salt Lake County

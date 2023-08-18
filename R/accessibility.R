@@ -19,6 +19,7 @@ compute_dclogsum <- function(access_data, model){
   
   require(mlogit)
   
+  # This requires the version of broom at gregmacfarlane/broom
   adf <- broom::augment(model, newdata = adidx)
   
   adf |> 
@@ -88,12 +89,15 @@ estimate_model <- function(estdata) {
            type = forcats::as_factor(type), 
            type = forcats::fct_relevel(type, "Grocery Store"))
   
-  m <- mlogit::mlogit(chosen ~ mclogsum + market + cost + availability + type + total_registers | -1,
-                      data = df)
+  m <- list( 
+    "Access" = mlogit(chosen ~ mclogsum | -1, data = df),
+    "NEMS" = mlogit(chosen ~ availability + cost | -1, data = df),
+    "Attributes" = mlogit(chosen ~ market + total_registers + type | -1, data = df),
+    "All" = mlogit(chosen ~ mclogsum + availability + cost + market + total_registers + type | -1, data = df)
+  )
   
   m
 }
-
 
 
 #' Construct an estimation dataset
