@@ -154,10 +154,11 @@ get_latlong <- function(sfc){
 #' @param times A tibble returned from calculate_times
 #' @param utilities A list of mode choice utilities
 #' @param walkspeed Assumed walking speed in miles per hour
+#' @param nocar 
 #' 
 #' @return A tibble with the mode choice logsum for each resource / blockgroup
 #'   pair
-calculate_logsums <- function(times, utilities, walkspeed = 2.8) {
+calculate_logsums <- function(times, utilities, walkspeed = 2.8, nocar = FALSE) {
   
   w_times <- times |>
     tidyr::pivot_wider(id_cols = c("resource", "blockgroup"), names_from = mode,
@@ -193,10 +194,20 @@ calculate_logsums <- function(times, utilities, walkspeed = 2.8) {
     dplyr::select(blockgroup, resource, contains("utility")) %>%
     tidyr::pivot_longer(cols = contains("utility"), 
                  names_to = "mode", names_prefix = "utility_", values_to = "utility") %>%
-    dplyr::group_by(resource, blockgroup) %>%
-    dplyr::summarise(mclogsum = logsum(utility))
+    dplyr::group_by(resource, blockgroup) 
+ 
+  if(nocar){
+    lsum <- lsum |> 
+      dplyr::filter(mode != "CAR") |> 
+      dplyr::summarise(mclogsum = logsum(utility))
+  } else {
+    lsum <- lsum |> 
+      dplyr::summarise(mclogsum = logsum(utility))
+  }
   
-  dplyr::left_join(w_times, lsum, by = c("resource", "blockgroup"))
+  
+  dplyr::left_join(w_times, lsum, by = c("resource", "blockgroup")) |> 
+    dplyr::filter(!is.infinite(mclogsum))
   
 }
 

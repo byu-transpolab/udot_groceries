@@ -69,7 +69,7 @@ list(
   tar_target(util_file, "data/mode_utilities.json", format = "file"),
   tar_target(utilities, read_utilities(util_file)),
   tar_target(mcls, calculate_logsums(times, utilities)),
-  # tar_target(nocarmcls, calculate_logsums(times, utilities, nocar = TRUE)),
+  tar_target(nocarmcls, calculate_logsums(times, utilities, nocar = TRUE)),
 
 
   # 3. Accessibilities ==============================
@@ -96,6 +96,10 @@ list(
   tar_target(sl_orig, make_access_data(
     bg_acs, imputed_groceries, mcls,  
     geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID))),
+  # Salt Lake no car
+  tar_target(sl_orig_nocar, make_access_data(
+    bg_acs, imputed_groceries, nocarmcls,  
+    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID))),
   # Other Wasatch Front Counties
   tar_target(wf_orig, make_access_data(
     bg_acs, imputed_groceries, mcls,  
@@ -110,6 +114,7 @@ list(
   
   # 3.3 compute accessibility logsums
   tar_target(sl_access, compute_dclogsum(sl_orig, sl_dc)),
+  tar_target(slnocar_access, compute_dclogsum(sl_orig_nocar, sl_dc)),
   tar_target(wf_access, compute_dclogsum(wf_orig, ut_dc)),
   tar_target(ru_access, compute_dclogsum(ru_orig, sj_dc)),
   tar_target(access, dplyr::bind_rows(sl_access, wf_access, ru_access))
