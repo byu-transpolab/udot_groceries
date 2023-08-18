@@ -1,0 +1,74 @@
+# Results
+
+```{r setup, file = "R/chapter_start.R", include = FALSE}
+# a number of commands need to run at the beginning of each chapter. This
+# includes loading libraries that I always use, as well as options for 
+# displaying numbers and text.
+library(mlogit)
+library(wesanderson)
+```
+
+
+```{r loadmodels}
+tar_load(sl_models)
+tar_load(ut_models)
+tar_load(sj_models)
+```
+
+```{r model-setups, include=FALSE}
+glance_custom.mlogit <- function(x, ...){
+  broom:::glance.mlogit(x)
+}
+f <- function(x) format(round(x, 3), big.mark=",")
+gm <- list(
+  list("raw" = "AIC", "clean" = "AIC", "fmt" = f),
+  list("raw" = "rho20", "clean" = "$\\rho^2_0$", "fmt" = f))
+
+cm <- c(
+  "duration_CAR" = "Automobile Travel Time",
+  "mclogsum" = " Mode Choice Logsum", 
+  "availability" = "NEMS Availability Score",
+  "cost" = "NEMS Cost Score",
+  "market" = "USDA Market Basket",
+  "registers" = "Registers",  
+  "typeDollar Store" = "Store Type: Dollar Store", 
+  "typeConvenience Store" = "Store Type: Convenience Store",
+  "typeOther" = "Store Type: Other"
+)
+```
+
+
+```{r sl-models}
+#| label: tbl-sl-models
+#| tbl-cap: Estimated Models of Salt Lake County
+modelsummary(sl_models, gof_map = gm, coef_map = cm)
+```
+
+
+```{r utah-models}
+#| label: tbl-utah-models
+#| tbl-cap: Estimated Models of Utah County
+modelsummary(ut_models, gof_map = gm, coef_map = cm)
+```
+
+
+```{r sl-models}
+#| label: tbl-sj-models
+#| tbl-cap: Estimated Models of San Juan County
+modelsummary(sj_models, gof_map = gm, coef_map = cm)
+```
+
+
+
+```{r all-comp}
+#| label: fig-all-comp
+#| fig-cap: Comparison of county model coefficient estimates.
+list(
+  "Salt Lake" = sl_models[["All"]],
+  "Utah"      = ut_models[["All"]],
+  "San Juan"  = sj_models[["All"]]
+) |> 
+  modelplot(coef_map = cm) +
+  scale_color_manual(values = wesanderson::wes_palette('Darjeeling1'))
+```
+

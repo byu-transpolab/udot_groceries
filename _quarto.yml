@@ -1,0 +1,82 @@
+project:
+  type: book
+
+# This defines the .qmd files that are in your document
+book:
+  title: "Equitable Access to Nutrition in Utah"
+  author:
+    - name: Gregory S. Macfarlane
+      orcid: 0000-0003-3999-7584
+      email: gregmacfarlane@gmail.com
+      affiliations:
+        - name: Civil and Construction Engineering Department, Brigham Young University
+          address: 430 EB
+          city: Provo
+          state: UT
+          postal-code: 84602
+    # to add additional authors, simply add another -name: tag 
+  date: "09/01/2023"
+  chapters:
+    - index.qmd
+    - 02_litreview.qmd
+    - 03_methods.qmd
+    - 04_estimation.qmd
+    - 05_scenarios.qmd
+    - 06_conclusion.qmd
+    - references.qmd
+  abstract: | 
+   One of the more recent topics in transportation policy making and project
+   prioritization in DOT’s across the United States is how to improve quality of
+   life. This quality of life focus is an intersection of public health and
+   transportation and has many different branches including traffic safety,
+   pollution,
+   active transportation, equity, and accessibility to resources. The topic among
+   these that seems to receive the least attention is equitable access to
+   resources. However, with the proven impact that equitable access to resources
+   has on physical and emotional well-being, as well as economic opportunity it is
+   important to ensure that all populations, including minority and low income
+   populations have the same accessibility as those in the majority and high income
+   populations. Transportation and public health researchers have constructed
+   several quantitative measures to define accessibility, but the most frequent
+   methods used lack the ability to include quality measures of the resource or a
+   variable distance threshold. Therefore, it is important to use a more inclusive
+   definition of accessibility that we can develop using a utility-based
+   accessibility model. This paper develops a logit model with different variables
+   and parameters in order to identify which variables are important and should be
+   included in accessibility measures. The variables come from the impedance
+   attributes for the different modes of travel and the location attributes that
+   were obtained from a nutritional environment 
+   survey conducted in three counties in Utah. The parameters were developed using
+   LBS data and identifying flows from home block groups to grocery stores, and
+   then creating synthetic trips with non-chosen alternatives. After the utility
+   model is created, we are able to use those utility values to create different
+   logit models, each having a different set of variables included. These logit
+   models were analyzed to find the variables that have a significance on the
+   model. From the models it was found that cost of goods, as well as availability
+   of quality goods have a significant impact on which grocery stores were chosen
+   in the model. In addition, other variables such as size of store and mode of
+   travel have a significance as well. From the models identified, it was found
+   that in order to have an accurate accessibility model it is important to include
+   these variables that are found to be significant in grocery store choice. These
+   results can help with developing transportation policies and help to improve
+   equitable access in cities.
+
+  
+
+bibliography: groceries.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreport
+#  elsevier-pdf:
+#    journal:
+#      name: Transportation Research Part A
+#      cite-style: authoryear
+#    keep-tex: true
+#    top-level-division: section
+#    toc: false
+  #docx:
+  #  reference-doc: memos/udot_template.docx
+editor: visual

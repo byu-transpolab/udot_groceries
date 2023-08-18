@@ -9,3 +9,10 @@ _targets/
 data/osm/
 r5/
 data/streetlight/
+/.quarto/
+/*_cache/
+/*_files/
+/site_libs/
+/_book/
+
+

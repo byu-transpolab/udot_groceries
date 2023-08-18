@@ -1,0 +1,32 @@
+# Methods
+
+This section describes how we construct a model of access to grocery stores in 
+communities in Utah. We first describe the theoretical model, and then describe
+data collection efforts to estimate this model and apply it.
+
+## Model
+
+Given the limitations 
+
+
+\begin{equation} 
+  U_{ij} = \beta_{s}f(k_{ij}) + \beta_{j}(x_j)
+\end{equation}
+
+In this equation $k_{ij}$ represents the distance from *i* to *j* and $x_{i}$ represents the location attributes of *j*. The variable values are developed using different methods for the impedance travel times and the location attributes. The way that these variables are calculated as well as how the $\beta_{1}$ and $\beta_{2}$ parameters are calculated are described in detail below. 
+
+
+## Data Collection
+
+To estimate the access
+
+### Attribute Data
+
+
+
+
+### Travel Time Data
+
+### Flow Data
+
+

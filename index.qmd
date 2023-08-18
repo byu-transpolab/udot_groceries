@@ -1,0 +1,71 @@
+# Introduction
+
+The Utah Department of Transportation (UDOT) recently adopted a new mission to
+"Enhance the Quality of Life through Transportation," alongside a four-part
+framework: Better Mobility, Good Health, Connected Communities, and Strong
+Economies (UDOT, 2019). A critical role of the transportation system in
+accomplishing all elements of UDOT's mission is ensuring that all Utah
+households have adequate access to quality nutrition and other community
+resources. Access to quality nutrition is shown to have a correlation with
+mental and physical well being [@francis2012], and there are many communities
+that do not have good accessibility to quality nutrition, with the main options
+being either more expensive for quality goods, or no quality goods available.
+
+"Accessibility" is an abstract concept without a specific quantitative
+definition [@handy1997]. However, using accessibility as a policy measure
+requires comparative quantification, and transportation and public health
+researchers have constructed several quantitative measures. Some commonly used
+measures include:
+
+-   Nearest destination: How close is the nearest grocery store?
+-   Opportunities within a travel time: How many grocery stores can be reached
+    within 30 minutes?
+
+These types of measures require the researcher to make a series of assumptions
+and assertions: why is 30 minutes chosen instead of 40? Is that time by transit
+or highway or walking? Should these definitions change for individuals in
+different socioeconomic groups? And do people always go to the closest grocery
+store to begin with? How much further are people willing to travel to go to a
+store that is cheaper or that has a wider variety of goods? A measure that
+combines all of these different considerations is desirable.
+
+## Objectives
+
+The objective of this project is to develop an understanding of what variables
+and attributes are desirable in grocery stores for different counties as well as
+different socioeconomic groups, in order to help identify where to make
+improvements to increase equity and accessibility. The proposed logit model
+methodology is developed from a connection between three extensive data sources:
+
+-   A detailed survey of the nutrition market
+-   Location-based services data derived from mobile phone records revealing
+    which grocery stores are frequented by residents of different neighborhoods
+-   Multi-modal network data providing detailed estimates of access by car,
+    bicycle, walking, and public transit.
+
+These data will be combined in order to develop accurate logit models that
+demonstrate the variables that are significant to grocery store choice in Utah.
+These models could then be used to find accessibility to stores and impact
+transportation policy to improve quality of life for all communities in Utah.
+
+## Outline
+
+This project will begin by conducting an analysis of current transportation
+policies that have been done across the United States to portray there is a lack
+of information and policy correlating to accessibility in general and
+specifically equitable access to resources. We will then conduct a literature
+review of current accessibility measures as well as equity and access to show
+that current methods are lacking in their scope of identifying accessibility.
+
+We will continue by describing the methodology, specifically why we use the
+utility-based access measures, how we find the impedance for those, and how we
+collected the location attributes. We then describe how we develop the parameter
+estimation using LSB data and our resulting data. We follow by presenting and
+analyzing the results of the location attribute data, and continue by discussing
+the results of the logit models that were developed and the attributes that were
+found to be significant.
+
+We then follow with the conclusions of our results, what we have found through
+the research and how we feel this project and these results could be useful and
+transformative in helping to develop transportation policy in Utah and the
+United States.

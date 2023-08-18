@@ -1,0 +1,4 @@
+## Application {#sec-scenarios}
+
+In this section, we develop a series of scenarios to which we apply the models
+estimated in @sec-estimation.
