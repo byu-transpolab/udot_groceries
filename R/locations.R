@@ -179,6 +179,27 @@ get_nems_groceries <- function(nems_list, brands, this_crs) {
     sf::st_centroid()
 }
 
+#' Get the ACS data for block groups in the vicinity of NEMS-S collected stores
+#' 
+#' @param bg_acs
+#' @param nems_groceries
+#' 
+get_neighbor_acs <- function(bg_acs, bgcentroids, nems_groceries){
+  a <- nems_groceries |> 
+    sf::st_buffer(1.5 * 5280) |> 
+    dplyr::group_by(county) |> 
+    dplyr::summarise()
+  
+  b <- bgcentroids |> 
+    st_transform(st_crs(a)) |> 
+    st_join(a) |> 
+    filter(!is.na(county))
+  
+  inner_join(bg_acs, 
+             b |> select(geoid = id, county) |> st_set_geometry(NULL))
+  
+}
+
 
 #' Get American Community Survey data for the study.
 #' 

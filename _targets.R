@@ -44,6 +44,7 @@ list(
   tar_target(n2, "data/nems2.sav", format = "file"),
   tar_target(brands, "data/brands.csv", format = "file"),
   tar_target(nems_groceries, get_nems_groceries(list(n1, n2), brands, this_crs)),
+  tar_target(neighbor_acs, get_neighbor_acs(bg_acs, bgcentroids, nems_groceries)),
   
   # 1.4 Other grocery stores
   tar_target(grocery_sourcedata, "data/utah_allgroceries.geojson", format = "file"),
