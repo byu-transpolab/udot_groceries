@@ -1,31 +1,145 @@
 # Methods
 
-This section describes how we construct a model of access to grocery stores in 
+```{r setup, file = "R/chapter_start.R", include = FALSE}
+# a number of commands need to run at the beginning of each chapter. This
+# includes loading libraries that I always use, as well as options for 
+# displaying numbers and text.
+library(mlogit)
+library(wesanderson)
+library(kableExtra)
+```
+This section describes how we construct a model of access to grocery stores in
 communities in Utah. We first describe the theoretical model, and then describe
 data collection efforts to estimate this model and apply it.
 
 ## Model
+A typical model of destination choice [@recker1978] can be described as a random utility maximization
+model where the utility of an individual $i$ choosing a particular destination $j$ is 
+$$ U_{ij} = \beta_{s}f(k_{ij}) + \beta_{x}(X_j) $${#eq-utility}
+where $f(k_{ij})$ is a function of the travel impedance or costs from $i$ to $j$ 
+and $X_{j}$ represents the location attributes of $j$. The coefficients $\beta$
+can be estimated given sufficient data revealing the choices of individuals.
+The probability that individual $i$ will choose alternative $j$ from a choice 
+set $J$ can be estimated with a multinomial logit model (MNL) [@mcfadden1974],
+$$ P_i(j) = \frac{\exp(U_{ij})}{\sum_{j' \in J}{\exp(U_{ij'})}}$${#eq-mnl}
 
-Given the limitations 
+The idea of using destination choice logsums as accessibility terms is not new, 
+and the theory for doing so is described in @ben-akiva1985 [p.301]. Effectively,
+the natural logarithm of the denominator in @eq-mnl represents the consumer 
+surplus --- or total benefit --- available to person $i$:
 
+$$ CS_i = \ln\left(\sum_{j' \in J} \exp(U_{ij'})\right)$$ {#eq-cs}
+
+A difference in logsum measures may exist for a number of reasons that affect
+the utility functions described in @eq-utility. For
+example, individuals at different locations or with different mobility 
+will see different impedance values $k_{ij}$ and therefore affected
+utility.
+Changes to the attributes of the destinations $X_j$ will likewise affect the 
+utility. 
+
+Despite the relative maturity of this theory, applications of utility-based
+access in the literature are still rare, outside of public transport forecasting 
+analyses [@geurs2010]. The rarity is likely explained by an unfamiliarity with
+destination choice models and the ready availability of simpler methods on one 
+hand [@logan2019], and the difficulty in obtaining a suitable estimation 
+dataset for particular land uses on the other [@kaczynski2016]. This second
+limitation has been somewhat improved by a new methodology developed by 
+@macfarlane2022, relying on commercial location-based services data 
+to estimate the affinity for simulated agents to visit destinations of varying
+attributes and distances.
+
+## Data 
+In this research, we develop a unique dataset to estimate the destination choice
+utility coefficients for grocery store choice in three different communities in 
+Utah. The three communities were selected to maximize potential observed
+differences in utility between community residents. The three communities are 
+Utah County, West Salt Lake Valley, and San Juan County. Note that in this
+document we refer to the second community as "Salt Lake" even though this does not
+refer to the entire Salt Lake County nor to Salt Lake City, rather, we focus on 
+communities in the western part of the valley, such as Magna, Kearns, and West 
+Valley City.
+
+Table @tbl-acsdata shows several key population statistics based on 2021
+American Community Survey data for block groups in the three communities of
+interest. Utah County is a largely suburban county with high incomes and a low
+percentage of minority individuals. The Salt Lake region is more dense with
+somewhat lower incomes and household sizes but a high share of minority
+individuals. San Juan County is primarily rural, with a few small communities
+and a large reservation for the Navajo Tribe.
+
+  
+```{r acsdata}
+#| label: tbl-acsdata
+#| tbl-cap: Demographic Statistics of Study Region
+tar_load(neighbor_acs) 
+neighbor_acs |> 
+  mutate(county = relevel(factor(county), ref = "Utah")) |> 
+  group_by(county) |> 
+  summarise(
+    `Total population` = sum(population),
+    `Total households` = sum(households),
+    `Housing units per sq. km` = weighted.mean(density, housing_units),
+    `Median income` = Hmisc::wtd.quantile(income, weights = households, probs = .5),
+    `Percent minority individuals` = weighted.mean(100 - white, population)
+  ) |> 
+  data.table::transpose(make.names = 'county', keep.names = 'measure') |> 
+  kbl(col.names = c("", "Utah", "Salt Lake", "San Juan"), digits = 0) |> 
+  kable_styling()
+```
+
+
+Estimating the utility model described in @eq-mnl for grocery stores 
+requires three interrelated data elements:
+
+  1. an inventory of grocery store attributes $X_j$, 
+  2. a representative travel impedance matrix $K$ composed of all combinations of 
+  origin $i$ and destination $j$.
+  3. a database of observed person device flows between $i$ and $j$.
+  
+We describe each of these elements in turn in the following section.
+
+### Store Attributes
+
+```{r nems}
+tar_load(nems_groceries)
+```
+
+
+The location attributes were collected using a NEMS-S tool. This tool was developed and evaluated in 2004 and 2005 and found to have a high degree of test reliability and reveal significant differences across store types and neighborhoods [@glanz2007]. The NEMS-S instrument is a validated tool for estimating the availability of healthy food alternatives in an environment. The NEMS-S tool collects information about various store attributes such as number of cash registers, manned and we added unmanned (self-checkouts) as a separate attribute as well as the type of store, namely whether it is a general grocery store, grocery store with pharmacy, ethnic food store, or dollar store. In addition it collects data on the availability and price of various food items such as milk, fruit and vegetables, ground beef, bread, juice, and more. These data are then compiled to develop two different NEMS score measures: an availability score and a cost score.
+
+Student researchers collected the NEMS-S data for stores in Utah County, West Valley City and the environs in Salt Lake County, and San Juan County. San Juan County data collection included San Juan County in Utah as well as Cortez, Colorado, and Farmington, New Mexico in order to more accurately portray grocery store choice among those in these areas. These counties were decided upon based upon their distinct attributes, with areas in Salt Lake county, specifically West Valley City and environs being a more dense, more diverse area, San Juan County being a very rural, spread out county, and Utah County being a combination of the two. When collecting lists of stores to collect data on, we tried to compile a list of all general grocery stores as well as dollar stores starting by using OpenStreetMap and then verifying and adding or removing store using googlemaps. We did not collect data on corner stores or pharmacies such as Walgreens or CVS, however, we collected data on full service grocery stores and dollar stores because grocery stores are the most used for grocery shopping, but there are other possibilities such as dollar stores that are perhaps used more frequently for those who have less access to other stores or who are in a lower income class that prefer to shop at dollar stores. We also chose not to include any gas stations because of the lack of goods offered. Research was collected in the spring of 2021 for Utah County and spring of 2022 for Salt Lake and San Juan Counties. Each researcher who collected data was trained to use the survey at a control store in Provo. The initial data collected at training were all compared with each other in order to determine that there was no surveyor bias when filling out the survey. There were also several stores in Utah County that were surveyed again in 2022 in order to develop an inflation rate for the store to be able to have accurate comparison between counties and stores because of the difference in time collected.
+
+Both the availability and cost scores as based on the NEMS-S protocol look at the relative availability and cost of healthier vs. unhealthier options in stores. For example, in the availability score each store is given a value for whether or not there are healthier options available in the store, such as lowfat chips, or lowfat milk. If the store does not have a healthier option it receives a lower score, so the higher the score the more healthier options the store has available. For the cost score the NEMS function compares the cost of healthier vs. less healthy options. In this case it looks at whether the healthier options are less expensive or more expensive than the less healthy options. If the healthier option is less expensive the store gets a higher score, so the higher the score receives the more affordable the healthy food options are. Both these score values are taken from a similar NESM-S study done in Denver, Colorado (Lunsford, 2016).
+
+One score that the NEMS-S tool does not contain is a straightforward way to compute the affordability of groceries; we therefore created a market basket-based affordability measure that could be compared across stores. A similar measure was used an compared to be significantly correlated with the NEMS-S scores in a study accross four states (Hedrick et al, 2022). This market basket score was created using the USDA 2021 Thrifty Food Plan (FNS, 2021). In the Food Plan it contains a Market Basket for a reference family of four. We used amount values from the Thrifty Food Plan and multiplied by the price of the good in the store. Because this market basket contained more (and sometimes different) items than what we had data on, we chose relevant items from our NEMS-S data and used those amounts to create the market basket such as replacing chicken in the market basket with ground beef. For example, the market basket calls for 6.7 pounds of whole grain staples and 5.65 pounds of refined grain staples. We used those pounds values for amounts of whole bread and white bread. For any stores that were missing any of the ingredients for the market basket, we tried to substitute with any other ingredient that would fit the requirements, and if that did not work, we substituted with the average price across stores multiplied by 1.5 as a penalty for not containing the product. The final market basket score is the total cost of all foods in the market basket. A general equation showing a few of the variables included can be seen in Equation \eqref{eq:align}.
+
+\begin{align} 
+  Cost = 6.7(cost_{wheat bread}) + 5.65(cost_{white bread}) + \notag \\
+  15.13(cost_{whole milk}) + 25.48(cost_{lowfat milk}) \label{eq:align}
+\end{align}
+
+These costs can then be compared from store to store to understand general affordability comparisons between stores.  
+
+### Travel Times
+
+In this research, we use the r5r [@pereira2021] implementation of the R5 [@conway2017; @conway2018; @conway2019] routing engine to obtain travel times by automobile, transit, and walking. The R5 routing engine is called this because it executes rapid realistic routing on real-world and re-imagined networks. R5 is beneficial because of the realistic way in which it plans its trips, planning several departure times in a time window, which better reflects actual human use of transportation systems. This is because frequently when people use transit systems they do not leave at exactly 8:30 am, they may leave slightly before or slightly after in order to catch a specific transit line. Therefore, having several departure times in a window lets r5r plan for the most optimal departure time, which is most realistic for what people do. R5 networks are built from publicly available OSM (OpenStreetMap) networks as well as GTFS (General Transit Feed Specification) data for transportation systems. For this project the OpenStreetMap pbf file was obtained through the Geofabrik website for the Utah region. In addition, we obtained the GTFS file for October 2019 through the Utah transportation transitfeeds website. We used October 2019 data in order to have a consistent transit and travel network for all analyses. 
+
+These travel times are beneficial for us in order to develop travel impedance factors for different modes of travel. Just as a location choice model logsum can represent accessibility, a mode choice model logsum can represent multi-modal travel impedance. Utility equations for generating mode choice involve a general linear form equation for each mode alternative including auto, bus and walk. 
 
 \begin{equation} 
-  U_{ij} = \beta_{s}f(k_{ij}) + \beta_{j}(x_j)
+  V_{auto} = -0.02(time_{a}) - 0.5(cost_{a})
 \end{equation}
-
-In this equation $k_{ij}$ represents the distance from *i* to *j* and $x_{i}$ represents the location attributes of *j*. The variable values are developed using different methods for the impedance travel times and the location attributes. The way that these variables are calculated as well as how the $\beta_{1}$ and $\beta_{2}$ parameters are calculated are described in detail below. 
-
-
-## Data Collection
-
-To estimate the access
-
-### Attribute Data
-
-
-
-
-### Travel Time Data
+\begin{equation} 
+  V_{bus} = -0.02(time_{b}) - 0.5(cost_{b}) - 1.2(distance)
+\end{equation}
+\begin{equation} 
+  V_{walk} = -0.02(time_{w}) - 0.5(cost_{w}) - 2.8(distance)
+\end{equation}
+\begin{equation}
+  L = ln(e^{V_{auto}} + e^{V_{bus}} + e^{V_{walk}})
+\end{equation}
+These equations use values such as cost of the trip, distance of the trip, and time of the trip for any observed difference between alternatives. It also includes coefficients for those parameters that vary equally between modes, such as cost of travel. This is because a dollar is worth the same for one type of travel as another type of travel. The last coefficient that is included is coefficients for estimations that vary between mode choice such as distance of travel. This is because a distance like two miles is perceived differently for a person who is walking rather than someone who is driving in a car, it may be the same distance but significantly more time and energy for walking. Therefore the coefficients for distance would be different per mode. Using these mode choice equations we can develop observed utility for mode choice that can then be entered into the impedance variable value. 
 
 ### Flow Data
 
