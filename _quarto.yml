@@ -63,7 +63,7 @@ book:
 
   
 
-bibliography: groceries.bib
+bibliography: [groceries.bib, packages.bib]
 
 format:
   html:
