@@ -184,6 +184,7 @@ These costs can then be compared from store to store to understand general affor
 tar_load(nems_groceries)
 
 balnems <- nems_groceries |> 
+  ungroup() |> 
   transmute(Type = ifelse(type == "Trading Post", "Other", type),
             Pharmacy = pharmacy, 
             `Ethnic market` = ethnic,
@@ -194,7 +195,8 @@ balnems <- nems_groceries |>
             `Market basket cost` = market, 
             County = factor(county, levels = c("Utah", "Salt Lake", "San Juan")))
 
-datasummary_balance(~County, data = balnems)
+datasummary_balance(~County, data = balnems) |> 
+  kable_styling(latex_options = "scale_down")
 ```
 
 @tbl-nems presents the store attribute data collected for each community. Utah
