@@ -15,4 +15,4 @@ data/streetlight/
 /site_libs/
 /_book/
 /rosm.cache/
-
+*-tikzDictionary
