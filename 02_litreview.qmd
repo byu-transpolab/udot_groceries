@@ -104,7 +104,7 @@ health officials, police, and community members.
 ```{r fig-visionzero}
 #| label: fig-visionzero
 #| fig-cap: Vision Zero communities in the United States.
-#| width: 7in
+#| out-width: "6in"
 knitr::include_graphics("images/Vision_Zero_Network_Community_Map_August_2022.png")
 ```
 
@@ -144,6 +144,7 @@ particulates, so there are opportunities for improvement.
 ```{r fig-nonattainment}
 #| label: fig-nonattainment
 #| fig-cap: Nonattainment counties in the United States, identified by how many criteria pollutants are in nonattainment.
+#| out-width: "6in"
 knitr::include_graphics("images/mapnmpoll.png")
 ```
 
@@ -209,6 +210,7 @@ two indicators of 0.64.
 #| label: fig-obeseactivity
 #| layout-ncol: 2
 #| fig-cap: State-level rates of obesity and physical activity of trips.
+#| out-width: "3in"
 #| fig-subcap:
 #|   - "Obesity"
 #|   - "Physical Activity"
@@ -251,6 +253,7 @@ regardless of age, abilities and mode of transportation.
 ```{r fig-completestreets}
 #| label: fig-completestreets
 #| fig-cap: Jurisdictions with complete streets policies in the United States.
+#| out-width: "6in"
 knitr::include_graphics("images/completestreets.png")
 ```
 
