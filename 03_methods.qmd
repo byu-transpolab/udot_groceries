@@ -1,4 +1,4 @@
-# Methods
+# Methods {#sec-methods}
 
 ```{r setup, file = "R/chapter_start.R", include = FALSE}
 # a number of commands need to run at the beginning of each chapter. This
@@ -22,6 +22,13 @@ can be estimated given sufficient data revealing the choices of individuals.
 The probability that individual at location $i$ will choose alternative $j$ from a choice 
 set $J$ can be estimated with a multinomial logit model (MNL) [@mcfadden1974],
 $$ P_i(j) = \frac{\exp(U_{ij})}{\sum_{j' \in J}{\exp(U_{ij'})}}$${#eq-mnl}
+The overall fit of the model can be described with the Akaike Information 
+Criterion (AIC) ---  which should be minimized --- or by 
+the McFadden likelihood ratio $\rho^2_0 = 1 - \ln\mathcal{L} / \ln\mathcal{L}_0$.
+In this ratio $\ln{\mathcal{L}}$ is the model log-likelihood and $\ln{\mathcal{L}_0}$ the 
+log-likelihood of an alternative model where all destinations are equally 
+likely; a higher $\rho^2_0$ value indicates more explanatory power relative 
+to this null, random chance only model.
 
 The idea of using destination choice logsums as accessibility terms is not new, 
 and the theory for doing so is described in @ben-akiva1985 [p.301]. Effectively,
@@ -228,12 +235,11 @@ Just as the log-sum of a destination choice model is a measure that sums the
 utility of multiple destination attributes and costs in a rigorous manner, the
 log-sum of a mode choice model combines the utilities of all available travel
 modes. In this study we assert the following mode choice utility equations:
-\begin{align} 
+\begin{align*} 
   V_{\mathrm{auto}, ij} &= `r utilities$CAR['ivtt']`(t_{\mathrm{auto}, ij})\\
   V_{\mathrm{bus}, ij} &= `r utilities$TRANSIT['constant']` `r utilities$TRANSIT['ivtt']`(t_{\mathrm{bus}, ij}) `r utilities$TRANSIT['wait']`(t_{\mathrm{wait}, ij}) `r utilities$TRANSIT['wait']`(t_{\mathrm{access}, ij})\\
   V_{\mathrm{walk, ij}} &= `r utilities$WALK['constant']` `r utilities$WALK['ivtt']`(t_{\mathrm{walk}, ij}) `r utilities$WALK['short_distance']`(d_{ij<1.5}) `r utilities$WALK['long_distance']`(d_{ij>1.5})\\
-  k_{ij} &= \ln(e^{V_{\mathrm{auto}, ij}} + e^{V_{\mathrm{bus}, ij}} + e^{V_{\mathrm{walk},ij}})
-\end{align}
+\end{align*}
 where $t$ is the in-vehicle travel time in minutes for each mode between $i$ and
 $j$. 
 The transit utility function additionally includes the wait time for transit as
@@ -241,6 +247,11 @@ well as the time necessary to access the transit mode on both ends by walking.
 The walk utility includes a per-mile distance disutility that increases for 
 distances greater than 1.5 miles. These equations and coefficients are adapted from
 a statewide mode choice model developed for UDOT research [@barnes2021].
+
+The log-sum, or total weighted impedance by all modes is therefore
+$$
+k_{ij} = \ln(e^{V_{\mathrm{auto}, ij}} + e^{V_{\mathrm{bus}, ij}} + e^{V_{\mathrm{walk},ij}})
+$$ {#eq-mcls} 
 
 In this implementation, $i$ is the population-weighted centroid of a 2020 Census
 block group, and $j$ is an individual grocery store. We measure the travel times
