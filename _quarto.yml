@@ -70,6 +70,11 @@ format:
     theme: cosmo
   pdf:
     documentclass: scrreport
+    include-in-header: 
+      - text: |
+          \usepackage{rotating}
+    fig-pos: 't'
+    keep-tex: true
 #  elsevier-pdf:
 #    journal:
 #      name: Transportation Research Part A
