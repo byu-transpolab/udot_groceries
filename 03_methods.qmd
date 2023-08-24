@@ -215,7 +215,57 @@ County has the smallest average stores, highest costs and the lowest
 availability of healthy options, and Salt Lake falls in between.
 
 
-### Travel Impedances
+### Imputation of Missing Store Data
+
+We collected detailed store attributes for stores in Utah County, San Juan
+County, and a portion of Salt Lake County using the NEMS-S survey instrument.
+These attributes form the basis of the choice models used to determine access, but
+understanding access in other parts of Salt Lake City or the state of Utah requires
+us to impute the attributes onto the stores that we did not collect.
+
+To do this, we used web-based mapping databases (including OpenStreetMap and 
+Google Maps) to obtain a list of grocery stores, dollar stores, and appropriate
+convenience stores throughout the state. From this search, we were able to 
+determine the stores location, brand name, and store type, which we also collected
+in the manual data assembly efforts. Using this information, we built a multiple
+imputation model using the `mice` package for R [@mice]. The predictor variables 
+in the imputation included the store brand and type, as well as the average income
+and housing density in the nine closest block groups to the store location (based on
+population-weighted centroids).
+
+```{r marketimp}
+#| label: fig-marketimp
+#| fig-cap: Imputed market price values for 15 random grocery stores.
+#| out-width: "5in"
+tar_load(imputed_groceries)
+combined <- lapply(seq_along(imputed_groceries), 
+                   function(i) mice::complete(imputed_groceries, i)) |> 
+  bind_rows(.id = "imputation") |> 
+  filter(type == "Grocery Store") |> 
+  as_tibble()
+
+sampled_store_ids <- sample(combined$id, 15)
+set.seed(42)
+combined |> 
+  filter(id %in% sampled_store_ids) |> 
+  filter(!grepl("SL|UT|SJ", id)) |> 
+  arrange(id) |> 
+ggplot(aes(x = market)) +
+  geom_density() + facet_wrap(~id) + theme_bw() +
+  xlab("Imputed Market Basket Price [$]") + 
+  ylab("Density")
+```
+
+Thirty iterations of the multiple imputation algorithm were run for each of
+ten independent imputations. @fig-marketimp shows the density of the ten imputed
+market basket prices for a randomly selected set of 15 stores. As the figure
+reveals, there is some general peaking in the predicted market price for most
+stores, but the imputation model still predicts a wide range of possible prices for
+most stores. When using the imputed data for analysis, we take the mean 
+of the ten predictions for continuous values, and the mode for discrete values.
+
+
+### Travel Impedances {#sec-mcls}
 
 The second element of the utility equation in @eq-utility is the travel impedance
 between $i$ and $j$. 
