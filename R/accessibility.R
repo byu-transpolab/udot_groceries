@@ -1,3 +1,46 @@
+#' Make access database for utah county
+#' 
+#' @param access
+#' @param bg
+#' @param bg_acs
+#' 
+#' 
+make_utbgaccess <- function(access, bg, bg_acs) {
+  utbgaccess <-  bg |> 
+    filter(substr(GEOID, 3, 5) == "049") |> 
+    select(id = GEOID) |> 
+    left_join(bg_acs, by = c("id" = "geoid")) |> 
+    left_join(access, by = c("id" )) |> 
+    filter(dclogsum > -5) |> 
+    mutate(access = dclogsum)
+  
+  utbgaccess
+}
+
+
+make_nocaraccess <- function(access, slnocar_access, bg, bg_acs){
+  # limit to salt lake valley
+  sl_limits <- tibble(
+    lon = c(-112.11, -111.7),
+    lat = c(40.5, 40.8)
+  ) |> 
+    sf::st_as_sf(coords = c("lon", "lat"), crs = 4326) |> 
+    sf::st_bbox()
+  
+  nocar_access <- bg |> 
+    select(geoid = GEOID) |> 
+    left_join(bg_acs, by = "geoid") |> 
+    left_join(access, by = c("geoid" = "id")) |> 
+    filter(!is.na(dclogsum)) |> 
+    left_join(slnocar_access |> rename(geoid = id, nocarlogsum = dclogsum),
+              by = "geoid") |> 
+    sf::st_transform(4326) |> 
+    sf::st_crop(sl_limits)
+  
+  
+  nocar_access
+}
+
 #' Compute the destination choice logsum
 #' 
 #' @param access_data A data frame created by make_access_data()
