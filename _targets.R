@@ -37,6 +37,7 @@ list(
   # Gather data on grocery stores and block groups and impute missing information
   # 1.1 Block group centroids
   tar_target(bgcentroids, get_bgcentroids()),
+  tar_target(bg, tigris::block_groups("UT", year = 2019)),
   # 1.2 Block group ACS data
   tar_target(bg_acs, get_acsdata(bgcentroids)),
   # 1.3 Grocery stores (with NEMS data)
@@ -123,7 +124,11 @@ list(
   tar_target(slnocar_access, compute_dclogsum(sl_orig_nocar, sl_dc)),
   tar_target(wf_access, compute_dclogsum(wf_orig, ut_dc)),
   tar_target(ru_access, compute_dclogsum(ru_orig, sj_dc)),
-  tar_target(access, dplyr::bind_rows(sl_access, wf_access, ru_access))
+  tar_target(access, dplyr::bind_rows(sl_access, wf_access, ru_access)),
   
+  
+  # 3.4 Maps
+  tar_target(utbgaccess, make_utbgaccess(access, bg, bg_acs)),
+  tar_target(nocaraccess, make_nocaraccess(access, slnocar_access, bg, bg_acs))
 
 )
