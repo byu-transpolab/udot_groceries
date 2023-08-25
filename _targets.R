@@ -102,21 +102,24 @@ list(
   # Salt Lake County
   tar_target(sl_orig, make_access_data(
     bg_acs, imputed_groceries, mcls,  
-    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID))),
+    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID),
+    completed_id = 1)),
   # Salt Lake no car
   tar_target(sl_orig_nocar, make_access_data(
     bg_acs, imputed_groceries, nocarmcls,  
-    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID))),
+    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID),
+    completed_id = 1)),
   # Other Wasatch Front Counties
   tar_target(wf_orig, make_access_data(
     bg_acs, imputed_groceries, mcls,  
     geoids = ut_counties |> filter(NAME %in% c("Utah", "Weber", "Davis")) |> 
-      pull(GEOID))),
+      pull(GEOID), 
+    completed_id = 1)),
   # Rural Utah
   tar_target(ru_orig, make_access_data(
     bg_acs, imputed_groceries, mcls,  
     geoids = ut_counties |> filter(!NAME %in% c("Salt Lake", "Utah", "Weber", "Davis")) |> 
-      pull(GEOID), max_car = 180)),
+      pull(GEOID), max_car = 180, completed_id = 1)),
   
   
   # 3.3 compute accessibility logsums
