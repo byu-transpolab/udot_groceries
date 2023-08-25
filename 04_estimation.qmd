@@ -287,7 +287,7 @@ consider what access looks like for those without cars by re-computing the mode
 choice log-sum described in @sec-mcls between all block group / store pairs but
 eliding the automobile mode, and examining the resulting impact to destination
 choice utility. @fig-map-nocar shows the results of this analysis: whereas the 
-total access (with car inlcuded) is a smooth gradient across the valley, the 
+total access (with car included) is a smooth gradient across the valley, the 
 access for individuals without vehicles is blocky and discontinuous, with neighboroods
 of relatively good access immediately next to neighborhoods with bad or non-existent
 access. This may reflect the discontinuous nature of active transport and public transit
