@@ -62,6 +62,7 @@ list(
   tar_target(gtfs, get_gtfs("r5/gtfs.zip"), format = "file"),
   
   # 2.2 Build travel times
+  tar_target(dists, make_dists(bgcentroids, all_groceries)),
   tar_target(times, calculate_times(all_groceries, bgcentroids, 
                                     merged_osm_file, gtfs, 
                                     landuselimit = NULL, bglimit = NULL,
@@ -132,6 +133,12 @@ list(
   
   # 3.4 Maps
   tar_target(utbgaccess, make_utbgaccess(access, bg, bg_acs)),
-  tar_target(nocaraccess, make_nocaraccess(access, slnocar_access, bg, bg_acs))
-
+  tar_target(nocaraccess, make_nocaraccess(access, slnocar_access, bg, bg_acs)),
+  
+  # 4. Scenarios =================================
+  
+  # 4.1 New Store
+  # 4.2 Improved Store
+  # 4.3 Improved Transit
+  tar_target(s3_times, make_newtimes(times, dists)),
 )

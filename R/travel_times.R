@@ -1,3 +1,54 @@
+#' Update times for the Salt Lake improved transport scenario
+#' 
+#' @param times
+#' 
+make_newtimes <- function(times, dists){
+  
+  times |> 
+    left_join(dists, by = c("blockgroup" = "bg", "resource")) |> 
+    # filter(
+    #   substr(blockgroup, 3, 5) == "035",
+    # ) |> 
+    # arrange(-distance_meters) |> 
+    mutate(
+      distance_meters = ifelse(
+        as.numeric(distance_meters) > 10000,
+        NA,
+        as.numeric(distance_meters)
+      ),
+      walktime = case_when(
+        # change walk times in Salt Lake County
+        substr(blockgroup, 3, 5) == "035" & mode == "WALK" ~ 
+          distance_meters / 1.07 / 60, # meters / (3.5 fps = 1.07 meters/second) / (60 minutes / second)
+        substr(blockgroup, 3, 5) == "035" & mode == "TRANSIT" ~ 
+          pmin(5, walktime),
+        TRUE ~ walktime
+      ),
+      waittime = ifelse(
+        # eliminate waiting for transit 
+        substr(blockgroup, 3, 5) == "035" & mode == "TRANSIT",
+        0,
+        waittime
+      )
+    ) 
+}
+
+
+#' Calculate euclidean distances between blockgroups and stores
+#' 
+#' @param bgcentroids
+#' @param all_groceries
+#' 
+make_dists <- function(bgcentroids, all_groceries){
+  
+  d <- st_distance(bgcentroids, all_groceries)
+  rownames(d) <- bgcentroids$id
+  colnames(d) <- all_groceries$id
+  
+  d |> 
+    as_tibble(rownames = "bg") |>  
+    pivot_longer(-bg, names_to = "resource", values_to = "distance_meters")
+}
 
 #' Calculate multimodal travel times between bgcentroids and destinations
 #' 
