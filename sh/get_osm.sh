@@ -4,10 +4,10 @@ mkdir -p data/osm/
 mkdir -p r5
 
 # download raw data from geofabrik
-wget -N http://download.geofabrik.de/north-america/us/arizona-230509.osm.pbf -O data/osm/arizona.osm.pbf
-wget -N http://download.geofabrik.de/north-america/us/new-mexico-230509.osm.pbf -O data/osm/new-mexico.osm.pbf
-wget -N https://download.geofabrik.de/north-america/us/utah-230509.osm.pbf -O data/osm/utah.osm.pbf
-wget -N http://download.geofabrik.de/north-america/us/colorado-230509.osm.pbf -O data/osm/colorado.osm.pbf
+wget -N http://download.geofabrik.de/north-america/us/arizona-230601.osm.pbf -O data/osm/arizona.osm.pbf
+wget -N http://download.geofabrik.de/north-america/us/new-mexico-230601.osm.pbf -O data/osm/new-mexico.osm.pbf
+wget -N https://download.geofabrik.de/north-america/us/utah-230601.osm.pbf -O data/osm/utah.osm.pbf
+wget -N http://download.geofabrik.de/north-america/us/colorado-230601.osm.pbf -O data/osm/colorado.osm.pbf
 
 # extract fourcorners region from other states
 osmium extract --overwrite -p data/fourcbounding.geojson data/osm/colorado.osm.pbf -o data/osm/fccolorado.osm.pbf
