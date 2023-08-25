@@ -1,4 +1,100 @@
-## Application {#sec-scenarios}
-
+# Application {#sec-scenarios}
+```{r setup, file = "R/chapter_start.R", include = FALSE, cache = FALSE}
+# a number of commands need to run at the beginning of each chapter. This
+# includes loading libraries that I always use, as well as options for 
+# displaying numbers and text.
+library(mlogit)
+library(wesanderson)
+library(sf)
+library(ggspatial)
+library(viridisLite)
+```
 In this section, we develop a series of scenarios to which we apply the models
-estimated in @sec-estimation.
+estimated in @sec-results.These scenarios are constructed to ascertain 
+what may be the best strategy to improve nutrition access in a community.
+We first describe how each scenario was constructed, and then discuss the
+results together.
+
+## Scenario Descriptions
+There are three general strategies we develop scenarios around:
+
+  1. Erect a new grocery store in the community, in a place where one does
+  not already exist.
+  2. Improve an existing convenience store or dollar store so that it has the 
+  attributes of a full-service grocery store.
+  3. Improve the transit and non-motorized access to stores in a region.
+  
+We implement all three strategies in scenarios on the west Salt Lake valley 
+community. We also implement strategy 1 (a new store) in the San Juan and Utah
+County communities for comparison. 
+
+### Erect a new store
+This strategy assumes that the nutrition environment would benefit from a new
+store located in a place that presently has low grocery store access.
+To examine the potential for this strategy to improve access to nutrition in
+each community, we calculate the change in destination choice log-sum when a new
+store is added to the region in a location where access is currently poor.
+
+### Improve an existing store 
+This strategy assumes that existing stores are in locations that the community 
+values and can access, but that those stores may not have high availability of 
+quality goods.
+To examine the potential for this strategy to improve access to nutrition, we 
+improve the attributes of an existing dollar store in the community so that it
+has the size, prices, and availability of goods as a full-service grocery store.
+
+### Improve transit and non-motorized transport 
+This strategy assumes that people cannot easily travel to existing stores because
+they cannot or do not drive for a variety of reasons, and that the public and
+and active transport networks provide an insufficient level of service.
+To examine the potential for this strategy to improve access to nutrition, we 
+improve the travel time costs in the Salt Lake community for non-motorized and
+public transportation in the region and calculate the change in destination
+choice log-sum.
+
+For active transportation, the lack of pedestrian facilities across and 
+alongside roads both in reality and in the OpenStreetMap dataset may substantially
+increase measured walk distances and times. In this scenario, we replace the 
+the times measured from OpenStreetMap using R5 with an idealized Euclidean distance
+function,
+$$
+t_{\mathrm{walk}} = \frac{d'_{ij}}{v_{\mathrm{walk}}}
+$$ {#eq-newwalk}
+where $d'_{ij}$ is the Euclidean (straight-line) distance between $i$ and $j$
+and $v_{ij}$ is an average walking speed equivalent to 3.5 feet per second 
+[@fitzpatrick2006]. We retain the cap on walking distance at 10 kilometers. 
+Though the Euclidean distance may radically understate the 
+real walking distance, we are trying to create a idealized scenario of
+effectively frictionless active transport. 
+For public transit, we assume that the frequency of service is such that all
+transfer and initial wait times are zero, and that no person must walk more than
+5 minutes to access their first public transport service. 
+
+## Scenario Results
+
+```{r}
+tar_load(bg)
+sl_base <- tar_read(sl_access)
+s3_altd <- tar_read(s3_access)
+
+
+cost <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "035") |> 
+  sf::st_transform(4326) |> 
+  left_join(sl_base |> rename(base = dclogsum)) |> 
+  left_join(s3_altd |> rename(alt = dclogsum)) |> 
+  mutate(diff = alt - base)
+
+pal <- wesanderson::wes_palette("Zissou1", 100, type = "continuous")
+
+ggplot(cost, aes(fill = alt)) + 
+  ggspatial::annotation_map_tile(type = "cartolight", zoom = 12) +
+  geom_sf(lwd = 0, alpha = 0.5) +
+  scale_x_continuous(limits = c(-112.11, -111.7)) + 
+  scale_y_continuous(limits = c(40.5, 40.8)) + 
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()) +
+  scale_fill_gradientn("Access", colours = pal)
+```
+
