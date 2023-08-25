@@ -64,6 +64,7 @@ book:
   
 
 bibliography: [groceries.bib, packages.bib]
+csl: elsevier-harvard-italics.csl
 
 format:
   html:
