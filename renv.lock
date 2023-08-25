@@ -1373,6 +1373,24 @@
         "RcppEigen"
       ]
     },
+    "nemsr": {
+      "Package": "nemsr",
+      "Version": "0.1.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "byu-transpolab",
+      "RemoteRepo": "nemsr",
+      "RemoteRef": "main",
+      "RemoteSha": "3086b933c73b26131f1915f1fc8f5a0933240310",
+      "Hash": "787d5da9a6440793eb68da737041c046",
+      "Requirements": [
+        "dplyr",
+        "haven",
+        "tibble",
+        "tidyr"
+      ]
+    },
     "nlme": {
       "Package": "nlme",
       "Version": "3.1-162",

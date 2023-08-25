@@ -12,7 +12,7 @@ options(java.parameters = '-Xmx10G')
 # Set target options:
 tar_option_set(
   packages = c("tibble", "dplyr", "sf", "jsonlite", "nngeo", "r5r",
-               "mlogit",
+               "mlogit", "nemsr",
                "processx", "readr", "stringr", "tidycensus"), # packages that your targets need to run
   format = "rds" # default storage format
   # Set other options as needed.
