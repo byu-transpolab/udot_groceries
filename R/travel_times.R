@@ -19,7 +19,7 @@ make_newtimes <- function(times, dists){
       walktime = case_when(
         # change walk times in Salt Lake County
         substr(blockgroup, 3, 5) == "035" & mode == "WALK" ~ 
-          distance_meters / 1.07 / 60, # meters / (3.5 fps = 1.07 meters/second) / (60 minutes / second)
+          distance_meters / 1.07 / 60, # meters / (3.5 fps = 1.07 meters/second) / (60 seconds / minute)
         substr(blockgroup, 3, 5) == "035" & mode == "TRANSIT" ~ 
           pmin(5, walktime),
         TRUE ~ walktime
@@ -62,6 +62,19 @@ make_dists <- function(bgcentroids, all_groceries){
 #' @return A tibble with times between Block groups and resources by multiple modes
 #' 
 #' @details Parallelized, will use parallel::detectCores() - 1
+#' @examples
+#' # settin' up for debuggin'
+#' options(java.parameters = '-Xmx10G')
+#' library(targets)
+#' library(r5r)
+#' library(tidyverse)
+#' tar_load(merged_osm_file)
+#' tar_load(gtfs)
+#' landuse <- tar_read(all_groceries) |> filter(county == "Salt Lake")
+#' bgcentroids <- tar_read(bgcentroids) |> filter(substr(id, 3,5) == "035")
+#' source("R/travel_times.R")
+#' landuselimit = 10; bglimit = 10
+#' max_trip_duration = 120
 #' 
 calculate_times <- function(landuse, bgcentroids, merged_osm_file, gtfs = NULL,  
                             landuselimit = NULL, bglimit = NULL,
@@ -71,6 +84,7 @@ calculate_times <- function(landuse, bgcentroids, merged_osm_file, gtfs = NULL,
   if(!file.exists(merged_osm_file)) stop("OSM file not present.")
   if(!file.exists(gtfs)) stop("GTFS file not present.")
   r5r_core <- r5r::setup_r5(dirname(merged_osm_file), verbose = FALSE)
+  on.exit(r5r::stop_r5())
   
   
   # get lat / long for the landuse and the centroids
@@ -82,13 +96,14 @@ calculate_times <- function(landuse, bgcentroids, merged_osm_file, gtfs = NULL,
   if(!is.null(bglimit)) bg <- bg |>  dplyr::sample_n(bglimit)
   
   # routing inputs
-  departure_datetime <- as.POSIXct("10-05-2023 08:00:00",
+  departure_datetime <- as.POSIXct("05-09-2023 08:00:00",
                                    format = "%d-%m-%Y %H:%M:%S")
   time_window <- 60L # how many minutes are scanned
   percentiles <- 25L # assumes riders have some knowledge of transit schedules
   
   
   # get the car travel times
+  message("Getting transit times")
   car_tt <- r5r::travel_time_matrix(
     r5r_core,
     bg,
@@ -97,15 +112,15 @@ calculate_times <- function(landuse, bgcentroids, merged_osm_file, gtfs = NULL,
     departure_datetime = departure_datetime,
     time_window = time_window,
     percentiles = percentiles,
-    breakdown = FALSE, # don't need detail for car trips
-    breakdown_stat = "min",
     max_trip_duration = max_trip_duration,
     verbose = FALSE,
     progress = TRUE
   ) |> 
-    dplyr::mutate(mode = "CAR")
+    dplyr::mutate(mode = "CAR") |> 
+    rename(total_time = travel_time_p25)
   
   # get the walk times
+  message("Getting transit times")
   walk_tt <- r5r::travel_time_matrix(
     r5r_core,
     bg,
@@ -114,37 +129,43 @@ calculate_times <- function(landuse, bgcentroids, merged_osm_file, gtfs = NULL,
     departure_datetime = departure_datetime,
     time_window = time_window,
     percentiles = percentiles,
-    breakdown = FALSE,
-    breakdown_stat = "min",
-    max_walk_dist = 10000, # in meters
     max_trip_duration = max_trip_duration,
-    walk_speed = 3.6, # meters per second
+    walk_speed = 3.6, # km/hr
     verbose = FALSE,
     progress = TRUE
   ) |> 
-    mutate(mode = "WALK")
+    mutate(mode = "WALK") |> 
+    rename(total_time = travel_time_p25)
   
   
   # get the transit times
-  transit_tt <- r5r::travel_time_matrix(
+  message("Getting transit times")
+  transit_tt <- r5r::expanded_travel_time_matrix(
     r5r_core,
-    bg,
+    # only do this for block groups on the wasatch front
+    bg |> filter(substr(id, 3, 5) %in% c(
+      "011", # davis
+      "035", # salt lake
+      "057", # weber
+      "049"  #utah
+      )),
     ll,
     mode = "TRANSIT",
     mode_egress = "WALK",
     departure_datetime = departure_datetime,
     time_window = time_window,
-    percentiles = percentiles,
     breakdown = TRUE,
-    breakdown_stat = "mean",
-    max_walk_dist = 1000, # in meters
-    max_trip_duration = max_trip_duration,
-    walk_speed = 3.6, # meters per second
+    max_trip_duration = 120,
+    walk_speed = 3.6, # km/hr
     verbose = FALSE,
     progress = TRUE
   ) |> 
-    mutate(mode = "TRANSIT")  %>%
-    filter(n_rides > 0)
+    as_tibble() |> 
+    filter(n_rides > 0) |> 
+    mutate(mode = "TRANSIT")  |> 
+    group_by(from_id, to_id) |> 
+    arrange(total_time) |> 
+    slice(1)
   
   
   alltimes <- bind_rows(
@@ -152,24 +173,19 @@ calculate_times <- function(landuse, bgcentroids, merged_osm_file, gtfs = NULL,
     car_tt, 
     walk_tt,
   ) |> 
+    ungroup() |> 
     transmute(
-      blockgroup = fromId,
-      resource = toId,
+      blockgroup = from_id,
+      resource = to_id,
       mode = mode,
-      duration = travel_time,
-      transfers = n_rides,
+      duration = total_time,
+      transfers = n_rides - 1,
       walktime = access_time + egress_time,
       waittime = wait_time,
       transittime = ride_time
     ) |> 
-    # keep only the shortest itinerary by origin / destination / mode
-    # this is necessary because the parks have multiple points.
-    group_by(resource, blockgroup, mode) |> 
-    arrange(duration, .by_group = TRUE) |> 
-    slice(1) |> 
     as_tibble()
   
-  stop_r5()
   alltimes
 }
 

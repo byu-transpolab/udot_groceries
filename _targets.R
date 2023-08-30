@@ -7,7 +7,7 @@
 library(targets)
 # library(tarchetypes) # Load other packages as needed. # nolint
 options(tigris_use_cache = TRUE)
-options(java.parameters = '-Xmx10G')
+options(java.parameters = '-Xmx14G')
 
 # Set target options:
 tar_option_set(
