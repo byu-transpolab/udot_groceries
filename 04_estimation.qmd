@@ -296,7 +296,9 @@ facilities in the region, as well as the auto-dominated locations of many
 grocery stores. Note also that even for neighborhoods of relatively good 
 non-vehicle access, the destination choice log-sum value is substantially lower
 than the logsum with vehicle access; the minimum value on with vehicles is just
-below 0, whereas the *maximum* log-sum without vehicles is around -70.
+below 0, whereas the *maximum* log-sum without vehicles is around -100. Because
+the log-sum occurs on the same scale in both cases, this represents a serious 
+additional cost for non-vehicle users.
 
 ```{r map-nocar}
 #| label: fig-map-nocar

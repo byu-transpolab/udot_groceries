@@ -39,7 +39,7 @@ and the theory for doing so is described in @ben-akiva1985 [p.301]. Effectively,
 the natural logarithm of the denominator in @eq-mnl represents the consumer
 surplus --- or total benefit --- available to person $i$:
 
-$$ CS_i = \ln\left(\sum_{j' \in J} \exp(U_{ij'})\right)$$ {#eq-cs}
+$$ CS_i = \ln\left(\sum_{j \in J} \exp(U_{ij})\right)$$ {#eq-cs}
 
 A difference in logsum measures may exist for a number of reasons that affect
 the utility functions described in @eq-utility. For example, individuals at
