@@ -43,6 +43,82 @@ impute_store_data <- function(all_groceries, bgcentroids, bg_acs) {
   imp
 }
 
+
+#' Make new store locations
+#' 
+#' @param nems_groceries attribute data
+#' 
+make_new_stores <- function(nems_groceries){
+  
+  # get some average values
+  new_attrs <- nems_groceries |> 
+    filter(type == "Grocery Store") |> 
+    filter(county == "Salt Lake") |> 
+    ungroup() |> 
+    st_set_geometry(NULL) |> 
+    summarise(
+      .by = county,
+      type = "Grocery Store",
+      pharmacy = TRUE,
+      ethnic = FALSE,
+      merch = FALSE,
+      total_registers = mean(total_registers),
+      availability = quantile(availability, probs = 0.75),
+      cost = quantile(cost, probs = 0.75),
+      market = quantile(market, probs = 0.25)
+    )
+  
+  
+  # location of new stores
+  tibble(
+    id = str_c("new-", nrow(new_attrs)),
+    county = new_attrs$county,
+    lon = c(-111.95852668416485),
+    lat = c(40.68272535460591)
+  ) |> 
+    left_join(new_attrs, by = c("county")) |> 
+    st_as_sf(coords = c("lon", "lat"), crs = 4326)
+}
+
+#' Make improved stores 
+#' 
+make_improved_stores <- function(nems_groceries){
+  
+  # get some average values
+  new_attrs <- nems_groceries |> 
+    ungroup() |> 
+    st_set_geometry(NULL) |> 
+    summarise(
+      type = "Grocery Store",
+      pharmacy = TRUE,
+      ethnic = FALSE,
+      merch = FALSE,
+      total_registers = mean(total_registers),
+      availability = quantile(availability, probs = 0.75),
+      cost = quantile(cost, probs = 0.75),
+      market = quantile(market, probs = 0.25),
+      .by = county
+    )
+  
+  # remove the three stores from the database
+  ng_removed <- nems_groceries |> 
+    filter(
+      !id %in% c("SL-013", "UT-002", "SJ-006")
+    )
+  
+  
+  # put the new attributes back into the data frame
+  nems_groceries |> 
+    filter(
+      id %in% c("SL-013", "UT-002", "SJ-006")
+    ) |> 
+    select(id, county, Name, brand) |> 
+    left_join(new_attrs, by = "county") 
+  
+  
+  
+}
+
 #' Get grocery stores from all of Utah
 #' 
 #' @param grocery_sourcedata Path to file of all grocery stores
@@ -137,7 +213,9 @@ get_nems_groceries <- function(nems_list, brands, this_crs) {
       transmute(
         id = STORE_ID, 
         type = store_type,
-        pharmacy, ethnic = as.logical(ethnic), merch, 
+        pharmacy = as.logical(pharmacy), 
+        ethnic = as.logical(ethnic), 
+        merch = as.logical(merch), 
         total_registers = as.numeric(register) + as.numeric(self_checkout),
         availability = nems$Total_Availability_Score,
         cost = nems$Total_Cost_Score,

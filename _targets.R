@@ -136,9 +136,58 @@ list(
   tar_target(nocaraccess, make_nocaraccess(access, slnocar_access, bg, bg_acs)),
   
   # 4. Scenarios =================================
+  tar_target(mkt_betas, get_costbetas(sl_models, ut_models, sj_models)),
   
   # 4.1 New Store
+  # Make a new store
+  tar_target(s1_stores, make_new_stores(nems_groceries)),
+  # get times to the new stores
+  tar_target(s1_times, calculate_times(s1_stores, bgcentroids,
+                                       merged_osm_file, gtfs, 
+                                       landuselimit = NULL, bglimit = NULL)),
+  # combine existing and new times
+  tar_target(s1_alltimes, bind_rows(s1_times, times)),
+  tar_target(s1_mcls, calculate_logsums(s1_alltimes, utilities)), 
+  # 
+  tar_target(s1_access_sl, make_access_data(
+    bg_acs, imputed_groceries, s1_mcls,  
+    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID),
+    new_store = s1_stores,
+    completed_id = 1)),
+  tar_target(s1_access, compute_dclogsum(s1_access_sl, sl_dc)),
+  
+  
   # 4.2 Improved Store
+  tar_target(s2_stores, make_improved_stores(nems_groceries)),
+  tar_target(s2_data, make_access_data(
+    bg_acs, imputed_groceries, mcls,
+    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID), 
+    improved_stores = s2_stores,
+    completed_id = 1)),
+  tar_target(s2_access, compute_dclogsum(s2_data, sl_dc)),
+  
+  
+  tar_target(s2_data_ut, make_access_data(
+    bg_acs, imputed_groceries, mcls,
+    geoids = ut_counties |> filter(NAME == "Utah") |> pull(GEOID), 
+    improved_stores = s2_stores,
+    completed_id = 1)),
+  tar_target(s2_access_ut, compute_dclogsum(s2_data_ut, ut_dc)),
+  
+  tar_target(s2_data_sj, make_access_data(
+    bg_acs, imputed_groceries, mcls,
+    geoids = ut_counties |> filter(NAME == "San Juan") |> pull(GEOID), 
+    improved_stores = s2_stores,
+    completed_id = 1)),
+  tar_target(s2_access_sj, compute_dclogsum(s2_data_sj, sj_dc)),
+  
+  
   # 4.3 Improved Transit
   tar_target(s3_times, make_newtimes(times, dists)),
+  tar_target(s3_mcls, calculate_logsums(s3_times, utilities)),
+  tar_target(s3_data, make_access_data(
+    bg_acs, imputed_groceries, s3_mcls,
+    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID), 
+    completed_id = 1)),
+  tar_target(s3_access, compute_dclogsum(s3_data, sl_dc))
 )

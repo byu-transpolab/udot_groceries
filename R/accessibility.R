@@ -1,3 +1,23 @@
+#' Calculate costs for a scenario
+#' 
+#' @param base Base scenario DCLS
+#' @param altd Alternative scenario DCLS
+#' 
+make_costs <- function(base, altd){
+  
+  return(NULL)
+}
+
+
+get_costbetas <- function(sl_models, ut_models, sj_models){
+  lapply(list(sl_models, ut_models, sj_models), function(x){
+    coefficients(x$All)["market"]
+  }) |> 
+    set_names(c("SaltLake", "Utah", "SanJuan")) |> 
+    unlist()
+}
+
+
 #' Make access database for utah county
 #' 
 #' @param access
@@ -85,7 +105,7 @@ compute_dclogsum <- function(access_data, model){
 #'   pick a random frame.
 #' 
 make_access_data <- function(bg_acs, imputed_groceries, mcls, geoids, max_car = 50,
-                             completed_id = NULL){
+                             completed_id = NULL, new_store = NULL, improved_stores = NULL){
   
   # select a multiply imputed dataset to join
   if ( is.null(completed_id) ) {
@@ -93,7 +113,17 @@ make_access_data <- function(bg_acs, imputed_groceries, mcls, geoids, max_car = 
   }
   
   dests <- mice::complete(imputed_groceries, completed_id) |> 
-    dplyr::select(id, type:brand)
+    dplyr::select(id, type:brand) 
+  
+  if(!is.null(new_store)){
+    dests <- bind_rows(dests, new_store)
+  }
+  
+  if(!is.null(improved_stores)){
+    dests <- dests |> 
+      filter(!id %in% improved_stores$id) |> 
+      bind_rows(improved_stores |> st_set_geometry(NULL))
+  }
   
   # Build up the choice set dataframe ============
   # start from the mcls data frame because it has origins and destinations to
@@ -119,6 +149,8 @@ make_access_data <- function(bg_acs, imputed_groceries, mcls, geoids, max_car = 
   
   access_data
 }
+
+
 
 
 #' Estimate a model for accessibility
