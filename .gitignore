@@ -3,8 +3,6 @@
 .RData
 .Ruserdata
 .Renviron
-
-
 _targets/
 data/osm/
 r5/
@@ -16,3 +14,5 @@ data/streetlight/
 /_book/
 /rosm.cache/
 *-tikzDictionary
+run.Rout
+nohup.out
