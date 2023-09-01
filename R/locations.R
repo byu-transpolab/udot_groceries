@@ -84,6 +84,12 @@ make_new_stores <- function(nems_groceries){
 #' 
 make_improved_stores <- function(nems_groceries){
   
+  # get the stores 
+  ng_pulled <- nems_groceries |> 
+    filter(
+      id %in% c("SL-013", "UT-002", "SJ-006")
+    )
+  
   # get some average values
   new_attrs <- nems_groceries |> 
     ungroup() |> 
@@ -94,18 +100,21 @@ make_improved_stores <- function(nems_groceries){
       ethnic = FALSE,
       merch = FALSE,
       total_registers = mean(total_registers),
-      availability = quantile(availability, probs = 0.75),
-      cost = quantile(cost, probs = 0.75),
-      market = quantile(market, probs = 0.25),
+      availability = quantile(availability, probs = 0.85),
+      cost = quantile(cost, probs = 0.85),
+      market = quantile(market, probs = 0.15),
       .by = county
     )
+  
+  # make sure these values are better than the old ones
+  new_attrs$total_registers = pmax(new_attrs$total_registers, ng_pulled$total_registers)
+  
   
   # remove the three stores from the database
   ng_removed <- nems_groceries |> 
     filter(
       !id %in% c("SL-013", "UT-002", "SJ-006")
     )
-  
   
   # put the new attributes back into the data frame
   nems_groceries |> 
