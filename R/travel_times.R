@@ -2,35 +2,42 @@
 #' 
 #' @param times
 #' 
-make_newtimes <- function(times, dists){
+make_newtimes <- function(times, dists, bgs){
   
-  times |> 
+  # times we are leaving alone
+  unadjusted <- times |> 
+    filter(!(blockgroup %in% bgs & grepl("SL-", resource)))
+  
+  adjusted <- times |> 
+    filter(blockgroup %in% bgs & grepl("SL-", resource)) |> 
     left_join(dists, by = c("blockgroup" = "bg", "resource")) |> 
-    # filter(
-    #   substr(blockgroup, 3, 5) == "035",
-    # ) |> 
-    # arrange(-distance_meters) |> 
     mutate(
+      # make walk times based on distance and walking speed only
       distance_meters = ifelse(
         as.numeric(distance_meters) > 10000,
         NA,
         as.numeric(distance_meters)
       ),
+      
+      # eliminate waiting for transit 
+      waittime = case_when(
+        mode == "TRANSIT" ~ pmin(10, waittime),
+        TRUE ~ waittime
+      ),
       walktime = case_when(
-        # change walk times in Salt Lake County
-        substr(blockgroup, 3, 5) == "035" & mode == "WALK" ~ 
-          distance_meters / 1.07 / 60, # meters / (3.5 fps = 1.07 meters/second) / (60 seconds / minute)
-        substr(blockgroup, 3, 5) == "035" & mode == "TRANSIT" ~ 
-          pmin(5, walktime),
+        mode == "TRANSIT" ~ pmin(10, walktime),
         TRUE ~ walktime
       ),
-      waittime = ifelse(
-        # eliminate waiting for transit 
-        substr(blockgroup, 3, 5) == "035" & mode == "TRANSIT",
-        0,
-        waittime
-      )
+      
+      
+      duration = case_when(
+        mode == "WALK" ~ sqrt(2) * distance_meters / 1.07 / 60, # meters / (3.5 fps = 1.07 meters/second) / (60 seconds / minute)
+        mode == "TRANSIT" ~ walktime + waittime + transittime,
+        TRUE ~ duration 
+      ),
     ) 
+  
+  bind_rows(unadjusted, adjusted)
 }
 
 

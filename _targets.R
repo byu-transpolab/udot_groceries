@@ -40,6 +40,8 @@ list(
   tar_target(bg, tigris::block_groups("UT", year = 2019)),
   # 1.2 Block group ACS data
   tar_target(bg_acs, get_acsdata(bgcentroids)),
+  tar_target(wvareafile, "data/west_valley_boundary.geojson", format = "file"),
+  tar_target(wv_bgs, get_wv_bgs(bgcentroids, wvareafile)),
   # 1.3 Grocery stores (with NEMS data)
   tar_target(n1, "data/nems.sav",  format = "file"),
   tar_target(n2, "data/nems2.sav", format = "file"),
@@ -178,12 +180,13 @@ list(
     bg_acs, imputed_groceries, mcls,
     geoids = ut_counties |> filter(NAME == "San Juan") |> pull(GEOID), 
     improved_stores = s2_stores,
+    max_car = 180,
     completed_id = 1)),
   tar_target(s2_access_sj, compute_dclogsum(s2_data_sj, sj_dc)),
   
   
   # 4.3 Improved Transit
-  tar_target(s3_times, make_newtimes(times, dists)),
+  tar_target(s3_times, make_newtimes(times, dists, wv_bgs)),
   tar_target(s3_mcls, calculate_logsums(s3_times, utilities)),
   tar_target(s3_data, make_access_data(
     bg_acs, imputed_groceries, s3_mcls,

@@ -119,6 +119,21 @@ make_improved_stores <- function(nems_groceries){
   
 }
 
+
+#' Get WV block groups
+#' 
+#' @param bgcentroids
+#' @param wvfile
+#' 
+get_wv_bgs <- function(bgcentroids, wvfile){
+  shp <- st_read(wvfile, crs = 4326)
+  
+  bgcentroids |> 
+    st_crop(shp) |> 
+    pull(id)
+  
+}
+
 #' Get grocery stores from all of Utah
 #' 
 #' @param grocery_sourcedata Path to file of all grocery stores
