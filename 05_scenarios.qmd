@@ -354,7 +354,10 @@ non-automobile transportation, and the new store more than five times the benefi
 Understanding the costs of these various alternatives is outside the scope of
 this research, but the level of infrastructure investment required to increase
 transportation level of service to that constructed in the simulation is likely
-an order of magnitude higher than the cost of a single new grocery store. It is
+an order of magnitude higher than the cost of a single new grocery store. Though
+it should also be acknowledged that improving non-automobile infrastructure and 
+services would have benefits beyond just grocery store trips that we do not attempt
+to enumerate here. It is
 also not clear whether the level of improvement simulated in the second scenario
 could be accomplished within the envelope of the existing store; it may be that
 such improvements would meet or exceed the cost of building a new store on a 
