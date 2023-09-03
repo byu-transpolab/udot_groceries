@@ -3,7 +3,7 @@
 The Utah Department of Transportation (UDOT) recently adopted a new mission to
 "Enhance the Quality of Life through Transportation," alongside a four-part
 framework: Better Mobility, Good Health, Connected Communities, and Strong
-Economies (UDOT, 2019). A critical role of the transportation system in
+Economies [@udot2023a]. A critical role of the transportation system in
 accomplishing all elements of UDOT's mission is ensuring that all Utah
 households have adequate access to quality nutrition and other community
 resources. Access to quality nutrition is shown to have a correlation with
@@ -32,16 +32,17 @@ combines all of these different considerations is desirable.
 ## Objectives
 
 The objective of this project is to develop an understanding of what variables
-and attributes are desirable in grocery stores for different counties as well as
-different socioeconomic groups, in order to help identify where to make
-improvements to increase equity and accessibility. The proposed logit model
-methodology is developed from a connection between three extensive data sources:
+and attributes are desirable in grocery stores for populations in different 
+areas of Utah, in order to help identify where to make
+improvements to increase equitable access to nutrition in Utah. The proposed 
+logit model methodology is developed from a connection between three extensive
+data sources:
 
--   A detailed survey of the nutrition market
--   Location-based services data derived from mobile phone records revealing
+  - A detailed survey of the nutrition market in three Utah communities
+  - Location-based services data derived from mobile phone records revealing
     which grocery stores are frequented by residents of different neighborhoods
--   Multi-modal network data providing detailed estimates of access by car,
-    bicycle, walking, and public transit.
+  - Multi-modal network data providing detailed mobility data by car,
+    walking, and public transit.
 
 These data will be combined in order to develop accurate logit models that
 demonstrate the variables that are significant to grocery store choice in Utah.
@@ -50,22 +51,14 @@ transportation policy to improve quality of life for all communities in Utah.
 
 ## Outline
 
-This project will begin by conducting an analysis of current transportation
-policies that have been done across the United States to portray there is a lack
-of information and policy correlating to accessibility in general and
-specifically equitable access to resources. We will then conduct a literature
-review of current accessibility measures as well as equity and access to show
-that current methods are lacking in their scope of identifying accessibility.
-
-We will continue by describing the methodology, specifically why we use the
-utility-based access measures, how we find the impedance for those, and how we
-collected the location attributes. We then describe how we develop the parameter
-estimation using LSB data and our resulting data. We follow by presenting and
-analyzing the results of the location attribute data, and continue by discussing
-the results of the logit models that were developed and the attributes that were
-found to be significant.
-
-We then follow with the conclusions of our results, what we have found through
-the research and how we feel this project and these results could be useful and
-transformative in helping to develop transportation policy in Utah and the
-United States.
+This document is organized in a typical manner. @sec-literature presents a review
+of transportation organizations' efforts to improve general health outcomes in their
+communities, followed by a specific review of research exploring the
+relationship between nutrition access and health. The methodology for data
+collection and modeling is described in @sec-methods and a description of the 
+nutrition environment and choice models estimates follows in @sec-results.
+@sec-scenarios presents a series of scenarios to which we apply the models estimated
+in @sec-results, illustrating the interrelated elements of nutrition quality
+and transportation infrastructure in developing more complete access to nutrition.
+The document concludes in @sec-conclude with a list of limitations and a pair of 
+recommendations to UDOT.
