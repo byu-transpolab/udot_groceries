@@ -1,4 +1,4 @@
-# Literature Review
+# Literature Review {#sec-literature}
 
 ```{r setup, file = "R/chapter_start.R", include = FALSE}
 # a number of commands need to run at the beginning of each chapter. This
@@ -47,10 +47,12 @@ Arguably the area where most attention has been given in terms of a public
 health perspective informing transportation decision making concerns vehicle and
 roadway safety. This attention is deserved, as transportation safety is a major
 public health concern. In 2021 there were 329 total fatalities and 1734 serious
-injuries resulting from car crashes in Utah, the highest it has been in the past
-8 years [@zerofatalities]. Efforts to improve traffic safety in policy take
-various forms.
+injuries resulting from car crashes in Utah, the highest mark in a decade 
+[@udot2023]; though crashes in 2022 were marginally lower,
+they still greatly exceeded the annual rates prior to 2020. 
 
+Efforts to improve traffic safety in policy take
+various forms.
 One of the strategies to improve safety focuses on educating the public to
 minimize reckless and distracted driving. Research clearly shows the danger of
 both reckless and distracted driving and we have seen a recent national focus on

@@ -321,7 +321,7 @@ would include enough trips to grocery stores and similar destinations to create
 a representative sample.
 
 Emerging mobile device data, however, could reveal the typical home locations
-for people who are observed in the space of a particular store. @macfarlane22
+for people who are observed in the space of a particular store. @macfarlane2022a
 present a method for estimating destination choice models from such data, which
 we repeat in this study. We provided a set of geometric polygons for the grocery
 stores of interest to StreetLight Data, Inc., a commercial location-based
