@@ -23,6 +23,7 @@ book:
     - 04_estimation.qmd
     - 05_scenarios.qmd
     - 06_conclusion.qmd
+    - acknowledgments.qmd
     - references.qmd
   abstract: | 
    One of the more recent topics in transportation policy making and project

@@ -1,0 +1,6 @@
+# Acknowledgments {.unnumbered}
+The authors acknowledge the Utah Department of Transportation (UDOT) for funding this research, and the following individuals from UDOT and partner agencies on the Technical Advisory Committee for helping to guide the research: Kevin Nichol, Angelo Papastamos, Laura Holtrop-Kohl, Brad Loveless, Chris Hall, Jay Aguilar, Jordan Backmon, Heidi LeBlanc, Lea Palmer, and Ted Knowlton.
+The authors alone are responsible for the preparation and accuracy of the information, data, analysis, discussions, recommendations, and conclusions presented herein. The contents do not necessarily reflect the views, opinions, endorsements, or policies of the Utah Department of Transportation or the U.S. Department of Transportation. The Utah Department of Transportation makes no representation or warranty of any kind, and assumes no liability therefore.
+Student research assistants who collected the store data include Kaeli Monahan, 
+Brooke Jones, and .... Graphics in the document are produced with multiple R
+packages [@modelsummary;@ggplot2;@ggspatial;@wesanderson].
