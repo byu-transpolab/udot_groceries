@@ -31,3 +31,6 @@ knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 if(knitr::is_latex_output()) {
   knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev = 'tikz', sanitize = TRUE)
 } 
+if(knitr::pandoc_to("docx")) {
+  knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+} 

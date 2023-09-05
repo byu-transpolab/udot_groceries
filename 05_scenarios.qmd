@@ -299,7 +299,7 @@ ggplot(s3cost, aes(fill = diff)) +
 ```{r scenarios}
 #| label: tbl-scenarios
 #| tbl-cap: Scenario Benefits
-list(
+df <- list(
   "New Store" = s1cost,
   "Salt Lake Valley" = s2cost,
   "Utah County" = s2cost_ut,
@@ -316,12 +316,15 @@ list(
   summarise(
     across(hh:li, ~scales::dollar(sum(.x, na.rm = TRUE) / mkt_betas["SaltLake.market"] * -1)),
     .by = Scenario
-  ) |> 
-  kbl(booktabs = TRUE, col.names = c("Scenario", "Households", "Non-white", "Low-Income"),
+  ) 
+
+if(!knitr::pandoc_to("docx")){
+  kbl(df, booktabs = TRUE, col.names = c("Scenario", "Households", "Non-white", "Low-Income"),
       digits = 0) |> 
   add_header_above(c(" " = 1, "Weighted by" = 3)) |> 
   group_rows(group_label = "Improved Store", start_row = 2, end_row = 4) |> 
   kable_styling()
+}
 ```
 
 Although comparing the geographic distribution of benefits is helpful, the aggregate

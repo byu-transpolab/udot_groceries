@@ -68,6 +68,9 @@ format:
 #    keep-tex: true
 #    top-level-division: section
 #    toc: false
-  #docx:
-  #  reference-doc: memos/udot_template.docx
+  docx:
+    reference-doc: custom-reference-doc.docx
+    number-sections: false
+    toc: true
+    toc-depth: 2
 editor: visual

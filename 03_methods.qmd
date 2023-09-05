@@ -81,7 +81,7 @@ and a large reservation for the Navajo Tribe.
 #| label: tbl-acsdata
 #| tbl-cap: Demographic Statistics of Study Region
 tar_load(neighbor_acs) 
-neighbor_acs |> 
+df <- neighbor_acs |> 
   mutate(county = relevel(factor(county), ref = "Utah")) |> 
   group_by(county) |> 
   summarise(
@@ -91,9 +91,12 @@ neighbor_acs |>
     `Median income` = Hmisc::wtd.quantile(income, weights = households, probs = .5),
     `Percent minority individuals` = weighted.mean(100 - white, population)
   ) |> 
-  data.table::transpose(make.names = 'county', keep.names = 'measure') |> 
-  kbl(col.names = c("", "Utah", "Salt Lake", "San Juan"), digits = 0, booktabs = TRUE) |> 
+  data.table::transpose(make.names = 'county', keep.names = 'measure')
+
+if(!knitr::pandoc_to("docx")){
+  kbl(df, col.names = c("", "Utah", "Salt Lake", "San Juan"), digits = 0, booktabs = TRUE) |> 
   kable_styling()
+}
 ```
 
 Estimating the utility model described in @eq-mnl for grocery stores requires
@@ -200,8 +203,10 @@ balnems <- nems_groceries |>
             `Market basket cost` = market, 
             County = factor(county, levels = c("Utah", "Salt Lake", "San Juan")))
 
-datasummary_balance(~County, data = balnems) |> 
-  kable_styling(latex_options = "scale_down")
+if(!knitr::pandoc_to("docx")){
+  datasummary_balance(~County, data = balnems) |> 
+    kable_styling(latex_options = "scale_down")
+}
 ```
 
 @tbl-nems presents the store attribute data collected for each community. Utah
