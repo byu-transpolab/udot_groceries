@@ -69,7 +69,7 @@ not refer to the entire Salt Lake County nor to Salt Lake City, rather, we focus
 on communities in the western part of the valley, such as Magna, Kearns, and
 West Valley City.
 
-Table @tbl-acsdata shows several key population statistics based on 2021
+@tbl-acsdata shows several key population statistics based on 2021
 American Community Survey data for block groups in the three communities of
 interest. Utah County is a largely suburban county with high incomes and a low
 percentage of minority individuals. The Salt Lake region is more dense with
@@ -94,7 +94,8 @@ df <- neighbor_acs |>
   data.table::transpose(make.names = 'county', keep.names = 'measure')
 
 if(!knitr::pandoc_to("docx")){
-  kbl(df, col.names = c("", "Utah", "Salt Lake", "San Juan"), digits = 0, booktabs = TRUE) |> 
+  kbl(df, col.names = c("", "Utah", "Salt Lake", "San Juan"), digits = 0, 
+      format.args = list(big.mark = ','), booktabs = TRUE) |> 
   kable_styling()
 }
 ```
