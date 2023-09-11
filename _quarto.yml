@@ -54,6 +54,7 @@ csl: elsevier-harvard-italics.csl
 format:
   html:
     theme: cosmo
+    html-math-method: katex
   pdf:
     documentclass: scrreport
     include-in-header: 

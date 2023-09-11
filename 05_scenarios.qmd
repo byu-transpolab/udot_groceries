@@ -23,8 +23,8 @@ together.
 The accessibility of each scenario was to be determined using the approximated
 utility coefficients of the All model estimated in @sec-results, 
 $$
-U_{ij}= \beta_{MCLS}( k_{ij}) +  \beta_{n-a} (\mathrm{NEMS-Availability}) + \beta_{n-c}\mathrm({NEMS-Cost})\\ +
- \beta_{mkt} (\mathrm{Market Basket}) + \mathbf{\beta}_{type}(\mathrm{Type}) 
+U_{ij}= \beta_{MCLS}( k_{ij}) +  \beta_{n-a} (\mathrm{NEMS-Availability}) +
+  \beta_{n-c}\mathrm({NEMS-Cost}) + \\ \beta_{mkt} (\mathrm{Market Basket}) + \pmb{\beta}_{type}(\mathrm{Type})  
 $$ {#eq-scenu} 
 and the total access benefit is defined as the consumer surplus
 given in @eq-cs. Note that this benefit is denominated in units of utility

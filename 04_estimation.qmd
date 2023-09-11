@@ -88,12 +88,14 @@ Using the data collected and MNL destination choice model as described in
 @sec-methods, we estimate a series of model specifications in each community
 with the `mlogit` package for R [@mlogit]. To illustrate the role of different
 data elements on destination choice, we develop and estimate four different
-utility equations: \begin{align*}
+utility equations: 
+\begin{align*}
 \mathrm{Access} &= \beta_{MCLS}( k_{ij})\\
 \mathrm{NEMS} &= \beta_{n-a} (\mathrm{NEMS-Availability}) + \beta_{n-c}\mathrm({NEMS-Cost})\\
 \mathrm{Attributes} &= \beta_{mkt} (\mathrm{Market Basket}) + \mathbf{\beta}_{type}(\mathrm{Type})\\
 \mathrm{All} &= \mathrm{Access} + \mathrm{NEMS} + \mathrm{Attributes}\\
-\end{align*} The Access model includes only the mode choice logsum described in
+\end{align*} 
+The Access model includes only the mode choice logsum described in
 @eq-mcls. The NEMS model includes the NEMS cost and availability scores
 describing the goods the store offers, while the Attributes model contains
 information that might be more conventionally available to shoppers including
