@@ -16,3 +16,6 @@ data/streetlight/
 *-tikzDictionary
 run.Rout
 nohup.out
+*.log
+*.synctex.gz
+*.toc
