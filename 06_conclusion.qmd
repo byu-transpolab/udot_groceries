@@ -1,46 +1,45 @@
 # Conclusions and Recommendations {#sec-conclude}
 
-As outlined in @sec-literature, 
-transportation agencies seeking to improve the health and quality of life 
-for residents must consider not simply their mobility needs, but the safety of 
-the transportation system, the effects of the system on disadvantaged population,
-and the ability of residents to access quality community resources. Access to 
-nutrition is a critical topic that has been a frequent focus of academic literature in
-public health, community planning, and engineering, but the varying and incomplete
-quantitative definitions of access have perhaps limited efforts at developing 
-solutions. 
+As outlined in @sec-literature, transportation agencies seeking to improve the
+health and quality of life for residents must consider not simply their mobility
+needs, but the safety of the transportation system, the effects of the system on
+disadvantaged populations, and the ability of residents to access quality
+community resources. Access to nutrition is a critical topic that has been a
+frequent focus of academic literature in public health, community planning, and
+engineering, but the varying and incomplete quantitative definitions of access
+have perhaps limited efforts at developing solutions.
 
-In this research, we explored an emerging technique to measure access to nutrition
-in multiple communities in Utah that combines transport access with the quality of
-markets, weighted against each other. We then used this model to examine an array
-of targeted policies that would potentially improve access to nutrition to a 
-specific community. 
+In this research, we explored an emerging technique to measure access to
+nutrition in multiple communities in Utah that combines transport access with
+the quality of markets, weighted against each other. We then used this model to
+examine an array of targeted policies that would potentially improve access to
+nutrition to a specific community.
 
 This concluding section presents both a series of limitations to this research
-with associated opportunities for future efforts, followed by specific recommendations
-to the Utah Department of Transportation as it seeks to pursue its mission to 
-"Enhance the Quality of Life through Transportation."
-
+with associated opportunities for future efforts, followed by specific
+recommendations to the Utah Department of Transportation as it seeks to pursue
+its mission to "Enhance the Quality of Life through Transportation."
 
 ## Limitations {#sec-limitations}
 
-A number of assumptions made in @sec-methods lead to limitations that other 
-reasonable researchers  might pursue differently, and thereby obtain
-marginally different outcomes. 
+A number of assumptions made in @sec-methods lead to limitations that other
+reasonable researchers might pursue differently, and thereby obtain marginally
+different outcomes.
 
 In selecting a survey instrument with which to collect the store attribute data,
-we selected an existing and validated instrument from the nutrition environment 
-literature. The NEMS-S focus on low-calorie and low-fat alternatives, however 
-may be somewhat outdated in view of modern nutritional guidelines. For example, 
-the NEMS-S does not track the availability and price of poultry, as "lean" 
-poultry is not a goods category in the way that ground beef comes with multiple
-fat contents. Thus a major source of protein in typical American diets [@fns2021] 
-was not traced across stores in each community. On a more basic level, the 
-NEMS-S attempts to measure a store's stocking of goods that researchers believe 
+we selected an existing and validated instrument from the nutrition environment
+literature. The NEMS-S focus on low-calorie and low-fat alternatives may be
+somewhat outdated in view of modern nutritional guidelines. For example, the
+NEMS-S does not track the availability and price of poultry, as "lean" poultry
+is not a goods category in the way that ground beef comes with multiple fat
+contents. Thus a major source of protein in typical American diets [@fns2021]
+was not traced across stores in each community. On a more basic level, the
+NEMS-S attempts to measure a store's stocking of goods that researchers believe
 are beneficial, and does not measure either what people wish to buy, or what
-they are actually buying at a store. Future research might attempt to survey 
-shoppers on what they actually purchased at each store, though this would 
-substantially raise the difficulty of collecting data.
+they are actually buying at a store. Future research might attempt to survey
+shoppers on what they actually purchased at each store --- or collect receipts
+of their purchases --- though this would substantially raise the difficulty of
+collecting data.
 
 Most households do not obtain all their groceries at a single store, though this
 research of necessity assumed that a simulated person chose exactly one store
@@ -51,64 +50,65 @@ what they were actually doing in that polygon. This research had no way of
 distinguishing, for example, whether an individual device observed at a dollar
 store or a super market (e.g. Wal-Mart) was there to purchase groceries or some
 other household goods that might not be offered at more traditional food
-markets. 
+markets.
 
-A number of simplifying assumptions concern the socioeconomic and spatio-temporal 
-detail supplied to the choice models and accessibility calculators. 
-The StreetLight data do not contain any demographic information on the 
-individuals making trips, beyond the inferences made possible by the residence
-block group. This makes it difficult to estimate whether lower income households
-are more or less sensitive to travel distances or prices. Additionally, the research
-assumed that every trip was from the population-weighted block group centroid, which may
-vary substantially from the actual distance traveled, especially in large block groups.
-The methodology also used travel times calculated in the AM peak hour; though 
-this time maximizes the availability of transit options, it is not a typical peak time for grocery shopping. 
-All of these limitations could potentially be relaxed by using a synthetic
-population with detailed socioeconomic data and parcel-level locations determined
-by an activity-based model, as proposed by [@dong2006]. In this exercise, which
-we leave to future research, the grocery maintenance trips could be explicitly
-modeled, with synthetic individuals of unique characteristics choosing destinations
-that are available on the course of their other daily activities, using their
-chosen travel modes.
+A number of simplifying assumptions concern the socioeconomic and
+spatio-temporal detail supplied to the choice models and accessibility
+calculators. The StreetLight data do not contain any demographic information on
+the individuals making trips, beyond the inferences made possible by the
+residence block group. This makes it difficult to estimate whether lower income
+households are more or less sensitive to travel distances or prices.
+Additionally, the research assumed that every trip was from the
+population-weighted block group centroid, which may vary substantially from the
+actual distance traveled, especially in large block groups. The methodology also
+used travel times calculated in the AM peak hour; though this time maximizes the
+availability of transit options, it is not a typical peak time for grocery
+shopping. All of these limitations could potentially be relaxed by using a
+synthetic population with detailed socioeconomic data and parcel-level locations
+determined by an activity-based model, as proposed by [@dong2006]. In this
+exercise, which we leave to future research, the grocery maintenance trips could
+be explicitly modeled, with synthetic individuals of unique characteristics
+choosing destinations that are available on the course of their other daily
+activities, using their chosen travel modes.
 
 Finally, the scenarios presented in @sec-scenarios are designed to illustrate
-potential applications of this accessibility methodology, with a comparative 
-analysis of strategies to improve access to nutrition. Selecting different sites, 
-attribute levels, or transport policies might substantially change the scale or
-rank-ordering of the estimated benefits. A comprehensive search for the location
-that would maximize benefits would be an interesting exercise, which we also 
-leave to future research.
+potential applications of this accessibility methodology, with a comparative
+analysis of strategies to improve access to nutrition. Selecting different
+sites, attribute levels, or transport policies might substantially change the
+scale or rank-ordering of the estimated benefits. A comprehensive search for the
+location that would maximize benefits would be an interesting exercise, which we
+also leave to future research.
 
 ## Recommendations {#sec-recommend}
 
-This research results in two recommendations to the Utah Department of 
+This research results in two recommendations to the Utah Department of
 Transportation and its partner agencies.
 
 First, the research has underlined that communities in Utah have large
-differences in their ability to access quality nutrition, and that many communities
- --- especially in rural Utah --- travel long distances to obtain quality
-goods. At some level, this is evidence that UDOT has succeeded in its
+differences in their ability to access quality nutrition, and that many
+communities --- especially in rural Utah --- travel long distances to obtain
+quality goods. At some level, this is evidence that UDOT has succeeded in its
 mobility-focused goals of connecting communities with fluid and reliable
 transportation infrastructure. On a less encouraging note, this observation also
 underscores the disparity in access defined by the availability of automobiles
 with which to use this infrastructure. For Utah households with limited vehicle
 availability, access to nutrition is considerably constricted. The research also
-revealed, however, that simply improving transit access and active transportation
-paths might not be as beneficial as either improving the quality of goods
-available in existing stores, or encouraging new store locations. The role of UDOT
-in pursuing such policies needs to be investigated. One potential strategy might be 
-to alter access management, highway prioritization, and other policies in a way
-that encourages more stores with high-quality offerings in more communities. This
-would alter the present pattern of locating large-scale stores near 
-arterial roadways, which maximizes the area over which a single store can attract
-customers at the expense of neighborhood-level access.
+revealed, however, that simply improving transit access and active
+transportation paths might not be as beneficial as either improving the quality
+of goods available in existing stores, or encouraging new store locations. The
+role of UDOT in pursuing such policies needs to be investigated. One potential
+strategy might be to alter access management, highway prioritization, and other
+policies in a way that encourages more stores with high-quality offerings in
+more communities. This would alter the present pattern of locating large-scale
+stores near arterial roadways, which maximizes the area over which a single
+store can attract customers at the expense of neighborhood-level access.
 
-At a methodological level, understanding the reasons why people participate
-in activities, and their priorities in doing do, is a necessary prerequisite to
+At a methodological level, understanding the reasons why people participate in
+activities, and their priorities in doing so, is a necessary prerequisite to
 developing policies that improve the quality of life. This is a transition from
 goals that simply seek to minimize travel delay. To better facilitate and equip
-staff and researchers considering these kinds of questions, UDOT should 
-encourage and develop activity-based approaches to travel forecasting. 
-These approaches will enable the more realistic analysis described in 
-@sec-limitations, and provide better information for a host policies
-aimed at improving Utah's communities and their quality of life. 
+staff and researchers considering these kinds of questions, UDOT should
+encourage and develop activity-based approaches to travel forecasting. These
+approaches will enable the more realistic analysis described in
+@sec-limitations, and provide better information for a host of policies aimed at
+improving Utah's communities and their quality of life.

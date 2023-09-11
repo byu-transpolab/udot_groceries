@@ -16,7 +16,7 @@ book:
           postal-code: 84602
     - name: Emma Stucki
     - name: Myrranda Salmon
-    - name: Alisha Redelfs
+    - name: Alisha H. Redelfs
     - name: Lori Spruance
     # to add additional authors, simply add another -name: tag 
   date: "09/01/2023"
@@ -37,15 +37,15 @@ book:
     members' ability to access that environment through multiple transportation
     modes. In doing so we construct a utility-based accessiblity model enabled 
     by modern mobility device data. This model reveals the tradeoffs between the 
-    quality and price of goods on one hand and the distance travelled to reach
-    them on the other. We then apply this model to a series of potential access
-    -improving policies: building a new store, improving an existing store, and
+    quality and price of goods on one hand and the distance traveled to reach
+    them on the other. We then apply this model to a series of potential 
+    access-improving policies: building a new store, improving an existing store, and
     improving the non-automobile transport network between residents and existing
     stores. The results show that new or improved store locations bring substantially
     higher benefits than improvements to the transportation system, at likely
-    lower costs. The report recommends that UDOT work to increase the availaibility
-    of community-sized grocery stores in low-access areas, and consider activity-
-    based methods of measuring resource access.
+    lower costs. The report recommends that UDOT work to increase the availability
+    of community-sized grocery stores in low-access areas, and consider 
+    activity-based methods of measuring resource access.
   
 
 bibliography: [groceries.bib, packages.bib]

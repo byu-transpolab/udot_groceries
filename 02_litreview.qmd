@@ -7,6 +7,7 @@
 library(mlogit)
 library(ggnewscale)
 ```
+
 This chapter presents an overview of existing transportation energy policies
 related to health broadly, followed by a review of the literature on access to
 nutrition specifically.
@@ -14,7 +15,7 @@ nutrition specifically.
 ## Existing Transportation and Health Policies
 
 Transportation policy impacts the way our transportation systems function in
-cities, and along with that, impact the way that we live our lives as well. For
+cities, and along with that, impacts the way that we live our lives as well. For
 example, transportation policy that demands a certain level of safety on
 roadways creates a better, safer, travel network for those using the roads.
 Also, policy that puts the pedestrian first helps improve the quality and
@@ -34,8 +35,8 @@ incorporating public health concerns into their policy making and project
 prioritization processes.
 
 Transportation impacts public health across several different sectors identified
-in the literature, which have been grouped together into four general
-topics:Traffic Safety, Pollution, Active Transportation, and Access to Community
+in the literature, which have been grouped together into four general topics:
+Traffic Safety, Pollution, Active Transportation, and Access to Community
 Resources. These four topics mirror the focus points of the UDOT mission, with
 Traffic Safety and Pollution corresponding to Good Health, Active Transportation
 corresponding to Better Mobility, and Access to Community Resources
@@ -47,15 +48,14 @@ Arguably the area where most attention has been given in terms of a public
 health perspective informing transportation decision making concerns vehicle and
 roadway safety. This attention is deserved, as transportation safety is a major
 public health concern. In 2021 there were 329 total fatalities and 1734 serious
-injuries resulting from car crashes in Utah, the highest mark in a decade 
-[@udot2023]; though crashes in 2022 were marginally lower,
-they still greatly exceeded the annual rates prior to 2020. 
+injuries resulting from car crashes in Utah, the highest mark in a decade
+[@udot2023]; though crashes in 2022 were marginally lower, they still greatly
+exceeded the annual rates prior to 2020.
 
-Efforts to improve traffic safety in policy take
-various forms.
-One of the strategies to improve safety focuses on educating the public to
-minimize reckless and distracted driving. Research clearly shows the danger of
-both reckless and distracted driving and we have seen a recent national focus on
+Efforts to improve traffic safety in policy take various forms. One of the
+strategies to improve safety focuses on educating the public to minimize
+reckless and distracted driving. Research clearly shows the danger of both
+reckless and distracted driving and we have recently seen a national focus on
 eliminating distracted driving [@aarts2006,
 @nationalhighwaytrafficsafetyadministration2022]. In response, Utah has
 implemented the Zero Fatalities program, focusing on decreasing the number of
@@ -63,22 +63,21 @@ roadway fatalities to zero by educating the public on deadly driving behaviors,
 including distracted driving, aggressive driving, drowsy driving, impaired
 driving, and not wearing seat belts [@zerofatalities2022]. Zero Fatalities has
 different age-specific educational materials for students and teachers. These
-age groups include pre-drivers, new licensed teenagers, experienced drivers, and
-even driving instructors. But, educating the public does not solve all safety
-concerns; if the roadways themselves are not safe for the drivers, there needs
-to be a change to those roadways as well.
+age groups include pre-drivers, newly licensed teenagers, experienced drivers,
+and even driving instructors. But, educating the public does not solve all
+safety concerns; if the roadways themselves are not safe for the drivers, there
+needs to be a change to those roadways as well.
 
 Efforts to change the roadways have focused on improving facilities design to
-enhance safety for cars as well as for bikes and pedestrians [@charreire2021,
-@jarry2021, @monfort2021]. In 2012 the Federal Highway Administration
+enhance safety for cars as well as for bikes and pedestrians [@charreire2021;
+@jarry2021; @monfort2021]. In 2012 the Federal Highway Administration
 established a federal aid program titled the Safe System Approach that focuses
 on different programs including the Strategic Highway Safety Plan (SHSP),
 Highway Safety Improvement Program (HSIP), Railroad-Highway Crossings Program
 (RHCP), and High Risk Rural Roads (HRRR) [@finkel2020]. Of these four programs
-included in the safe system approach, the HSIP is the only one that has been
-mandated and implemented in every state, including Utah. The HSIP gives federal
-funding for projects, plans, activities, and reports that improve safety of
-highways.
+included in the safe system approach, the HSIP is the only one mandated and
+implemented in every state, including Utah. The HSIP gives federal funding for
+projects, plans, activities, and reports that improve safety of highways.
 
 Vision Zero [@visionzeronetwork2022] is a safety program funded by a non-profit
 organization that has been implemented in many communities and combines
@@ -92,12 +91,12 @@ Vision Zero the following must be true:
 -   the community leader must declare that they are joining the Vision Zero
     community to strive for zero fatalities on the roadway.
 
-This program is a multinational road traffic safety program and something that
-has potential to greatly improve traffic safety in communities where it is
-implemented. The Vision Zero focus is to eliminate traffic fatalities and severe
-injuries with a clear strategy or plan. A map showing the communities involved
-is in @fig-visionzero. Vision Zero has not been implemented in any communities
-in Utah. Two major differences between Vison Zero and Utah's Zero Fatalities
+This program is a multinational road traffic safety program with the potential
+to greatly improve traffic safety in communities where it is implemented. The
+Vision Zero focus is to eliminate traffic fatalities and severe injuries with a
+clear strategy or plan. A map showing the communities involved is in
+@fig-visionzero. Vision Zero has not been implemented in any communities in
+Utah. Two major differences between Vison Zero and Utah's Zero Fatalities
 program are that Zero Fatalities does not yet have a specific target date of
 when the state will reach zero fatalities, and Vision Zero typically includes
 many stakeholders such as transportation professionals, policy makers, public
@@ -153,16 +152,16 @@ knitr::include_graphics("images/mapnmpoll.png")
 One problem with fine particulate matter and vehicle pollution is that it has
 differential effects related to demographics, with some communities experiencing
 more severe health disparities [@chakraborty2022]. In order to more equitably
-address some of these pollution problems, the EPA has established a guidance
+address some of these pollution problems, the EPA has established guidance
 related to Environmental Justice to "determine any disproportionately high and
 adverse human health or environmental effects to low-income, minority, and
 tribal populations". This guidance is met through the National Environmental
 Policy Act (NEPA), which requires an impact assessment for every federal action
 -- including most transportation infrastructure projects -- that could have an
-impact on the environment. A report must be submitted describing any potential
-environmental or health impacts, or findings of no significant impact. This is
-intended to protect communities that could be more adversely affected by new
-transportation projects or improvements.
+impact on the environment. A report describing any potential environmental or
+health impacts or findings of no significant impact must be submitted. This
+process and legislation is intended to protect communities that could be more
+adversely affected by new transportation projects or improvements.
 
 In some ways these national and state measures have helped, and recent evidence
 that shows a decrease in air pollution related deaths in the U.S. [@choma2021].
@@ -206,7 +205,9 @@ transport). As can be seen there does seem to be some pattern, with those states
 that have a higher physical activity, also having a lower obesity rate. There
 are a few outliers, such as Nevada, with a low obesity rate and a low physical
 activity percentage, but overall, there is a correlation coefficient between the
-two indicators of 0.64.
+two indicators of 0.64. It should be noted in this context that obesity is a
+complex disease with many contributing factors, of which physical activity is
+only one [@dhurandhar2021].
 
 ```{r fig-obeseactivity}
 #| label: fig-obeseactivity
@@ -272,21 +273,21 @@ equitable accessibility in projects and policy.
 Equitable access to community resources has been a topic of research and study,
 especially when looking at the impacts on measures of well-being and economic
 opportunity. Current social issues, economic opportunity and equity are
-significant topics which can help us to ensure that each demographic of the
-population can have the same opportunities. Equity as a term is being fair and
-impartial, different from equality. Equality is providing the exact same thing
-to all people, whereas equity would provide different things to different people
-because of their circumstances in order to create a fair system. Lower income
-populations frequently sit at a different level of advantage than higher income
+significant topics that can help us ensure that each population demographic can
+have similar opportunities. Equity as a term is being fair and impartial,
+different from equality. Equality is providing the exact same thing to all
+people, whereas equity would provide different things to different people
+because of their circumstances in order to create a fair system. Lower-income
+populations frequently sit at a different level of advantage than higher-income
 populations, including when looking at accessibility [@grengs2015, @hu2015,
 @witten2003]. It is important to discover how different transportation policies
 can improve accessibility to create better equity. Creating equitable societies
 and equitable transportation policies is important in order to remove any
 discrimination already present in the transportation network. In this way states
 can decrease the disparity that is common when looking at different
-neighborhoods and demographics. Perhaps there are low economic neighborhoods
-that do not have the same economic opportunity or resource accessibility as
-higher income neighborhoods. If we increase the accessibility of low-income
+neighborhoods and demographics. Perhaps there are low-income neighborhoods that
+do not have the same economic opportunity or resource accessibility as
+high-income neighborhoods. If we increase the accessibility of low-income
 neighborhoods, could that then increase the quality of life and health for those
 neighborhoods as well?
 
@@ -294,14 +295,14 @@ In addition to economic opportunity, the connection between well-being and
 opportunity is also significant, discovering who has access to which resources
 and how that access corresponds to their health [@cass2005, @ermagun2020,
 @handy1997, @schwanen2015]. A subjective sense of positive well-being correlates
-with increased access to more community resources. This increased access was
+with increased access to more community resources: increased access was
 specifically connected with variety of resources, not necessarily number of the
-same type of resource. This is true for both high and low income populations.
-However, high income demographics frequently tend have better access to a
-variety of resources because of such variables as available child care, a
-transportation source available, or even time available to do things
-[@currie2010, @liu2022] . In addition, increased access to resources such as
-parks or other greenspace have been found to decrease likelihood of mental
+same type of resource. This increased access is true for both high- and
+low-income populations. However, high-income demographics frequently tend have
+better access to a variety of resources because of such variables as available
+child care, a transportation source available, or even time available to do
+things [@currie2010, @liu2022] . In addition, increased access to resources such
+as parks or other greenspace have been found to decrease likelihood of mental
 health disorders, as well as improve physical activity [@francis2012,
 @madzia2019]. Different age groups each have a different response to access to
 greenspace. However, among all age groups there is a positive correlation.In
@@ -317,7 +318,7 @@ on the resource of grocery stores and discovering any correlation between
 accessibility to good nutrition environments such as healthy grocery stores and
 the demographic makeup of specific block groups, such as economic bracket and
 different ethnic groups. Lack of accessibility to grocery stores can have an
-effect on physical health and well-being [@aggarwal2014]. This is related
+effect on physical health and well-being [@aggarwal2014]. This access is related
 directly with consumption of healthy foods, as well as indirectly with perceived
 sense of well-being.
 
@@ -336,19 +337,19 @@ travel to a store that is not the closest store for different reasons
 pattern and identify which variables are important when choosing a store to help
 improve accessibility more than simple distance measures.
 
-Areas that do not have any full service grocery stores however are also
+However, areas that do not have any full service grocery stores however are also
 important to look at, with those areas being known as food swamps. These food
 swamps are an idea that there are locations where there is not healthy food
 available, so the only option that is readily accessible for food or meals would
 be fast food or convenience stores. There have been studies analyzing the
 different food swamp areas and what could be done to improve those areas, such
 as adding grocery stores or corner markets [@bao2020]. These food swamps are
-areas that discriminate between those without a readily available transit
-options and those with easy access to cars, creating a barrier to equity. In
-addition, these food swamp areas are especially significant when looking at the
-public health impacts of food accessibility and discovering how we can improve
-the quality of food available to those in every demographic to create an
-equitable solution to health differences.
+areas that discriminate between those without readily available transit options
+and those with easy access to cars, creating a barrier to equity. In addition,
+these food swamp areas are especially significant when looking at the public
+health impacts of food accessibility and discovering how we can improve the
+quality of food available to those in every demographic to create an equitable
+solution to health differences.
 
 Past research done clearly shows that location of store, quality of store, and
 price of store all have an impact on choice of grocery store and accessibility

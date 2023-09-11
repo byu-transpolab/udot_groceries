@@ -1,4 +1,5 @@
 # Application {#sec-scenarios}
+
 ```{r setup, file = "R/chapter_start.R", include = FALSE, cache = FALSE}
 # a number of commands need to run at the beginning of each chapter. This
 # includes loading libraries that I always use, as well as options for 
@@ -14,108 +15,109 @@ library(viridisLite)
 ```
 
 In this section, we develop a series of scenarios to which we apply the models
-estimated in @sec-results. These scenarios are constructed to ascertain 
-what may be the best strategy to improve nutrition access in a community.
-We first describe how each scenario was constructed, and then discuss the
-results together.
+estimated in @sec-results. These scenarios are constructed to ascertain what may
+be the best strategy to improve nutrition access in a community. We first
+describe how each scenario was constructed, and then discuss the results
+together.
 
 The accessibility of each scenario was to be determined using the approximated
 utility coefficients of the All model estimated in @sec-results, 
 $$
-U_{ij}= \beta_{MCLS}( k_{ij}) +  \beta_{n-a} (\mathrm{NEMS-Availability}) + \beta_{n-c}\mathrm({NEMS-Cost}) +
+U_{ij}= \beta_{MCLS}( k_{ij}) +  \beta_{n-a} (\mathrm{NEMS-Availability}) + \beta_{n-c}\mathrm({NEMS-Cost})\\ +
  \beta_{mkt} (\mathrm{Market Basket}) + \mathbf{\beta}_{type}(\mathrm{Type}) 
-$$ {#eq-scenu}
-and the total access benefit is defined as the consumer surplus given in @eq-cs. 
-Note that this benefit is denominated in units of utility [@ben-akiva1985], and 
-the coefficients in @eq-scenu serve to convert between the units of the variable
-and utility. Specifically, the $\beta_{mkt}$ coefficient represents how many dollars
-of grocery cost a person is willing to spend to increase their utility by one unit.
+$$ {#eq-scenu} 
+and the total access benefit is defined as the consumer surplus
+given in @eq-cs. Note that this benefit is denominated in units of utility
+[@ben-akiva1985], and the coefficients in @eq-scenu serve to convert between the
+units of the variable and utility. Specifically, the $\beta_{mkt}$ coefficient
+represents how many dollars of grocery cost a person is willing to spend to
+increase their utility by one unit.
 
-In actuality, the utility formula in @eq-scenu is a relative utility added by an 
+In actuality, the utility formula in @eq-scenu is a relative utility added by an
 unknown constant, $U_{ij} = f(\mathbf{\beta}, X_{ij}) + C$, but this $C$ term is
-included in all the alternatives and therefore cancels out [@train2009] in estimation. 
-This means we cannot asses the *absolute* value of utility, but we can assess the
-*relative* monetary benefit of the difference between two scenarios as
-$$
+included in all the alternatives and therefore cancels out [@train2009] in
+estimation. This means we cannot asses the *absolute* value of utility, but we
+can assess the *relative* monetary benefit of the difference between two
+scenarios as $$
 \mathrm{Benefit} = \sum_{i}\left(-\frac{\omega_i}{\beta_{mkt}}(CS_i^1 - CS_i^1)\right)
-$$
-where a weight $\omega$ accounts for the population in each origin zone $i$ and the
-$\beta_{mkt}$ converts the difference in utility into a dollar amount.
+$$ where a weight $\omega$ accounts for the population in each origin zone $i$
+and the $\beta_{mkt}$ converts the difference in utility into a dollar amount.
 
 ## Scenario Descriptions
+
 There are three general strategies we develop scenarios around:
 
-  1. Erect a new grocery store in the community, in a place where one does
-  not already exist.
-  2. Improve an existing convenience store or dollar store so that it has the 
-  attributes of a full-service grocery store.
-  3. Improve the transit and non-motorized access to stores in a region.
-  
-We implement all three strategies in scenarios on the west Salt Lake valley 
+1.  Erect a new grocery store in the community, in a place where one does not
+    already exist.
+2.  Improve an existing convenience store or dollar store so that it has the
+    attributes of a full-service grocery store.
+3.  Improve the transit and non-motorized access to stores in a region.
+
+We implement all three strategies in scenarios on the west Salt Lake valley
 community. We also implement strategy 1 (a new store) in the San Juan and Utah
-County communities for comparison. 
+County communities for comparison.
 
 ### Erect a new store
+
 This strategy assumes that the nutrition environment would benefit from a new
-store located in a place that presently has low grocery store access.
-To examine the potential for this strategy to improve access to nutrition in
-each community, we calculate the change in destination choice log-sum when a new
-store is added to the region in a location where access is currently poor. The 
-new store is a full-service grocery store with a number of registers equal to 
-the mean of other grocery stores in the community, and NEMS availability score, 
-NEMS cost score, and  market basket cost equivalent to the 75$^{th}$ percentile
+store located in a place that presently has low grocery store access. To examine
+the potential for this strategy to improve access to nutrition in each
+community, we calculate the change in destination choice log-sum when a new
+store is added to the region in a location where access is currently poor. The
+new store is a full-service grocery store with a number of registers equal to
+the mean of other grocery stores in the community, and NEMS availability score,
+NEMS cost score, and market basket cost equivalent to the 75$^{th}$ percentile
 for the community. Thus the store is expected to be better-than-average quality
-as perceived by the residents of the community. The location for this new store 
+as perceived by the residents of the community. The location for this new store
 is at 4100 S and 2700 W in West Valley City.
 
-### Improve an existing store 
-This strategy assumes that existing stores are in locations that the community 
-values and can access, but that those stores may not have high availability of 
-quality goods.
-To examine the potential for this strategy to improve access to nutrition, we 
-improve the attributes of an existing dollar store in the community so that it
-has the size, prices, and availability of goods as a full-service grocery store.
-As above, we create a full-service grocery store with a number of registers equal to 
-the mean of other grocery stores in the community, and NEMS availability score, 
-NEMS cost score, and  market basket cost equivalent to the 75$^{th}$ percentile
-for the community. Thus the store is expected to be better-than-average quality
-as perceived by the residents of the community; the difference from the previous 
-scenario is that the improved store takes the place of an existing convenience 
-store or dollar store. 
+### Improve an existing store
+
+This strategy assumes that existing stores are in locations that the community
+values and can access, but that those stores may not have high availability of
+quality goods. To examine the potential for this strategy to improve access to
+nutrition, we improve the attributes of an existing dollar store in the
+community so that it has the size, prices, and availability of goods as a
+full-service grocery store. As above, we create a full-service grocery store
+with a number of registers equal to the mean of other grocery stores in the
+community, and NEMS availability score, NEMS cost score, and market basket cost
+equivalent to the 75$^{th}$ percentile for the community. Thus the store is
+expected to be better-than-average quality as perceived by the residents of the
+community; the difference from the previous scenario is that the improved store
+takes the place of an existing convenience store or dollar store.
 
 The improved stores are at the following locations in each community:
 
-   - An ethnic store near 2700 W 3500 S in West Valley City (Salt Lake)
-   - A small grocery store in Santaquin (Utah County)
-   - A dollar store in Blanding (San Juan County)
+-   An ethnic store near 2700 W 3500 S in West Valley City (Salt Lake)
+-   A small grocery store in Santaquin (Utah County)
+-   A dollar store in Blanding (San Juan County)
 
-### Improve transit and non-motorized transport 
-This strategy assumes that people cannot easily travel to existing stores because
-they cannot or do not drive for a variety of reasons, and that the public and
-and active transport networks provide an insufficient level of service.
-To examine the potential for this strategy to improve access to nutrition, we 
-improve the travel time costs in the Salt Lake community for non-motorized and
-public transportation in the region and calculate the change in destination
-choice log-sum.
+### Improve transit and non-motorized transport
 
-For active transportation, the lack of pedestrian facilities across and 
-alongside roads both in reality and in the OpenStreetMap dataset may substantially
-increase measured walk distances and times. In this scenario, we replace the 
-the times measured from OpenStreetMap using R5 with an idealized Euclidean distance
-function,
-$$
+This strategy assumes that people cannot easily travel to existing stores
+because they cannot or do not drive for a variety of reasons, and that the
+public and and active transport networks provide an insufficient level of
+service. To examine the potential for this strategy to improve access to
+nutrition, we improve the travel time costs in the Salt Lake community for
+non-motorized and public transportation in the region and calculate the change
+in destination choice log-sum.
+
+For active transportation, the lack of pedestrian facilities across and
+alongside roads both in reality and in the OpenStreetMap dataset may
+substantially increase measured walk distances and times. In this scenario, we
+replace the times measured from OpenStreetMap using R5 with an idealized
+Euclidean distance function, $$
 t_{\mathrm{walk}} = \frac{\sqrt{2} * d'_{ij}}{v_{\mathrm{walk}}}
-$$ {#eq-newwalk}
-where $d'_{ij}$ is the Euclidean (straight-line) distance between $i$ and $j$
-and $v_{ij}$ is an average walking speed equivalent to 3.5 feet per second 
-[@fitzpatrick2006]. The distance is multiplied by the square root of 2 to reflect
-the Manhattan distance (along a gridded street system). We retain the cap on
-walking distance at 10 kilometers. Though this distance may radically understate
-the real walking distance, we are trying to create a idealized scenario of
-effectively frictionless active transport. For public transit, we assume that
-the frequency of service is such that all transfer and initial wait times are
-at most 5 minutes, and that no person must walk more than 10 minutes to access their first
-public transport service.
+$$ {#eq-newwalk} where $d'_{ij}$ is the Euclidean (straight-line) distance
+between $i$ and $j$ and $v_{ij}$ is an average walking speed equivalent to 3.5
+feet per second [@fitzpatrick2006]. The distance is multiplied by the square
+root of 2 to reflect the Manhattan distance (along a gridded street system). We
+retain the cap on walking distance at 10 kilometers. Though this distance may
+radically understate the real walking distance, we are trying to create an
+idealized scenario of effectively frictionless active transport. For public
+transit, we assume that the frequency of service is such that all transfer and
+initial wait times are at most 5 minutes, and that no person must walk more than
+10 minutes to access their first public transport service.
 
 Travel times are improved in this way for all block group --- store pairs in the
 west Salt Lake Valley community.
@@ -129,9 +131,9 @@ sl_base <- tar_read(sl_access)
 tar_load(mkt_betas)
 ```
 
-Using the methodology described above, we recalculated the destination choice 
-log-sum value for each block group under each scenario, and compared the 
-change in accessibility resulting from the improvement. 
+Using the methodology described above, we recalculated the destination choice
+log-sum value for each block group under each scenario, and compared the change
+in accessibility resulting from the improvement.
 
 ```{r s1results}
 #| label: fig-s1results
@@ -159,12 +161,11 @@ ggplot(s1cost, aes(fill = diff)) +
   scale_fill_gradientn("Benefit [$]", colours = pal)
 ```
 
-
-@fig-s1results shows the geographic distribution of benefits associated with 
-locating a new store at a site in the Salt Lake community. The benefits are 
-largest immediately next to the new store, where they exceed 
-$`r floor(max(s1cost$diff, na.rm = TRUE))` for each household each time the
-household makes a trip to a grocery store. 
+@fig-s1results shows the geographic distribution of benefits associated with
+locating a new store at a site in the Salt Lake community. The benefits are
+largest immediately next to the new store, where they exceed
+$`r floor(max(s1cost$diff, na.rm = TRUE))`$ for each household each time the
+household makes a trip to a grocery store.
 
 ```{r s2results_sl}
 #| label: fig-s2results
@@ -193,19 +194,19 @@ ggplot(s2cost, aes(fill = diff)) +
   scale_fill_gradientn("Benefit [$]", colours = pal)
 ```
 
-@fig-s2results shows the results of the scenario improving an existing store
-in the Salt Lake community. Compared to the results of the new store scenario,
-the scale of the benefits are not as substantial (a maximum per-household-trip 
-benefit of less than $1), and seem to not cover quite as large a geographic region.
-@fig-s2sjut shows the results of improving a 
-store in Utah and San Juan Counties. As in Salt Lake, the benefits are most strongly 
-concentrated in the immediate vicinity of the improved store. One interesting
-observation --- especially in Utah County --- is that the improvements are 
-felt more strongly in the block groups near the improved store that have lower 
-availability of other options. The block group in Utah County directly containing
-the improvement sees a per-household-trip benefit well over $2, considerably more
-than the maximum benefit in Salt Lake. This is intuitive, as the improvement of a store
-matters less if the stores close to you are already sufficient.
+@fig-s2results shows the results of the scenario improving an existing store in
+the Salt Lake community. Compared to the results of the new store scenario, the
+scale of the benefits are not as substantial (a maximum per-household-trip
+benefit of less than \$1), and seem to not cover quite as large a geographic
+region. @fig-s2sjut shows the results of improving a store in Utah and San Juan
+Counties. As in Salt Lake, the benefits are most strongly concentrated in the
+immediate vicinity of the improved store. One interesting observation ---
+especially in Utah County --- is that the improvements are felt more strongly in
+the block groups near the improved store that have lower availability of other
+options. The block group in Utah County directly containing the improvement sees
+a per-household-trip benefit well over \$2, considerably more than the maximum
+benefit in Salt Lake. This is intuitive, as the improvement of a store matters
+less if the stores close to you are already sufficient.
 
 ```{r s2results-utsj}
 #| label: fig-s2sjut
@@ -260,13 +261,13 @@ ggplot(s2cost_sj, aes(fill = diff)) +
 
 ```
 
-
-The results of the third scenario, improving the access of non-motorized and public transit
-access to stores, are shown in @fig-s3results. This benefit is spread over a larger 
-area, and is concentrated on the 35 MAX bus rapid transit corridor where the improvement
-in walk access time to transit couples with high frequency transit service to large
-grocery stores on the corridor. The per-household-trip benefit is very small however,
-with a maximum benefit on the order of $0.25. 
+The results of the third scenario, improving the access of non-motorized and
+public transit access to stores, are shown in @fig-s3results. This benefit is
+spread over a larger area, and is concentrated on the 35 MAX bus rapid transit
+corridor where the improvement in walk access time to transit couples with high
+frequency transit service to large grocery stores on the corridor. The
+per-household-trip benefit is very small however, with a maximum benefit on the
+order of \$0.25.
 
 ```{r s3results}
 #| label: fig-s3results
@@ -294,7 +295,6 @@ ggplot(s3cost, aes(fill = diff)) +
         axis.ticks.y = element_blank()) +
   scale_fill_gradientn("Benefit [$]", colours = pal)
 ```
-
 
 ```{r scenarios}
 #| label: tbl-scenarios
@@ -327,41 +327,41 @@ if(!knitr::pandoc_to("docx")){
 }
 ```
 
-Although comparing the geographic distribution of benefits is helpful, the aggregate
-benefit is more likely to guide policy. Additionally, the aggregate benefits can
-be weighted in different ways to understand the effects of the various policies 
-on different populations. @tbl-scenarios presents the aggregate benefit from 
-each of the three scenarios (and the result of the second scenario in all three 
-communities). The Households column multiplies the difference in
-destination choice log-sum at each block group by the number of households
-in that block group, while the Non-white and Low-income columns weight
-the difference by the share of Non-white individuals and low-income households
-respectively. All demographic data comes from the American Community Survey 5-year 
-aggregations. 
+Although comparing the geographic distribution of benefits is helpful, the
+aggregate benefit is more likely to guide policy. Additionally, the aggregate
+benefits can be weighted in different ways to understand the effects of the
+various policies on different populations. @tbl-scenarios presents the aggregate
+benefit from each of the three scenarios (and the result of the second scenario
+in all three communities). The Households column multiplies the difference in
+destination choice log-sum at each block group by the number of households in
+that block group, while the non-white and low-income columns weight the
+difference by the share of non-white individuals and low-income households
+respectively. All demographic data comes from the American Community Survey
+5-year aggregations.
 
-These alternate weighting schemes help to illustrate the potential equity
-of the benefit distribution should each scenario be pursued. The new store scenario
-in the Salt Lake community, for example, has a total benefit of approximately $5.5
+These alternate weighting schemes help to illustrate the potential equity of the
+benefit distribution should each scenario be pursued. The new store scenario in
+the Salt Lake community, for example, has a total benefit of approximately \$5.5
 million. Of this amount, somewhat less than half the benefits go to non-white
 individuals and less than one-fifth to low-income households. These ratios are
-more or less the same for the store improvement scenario and the improved transport
-scenario in the Salt Lake Valley. The Utah County store improvement, on the 
-other hand, has a somewhat higher proportion of benefits going to
-low-income households relative to non-white households. This is a reflection
-of the lower minority population in southern Utah County vis a vis west Salt Lake
-valley, but is nonetheless a metric that program evaluators might pay attention 
+more or less the same for the store improvement scenario and the improved
+transport scenario in the Salt Lake Valley. The Utah County store improvement,
+on the other hand, has a somewhat higher proportion of benefits going to
+low-income households relative to non-white households. This is a reflection of
+the lower minority population in southern Utah County vis a vis west Salt Lake
+valley, but is nonetheless a metric that program evaluators might pay attention
 to.
 
-Overall, the improved store brings more than twice the benefits of improving 
-non-automobile transportation, and the new store more than five times the benefits.
-Understanding the costs of these various alternatives is outside the scope of
-this research, but the level of infrastructure investment required to increase
-transportation level of service to that constructed in the simulation is likely
-an order of magnitude higher than the cost of a single new grocery store. Though
-it should also be acknowledged that improving non-automobile infrastructure and 
-services would have benefits beyond just grocery store trips that we do not attempt
-to enumerate here. It is
-also not clear whether the level of improvement simulated in the second scenario
-could be accomplished within the envelope of the existing store; it may be that
-such improvements would meet or exceed the cost of building a new store on a 
-new site, along with stocking, staffing, and operating the store.
+Overall, the improved store brings more than twice the benefits of improving
+non-automobile transportation, and the new store more than five times the
+benefits. Understanding the costs of these various alternatives is outside the
+scope of this research, but the level of infrastructure investment required to
+increase transportation level of service to that constructed in the simulation
+is likely an order of magnitude higher than the cost of a single new grocery
+store. It should also be acknowledged that improving non-automobile
+infrastructure and services would have benefits beyond just grocery store trips
+that we do not attempt to enumerate here. It is also not clear whether the level
+of improvement simulated in the second scenario could be accomplished within the
+envelope of the existing store; it may be that such improvements would meet or
+exceed the cost of building a new store on a new site, along with stocking,
+staffing, and operating the store.

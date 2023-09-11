@@ -12,9 +12,9 @@ library(viridisLite)
 ```
 
 This section presents results on the nutrition environment in each of the three
-communities of Utah County, West Salt Lake County, and San Juan County, along with 
-destination choice model estimates and their application to creating accessibility
-maps of each community and the entire state of Utah.
+communities of Utah County, West Salt Lake County, and San Juan County, along
+with destination choice model estimates and their application to creating
+accessibility maps of each community and the entire state of Utah.
 
 ## Nutrition Environment {#sec-nems}
 
@@ -29,10 +29,9 @@ nems_groceries <- nems_groceries |>
   )
 ```
 
-Though some basic descriptive statistics of the grocery store attributes were 
-presented in @tbl-nems, some additional exploration of the these
-attributes is valuable to understand the nutrition environment in these three
-communities.
+Though some basic descriptive statistics of the grocery store attributes were
+presented in @tbl-nems, some additional exploration of these attributes is
+valuable to understand the nutrition environment in these three communities.
 
 ```{r nems-market-avail}
 #| label: fig-nems-market-avail
@@ -46,18 +45,18 @@ ggplot(nems_groceries, aes(x = availability, y = market, group = county)) +
   scale_color_manual("Store Type", values = wesanderson::wes_palette('Darjeeling1')[c(1:3, 5)])
 ```
 
-@fig-nems-market-avail presents the relationship between the recorded NEMS availability
-score and the USDA market basket cost at the stores by community and store type. 
-In all three communities, the relationship is strongly negative, with stores that
-stock more varieties of goods also having overall lower prices for those goods. 
-This is emphasized by the bottom-right quadrants of these plots (high availability, 
-low-cost) being dominated by full-service grocery stores, which have more availability
-and lower prices than convenience stores or dollar stores, but require higher traffic
-and demand to make up for their lower profit margins.
-Average prices in Utah County are lower than prices in the other 
-two communities across the availability spectrum; this is true even after
-adjusting for 9.4% annual inflation between March 2021 and March 2022 in food 
-products [@bureauoflaborstatistics2023].
+@fig-nems-market-avail presents the relationship between the recorded NEMS
+availability score and the USDA market basket cost at the stores by community
+and store type. In all three communities, the relationship is strongly negative,
+with stores that stock more varieties of goods also having overall lower prices
+for those goods. This is emphasized by the bottom-right quadrants of these plots
+(high availability, low-cost) being dominated by full-service grocery stores,
+which have more availability and lower prices than convenience stores or dollar
+stores, but require higher traffic and demand to make up for their lower profit
+margins. Average prices in Utah County are lower than prices in the other two
+communities across the availability spectrum; this is true even after adjusting
+for 9.4% annual inflation between March 2021 and March 2022 in food products
+[@bureauoflaborstatistics2023].
 
 ```{r nems-cost-avail}
 #| label: fig-nems-cost-avail
@@ -71,39 +70,37 @@ ggplot(nems_groceries, aes(x = availability, y = cost)) +
   scale_color_manual("Store Type", values = wesanderson::wes_palette('Darjeeling1')[c(1:3, 5)])
 ```
 
-@fig-nems-cost-avail shows the relationship between the NEMS availability and cost 
-scores. In this case the relationship is generally positive, with stores that 
-stock more healthful options also placing these options at competitive prices.
-Conversely, stores that have fewer of these options tend to place the options
-they do stock at a higher price point. This relationship between availability
-and cost of healthful goods is strongest in San Juan County, with convenience
-stores anchoring the low-availability, high-premium quadrant for healthy food.
-It should be noted that these convenience stores also exist in the Utah County
+@fig-nems-cost-avail shows the relationship between the NEMS availability and
+cost scores. In this case the relationship is generally positive, with stores
+that stock more healthful options also placing these options at competitive
+prices. Conversely, stores with fewer options tend to place the options they do
+stock at a higher price point. This relationship between availability and cost
+of healthful goods is strongest in San Juan County, with convenience stores
+anchoring the low-availability, high-premium quadrant for healthy food. It
+should be noted that these convenience stores also exist in the Utah County
 community, but we explicitly included them in the San Juan data collection as
-they are the only food markets of any kind in multiple towns, with dozens of miles
-separating towns from each other.
-
+they are the only food markets of any kind in multiple towns, with dozens of
+miles separating towns from each other.
 
 ## Destination Choice {#sec-estimation}
 
-Using the data collected and MNL destination choice model as described in 
-@sec-methods, we estimate a series of model specifications in each community with 
-the `mlogit` package for R [@mlogit]. To illustrate the role of different data
-elements on destination choice, we develop and estimate four different utility
-equations:
-\begin{align*}
+Using the data collected and MNL destination choice model as described in
+@sec-methods, we estimate a series of model specifications in each community
+with the `mlogit` package for R [@mlogit]. To illustrate the role of different
+data elements on destination choice, we develop and estimate four different
+utility equations: \begin{align*}
 \mathrm{Access} &= \beta_{MCLS}( k_{ij})\\
 \mathrm{NEMS} &= \beta_{n-a} (\mathrm{NEMS-Availability}) + \beta_{n-c}\mathrm({NEMS-Cost})\\
 \mathrm{Attributes} &= \beta_{mkt} (\mathrm{Market Basket}) + \mathbf{\beta}_{type}(\mathrm{Type})\\
 \mathrm{All} &= \mathrm{Access} + \mathrm{NEMS} + \mathrm{Attributes}\\
-\end{align*}
-The Access model includes only the mode choice logsum described in @eq-mcls.
-The NEMS model includes the NEMS cost and availability scores describing the goods
-the store offers, while the Attributes model contains information that might be
-more conventionally available to shoppers including the size, type, and average
-prices at the store. As the nutrition environment in each community contains
-different types of stores, the specific type coefficients differ by community.
-The All model contains all of the other three sets of estimated coefficients.
+\end{align*} The Access model includes only the mode choice logsum described in
+@eq-mcls. The NEMS model includes the NEMS cost and availability scores
+describing the goods the store offers, while the Attributes model contains
+information that might be more conventionally available to shoppers including
+the size, type, and average prices at the store. As the nutrition environment in
+each community contains different types of stores, the specific type
+coefficients differ by community. The All model contains all of the other three
+sets of estimated coefficients.
 
 ```{r loadmodels}
 tar_load(sl_models)
@@ -143,36 +140,35 @@ modelsummary(ut_models, gof_map = gm, coef_map = cm,
 ```
 
 @tbl-utah-models presents the estimated coefficients in the Utah County
-community. In general, the utility coefficients are statistically significant 
-and in a direction that would be expected by informed hypothesis.
-The Access model has a positive coefficient on its mode choice log-sum term, which 
-indicates that as the mode choice logsum between a block group and 
-a store increases ---
-indicating lower travel costs between Census block groups and the store, 
-because travel times in @eq-mcls have a negative relationship with utility --- 
-a higher proportion of mobile devices residing in that block group are observed
-to travel to that store. The NEMS model shows a positive relationship between
-both environment variables and utility, indicating that people are more likely
-to choose stores with higher availability of healthy goods and more advantagous
-prices for those goods, all else equal. The Attributes model suggests that  
-people are less willing to visit stores with higher prices, fewer registers,
-and convenience stores or other non-standard grocery stores with the exception
-of dollar stores, which they are *more* attracted to. Combining all of these
-variables in the All model retain the significance, direction, and basic 
-scale of all previous estimates with the exception of the NEMS availability
-variable. In this case, it seems that the previous positive relationship
-may have been a result of correlation between NEMS availability and other variables
-such as cost or the number of registers. And when controlling for all other 
-variables, the role of transportation access becomes somewhat more important
-than considering only distance alone, implying that people are willing to travel
-somewhat further for stores with attributes they value.
+community. In general, the utility coefficients are statistically significant
+and in a direction that would be expected by informed hypothesis. The Access
+model has a positive coefficient on its mode choice log-sum term, which
+indicates that as the mode choice logsum between a block group and a store
+increases --- indicating lower travel costs between Census block groups and the
+store, because travel times in @eq-mcls have a negative relationship with
+utility --- a higher proportion of mobile devices residing in that block group
+are observed to travel to that store. The NEMS model shows a positive
+relationship between both environment variables and utility, indicating that
+people are more likely to choose stores with higher availability of healthy
+goods and more advantagous prices for those goods, all else equal. The
+Attributes model suggests that\
+people are less willing to visit stores with higher prices, fewer registers, and
+convenience stores or other non-standard grocery stores with the exception of
+dollar stores, which they are *more* attracted to. Combining all of these
+variables in the All model retain the significance, direction, and basic scale
+of all previous estimates with the exception of the NEMS availability variable.
+In this case, it seems that the previous positive relationship may have been a
+result of correlation between NEMS availability and other variables such as cost
+or the number of registers. And when controlling for all other variables, the
+role of transportation access becomes somewhat more important than considering
+only distance alone, implying that people are willing to travel somewhat further
+for stores with attributes they value.
 
-The overall fit of the four models in @tbl-utah-models is also revealing: the model
-with only NEMS variables gainst almost no predictive power over randomly selecting
-any store in the community (as revealed by the $\rho_0^2$ statistic). Though all
-sets of variables contribute to the overall fit, it is apparent that the bulk of 
-model explanatory power is due to transportation proximity.
-
+The overall fit of the four models in @tbl-utah-models is also revealing: the
+model with only NEMS variables against almost no predictive power over randomly
+selecting any store in the community (as revealed by the $\rho_0^2$ statistic).
+Though all sets of variables contribute to the overall fit, it is apparent that
+the bulk of model explanatory power is due to transportation proximity.
 
 ```{r sl-models}
 #| label: tbl-sl-models
@@ -182,8 +178,6 @@ modelsummary(sl_models, gof_map = gm, coef_map = cm,
              statistic = "({statistic})",
              notes = list("t-statistics in parentheses"))
 ```
-
-
 
 ```{r sj-models}
 #| label: tbl-sj-models
@@ -195,15 +189,14 @@ modelsummary(sj_models, gof_map = gm, coef_map = cm,
 ```
 
 @tbl-sl-models presents the estimated coefficients in the west Salt Lake Valley
-community, and  @tbl-sj-models presents the estimated coefficients in San Juan 
-County. The same general story about coefficient direction and hypotheses applies
-in both of these communities, except in regards to the NEMS variables. 
-In Salt Lake, the NEMS cost score appears negative when estimated alone but becomes
-positive when other variables are included. In San Juan, these variables 
-are consistently positive. Additionally, the story of model fit is reversed: 
-in both Salt Lake and San Juan, the attributes of the store explain more of the
-model fit than the transportation impedance term. 
-
+community, and @tbl-sj-models presents the estimated coefficients in San Juan
+County. The same general story about coefficient direction and hypotheses
+applies in both of these communities, except in regards to the NEMS variables.
+In Salt Lake, the NEMS cost score appears negative when estimated alone but
+becomes positive when other variables are included. In San Juan, these variables
+are consistently positive. Additionally, the story of model fit is reversed: in
+both Salt Lake and San Juan, the attributes of the store explain more of the
+model fit than the transportation impedance term.
 
 ```{r all-comp}
 #| label: fig-all-comp
@@ -230,19 +223,19 @@ list(
   scale_color_manual(values = wesanderson::wes_palette('Darjeeling1'))
 ```
 
-To better visualize how the preferences in the three communities differ
-from each other, @fig-all-comp plots the coefficient estimates from the All
-model in each community. The mode choice log-sum is strongly significant in all
-three communities, but it has its smallest value in San Juan County where 
-people often must travel long distances to reach any stores. The highest mode 
-choice log-sum value is in Salt Lake, but this explains a smaller proportion of 
-the model outcomes than the lower value in Utah County; a possible hypothesis for
-this observation may include the higher density of stores in Salt Lake 
- --- attributes are more important when so many stores are close together --- paired with the somewhat lower vehicle ownership in that community driving 
-up the coefficient value. Most other estimates are somewhat consistent 
-across counties, with the exception of the NEMS variables discussed previously
-and the role of dollar stores and other stores in each community.
-
+To better visualize how the preferences in the three communities differ from
+each other, @fig-all-comp plots the coefficient estimates from the All model in
+each community. The mode choice log-sum is strongly significant in all three
+communities, but it has its smallest value in San Juan County where people often
+must travel long distances to reach any stores. The highest mode choice log-sum
+value is in Salt Lake, but this explains a smaller proportion of the model
+outcomes than the lower value in Utah County; a possible hypothesis for this
+observation may include the higher density of stores in Salt Lake --- attributes
+are more important when so many stores are close together --- paired with the
+somewhat lower vehicle ownership in that community driving up the coefficient
+value. Most other estimates are somewhat consistent across counties, with the
+exception of the NEMS variables discussed previously and the role of dollar
+stores and other stores in each community.
 
 ## Accessibility {#sec-access}
 
@@ -250,19 +243,18 @@ and the role of dollar stores and other stores in each community.
 tar_load(utbgaccess)
 ```
 
-
 With the models estimated in @sec-estimation, we can evaluate the spatial access
-of each community. @fig-map-ut shows the value of the grocery store destination 
+of each community. @fig-map-ut shows the value of the grocery store destination
 choice log-sum for block groups in Utah County. Unsurprisingly, the block groups
-in the core of the urban areas of the region have the highest access to grocery 
+in the core of the urban areas of the region have the highest access to grocery
 stores, because this is where the stores are located and also where the
-transportation access to multiple destinations is highest. This map also contains 
-somewhat interesting implications for the equity of access. A perhaps unique feature
-of Utah County's demographic geography is that the wealthiest neighborhoods 
-tend to be located on the mountain benches east of the main urban areas. This means
-that in Utah County, at least, the neighborhoods with the lowest access to grocery
-stores are actually some of the wealthiest neighborhoods with the lowest concentrations
-of ethnic minorities in the region. 
+transportation access to multiple destinations is highest. This map also
+contains somewhat interesting implications for the equity of access. A perhaps
+unique feature of Utah County's demographic geography is that the wealthiest
+neighborhoods tend to be located on the mountain benches east of the main urban
+areas. This means that in Utah County, at least, the neighborhoods with the
+lowest access to grocery stores are actually some of the wealthiest
+neighborhoods with the lowest concentrations of ethnic minorities in the region.
 
 ```{r map-ut}
 #| label: fig-map-ut
@@ -280,25 +272,23 @@ ggplot(utbgaccess, aes(fill = access)) +
   scale_fill_gradientn("Access", colours = pal)
 ```
 
-
-Of course, much of this high access in the urban core of Utah County 
-is achieved by cheap and available automobile transportation. We can 
-consider what access looks like for those without cars by re-computing the mode
-choice log-sum described in @sec-mcls between all block group / store pairs but
-eliding the automobile mode, and examining the resulting impact to destination
-choice utility. @fig-map-nocar shows the results of this analysis: whereas the 
-total access (with car included) is a smooth gradient across the valley, the 
-access for individuals without vehicles is blocky and discontinuous, with 
-neighborhoods
-of relatively good access immediately next to neighborhoods with bad or non-existent
-access. This may reflect the discontinuous nature of active transport and public transit
-facilities in the region, as well as the auto-dominated locations of many
-grocery stores. Note also that even for neighborhoods of relatively good 
-non-vehicle access, the destination choice log-sum value is substantially lower
-than the logsum with vehicle access; the minimum value on with vehicles is just
-below 0, whereas the *maximum* log-sum without vehicles is around -100. Because
-the log-sum occurs on the same scale in both cases, this represents a serious 
-additional cost for non-vehicle users.
+Of course, much of this high access in the urban core of Utah County is achieved
+by cheap and available automobile transportation. We can consider what access
+looks like for those without cars by re-computing the mode choice log-sum
+described in @sec-mcls between all block group / store pairs but eliding the
+automobile mode, and examining the resulting impact to destination choice
+utility. @fig-map-nocar shows the results of this analysis: whereas the total
+access (with car included) is a smooth gradient across the valley, the access
+for individuals without vehicles is blocky and discontinuous, with neighborhoods
+of relatively good access immediately next to neighborhoods with bad or
+non-existent access. This may reflect the discontinuous nature of active
+transport and public transit facilities in the region, as well as the
+auto-dominated locations of many grocery stores. Note also that even for
+neighborhoods of relatively good non-vehicle access, the destination choice
+log-sum value is substantially lower than the logsum with vehicle access; the
+minimum value on with vehicles is just below 0, whereas the *maximum* log-sum
+without vehicles is around -100. Because the log-sum occurs on the same scale in
+both cases, this represents a serious additional cost for non-vehicle users.
 
 ```{r map-nocar}
 #| label: fig-map-nocar
@@ -333,6 +323,3 @@ ggplot(nocaraccess |> filter(!is.na(nocarlogsum)), aes(fill = nocarlogsum)) +
         axis.ticks.y = element_blank()) +
   scale_fill_gradientn("Access", colours = pal)
 ```
-
-
-

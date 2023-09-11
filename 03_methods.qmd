@@ -69,13 +69,13 @@ not refer to the entire Salt Lake County nor to Salt Lake City, rather, we focus
 on communities in the western part of the valley, such as Magna, Kearns, and
 West Valley City.
 
-@tbl-acsdata shows several key population statistics based on 2021
-American Community Survey data for block groups in the three communities of
-interest. Utah County is a largely suburban county with high incomes and a low
-percentage of minority individuals. The Salt Lake region is more dense with
-somewhat lower incomes and household sizes but a high share of minority
-individuals. San Juan County is primarily rural, with a few small communities
-and a large reservation for the Navajo Tribe.
+@tbl-acsdata shows several key population statistics based on 2021 American
+Community Survey data for block groups in the three communities of interest.
+Utah County is a largely suburban county with high incomes and a low percentage
+of minority individuals. The Salt Lake region is more dense with somewhat lower
+incomes and household sizes but a high share of minority individuals. San Juan
+County is primarily rural, with a few small communities and a large reservation
+for the Navajo Tribe.
 
 ```{r acsdata}
 #| label: tbl-acsdata
@@ -181,7 +181,7 @@ amount of poultry, but the NEMS-S score collects the per-pound cost of ground
 beef at various fat contents. For any stores that were missing any of the
 elements in the market basket, we first substituted with another ingredient that
 would fit the nutritional requirements. If no substitute was available, we
-included the average price of the missing good at other stores in community
+included the average price of the missing good at other stores in that community
 multiplied by 1.5 as a penalty for not containing the product. The final market
 basket score is the total cost of all foods in the market basket. These costs
 can then be compared from store to store to understand general affordability
@@ -229,7 +229,7 @@ requires us to impute the attributes onto the stores that we did not collect.
 To do this, we used web-based mapping databases (including OpenStreetMap and
 Google Maps) to obtain a list of grocery stores, dollar stores, and appropriate
 convenience stores throughout the state. From this search, we were able to
-determine the stores location, brand name, and store type, which we also
+determine each store's location, brand name, and store type, which we also
 collected in the manual data assembly efforts. Using this information, we built
 a multiple imputation model using the `mice` package for R [@mice]. The
 predictor variables in the imputation included the store brand and type, as well
