@@ -73,5 +73,5 @@ format:
     reference-doc: custom-reference-doc.docx
     number-sections: false
     toc: true
-    toc-depth: 2
+    toc-depth: 3
 editor: visual
