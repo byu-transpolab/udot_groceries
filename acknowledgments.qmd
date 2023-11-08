@@ -24,12 +24,10 @@ Graphics in the document are produced with multiple R packages [@modelsummary;
 
 ```{r contrib, results = 'asis', message=FALSE, echo=FALSE}
 library(CRediTas)
-# crt <- template_create(authors = c("Gregory S. Macfarlane", 
-#                                    "Emma Stucki",
-#                                    "Myrranda Salmon",
-#                                    "Alisha H. Redelfs",
-#                                    "Lori Spruance"))
-# fix(crt)
+# crt <- template_create(authors = c("Gregory S. Macfarlane",
+#                                    "Emily Blanchard",
+#                                    "Gillian Martin",
+#                                    "Jared Nielsen"))
 crt <- readr::read_csv("author_contributions.csv", show_col_types = FALSE)
 ```
 `r cras_write(crt, markdown = TRUE)`

@@ -49,29 +49,24 @@ book:
   
 
 bibliography: [groceries.bib, packages.bib]
-csl: elsevier-harvard-italics.csl
+csl: apa.csl
+
+keywords:
+  - Accessibility
+  - Access to nutrition
+  - Passive location data
 
 format:
   html:
     theme: cosmo
     html-math-method: katex
-  pdf:
-    documentclass: scrreport
-    include-in-header: 
-      - text: |
-          \usepackage{rotating}
-    fig-pos: 't'
+  elsevier-pdf:
+    journal:
+      name: Journal of Transport and Land Use
+      cite-style: authoryear
+      formatting: review
+      model: 3p
+    cite-method: citeproc
     keep-tex: true
-#  elsevier-pdf:
-#    journal:
-#      name: Transportation Research Part A
-#      cite-style: authoryear
-#    keep-tex: true
-#    top-level-division: section
-#    toc: false
-  docx:
-    reference-doc: custom-reference-doc.docx
-    number-sections: false
-    toc: true
-    toc-depth: 3
-editor: visual
+    top-level-division: section
+    toc: false

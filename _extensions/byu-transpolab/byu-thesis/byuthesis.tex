@@ -1,0 +1,75 @@
+\documentclass[$if(layout)$$layout$fancy, ms$endif$]{byuthesis}
+\usepackage{bookmark}
+
+$pandoc.tex()$
+
+\title{$title$}
+\author{$author$}
+
+% On the custom title page, use the same title, but format as you like
+\customtitle{$if(customtitle)$$customtitle$$else$$title$$endif$}
+
+% This is the date of graduation
+\date{$date$}
+
+% If your degree is not a PhD or MS, then you can overwrite the degree using 
+% the \degree command: \degree{Bachelors of Basics}
+$if(degree)$
+\degree{$degree$}
+$endif$
+
+% Your department
+$if(department)$
+\department{$department$}
+$endif$
+
+% The names of your committee members
+\committeechair{$chair$}
+$for(committee)$
+  \committeemember{$committee$}
+$endfor$
+
+$if(keywords)$
+\keywords{
+    $for(keywords/allbutlast)$$keywords$; $endfor$ 
+    $for(keywords/last)$$keywords$$endfor$
+}
+$endif$
+
+\begin{document}
+
+\frontmatter
+\titlepage
+\cleardoublepage
+
+\customtitlepage
+\cleardoublepage
+
+
+$if(abstract)$
+  \begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+\cleardoublepage
+
+$if(acknowledgments)$
+\begin{acknowledgments}
+$acknowledgments$
+\end{acknowledgments}
+\cleardoublepage
+$endif$
+
+	\tableofcontents*
+	\cleardoublepage
+
+	\listoffigures
+	\cleardoublepage
+
+	\listoftables
+	\cleardoublepage
+
+\mainmatter
+$body$
+
+\end{document}
