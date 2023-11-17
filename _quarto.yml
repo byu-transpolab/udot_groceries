@@ -4,6 +4,7 @@ project:
 # This defines the .qmd files that are in your document
 book:
   title: "Equitable Access to Nutrition in Utah"
+  downloads: pdf
   author:
     - name: Gregory S. Macfarlane
       orcid: 0000-0003-3999-7584
