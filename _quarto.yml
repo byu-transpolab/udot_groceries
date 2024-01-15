@@ -3,27 +3,41 @@ project:
 
 # This defines the .qmd files that are in your document
 book:
-  title: "Equitable Access to Nutrition in Utah"
+  title: "Where's dinner coming from? A utility-based investigation of access to nutrition in Utah."
   downloads: pdf
   author:
     - name: Gregory S. Macfarlane
       orcid: 0000-0003-3999-7584
-      email: gregmacfarlane@gmail.com
+      email: gregmacfarlane@byu.edu
       affiliations:
-        - name: Civil and Construction Engineering Department, Brigham Young University
-          address: 430 EB
+        - id: byucivil
+          name: Civil and Construction Engineering Department, Brigham Young University
           city: Provo
           state: UT
           postal-code: 84602
     - name: Emma Stucki
+      affiliations: 
+        - ref: byucivil 
     - name: Myrranda Salmon
+      affiliations: 
+        - ref: byucivil
     - name: Alisha H. Redelfs
-    - name: Lori Spruance
+      orcid: 0000-0002-3533-6044
+      affiliations:
+        - id: byupubh
+          name: Public Health Department, Brigham Young University
+          city: Provo
+          state: UT
+          postal-code: 84602
+    - name: Lori A. Spruance
+      orcid: 0000-0003-0254-483X
+      affiliations: 
+        - ref: byupubh
     # to add additional authors, simply add another -name: tag 
-  date: "09/01/2023"
+  date: "12/20/2023"
   chapters:
     - index.qmd
-    - 02_litreview.qmd
+    # - 02_litreview.qmd
     - 03_methods.qmd
     - 04_estimation.qmd
     - 05_scenarios.qmd
@@ -44,7 +58,8 @@ book:
     improving the non-automobile transport network between residents and existing
     stores. The results show that new or improved store locations bring substantially
     higher benefits than improvements to the transportation system, at likely
-    lower costs. The report recommends that UDOT work to increase the availability
+    lower costs. The findings suggest that transportation agencies work to 
+    increase the availability
     of community-sized grocery stores in low-access areas, and consider 
     activity-based methods of measuring resource access.
   
@@ -57,17 +72,20 @@ keywords:
   - Access to nutrition
   - Passive location data
 
+
 format:
   html:
     theme: cosmo
     html-math-method: katex
   elsevier-pdf:
     journal:
-      name: Journal of Transport and Land Use
+      name: WSTLUR Symposium 2024
       cite-style: authoryear
       formatting: review
       model: 3p
     cite-method: citeproc
+    crossref:
+      chapters: false
     keep-tex: true
     top-level-division: section
     toc: false

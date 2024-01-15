@@ -1,64 +1,51 @@
 # Introduction
 
-The Utah Department of Transportation (UDOT) recently adopted a new mission to
-"Enhance the Quality of Life through Transportation," alongside a four-part
-framework: Better Mobility, Good Health, Connected Communities, and Strong
-Economies [@udot2023a]. A critical role of the transportation system in
-accomplishing all elements of UDOT's mission is ensuring that all Utah
-households have adequate access to quality nutrition and other community
-resources. Access to quality nutrition is shown to have a correlation with
-mental and physical well being [@francis2012], and there are many communities
-that do not have good accessibility to quality nutrition, with the main options
-being either more expensive for quality goods, or no quality goods available.
+The ability of people to access quality nutrition has been studied at length in
+public health and urban geography for decades [@beaulac2009;@walker2010]. 
+This interest is motivated in large part by an observed spatial disparity in
+nutrition access in many communities --- though this issue may be particularly
+pronounced in the United States [@beaulac2009]. The spatial disparity has been linked at an aggregate level with negative public health outcomes 
+[@chen2016; @cooksey-stowers2017], though other complicating factors including prices and habits may be present as well [@ghosh-dastidar2014].
 
-"Accessibility" is an abstract concept without a specific quantitative
-definition [@handy1997]. However, using accessibility as a policy measure
-requires comparative quantification, and transportation and public health
-researchers have constructed several quantitative measures. Some commonly used
-measures include:
 
--   Nearest destination: How close is the nearest grocery store?
--   Opportunities within a travel time: How many grocery stores can be reached
-    within 30 minutes?
-
+At the same time, access to nutrition and to community resources in general is 
+frustratingly hard to define. "Accessibility" is an abstract concept without a
+specific quantitative definition [@handy1997]. However, using accessibility as 
+a policy measure requires comparative quantification, and transportation and
+public health researchers have constructed several quantitative measures, such 
+as presence of a store within a travel time buffer, or the distance to the 
+nearest store. These measures are relatively easy to calculate using 
+readily available GIS software, but elide much useful information [@dong2006; @logan2019].
 These types of measures require the researcher to make a series of assumptions
 and assertions: why is 30 minutes chosen instead of 40? Is that time by transit
 or highway or walking? Should these definitions change for individuals in
-different socioeconomic groups? And do people always go to the closest grocery
-store to begin with? How much further are people willing to travel to go to a
-store that is cheaper or that has a wider variety of goods? A measure that
-combines all of these different considerations is desirable.
+different socioeconomic groups? And people do not always go to the closest grocery
+store to begin with [@clifton2004, @hillier2011]; how much further are people
+willing to travel to go to a store that is cheaper or that has a wider variety
+of goods? And perhaps the home location isn't the only spatial point of 
+reference [@liu2022]. A measure that potentially combines many of these different
+considerations is desirable. 
 
-## Objectives
+In this research, we develop and explore an accessibility 
+measure based on destination choice models estimated for three distinct 
+communities in Utah. This methodology is based on a unique dataset made by 
+linking between three extensive data sources:
 
-The objective of this project is to develop an understanding of what variables
-and attributes are desirable in grocery stores for populations in different 
-areas of Utah, in order to help identify where to make
-improvements to increase equitable access to nutrition in Utah. The proposed 
-logit model methodology is developed from a connection between three extensive
-data sources:
-
-  - A detailed survey of the nutrition market in three Utah communities
-  - Location-based services data derived from mobile phone records revealing
-    which grocery stores are frequented by residents of different neighborhoods
-  - Multi-modal network data providing detailed mobility data by car,
-    walking, and public transit.
+  1. A detailed survey of the nutrition market in three Utah communities
+  2. Location-based services data derived from mobile phone records revealing
+     which grocery stores are frequented by residents of different neighborhoods
+  3. Multi-modal network data providing detailed mobility data by car, walking,
+  and public transit.
 
 These data will be combined in order to develop accurate logit models that
 demonstrate the variables that are significant to grocery store choice in Utah.
 These models could then be used to find accessibility to stores and impact
 transportation policy to improve quality of life for all communities in Utah.
 
-## Outline
-
-This document is organized in a typical manner. @sec-literature presents a review
-of transportation organizations' efforts to improve general health outcomes in their
-communities, followed by a specific review of research exploring the
-relationship between nutrition access and health. The methodology for data
-collection and modeling is described in @sec-methods and a description of the 
-nutrition environment and choice models estimates follows in @sec-results.
-@sec-scenarios presents a series of scenarios to which we apply the models estimated
-in @sec-results, illustrating the interrelated elements of nutrition quality
-and transportation infrastructure in developing more complete access to nutrition.
-The document concludes in @sec-conclude with a list of limitations and a pair of 
-recommendations to UDOT.
+This paper is organized in a typical manner. A methodology
+for data collection and modeling is described in @sec-methods and a description
+of the nutrition environment and choice models estimates follows in
+@sec-results. @sec-scenarios presents a series of scenarios to which we apply
+the models estimated in @sec-results, illustrating the interrelated elements of
+nutrition quality and transportation infrastructure in developing more complete
+access to nutrition. 

@@ -178,8 +178,8 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Equitable Access to Nutrition in Utah},
-  pdfauthor={Gregory S. Macfarlane; Emma Stucki; Myrranda Salmon; Alisha H. Redelfs; Lori Spruance},
+  pdftitle={Where's dinner coming from? A utility-based investigation of access to nutrition in Utah.},
+  pdfauthor={Gregory S. Macfarlane; Emma Stucki; Myrranda Salmon; Alisha H. Redelfs; Lori A. Spruance},
   pdfkeywords={Accessibility, Access to nutrition, Passive location
 data},
   colorlinks=true,
@@ -193,31 +193,34 @@ data},
 \begin{document}
 
 \begin{frontmatter}
-\title{Equitable Access to Nutrition in Utah}
+\title{Where's dinner coming from? A utility-based investigation of
+access to nutrition in Utah.}
 \author[1]{Gregory S. Macfarlane%
 %
 }
- \ead{gregmacfarlane@gmail.com} 
-\author[]{Emma Stucki%
+ \ead{gregmacfarlane@byu.edu} 
+\author[1]{Emma Stucki%
 %
 }
 
-\author[]{Myrranda Salmon%
+\author[1]{Myrranda Salmon%
 %
 }
 
-\author[]{Alisha H. Redelfs%
+\author[2]{Alisha H. Redelfs%
 %
 }
 
-\author[]{Lori Spruance%
+\author[2]{Lori A. Spruance%
 %
 }
 
 
 \affiliation[1]{organization={Civil and Construction Engineering
-Department, Brigham Young University},addressline={430
-EB},city={Provo},postcode={84602},postcodesep={}}
+Department, Brigham Young
+University},city={Provo},postcode={84602},postcodesep={}}
+\affiliation[2]{organization={Public Health Department, Brigham Young
+University},city={Provo},postcode={84602},postcodesep={}}
 
 \cortext[cor1]{Corresponding author}
 
@@ -241,10 +244,10 @@ access-improving policies: building a new store, improving an existing
 store, and improving the non-automobile transport network between
 residents and existing stores. The results show that new or improved
 store locations bring substantially higher benefits than improvements to
-the transportation system, at likely lower costs. The report recommends
-that UDOT work to increase the availability of community-sized grocery
-stores in low-access areas, and consider activity-based methods of
-measuring resource access.
+the transportation system, at likely lower costs. The findings suggest
+that transportation agencies work to increase the availability of
+community-sized grocery stores in low-access areas, and consider
+activity-based methods of measuring resource access.
 \end{abstract}
 
 
@@ -256,60 +259,51 @@ measuring resource access.
     Passive location data
 \end{keyword}
 \end{frontmatter}
-    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, boxrule=0pt, interior hidden, sharp corners, frame hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced]}{\end{tcolorbox}}\fi
+    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}, frame hidden, enhanced, boxrule=0pt, breakable]}{\end{tcolorbox}}\fi
 
 \bookmarksetup{startatroot}
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-The Utah Department of Transportation (UDOT) recently adopted a new
-mission to ``Enhance the Quality of Life through Transportation,''
-alongside a four-part framework: Better Mobility, Good Health, Connected
-Communities, and Strong Economies (UDOT, 2023a). A critical role of the
-transportation system in accomplishing all elements of UDOT's mission is
-ensuring that all Utah households have adequate access to quality
-nutrition and other community resources. Access to quality nutrition is
-shown to have a correlation with mental and physical well being (Francis
-et al., 2012), and there are many communities that do not have good
-accessibility to quality nutrition, with the main options being either
-more expensive for quality goods, or no quality goods available.
+The ability of people to access quality nutrition has been studied at
+length in public health and urban geography for decades (Beaulac et al.,
+2009; Walker et al., 2010). This interest is motivated in large part by
+an observed spatial disparity in nutrition access in many communities
+--- though this issue may be particularly pronounced in the United
+States (Beaulac et al., 2009). The spatial disparity has been linked at
+an aggregate level with negative public health outcomes (Chen et al.,
+2016; Cooksey-Stowers et al., 2017), though other complicating factors
+including prices and habits may be present as well (Ghosh-Dastidar et
+al., 2014).
 
-``Accessibility'' is an abstract concept without a specific quantitative
-definition (Handy \& Niemeier, 1997). However, using accessibility as a
-policy measure requires comparative quantification, and transportation
-and public health researchers have constructed several quantitative
-measures. Some commonly used measures include:
+At the same time, access to nutrition and to community resources in
+general is frustratingly hard to define. ``Accessibility'' is an
+abstract concept without a specific quantitative definition (Handy \&
+Niemeier, 1997). However, using accessibility as a policy measure
+requires comparative quantification, and transportation and public
+health researchers have constructed several quantitative measures, such
+as presence of a store within a travel time buffer, or the distance to
+the nearest store. These measures are relatively easy to calculate using
+readily available GIS software, but elide much useful information (Dong
+et al., 2006; Logan et al., 2019). These types of measures require the
+researcher to make a series of assumptions and assertions: why is 30
+minutes chosen instead of 40? Is that time by transit or highway or
+walking? Should these definitions change for individuals in different
+socioeconomic groups? And people do not always go to the closest grocery
+store to begin with Hillier et al. (2011); how much further are people
+willing to travel to go to a store that is cheaper or that has a wider
+variety of goods? And perhaps the home location isn't the only spatial
+point of reference (Liu et al., 2022). A measure that potentially
+combines many of these different considerations is desirable.
 
-\begin{itemize}
-\tightlist
-\item
-  Nearest destination: How close is the nearest grocery store?
-\item
-  Opportunities within a travel time: How many grocery stores can be
-  reached within 30 minutes?
-\end{itemize}
+In this research, we develop and explore an accessibility measure based
+on destination choice models estimated for three distinct communities in
+Utah. This methodology is based on a unique dataset made by linking
+between three extensive data sources:
 
-These types of measures require the researcher to make a series of
-assumptions and assertions: why is 30 minutes chosen instead of 40? Is
-that time by transit or highway or walking? Should these definitions
-change for individuals in different socioeconomic groups? And do people
-always go to the closest grocery store to begin with? How much further
-are people willing to travel to go to a store that is cheaper or that
-has a wider variety of goods? A measure that combines all of these
-different considerations is desirable.
-
-\hypertarget{objectives}{%
-\subsection{Objectives}\label{objectives}}
-
-The objective of this project is to develop an understanding of what
-variables and attributes are desirable in grocery stores for populations
-in different areas of Utah, in order to help identify where to make
-improvements to increase equitable access to nutrition in Utah. The
-proposed logit model methodology is developed from a connection between
-three extensive data sources:
-
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
   A detailed survey of the nutrition market in three Utah communities
@@ -320,7 +314,7 @@ three extensive data sources:
 \item
   Multi-modal network data providing detailed mobility data by car,
   walking, and public transit.
-\end{itemize}
+\end{enumerate}
 
 These data will be combined in order to develop accurate logit models
 that demonstrate the variables that are significant to grocery store
@@ -328,469 +322,14 @@ choice in Utah. These models could then be used to find accessibility to
 stores and impact transportation policy to improve quality of life for
 all communities in Utah.
 
-\hypertarget{outline}{%
-\subsection{Outline}\label{outline}}
-
-This document is organized in a typical manner.
-Chapter~\ref{sec-literature} presents a review of transportation
-organizations' efforts to improve general health outcomes in their
-communities, followed by a specific review of research exploring the
-relationship between nutrition access and health. The methodology for
-data collection and modeling is described in Chapter~\ref{sec-methods}
-and a description of the nutrition environment and choice models
-estimates follows in Chapter~\ref{sec-results}.
-Chapter~\ref{sec-scenarios} presents a series of scenarios to which we
-apply the models estimated in Chapter~\ref{sec-results}, illustrating
-the interrelated elements of nutrition quality and transportation
-infrastructure in developing more complete access to nutrition. The
-document concludes in Chapter~\ref{sec-conclude} with a list of
-limitations and a pair of recommendations to UDOT.
-
-\bookmarksetup{startatroot}
-
-\hypertarget{sec-literature}{%
-\section{Literature Review}\label{sec-literature}}
-
-This chapter presents an overview of existing transportation energy
-policies related to health broadly, followed by a review of the
-literature on access to nutrition specifically.
-
-\hypertarget{existing-transportation-and-health-policies}{%
-\subsection{Existing Transportation and Health
-Policies}\label{existing-transportation-and-health-policies}}
-
-Transportation policy impacts the way our transportation systems
-function in cities, and along with that, impacts the way that we live
-our lives as well. For example, transportation policy that demands a
-certain level of safety on roadways creates a better, safer, travel
-network for those using the roads. Also, policy that puts the pedestrian
-first helps improve the quality and quantity of sidewalks and bike ways
-in cities, improving active transportation. There are many different
-types of policies that can be established, whether they be required by
-federal law, or established through the individual decisions of local or
-state governments. Because these policies make such a big impact on the
-way we live it is important to discover what types of policies exist
-currently, where there are areas that are missing in policy and
-practice, and discover how this research can help to bridge the gap
-between identified need and practical application.
-
-How UDOT and other departments of transportation (DOTs) approach their
-responsibility to improve quality of life beyond providing mobility is a
-relatively recent concern. In this section, we discuss how DOTs have
-begun incorporating public health concerns into their policy making and
-project prioritization processes.
-
-Transportation impacts public health across several different sectors
-identified in the literature, which have been grouped together into four
-general topics: Traffic Safety, Pollution, Active Transportation, and
-Access to Community Resources. These four topics mirror the focus points
-of the UDOT mission, with Traffic Safety and Pollution corresponding to
-Good Health, Active Transportation corresponding to Better Mobility, and
-Access to Community Resources corresponding to Connected Communities and
-Strong Economies.
-
-\hypertarget{traffic-safety}{%
-\subsubsection{Traffic Safety}\label{traffic-safety}}
-
-Arguably the area where most attention has been given in terms of a
-public health perspective informing transportation decision making
-concerns vehicle and roadway safety. This attention is deserved, as
-transportation safety is a major public health concern. In 2021 there
-were 329 total fatalities and 1734 serious injuries resulting from car
-crashes in Utah, the highest mark in a decade (UDOT, 2023b); though
-crashes in 2022 were marginally lower, they still greatly exceeded the
-annual rates prior to 2020.
-
-Efforts to improve traffic safety in policy take various forms. One of
-the strategies to improve safety focuses on educating the public to
-minimize reckless and distracted driving. Research clearly shows the
-danger of both reckless and distracted driving and we have recently seen
-a national focus on eliminating distracted driving National Highway
-Traffic Safety Administration (2022). In response, Utah has implemented
-the Zero Fatalities program, focusing on decreasing the number of
-roadway fatalities to zero by educating the public on deadly driving
-behaviors, including distracted driving, aggressive driving, drowsy
-driving, impaired driving, and not wearing seat belts (Zero Fatalities,
-2022). Zero Fatalities has different age-specific educational materials
-for students and teachers. These age groups include pre-drivers, newly
-licensed teenagers, experienced drivers, and even driving instructors.
-But, educating the public does not solve all safety concerns; if the
-roadways themselves are not safe for the drivers, there needs to be a
-change to those roadways as well.
-
-Efforts to change the roadways have focused on improving facilities
-design to enhance safety for cars as well as for bikes and pedestrians
-(Charreire et al., 2021; Jarry \& Apparicio, 2021; Monfort et al.,
-2021). In 2012 the Federal Highway Administration established a federal
-aid program titled the Safe System Approach that focuses on different
-programs including the Strategic Highway Safety Plan (SHSP), Highway
-Safety Improvement Program (HSIP), Railroad-Highway Crossings Program
-(RHCP), and High Risk Rural Roads (HRRR) (Finkel et al., 2020). Of these
-four programs included in the safe system approach, the HSIP is the only
-one mandated and implemented in every state, including Utah. The HSIP
-gives federal funding for projects, plans, activities, and reports that
-improve safety of highways.
-
-Vision Zero (Vision Zero Network, 2022) is a safety program funded by a
-non-profit organization that has been implemented in many communities
-and combines improving facilities and educating the public. Vision Zero
-is a tool to help communities create action plans and strategies. In
-order to be involved in Vision Zero the following must be true:
-
-\begin{itemize}
-\tightlist
-\item
-  the community must have a clear goal and plan with a process in place
-  to accomplish the goals (including a target date for when the
-  community will reach zero fatalities)
-\item
-  the community leader must declare that they are joining the Vision
-  Zero community to strive for zero fatalities on the roadway.
-\end{itemize}
-
-This program is a multinational road traffic safety program with the
-potential to greatly improve traffic safety in communities where it is
-implemented. The Vision Zero focus is to eliminate traffic fatalities
-and severe injuries with a clear strategy or plan. A map showing the
-communities involved is in Figure~\ref{fig-visionzero}. Vision Zero has
-not been implemented in any communities in Utah. Two major differences
-between Vison Zero and Utah's Zero Fatalities program are that Zero
-Fatalities does not yet have a specific target date of when the state
-will reach zero fatalities, and Vision Zero typically includes many
-stakeholders such as transportation professionals, policy makers, public
-health officials, police, and community members.
-
-\begin{figure}
-
-{\centering \includegraphics[width=6in,height=\textheight]{images/Vision_Zero_Network_Community_Map_August_2022.png}
-
-}
-
-\caption{\label{fig-visionzero}Vision Zero communities in the United
-States.}
-
-\end{figure}
-
-\hypertarget{pollution-and-environmental-justice}{%
-\subsubsection{Pollution and Environmental
-Justice}\label{pollution-and-environmental-justice}}
-
-Another place where transportation and public health intersect is
-pollution and related environmental justice issues. A large percentage
-of airborne pollution comes from vehicle emissions including over 55\%
-of nitrogen oxides (NOx), less than 10\% of volatile organic compounds
-(VOC), and less than 10\% of particulate matter (PM). Vehicle emissions
-are of the largest contributors to PM2.5 levels around the globe.
-Studies have shown the impact of fine particulate matter (PM2.5) and
-ozone levels on health and have found about 36,000 deaths a year
-attributed to these levels Fann et al. (2013). In addition, PM2.5 has
-been linked to various health defects such as respiratory and cardiac
-symptoms, and exacerbate many other health conditions (Schraufnagel et
-al., 2019).
-
-Vehicle pollution has been addressed differently across states.
-California has a Zero-Emission Vehicles (ZEVs) strategy to increase the
-access of electric vehicle chargers along the roadway networks, support
-local transit transitions to zero-emission technology, and support the
-development of zero-emission freight technology. Delaware established a
-Strategic Implementation Plan for Climate Change, Sustainability and
-Resilience for Transportation, and Massachusetts has begun a new Low
-Emission Vehicle Program requiring most new vehicles to be equipped with
-advanced emission control systems. Utah has implemented a Noise
-Abatement Policy to decrease noise pollution which complies with federal
-regulation according to NEPA to be environmentally responsible.
-
-On a national level, however, the Clean Air Act directs the
-Environmental Protection Agency to set certain quality standards for
-pollutants in the air (Environmental Protection Agency, 2023). States
-are required to meet these standards or develop a plan to improve
-pollution levels. The map in Figure~\ref{fig-nonattainment} shows
-counties in each state that do not meet the standard for the identified
-air pollutants. As can be seen, there are several counties in Utah that
-do not meet the federal air quality standards for certain particulates,
-so there are opportunities for improvement.
-
-\begin{figure}
-
-{\centering \includegraphics[width=6in,height=\textheight]{images/mapnmpoll.png}
-
-}
-
-\caption{\label{fig-nonattainment}Nonattainment counties in the United
-States, identified by how many criteria pollutants are in
-nonattainment.}
-
-\end{figure}
-
-One problem with fine particulate matter and vehicle pollution is that
-it has differential effects related to demographics, with some
-communities experiencing more severe health disparities (Chakraborty,
-2022). In order to more equitably address some of these pollution
-problems, the EPA has established guidance related to Environmental
-Justice to ``determine any disproportionately high and adverse human
-health or environmental effects to low-income, minority, and tribal
-populations''. This guidance is met through the National Environmental
-Policy Act (NEPA), which requires an impact assessment for every federal
-action -- including most transportation infrastructure projects -- that
-could have an impact on the environment. A report describing any
-potential environmental or health impacts or findings of no significant
-impact must be submitted. This process and legislation is intended to
-protect communities that could be more adversely affected by new
-transportation projects or improvements.
-
-In some ways these national and state measures have helped, and recent
-evidence that shows a decrease in air pollution related deaths in the
-U.S. (Choma et al., 2021). However, more work needs to be done in order
-to further decrease pollution related death and disease. This is true
-for existing facilities that can be improved to be more equitable and
-less polluted as well as any new policies or projects that can be
-designed to limit or decrease pollution.
-
-\hypertarget{active-transportation}{%
-\subsubsection{Active Transportation}\label{active-transportation}}
-
-Active transportation is an intersection of public health and
-transportation that includes walking and biking improvements, as well as
-public transportation. Both individual activity and public
-transportation system design are important when looking at active
-transportation. When looking at individual activity, direct correlations
-have been found between perceptions of well-being and social contact
-which comes through walking and biking and in relation to public
-transportation infrastructure a positive correlation was found between
-quality of life and multimodal trips Gerike et al. (2019). In addition,
-correlations have been found between mode choice, the use of public
-transportation, and health, showing that the more a car was used for
-transport, the higher the BMI (Body Mass Index), supporting the
-connection between health and active transport and support- ing the
-improvement of public transportation infrastructure to encourage
-sustainable mobility Dons et al. (2018).
-
-Active transportation measures and how they impact health can be
-somewhat difficult to track, but the best way to do so is by analyzing
-different data that has been collected in regards to health and
-transportation. To analyze the data on active transportation more
-completely, the US Department of Transportation (2022) has partnered
-with the Centers for Disease Control and Prevention (CDC) to develop the
-Transportation and Health Tool. This tool provides easy access to data
-of public health indicators and transportation in each US State and
-metropolitan area. These data include indicators such as obesity rates,
-percent of physical activity in trips taken, and how much federal
-funding was used to support active transportation infrastructure.
-
-Using this data from 2017 in each state we created the maps show in
-Figure~\ref{fig-obeseactivity}. Figure~\ref{fig-obeseactivity} (A) shows
-the obesity rates by state with 24.2\% being the least in Colorado while
-(B) shows the estimated percent of trips that include physical activity
-(walking, bicycling, and walk-access public transport). As can be seen
-there does seem to be some pattern, with those states that have a higher
-physical activity, also having a lower obesity rate. There are a few
-outliers, such as Nevada, with a low obesity rate and a low physical
-activity percentage, but overall, there is a correlation coefficient
-between the two indicators of 0.64. It should be noted in this context
-that obesity is a complex disease with many contributing factors, of
-which physical activity is only one (Dhurandhar et al., 2021).
-
-\begin{figure}
-
-\begin{minipage}[t]{0.50\linewidth}
-
-{\centering 
-
-\raisebox{-\height}{
-
-\includegraphics[width=3in,height=\textheight]{images/obesityrates.png}
-
-}
-
-}
-
-\subcaption{\label{fig-obeseactivity-1}Obesity}
-\end{minipage}%
-%
-\begin{minipage}[t]{0.50\linewidth}
-
-{\centering 
-
-\raisebox{-\height}{
-
-\includegraphics[width=3in,height=\textheight]{images/physicalactivityrates.png}
-
-}
-
-}
-
-\subcaption{\label{fig-obeseactivity-2}Physical Activity}
-\end{minipage}%
-
-\caption{\label{fig-obeseactivity}State-level rates of obesity and
-physical activity of trips.}
-
-\end{figure}
-
-Obesity is a problem in the United States, and with these graphs there
-does seem to be a correlation between increased active transportation
-and decreased obesity. In order to improve public health one goal could
-be to improve physical activity in transportation dramatically in
-states. The highest percentage of physical activity was in New York with
-about 20\%. In order to improve this percentage to make 20\% be a more
-normal value rather than the exception it is important that each state
-put more of an emphasis on public transportation and active
-transportation projects.
-
-\hypertarget{accessibility-to-resources}{%
-\subsubsection{Accessibility to
-Resources}\label{accessibility-to-resources}}
-
-In addition to helping improve health, public transportation and active
-transportation project also improve accessibility to resources.
-Accessibility to resources has also been widely studied in the past and
-will be analyzed more completely later in this chapter. The main idea of
-equitable accessibility is to make sure that each race, economic
-background, and age has an equal transportation option or alternative to
-access different public goods and resources. Equitable accessibility can
-have a dramatic impact on public health and is an important part of
-transportation policy (Aggarwal et al., 2014). However, the presence of
-accessibility to resources in research and application in different
-states is somewhat limited.
-
-At a minimum each state must adhere to the federal Americans with
-Disabilities Act (ADA) standard when designing roadways or other
-infrastructure. In addition, there is the federal complete streets
-policy that is implemented throughout the nation. According to Smart
-Growth America (2023), a non-profit organization that helps foster
-equitable and sustainable communities, there are 35 state governments
-that have adopted complete streets policies, with Utah being one of
-those states. Complete Streets requires streets to be planned, designed,
-and maintained to enable safe and comfortable access and travel for all
-users regardless of age, abilities and mode of transportation.
-
-\begin{figure}
-
-{\centering \includegraphics[width=6in,height=\textheight]{images/completestreets.png}
-
-}
-
-\caption{\label{fig-completestreets}Jurisdictions with complete streets
-policies in the United States.}
-
-\end{figure}
-
-This map shown in Figure~\ref{fig-completestreets} gives a visual
-representation of which counties, cities, and towns have adopted a
-complete streets policy. As can be seen, even in the states that have
-adopted a policy, there are still massive regions that do not have that
-policy implemented that still need the impact of equitable accessibility
-in projects and policy.
-
-\hypertarget{access-to-nutrition}{%
-\subsection{Access to Nutrition}\label{access-to-nutrition}}
-
-\hypertarget{access-and-equity}{%
-\subsubsection{Access and Equity}\label{access-and-equity}}
-
-Equitable access to community resources has been a topic of research and
-study, especially when looking at the impacts on measures of well-being
-and economic opportunity. Current social issues, economic opportunity
-and equity are significant topics that can help us ensure that each
-population demographic can have similar opportunities. Equity as a term
-is being fair and impartial, different from equality. Equality is
-providing the exact same thing to all people, whereas equity would
-provide different things to different people because of their
-circumstances in order to create a fair system. Lower-income populations
-frequently sit at a different level of advantage than higher-income
-populations, including when looking at accessibility Witten et al.
-(2003). It is important to discover how different transportation
-policies can improve accessibility to create better equity. Creating
-equitable societies and equitable transportation policies is important
-in order to remove any discrimination already present in the
-transportation network. In this way states can decrease the disparity
-that is common when looking at different neighborhoods and demographics.
-Perhaps there are low-income neighborhoods that do not have the same
-economic opportunity or resource accessibility as high-income
-neighborhoods. If we increase the accessibility of low-income
-neighborhoods, could that then increase the quality of life and health
-for those neighborhoods as well?
-
-In addition to economic opportunity, the connection between well-being
-and opportunity is also significant, discovering who has access to which
-resources and how that access corresponds to their health Schwanen et
-al. (2015). A subjective sense of positive well-being correlates with
-increased access to more community resources: increased access was
-specifically connected with variety of resources, not necessarily number
-of the same type of resource. This increased access is true for both
-high- and low-income populations. However, high-income demographics
-frequently tend have better access to a variety of resources because of
-such variables as available child care, a transportation source
-available, or even time available to do things Liu et al. (2022) . In
-addition, increased access to resources such as parks or other
-greenspace have been found to decrease likelihood of mental health
-disorders, as well as improve physical activity Madzia et al. (2019).
-Different age groups each have a different response to access to
-greenspace. However, among all age groups there is a positive
-correlation.In addition to health impacts, lack of accessibility also
-affects economic opportunity when considering access to employment,
-affordable care, and other stores and shops Hu (2015).
-
-\hypertarget{food-deserts-and-swamps}{%
-\subsubsection{Food Deserts and Swamps}\label{food-deserts-and-swamps}}
-
-While there are many different community resources that can be the
-center of study, such as libraries, green space, hospitals, etc., this
-project will focus on the resource of grocery stores and discovering any
-correlation between accessibility to good nutrition environments such as
-healthy grocery stores and the demographic makeup of specific block
-groups, such as economic bracket and different ethnic groups. Lack of
-accessibility to grocery stores can have an effect on physical health
-and well-being (Aggarwal et al., 2014). This access is related directly
-with consumption of healthy foods, as well as indirectly with perceived
-sense of well-being.
-
-Much of the current research that has been done has shown a different
-level of accessibility for different demographics, such as low income
-populations. Low income populations have been shown to frequently have
-less access to fresh fruits and vegetables Losada-Rojas et al. (2021).
-This may not be directly correlated to the physical distance from a
-grocery store, but the store that was chosen for these demographics. In
-a study analyzing grocery store choice in Seattle it was found that in
-some instances, there is a closer store with better produce, but for
-some reason it was not chosen and instead a store that was further away
-was chosen that did not have the same quantity and variety of fresh
-produce. This was found again in a different study, that frequently
-people will travel to a store that is not the closest store for
-different reasons Hillier et al. (2011). This study will help to
-determine that choice pattern and identify which variables are important
-when choosing a store to help improve accessibility more than simple
-distance measures.
-
-However, areas that do not have any full service grocery stores however
-are also important to look at, with those areas being known as food
-swamps. These food swamps are an idea that there are locations where
-there is not healthy food available, so the only option that is readily
-accessible for food or meals would be fast food or convenience stores.
-There have been studies analyzing the different food swamp areas and
-what could be done to improve those areas, such as adding grocery stores
-or corner markets (Bao et al., 2020). These food swamps are areas that
-discriminate between those without readily available transit options and
-those with easy access to cars, creating a barrier to equity. In
-addition, these food swamp areas are especially significant when looking
-at the public health impacts of food accessibility and discovering how
-we can improve the quality of food available to those in every
-demographic to create an equitable solution to health differences.
-
-Past research done clearly shows that location of store, quality of
-store, and price of store all have an impact on choice of grocery store
-and accessibility to grocery stores. This impacts the quality of life
-and overall health and well-being of individuals and shows the
-importance of discovering which variables are most significant in
-grocery store choice in order to improve accessibility and equity. What
-much existing research suffers from, however, is the wide variety of
-measures of access and the definitions used to describe a ``grocery
-store.'' Certainly convenience stores do not typically provide the same
-variety and quality of goods, but simply excluding them from analyses
-ignores how many people obtain a large share of their daily and weekly
-nutrition, for better or worse. A measure that can incorporate
-multimodal access to stores as well as qualitatively describe the stores
-along a continuous array of measures is desirable.
+This paper is organized in a typical manner. A methodology for data
+collection and modeling is described in Section~\ref{sec-methods} and a
+description of the nutrition environment and choice models estimates
+follows in Section~\ref{sec-results}. Section~\ref{sec-scenarios}
+presents a series of scenarios to which we apply the models estimated in
+Section~\ref{sec-results}, illustrating the interrelated elements of
+nutrition quality and transportation infrastructure in developing more
+complete access to nutrition.
 
 \bookmarksetup{startatroot}
 
@@ -1232,7 +771,7 @@ towns, with dozens of miles separating towns from each other.
 \subsection{Destination Choice}\label{sec-estimation}}
 
 Using the data collected and MNL destination choice model as described
-in Chapter~\ref{sec-methods}, we estimate a series of model
+in Section~\ref{sec-methods}, we estimate a series of model
 specifications in each community with the \texttt{mlogit} package for R
 (Croissant, 2020). To illustrate the role of different data elements on
 destination choice, we develop and estimate four different utility
@@ -1518,14 +1057,14 @@ with and without a vehicle.}
 \section{Application}\label{sec-scenarios}}
 
 In this section, we develop a series of scenarios to which we apply the
-models estimated in Chapter~\ref{sec-results}. These scenarios are
+models estimated in Section~\ref{sec-results}. These scenarios are
 constructed to ascertain what may be the best strategy to improve
 nutrition access in a community. We first describe how each scenario was
 constructed, and then discuss the results together.
 
 The accessibility of each scenario was to be determined using the
 approximated utility coefficients of the All model estimated in
-Chapter~\ref{sec-results},
+Section~\ref{sec-results},
 \begin{equation}\protect\hypertarget{eq-scenu}{}{
 U_{ij}= \beta_{MCLS}( k_{ij}) +  \beta_{n-a} (\mathrm{NEMS-Availability}) +
   \beta_{n-c}\mathrm({NEMS-Cost}) + \\ \beta_{mkt} (\mathrm{Market Basket}) + \pmb{\beta}_{type}(\mathrm{Type})  
@@ -1832,33 +1371,24 @@ new site, along with stocking, staffing, and operating the store.
 \hypertarget{sec-conclude}{%
 \section{Conclusions and Recommendations}\label{sec-conclude}}
 
-As outlined in Chapter~\ref{sec-literature}, transportation agencies
-seeking to improve the health and quality of life for residents must
-consider not simply their mobility needs, but the safety of the
-transportation system, the effects of the system on disadvantaged
-populations, and the ability of residents to access quality community
-resources. Access to nutrition is a critical topic that has been a
-frequent focus of academic literature in public health, community
-planning, and engineering, but the varying and incomplete quantitative
-definitions of access have perhaps limited efforts at developing
-solutions.
+Access to nutrition is a critical topic that has been a frequent focus
+of academic literature in public health, community planning, and
+engineering, but the varying and incomplete quantitative definitions of
+access have perhaps limited efforts at developing solutions.
 
-In this research, we explored an emerging technique to measure access to
-nutrition in multiple communities in Utah that combines transport access
-with the quality of markets, weighted against each other. We then used
-this model to examine an array of targeted policies that would
-potentially improve access to nutrition to a specific community.
-
-This concluding section presents both a series of limitations to this
-research with associated opportunities for future efforts, followed by
-specific recommendations to the Utah Department of Transportation as it
-seeks to pursue its mission to ``Enhance the Quality of Life through
-Transportation.''
+In this research, the model we developed and informed with
+location-based services data suggested that policies that increased the
+availability and quality of grocery stores would do more to enhance
+access nutrition than strategies that increased the transit level of
+service and travel times in three different Utah communities. These
+findings may not be general, but they largely support the review of food
+desert literature in (\textbf{beulac2009?}) as well as critical
+evaluations by Shannon (2014) and Wright et al. (2016).
 
 \hypertarget{sec-limitations}{%
 \subsection{Limitations}\label{sec-limitations}}
 
-A number of assumptions made in Chapter~\ref{sec-methods} lead to
+A number of assumptions made in Section~\ref{sec-methods} lead to
 limitations that other reasonable researchers might pursue differently,
 and thereby obtain marginally different outcomes.
 
@@ -1909,9 +1439,11 @@ determined by an activity-based model, as proposed by (Dong et al.,
 maintenance trips could be explicitly modeled, with synthetic
 individuals of unique characteristics choosing destinations that are
 available on the course of their other daily activities, using their
-chosen travel modes.
+chosen travel modes. This proposal would effectively extend the methods
+of Widener \& Shannon (2014) within the framework of explicit
+activity-travel modeling.
 
-Finally, the scenarios presented in Chapter~\ref{sec-scenarios} are
+Finally, the scenarios presented in Section~\ref{sec-scenarios} are
 designed to illustrate potential applications of this accessibility
 methodology, with a comparative analysis of strategies to improve access
 to nutrition. Selecting different sites, attribute levels, or transport
@@ -1919,45 +1451,6 @@ policies might substantially change the scale or rank-ordering of the
 estimated benefits. A comprehensive search for the location that would
 maximize benefits would be an interesting exercise, which we also leave
 to future research.
-
-\hypertarget{sec-recommend}{%
-\subsection{Recommendations}\label{sec-recommend}}
-
-This research results in two recommendations to the Utah Department of
-Transportation and its partner agencies.
-
-First, the research has underlined that communities in Utah have large
-differences in their ability to access quality nutrition, and that many
-communities --- especially in rural Utah --- travel long distances to
-obtain quality goods. At some level, this is evidence that UDOT has
-succeeded in its mobility-focused goals of connecting communities with
-fluid and reliable transportation infrastructure. On a less encouraging
-note, this observation also underscores the disparity in access defined
-by the availability of automobiles with which to use this
-infrastructure. For Utah households with limited vehicle availability,
-access to nutrition is considerably constricted. The research also
-revealed, however, that simply improving transit access and active
-transportation paths might not be as beneficial as either improving the
-quality of goods available in existing stores, or encouraging new store
-locations. The role of UDOT in pursuing such policies needs to be
-investigated. One potential strategy might be to alter access
-management, highway prioritization, and other policies in a way that
-encourages more stores with high-quality offerings in more communities.
-This would alter the present pattern of locating large-scale stores near
-arterial roadways, which maximizes the area over which a single store
-can attract customers at the expense of neighborhood-level access.
-
-At a methodological level, understanding the reasons why people
-participate in activities, and their priorities in doing so, is a
-necessary prerequisite to developing policies that improve the quality
-of life. This is a transition from goals that simply seek to minimize
-travel delay. To better facilitate and equip staff and researchers
-considering these kinds of questions, UDOT should encourage and develop
-activity-based approaches to travel forecasting. These approaches will
-enable the more realistic analysis described in
-Section~\ref{sec-limitations}, and provide better information for a host
-of policies aimed at improving Utah's communities and their quality of
-life.
 
 \bookmarksetup{startatroot}
 
@@ -2016,39 +1509,21 @@ Methodology, Resources, Writing - review \& editing
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-aarts2006}{}}%
-Aarts, L., \& van Schagen, I. (2006). Driving speed and the risk of road
-crashes: {A} review. \emph{Accident Analysis \& Prevention},
-\emph{38}(2), 215--224. \url{https://doi.org/10.1016/j.aap.2005.07.004}
-
-\leavevmode\vadjust pre{\hypertarget{ref-aggarwal2014}{}}%
-Aggarwal, A., Cook, A. J., Jiao, J., Seguin, R. A., Vernez Moudon, A.,
-Hurvitz, P. M., \& Drewnowski, A. (2014). Access to {Supermarkets} and
-{Fruit} and {Vegetable Consumption}. \emph{American Journal of Public
-Health}, \emph{104}(5), 917--923.
-\url{https://doi.org/10.2105/AJPH.2013.301763}
-
-\leavevmode\vadjust pre{\hypertarget{ref-algert2006}{}}%
-Algert, S. J., Agrawal, A., \& Lewis, D. S. (2006). Disparities in
-{Access} to {Fresh Produce} in {Low-Income Neighborhoods} in {Los
-Angeles}. \emph{American Journal of Preventive Medicine}, \emph{30}(5),
-365--370. \url{https://doi.org/10.1016/j.amepre.2006.01.009}
-
 \leavevmode\vadjust pre{\hypertarget{ref-modelsummary}{}}%
 Arel-Bundock, V. (2022). {modelsummary}: Data and model summaries in
 {R}. \emph{Journal of Statistical Software}, \emph{103}(1), 1--23.
 \url{https://doi.org/10.18637/jss.v103.i01}
 
-\leavevmode\vadjust pre{\hypertarget{ref-bao2020}{}}%
-Bao, K. Y., Tong, D., Plane, D. A., \& Buechler, S. (2020). Urban food
-accessibility and diversity: {Exploring} the role of small non-chain
-grocers. \emph{Applied Geography}, \emph{125}, 102275.
-\url{https://doi.org/10.1016/j.apgeog.2020.102275}
-
 \leavevmode\vadjust pre{\hypertarget{ref-barnes2021}{}}%
 Barnes, M. (2021). \emph{Resiliency of {Utah}'s {Road Network}: {A
 Logit-Based Approach}} {[}\{\{MS Thesis\}\}{]}. Brigham Young
 University.
+
+\leavevmode\vadjust pre{\hypertarget{ref-beaulac2009}{}}%
+Beaulac, J., Kristjansson, E., \& Cummins, S. (2009).
+\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2722409}{A
+{Systematic Review} of {Food Deserts}, 1966-2007}. \emph{Preventing
+Chronic Disease}, \emph{6}(3), A105.
 
 \leavevmode\vadjust pre{\hypertarget{ref-ben-akiva1985}{}}%
 Ben-Akiva, M., \& Lerman, S. R. (1985). \emph{Discrete {Choice
@@ -2061,44 +1536,17 @@ Bureau of Labor Statistics. (2023). 12-month percentage change,
 Index}.
 https://www.bls.gov/charts/consumer-price-index/consumer-price-index-by-category-line-chart.htm.
 
-\leavevmode\vadjust pre{\hypertarget{ref-cass2005}{}}%
-Cass, N., Shove, E., \& Urry, J. (2005). Social {Exclusion}, {Mobility}
-and {Access}. \emph{The Sociological Review}, \emph{53}(3), 539--555.
-\url{https://doi.org/10.1111/j.1467-954X.2005.00565.x}
-
-\leavevmode\vadjust pre{\hypertarget{ref-chakraborty2022}{}}%
-Chakraborty, J. (2022). Children's exposure to vehicular pollution:
-{Environmental} injustice in {Texas}, {USA}. \emph{Environmental
-Research}, \emph{204}, 112008.
-\url{https://doi.org/10.1016/j.envres.2021.112008}
-
-\leavevmode\vadjust pre{\hypertarget{ref-charreire2021}{}}%
-Charreire, H., Roda, C., Feuillet, T., Piombini, A., Bardos, H., Rutter,
-H., Compernolle, S., Mackenbach, J. D., Lakerveld, J., \& Oppert, J. M.
-(2021). Walking, cycling, and public transport for commuting and
-non-commuting travels across 5 {European} urban regions: {Modal} choice
-correlates and motivations. \emph{Journal of Transport Geography},
-\emph{96}, 103196. \url{https://doi.org/10.1016/j.jtrangeo.2021.103196}
-
-\leavevmode\vadjust pre{\hypertarget{ref-choma2021}{}}%
-Choma, E. F., Evans, J. S., Gómez-Ibáñez, J. A., Di, Q., Schwartz, J.
-D., Hammitt, J. K., \& Spengler, J. D. (2021). Health benefits of
-decreases in on-road transportation emissions in the {United States}
-from 2008 to 2017. \emph{Proceedings of the National Academy of
-Sciences}, \emph{118}(51), e2107402118.
-\url{https://doi.org/10.1073/pnas.2107402118}
+\leavevmode\vadjust pre{\hypertarget{ref-chen2016}{}}%
+Chen, D., Jaenicke, E. C., \& Volpe, R. J. (2016). Food {Environments}
+and {Obesity}: {Household Diet Expenditure Versus Food Deserts}.
+\emph{American Journal of Public Health}, \emph{106}(5), 881--888.
+\url{https://doi.org/10.2105/AJPH.2016.303048}
 
 \leavevmode\vadjust pre{\hypertarget{ref-clifton2004}{}}%
 Clifton, K. J. (2004). Mobility {Strategies} and {Food Shopping} for
 {Low-Income Families}: {A Case Study}. \emph{Journal of Planning
 Education and Research}, \emph{23}(4), 402--413.
 \url{https://doi.org/10.1177/0739456X04264919}
-
-\leavevmode\vadjust pre{\hypertarget{ref-cobbold2022}{}}%
-Cobbold, A., Standen, C., Shepherd, L., Greaves, S., \& Crane, M.
-(2022). Multimodal trips, quality of life and wellbeing: {An}
-exploratory analysis. \emph{Journal of Transport \& Health}, \emph{24},
-101330. \url{https://doi.org/10.1016/j.jth.2022.101330}
 
 \leavevmode\vadjust pre{\hypertarget{ref-conway2018}{}}%
 Conway, M. W., Byrd, A., \& Eggermond, M. van. (2018). Accounting for
@@ -2120,28 +1568,17 @@ constraints in public transit accessibility metrics. \emph{International
 Journal of Geographical Information Science}, \emph{33}(9), 1759--1787.
 \url{https://doi.org/10.1080/13658816.2019.1605075}
 
+\leavevmode\vadjust pre{\hypertarget{ref-cooksey-stowers2017}{}}%
+Cooksey-Stowers, K., Schwartz, M. B., \& Brownell, K. D. (2017). Food
+{Swamps Predict Obesity Rates Better Than Food Deserts} in the {United
+States}. \emph{International Journal of Environmental Research and
+Public Health}, \emph{14}(11), 1366.
+\url{https://doi.org/10.3390/ijerph14111366}
+
 \leavevmode\vadjust pre{\hypertarget{ref-mlogit}{}}%
 Croissant, Y. (2020). Estimation of random utility models in {R}: The
 {mlogit} package. \emph{Journal of Statistical Software}, \emph{95}(11),
 1--41. \url{https://doi.org/10.18637/jss.v095.i11}
-
-\leavevmode\vadjust pre{\hypertarget{ref-currie2010}{}}%
-Currie, G., \& Delbosc, A. (2010). Modelling the social and
-psychological impacts of transport disadvantage. \emph{Transportation},
-\emph{37}(6), 953--966. \url{https://doi.org/10.1007/s11116-010-9280-2}
-
-\leavevmode\vadjust pre{\hypertarget{ref-dedele2021}{}}%
-Dėdelė, A., \& Miškinytė, A. (2021). Promoting {Sustainable Mobility}:
-{A Perspective} from {Car} and {Public Transport Users}.
-\emph{International Journal of Environmental Research and Public
-Health}, \emph{18}(9), 4715.
-\url{https://doi.org/10.3390/ijerph18094715}
-
-\leavevmode\vadjust pre{\hypertarget{ref-dhurandhar2021}{}}%
-Dhurandhar, N. V., Petersen, K. S., \& Webster, C. (2021). Key {Causes}
-and {Contributors} of {Obesity}: {A Perspective}. \emph{Nursing Clinics
-of North America}, \emph{56}(4), 449--464.
-\url{https://doi.org/10.1016/j.cnur.2021.07.007}
 
 \leavevmode\vadjust pre{\hypertarget{ref-dong2006}{}}%
 Dong, X., Ben-Akiva, M. E., Bowman, J. L., \& Walker, J. L. (2006).
@@ -2149,42 +1586,9 @@ Moving from trip-based to activity-based measures of accessibility.
 \emph{Transportation Research Part A: Policy and Practice},
 \emph{40}(2), 163--180. \url{https://doi.org/10.1016/j.tra.2005.05.002}
 
-\leavevmode\vadjust pre{\hypertarget{ref-dons2018}{}}%
-Dons, E., Rojas-Rueda, D., Anaya-Boig, E., Avila-Palencia, I., Brand,
-C., Cole-Hunter, T., de Nazelle, A., Eriksson, U., Gaupp-Berghausen, M.,
-Gerike, R., Kahlmeier, S., Laeremans, M., Mueller, N., Nawrot, T.,
-Nieuwenhuijsen, M. J., Orjuela, J. P., Racioppi, F., Raser, E.,
-Standaert, A., \ldots{} Götschi, T. (2018). Transport mode choice and
-body mass index: {Cross-sectional} and longitudinal evidence from a
-{European-wide} study. \emph{Environment International}, \emph{119},
-109--116. \url{https://doi.org/10.1016/j.envint.2018.06.023}
-
 \leavevmode\vadjust pre{\hypertarget{ref-ggspatial}{}}%
 Dunnington, D. (2023). \emph{Ggspatial: Spatial data framework for
 ggplot2}. \url{https://CRAN.R-project.org/package=ggspatial}
-
-\leavevmode\vadjust pre{\hypertarget{ref-environmentalprotectionagency2023}{}}%
-Environmental Protection Agency. (2023). \emph{Nonattainment {Areas} for
-{Criteria Pollutants} ({Green Book})} {[}Collections and
-\{\{Lists\}\}{]}. https://www.epa.gov/green-book.
-
-\leavevmode\vadjust pre{\hypertarget{ref-ermagun2020}{}}%
-Ermagun, A., \& Tilahun, N. (2020). Equity of transit accessibility
-across {Chicago}. \emph{Transportation Research Part D: Transport and
-Environment}, \emph{86}, 102461.
-\url{https://doi.org/10.1016/j.trd.2020.102461}
-
-\leavevmode\vadjust pre{\hypertarget{ref-fann2013}{}}%
-Fann, N., Fulcher, C. M., \& Baker, K. (2013). The {Recent} and {Future
-Health Burden} of {Air Pollution Apportioned Across U}.{S}. {Sectors}.
-\emph{Environmental Science \& Technology}, \emph{47}(8), 3580--3589.
-\url{https://doi.org/10.1021/es304831q}
-
-\leavevmode\vadjust pre{\hypertarget{ref-finkel2020}{}}%
-Finkel, E., McCormick, C., Mitman, M., Abel, S., \& Clark, J. (2020).
-\emph{Integrating the {Safe System Approach} with the {Highway Safety
-Improvement Program}: {An Informational Report}} (FHWA-SA-20-018).
-{Federal Highway Administration}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-fitzpatrick2006}{}}%
 Fitzpatrick, K., Brewer, M. A., \& Turner, S. (2006). Another {Look} at
@@ -2196,20 +1600,6 @@ Fitzpatrick, K., Brewer, M. A., \& Turner, S. (2006). Another {Look} at
 FNS. (2021). \emph{Thrifty {Food Plan}}. {Food and Nutrition Service,
 United States Department of Agriculture}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-francis2012}{}}%
-Francis, J., Wood, L. J., Knuiman, M., \& Giles-Corti, B. (2012).
-Quality or quantity? {Exploring} the relationship between {Public Open
-Space} attributes and mental health in {Perth}, {Western Australia}.
-\emph{Social Science \& Medicine}, \emph{74}(10), 1570--1577.
-\url{https://doi.org/10.1016/j.socscimed.2012.01.032}
-
-\leavevmode\vadjust pre{\hypertarget{ref-gerike2019}{}}%
-Gerike, R., de Nazelle, A., Wittwer, R., \& Parkin, J. (2019). Special
-{Issue} {``{Walking} and {Cycling} for better {Transport}, {Health} and
-the {Environment}.''} \emph{Transportation Research Part A: Policy and
-Practice}, \emph{123}, 1--6.
-\url{https://doi.org/10.1016/j.tra.2019.02.010}
-
 \leavevmode\vadjust pre{\hypertarget{ref-geurs2010}{}}%
 Geurs, K., Zondag, B., de Jong, G., \& de Bok, M. (2010). Accessibility
 appraisal of land-use/transport policy strategies: {More} than just
@@ -2217,17 +1607,19 @@ adding up travel-time savings. \emph{Transportation Research Part D:
 Transport and Environment}, \emph{15}(7), 382--393.
 \url{https://doi.org/10.1016/j.trd.2010.04.006}
 
+\leavevmode\vadjust pre{\hypertarget{ref-ghosh-dastidar2014}{}}%
+Ghosh-Dastidar, B., Cohen, D., Hunter, G., Zenk, S. N., Huang, C.,
+Beckman, R., \& Dubowitz, T. (2014). Distance to {Store}, {Food Prices},
+and {Obesity} in {Urban Food Deserts}. \emph{American Journal of
+Preventive Medicine}, \emph{47}(5), 587--595.
+\url{https://doi.org/10.1016/j.amepre.2014.07.005}
+
 \leavevmode\vadjust pre{\hypertarget{ref-glanz2007}{}}%
 Glanz, K., Sallis, J. F., Saelens, B. E., \& Frank, L. D. (2007).
 Nutrition {Environment Measures Survey} in {Stores} ({NEMS-S}):
 {Development} and {Evaluation}. \emph{American Journal of Preventive
 Medicine}, \emph{32}(4), 282--289.
 \url{https://doi.org/10.1016/j.amepre.2006.12.019}
-
-\leavevmode\vadjust pre{\hypertarget{ref-grengs2015}{}}%
-Grengs, J. (2015). Nonwork {Accessibility} as a {Social Equity
-Indicator}. \emph{International Journal of Sustainable Transportation},
-\emph{9}(1), 1--14. \url{https://doi.org/10.1080/15568318.2012.719582}
 
 \leavevmode\vadjust pre{\hypertarget{ref-handy1997}{}}%
 Handy, S. L., \& Niemeier, D. A. (1997). Measuring accessibility: {An}
@@ -2248,17 +1640,6 @@ Hillier, A., Cannuscio, C. C., Karpyn, A., McLaughlin, J., Chilton, M.,
 for {Food}? {Empirical Evidence} from {Two Urban Neighborhoods}.
 \emph{Urban Geography}, \emph{32}(5), 712--729.
 \url{https://doi.org/10.2747/0272-3638.32.5.712}
-
-\leavevmode\vadjust pre{\hypertarget{ref-hu2015}{}}%
-Hu, L. (2015). Job {Accessibility} of the {Poor} in {Los Angeles}.
-\emph{Journal of the American Planning Association}, \emph{81}(1),
-30--45. \url{https://doi.org/10.1080/01944363.2015.1042014}
-
-\leavevmode\vadjust pre{\hypertarget{ref-jarry2021}{}}%
-Jarry, V., \& Apparicio, P. (2021). Ride in {Peace}: {How Cycling
-Infrastructure Types Affect Traffic Conflict Occurrence} in {Montréal},
-{Canada}. \emph{Safety}, \emph{7}(3), 63.
-\url{https://doi.org/10.3390/safety7030063}
 
 \leavevmode\vadjust pre{\hypertarget{ref-kaczynski2016}{}}%
 Kaczynski, A. T., Schipperijn, J., Hipp, J. A., Besenyi, G. M., Wilhelm
@@ -2281,12 +1662,6 @@ and analytics to overcome existing limitations. \emph{Environment and
 Planning B: Urban Analytics and City Science}, \emph{46}(5), 897--913.
 \url{https://doi.org/10.1177/2399808317736528}
 
-\leavevmode\vadjust pre{\hypertarget{ref-losada-rojas2021}{}}%
-Losada-Rojas, L. L., Ke, Y., Pyrialakou, V. D., \& Konstantina Gkritza.
-(2021). Access to healthy food in urban and rural areas: {An} empirical
-analysis. \emph{Journal of Transport \& Health}, \emph{23}, 101245.
-\url{https://doi.org/10.1016/j.jth.2021.101245}
-
 \leavevmode\vadjust pre{\hypertarget{ref-lunsford2021}{}}%
 Lunsford, J., Brunt, A., Foote, J., Rhee, Y., Strand, M., \& Segall, M.
 (2021). Analysis of {Availability}, {Quality}, and {Price} of {Food
@@ -2300,27 +1675,10 @@ slow streets: {A} utility-based access and equity analysis.
 \emph{Journal of Transport and Land Use}, \emph{15}(1), 587--612.
 \url{https://doi.org/10.5198/jtlu.2022.2009}
 
-\leavevmode\vadjust pre{\hypertarget{ref-madzia2019}{}}%
-Madzia, J., Ryan, P., Yolton, K., Percy, Z., Newman, N., LeMasters, G.,
-\& Brokamp, C. (2019). Residential {Greenspace Association} with
-{Childhood Behavioral Outcomes}. \emph{The Journal of Pediatrics},
-\emph{207}, 233--240. \url{https://doi.org/10.1016/j.jpeds.2018.10.061}
-
 \leavevmode\vadjust pre{\hypertarget{ref-mcfadden1974}{}}%
 McFadden, D. (1974). Conditional logit analysis of qualitative choice
 behavior. In P. Zarembka (Ed.), \emph{Frontiers in {Econometrics}} (pp.
 105--142). {Academic Press}.
-
-\leavevmode\vadjust pre{\hypertarget{ref-monfort2021}{}}%
-Monfort, S. S., Cicchino, J. B., \& Patton, D. (2021). Weekday bicycle
-traffic and crash rates during the {COVID-19} pandemic. \emph{Journal of
-Transport \& Health}, \emph{23}, 101289.
-\url{https://doi.org/10.1016/j.jth.2021.101289}
-
-\leavevmode\vadjust pre{\hypertarget{ref-nationalhighwaytrafficsafetyadministration2022}{}}%
-National Highway Traffic Safety Administration. (2022).
-\emph{Countermeasures that {Work}: {Distracted Driving}} {[}Text{]}.
-https://www.nhtsa.gov/book/countermeasures/countermeasures-work/distracted-driving.
 
 \leavevmode\vadjust pre{\hypertarget{ref-pereira2021}{}}%
 Pereira, R. H. M., Saraiva, M., Herszenhut, D., Braga, C. K. V., \&
@@ -2338,45 +1696,14 @@ destination choice for the urban grocery shopping trip.
 \emph{Transportation}, \emph{7}(1), 19--33.
 \url{https://doi.org/10.1007/BF00148369}
 
-\leavevmode\vadjust pre{\hypertarget{ref-schraufnagel2019}{}}%
-Schraufnagel, D. E., Balmes, J. R., Cowl, C. T., De Matteis, S., Jung,
-S.-H., Mortimer, K., Perez-Padilla, R., Rice, M. B., Riojas-Rodriguez,
-H., Sood, A., Thurston, G. D., To, T., Vanker, A., \& Wuebbles, D. J.
-(2019). Air {Pollution} and {Noncommunicable Diseases}: {A Review} by
-the {Forum} of {International Respiratory Societies}' {Environmental
-Committee}, {Part} 1: {The Damaging Effects} of {Air Pollution}.
-\emph{Chest}, \emph{155}(2), 409--416.
-\url{https://doi.org/10.1016/j.chest.2018.10.042}
-
-\leavevmode\vadjust pre{\hypertarget{ref-schwanen2015}{}}%
-Schwanen, T., Lucas, K., Akyelken, N., Cisternas Solsona, D., Carrasco,
-J.-A., \& Neutens, T. (2015). Rethinking the links between social
-exclusion and transport disadvantage through the lens of social capital.
-\emph{Transportation Research Part A: Policy and Practice}, \emph{74},
-123--135. \url{https://doi.org/10.1016/j.tra.2015.02.012}
-
-\leavevmode\vadjust pre{\hypertarget{ref-smartgrowthamerica2023}{}}%
-Smart Growth America. (2023). Complete {Streets Policy Framework}. In
-\emph{Smart Growth America}.
-https://smartgrowthamerica.org/resources/elements-complete-streets-policy/.
+\leavevmode\vadjust pre{\hypertarget{ref-shannon2014}{}}%
+Shannon, J. (2014). Food deserts: {Governing} obesity in the neoliberal
+city. \emph{Progress in Human Geography}, \emph{38}(2), 248--266.
+\url{https://doi.org/10.1177/0309132513484378}
 
 \leavevmode\vadjust pre{\hypertarget{ref-train2009}{}}%
 Train, K. E. (2009). \emph{Discrete {Choice Methods} with {Simulation}}
 (2nd edition). {Cambridge University Press}.
-
-\leavevmode\vadjust pre{\hypertarget{ref-udot2023a}{}}%
-UDOT. (2023a). Utah {Department} of {Transportation}: {About Us}. In
-\emph{UDOT}. https://www.udot.utah.gov/connect/about-us/.
-
-\leavevmode\vadjust pre{\hypertarget{ref-udot2023}{}}%
-UDOT. (2023b). Zero {Fatalities}: {Up-to-date} fatality and serious
-injury data. In \emph{Zero Fatalities}.
-https://zerofatalities.com/statistics/.
-
-\leavevmode\vadjust pre{\hypertarget{ref-usdepartmentoftransportation2022}{}}%
-US Department of Transportation. (2022). \emph{Transportation and
-{Health Tool}}.
-https://www.transportation.gov/transportation-health-tool.
 
 \leavevmode\vadjust pre{\hypertarget{ref-mice}{}}%
 van Buuren, S., \& Groothuis-Oudshoorn, K. (2011). {mice}: Multivariate
@@ -2384,23 +1711,27 @@ imputation by chained equations in r. \emph{Journal of Statistical
 Software}, \emph{45}(3), 1--67.
 \url{https://doi.org/10.18637/jss.v045.i03}
 
-\leavevmode\vadjust pre{\hypertarget{ref-visionzeronetwork2022}{}}%
-Vision Zero Network. (2022). Vision {Zero Network}. In \emph{Vision Zero
-Network}. https://visionzeronetwork.org/.
+\leavevmode\vadjust pre{\hypertarget{ref-walker2010}{}}%
+Walker, R. E., Keane, C. R., \& Burke, J. G. (2010). Disparities and
+access to healthy food in the {United States}: {A} review of food
+deserts literature. \emph{Health \& Place}, \emph{16}(5), 876--884.
+\url{https://doi.org/10.1016/j.healthplace.2010.04.013}
 
 \leavevmode\vadjust pre{\hypertarget{ref-ggplot2}{}}%
 Wickham, H. (2016). \emph{ggplot2: Elegant graphics for data analysis}.
 Springer-Verlag New York. \url{https://ggplot2.tidyverse.org}
 
-\leavevmode\vadjust pre{\hypertarget{ref-witten2003}{}}%
-Witten, K., Exeter, D., \& Field, A. (2003). The {Quality} of {Urban
-Environments}: {Mapping Variation} in {Access} to {Community Resources}.
-\emph{Urban Studies}, \emph{40}(1), 161--177.
-\url{https://doi.org/10.1080/00420980220080221}
+\leavevmode\vadjust pre{\hypertarget{ref-widener2014}{}}%
+Widener, M. J., \& Shannon, J. (2014). When are food deserts?
+{Integrating} time into research on food accessibility. \emph{Health \&
+Place}, \emph{30}, 1--3.
+\url{https://doi.org/10.1016/j.healthplace.2014.07.011}
 
-\leavevmode\vadjust pre{\hypertarget{ref-zerofatalities2022}{}}%
-Zero Fatalities. (2022). Zero {Fatalities}. In \emph{Zero Fatalities}.
-https://zerofatalities.com/.
+\leavevmode\vadjust pre{\hypertarget{ref-wright2016}{}}%
+Wright, J. D., Donley, A. M., Gualtieri, M. C., \& Strickhouser, S. M.
+(2016). Food {Deserts}: {What} is the {Problem}? {What} is the
+{Solution}? \emph{Society}, \emph{53}(2), 171--181.
+\url{https://doi.org/10.1007/s12115-016-9993-8}
 
 \end{CSLReferences}
 
