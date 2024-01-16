@@ -105,24 +105,21 @@ list(
   # Salt Lake County
   tar_target(sl_orig, make_access_data(
     bg_acs, imputed_groceries, mcls,  
-    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID),
-    completed_id = 1)),
+    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID))),
   # Salt Lake no car
   tar_target(sl_orig_nocar, make_access_data(
     bg_acs, imputed_groceries, nocarmcls,  
-    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID),
-    completed_id = 1)),
+    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID))),
   # Other Wasatch Front Counties
   tar_target(wf_orig, make_access_data(
     bg_acs, imputed_groceries, mcls,  
     geoids = ut_counties |> filter(NAME %in% c("Utah", "Weber", "Davis")) |> 
-      pull(GEOID), 
-    completed_id = 1)),
+      pull(GEOID))),
   # Rural Utah
   tar_target(ru_orig, make_access_data(
     bg_acs, imputed_groceries, mcls,  
     geoids = ut_counties |> filter(!NAME %in% c("Salt Lake", "Utah", "Weber", "Davis")) |> 
-      pull(GEOID), max_car = 180, completed_id = 1)),
+      pull(GEOID), max_car = 180)),
   
   
   # 3.3 compute accessibility logsums
@@ -164,24 +161,21 @@ list(
   tar_target(s2_data, make_access_data(
     bg_acs, imputed_groceries, mcls,
     geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID), 
-    improved_stores = s2_stores,
-    completed_id = 1)),
+    improved_stores = s2_stores)),
   tar_target(s2_access, compute_dclogsum(s2_data, sl_dc)),
   
   
   tar_target(s2_data_ut, make_access_data(
     bg_acs, imputed_groceries, mcls,
     geoids = ut_counties |> filter(NAME == "Utah") |> pull(GEOID), 
-    improved_stores = s2_stores,
-    completed_id = 1)),
+    improved_stores = s2_stores)),
   tar_target(s2_access_ut, compute_dclogsum(s2_data_ut, ut_dc)),
   
   tar_target(s2_data_sj, make_access_data(
     bg_acs, imputed_groceries, mcls,
     geoids = ut_counties |> filter(NAME == "San Juan") |> pull(GEOID), 
     improved_stores = s2_stores,
-    max_car = 180,
-    completed_id = 1)),
+    max_car = 180)),
   tar_target(s2_access_sj, compute_dclogsum(s2_data_sj, sj_dc)),
   
   
@@ -190,7 +184,6 @@ list(
   tar_target(s3_mcls, calculate_logsums(s3_times, utilities)),
   tar_target(s3_data, make_access_data(
     bg_acs, imputed_groceries, s3_mcls,
-    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID), 
-    completed_id = 1)),
+    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID))),
   tar_target(s3_access, compute_dclogsum(s3_data, sl_dc))
 )

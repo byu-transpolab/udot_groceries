@@ -108,12 +108,14 @@ make_access_data <- function(bg_acs, imputed_groceries, mcls, geoids, max_car = 
                              completed_id = NULL, new_store = NULL, improved_stores = NULL){
   
   # select a multiply imputed dataset to join
-  if ( is.null(completed_id) ) {
-    completed_id <- sample(1:length(imputed_groceries$imp$id), 1)
+  if (!is.null(completed_id) ) {
+    dests <- get_imputation(imputed_groceries, completed_id = completed_id) |> 
+      dplyr::select(id, type:brand)  |> tibble()
+  } else {
+    dests <- get_imputation(imputed_groceries) |>  
+      dplyr::select(id, type:brand) 
   }
   
-  dests <- mice::complete(imputed_groceries, completed_id) |> 
-    dplyr::select(id, type:brand) 
   
   if(!is.null(new_store)){
     dests <- bind_rows(dests, new_store)
@@ -150,6 +152,53 @@ make_access_data <- function(bg_acs, imputed_groceries, mcls, geoids, max_car = 
   access_data
 }
 
+#' Function to extract either a single imputation or a mean of them.
+#' 
+#' @param imputed_groceries A dataset of imputed grocery stores
+#' @param completed_id The index of the imputation to return. If NULL will 
+#'   construct a mean / mode value imputation
+get_imputation <- function(imputed_groceries, completed_id = NULL) {
+  
+  if(!is.null(completed_id)){
+    ret <- mice::complete(imputed_groceries, completed_id) |> tibble()
+  }  else {
+    mode_cols <- c("county", "type", "pharmacy", "ethnic", "merch",
+                   "brand", "population", "households", "density", "income")
+    mean_cols <- c("total_registers", "availability", "cost", "market")
+    
+    ret <- mice::complete(imputed_groceries, "long")  |> 
+      tibble() |> 
+      group_by(.id) |> 
+      summarise(
+        id         = find_mode(id),
+        county     = find_mode(county),
+        type       = find_mode(type),
+        pharmacy   = find_mode(pharmacy),
+        ethnic     = find_mode(ethnic),
+        merch      = find_mode(merch),
+        total_registers = mean(total_registers),
+        availability    = mean(availability),
+        cost            = mean(cost),
+        market          = mean(market),
+        Name       = find_mode(Name),
+        brand      = find_mode(brand),
+        population = find_mode(population),
+        households = find_mode(households),
+        density    = find_mode(density),
+        income     = find_mode(income)
+      )
+      
+  }
+  
+  ret
+  
+}
+
+find_mode <- function(x) {
+  u <- unique(x)
+  tab <- tabulate(match(x, u))
+  u[tab == max(tab)][1] # only allow one mode
+}
 
 
 
