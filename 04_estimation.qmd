@@ -152,8 +152,8 @@ utility --- a higher proportion of mobile devices residing in that block group
 are observed to travel to that store. The NEMS model shows a positive
 relationship between both environment variables and utility, indicating that
 people are more likely to choose stores with higher availability of healthy
-goods and more advantagous prices for those goods, all else equal. The
-Attributes model suggests that\
+goods and more advantageous prices for those goods, all else equal. The
+Attributes model suggests that
 people are less willing to visit stores with higher prices, fewer registers, and
 convenience stores or other non-standard grocery stores with the exception of
 dollar stores, which they are *more* attracted to. Combining all of these
@@ -190,7 +190,7 @@ modelsummary(sj_models, gof_map = gm, coef_map = cm,
              notes = list("t-statistics in parentheses"))
 ```
 
-@tbl-sl-models presents the estimated coefficients in the west Salt Lake Valley
+@tbl-sl-models presents the estimated coefficients in the west Salt Lake County
 community, and @tbl-sj-models presents the estimated coefficients in San Juan
 County. The same general story about coefficient direction and hypotheses
 applies in both of these communities, except in regards to the NEMS variables.

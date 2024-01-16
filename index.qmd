@@ -20,7 +20,7 @@ These types of measures require the researcher to make a series of assumptions
 and assertions: why is 30 minutes chosen instead of 40? Is that time by transit
 or highway or walking? Should these definitions change for individuals in
 different socioeconomic groups? And people do not always go to the closest grocery
-store to begin with [@clifton2004, @hillier2011]; how much further are people
+store to begin with [@clifton2004; @hillier2011]; how much further are people
 willing to travel to go to a store that is cheaper or that has a wider variety
 of goods? And perhaps the home location isn't the only spatial point of 
 reference [@liu2022]. A measure that potentially combines many of these different
@@ -31,9 +31,9 @@ measure based on destination choice models estimated for three distinct
 communities in Utah. This methodology is based on a unique dataset made by 
 linking between three extensive data sources:
 
-  1. A detailed survey of the nutrition market in three Utah communities
+  1. A detailed survey of the nutrition market in three Utah communities.
   2. Location-based services data derived from mobile phone records revealing
-     which grocery stores are frequented by residents of different neighborhoods
+     which grocery stores are frequented by residents of different neighborhoods.
   3. Multi-modal network data providing detailed mobility data by car, walking,
   and public transit.
 

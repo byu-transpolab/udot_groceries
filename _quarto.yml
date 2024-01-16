@@ -9,11 +9,11 @@ book:
     - name: Gregory S. Macfarlane
       orcid: 0000-0003-3999-7584
       email: gregmacfarlane@byu.edu
+      corresponding: yes
       affiliations:
         - id: byucivil
           name: Civil and Construction Engineering Department, Brigham Young University
-          city: Provo
-          state: UT
+          city: Provo, Utah USA
           postal-code: 84602
     - name: Emma Stucki
       affiliations: 
@@ -26,15 +26,14 @@ book:
       affiliations:
         - id: byupubh
           name: Public Health Department, Brigham Young University
-          city: Provo
-          state: UT
+          city: Provo, Utah USA
           postal-code: 84602
     - name: Lori A. Spruance
       orcid: 0000-0003-0254-483X
       affiliations: 
         - ref: byupubh
     # to add additional authors, simply add another -name: tag 
-  date: "12/20/2023"
+  date: "1/15/2024"
   chapters:
     - index.qmd
     # - 02_litreview.qmd

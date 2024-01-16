@@ -53,7 +53,7 @@ analyses [@geurs2010]. The rarity is likely explained by an unfamiliarity with
 destination choice models and the ready availability of simpler methods on one
 hand [@logan2019], and the difficulty in obtaining a suitable estimation dataset
 for particular land uses on the other [@kaczynski2016]. This second limitation
-has been somewhat improved by a new methodology developed by @macfarlane2022a ,
+has been somewhat improved by a new methodology developed by @macfarlane2022a,
 relying on commercial location-based services data to estimate the affinity for
 simulated agents to visit destinations of varying attributes and distances.
 
@@ -63,7 +63,7 @@ In this research, we develop a unique dataset to estimate the destination choice
 utility coefficients for grocery store choice in three different communities in
 Utah. The three communities were selected to maximize potential observed
 differences in utility between community residents. The three communities are
-Utah County, West Salt Lake Valley, and San Juan County. Note that in this
+Utah County, West Salt Lake County, and San Juan County. Note that in this
 document we refer to the second community as "Salt Lake" even though this does
 not refer to the entire Salt Lake County nor to Salt Lake City, rather, we focus
 on communities in the western part of the valley, such as Magna, Kearns, and
@@ -103,12 +103,11 @@ if(!knitr::pandoc_to("docx")){
 Estimating the utility model described in @eq-mnl for grocery stores requires
 three interrelated data elements:
 
-1.  an inventory of grocery store attributes $X_j$,
-2.  a representative travel impedance matrix $K$ composed of all combinations of
-    origin $i$ and destination $j$.
-3.  a database of observed person flows between $i$ and $j$ by which to estimate
+1.  An inventory of grocery store attributes $X_j$;
+2.  A representative travel impedance matrix $K$ composed of all combinations of
+    origin $i$ and destination $j$;
+3.  A database of observed person flows between $i$ and $j$ by which to estimate
     the $\beta$ coefficients.
-
 We describe each of these elements in turn in the following sections.
 
 ### Store Attributes
@@ -154,13 +153,13 @@ calculated: an availability score based on whether stores stock particular items
 as well as lower-calorie options; and a cost score describing the spread between
 prices of these options. These score values are described in @lunsford2021, and
 we developed an R package to compute the scores; this package is available at
-<https://github.com/byu-transpolab/nemsr>. In the availability score each store
+<https://github.com/byu-transpolab/nemsr>. In the availability score, each store
 is given a value for whether or not there are more healthful options available
 in the store, such as low-calorie chips, or low-fat milk. If the store does not
 have a more healthful option in a category it receives a lower score, so stores
 with more availability of healthful food options will receive a higher
 availability score. For the cost score, the measure is the price spread between
-healthful and less healful options: if the price of whole wheat bread is cheaper
+healthful and less healthful options: if the price of whole wheat bread is cheaper
 than white bread, the store receives positive points for the cost option, if the
 price is the same then zero points are awarded, and if the wheat bread is more
 expensive then the store receives negative points. Thus a store with a higher
@@ -213,10 +212,10 @@ if(!knitr::pandoc_to("docx")){
 @tbl-nems presents the store attribute data collected for each community. Utah
 County generally has the largest average store size (as measured by the number
 of checkout registers) while having the lowest market basket cost, the highest
-availability of health food (the NEMS-S availability score) and the lowest
-difference between healthy and unhealthy food (the NEMS-S cost score). San Juan
-County has the smallest average stores, highest costs and the lowest
-availability of healthy options, and Salt Lake falls in between.
+availability of healthful food (measured by the NEMS-S availability score) and
+the lowest difference between healthy and unhealthy food (the NEMS-S cost
+score). San Juan County has the smallest average stores, highest costs, and the
+lowest availability of healthy options, and Salt Lake falls in between.
 
 ### Imputation of Missing Store Data
 
@@ -234,16 +233,15 @@ collected in the manual data assembly efforts. Using this information, we built
 a multiple imputation model using the `mice` package for R [@mice]. The
 predictor variables in the imputation included the store brand and type, as well
 as the average income and housing density in the nine closest block groups to
-the store location (based on population-weighted centroids).
+the store location (based on population-weighted block group centroids and 
+Euclidean distances).
 
 ```{r marketimp}
 #| label: fig-marketimp
 #| fig-cap: Imputed market price values for 15 random grocery stores.
 #| out-width: "5in"
 tar_load(imputed_groceries)
-combined <- lapply(seq_along(imputed_groceries), 
-                   function(i) mice::complete(imputed_groceries, i)) |> 
-  bind_rows(.id = "imputation") |> 
+combined <-  mice::complete(imputed_groceries, "long") |> 
   filter(type == "Grocery Store") |> 
   as_tibble()
 
@@ -320,8 +318,8 @@ no utility to the log-sum.
 
 ### Mobile Device Data
 
-The final element of destination utility presented in @eq-utility are the
-coefficients, which are often estimated from household travel surveys in a
+The final element of destination utility presented in @eq-utility is the
+set of coefficients, which are often estimated from household travel surveys in a
 travel demand context. It is unlikely, however, that typical household diaries
 would include enough trips to grocery stores and similar destinations to create
 a representative sample.

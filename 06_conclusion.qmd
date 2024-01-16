@@ -7,10 +7,11 @@ limited efforts at developing solutions.
 
 In this research, the model we developed and informed with location-based
 services data suggested that policies that increased the availability and
-quality of grocery stores would do more to enhance access nutrition than
-strategies that increased the transit level of service and travel times in three
+quality of grocery stores would do more to enhance access to nutrition than
+strategies that increased the transit level of service and lowered active transport 
+travel times in three
 different Utah communities. These findings may not be general, but they largely
-support the review of food desert literature in @beulac2009 as well as 
+support the review of food desert literature in @beaulac2009 as well as 
 critical evaluations by @shannon2014 and @wright2016.
 
 ## Limitations {#sec-limitations}
@@ -58,7 +59,7 @@ used travel times calculated in the AM peak hour; though this time maximizes the
 availability of transit options, it is not a typical peak time for grocery
 shopping. All of these limitations could potentially be relaxed by using a
 synthetic population with detailed socioeconomic data and parcel-level locations
-determined by an activity-based model, as proposed by [@dong2006]. In this
+determined by an activity-based model, as proposed by @dong2006. In this
 exercise, which we leave to future research, the grocery maintenance trips could
 be explicitly modeled, with synthetic individuals of unique characteristics
 choosing destinations that are available on the course of their other daily

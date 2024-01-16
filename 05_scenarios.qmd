@@ -20,7 +20,7 @@ be the best strategy to improve nutrition access in a community. We first
 describe how each scenario was constructed, and then discuss the results
 together.
 
-The accessibility of each scenario was to be determined using the approximated
+The accessibility of each scenario is determined using the approximated
 utility coefficients of the All model estimated in @sec-results, 
 $$
 U_{ij}= \beta_{MCLS}( k_{ij}) +  \beta_{n-a} (\mathrm{NEMS-Availability}) +
@@ -36,7 +36,7 @@ increase their utility by one unit.
 In actuality, the utility formula in @eq-scenu is a relative utility added by an
 unknown constant, $U_{ij} = f(\mathbf{\beta}, X_{ij}) + C$, but this $C$ term is
 included in all the alternatives and therefore cancels out [@train2009] in
-estimation. This means we cannot asses the *absolute* value of utility, but we
+estimation. This means we cannot assess the *absolute* value of utility, but we
 can assess the *relative* monetary benefit of the difference between two
 scenarios as $$
 \mathrm{Benefit} = \sum_{i}\left(-\frac{\omega_i}{\beta_{mkt}}(CS_i^1 - CS_i^1)\right)
@@ -96,7 +96,7 @@ The improved stores are at the following locations in each community:
 
 This strategy assumes that people cannot easily travel to existing stores
 because they cannot or do not drive for a variety of reasons, and that the
-public and and active transport networks provide an insufficient level of
+public and active transport networks provide an insufficient level of
 service. To examine the potential for this strategy to improve access to
 nutrition, we improve the travel time costs in the Salt Lake community for
 non-motorized and public transportation in the region and calculate the change

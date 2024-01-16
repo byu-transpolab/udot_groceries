@@ -1,10 +1,7 @@
 # Acknowledgments {.unnumbered}
 
 The authors acknowledge the Utah Department of Transportation (UDOT) for funding
-this research, and the following individuals from UDOT and partner agencies on
-the Technical Advisory Committee for helping to guide the research: Kevin
-Nichol, Angelo Papastamos, Laura Holtrop-Kohl, Brad Loveless, Chris Hall, Jay
-Aguilar, Jordan Backmon, Heidi LeBlanc, Lea Palmer, and Ted Knowlton. The
+this research. The
 authors alone are responsible for the preparation and accuracy of the
 information, data, analysis, discussions, recommendations, and conclusions
 presented herein. The contents do not necessarily reflect the views, opinions,
@@ -24,10 +21,6 @@ Graphics in the document are produced with multiple R packages [@modelsummary;
 
 ```{r contrib, results = 'asis', message=FALSE, echo=FALSE}
 library(CRediTas)
-# crt <- template_create(authors = c("Gregory S. Macfarlane",
-#                                    "Emily Blanchard",
-#                                    "Gillian Martin",
-#                                    "Jared Nielsen"))
 crt <- readr::read_csv("author_contributions.csv", show_col_types = FALSE)
 ```
 `r cras_write(crt, markdown = TRUE)`
