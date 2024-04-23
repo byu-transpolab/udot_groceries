@@ -170,7 +170,7 @@
 \makeatother
 \makeatletter
 \makeatother
-\journal{Journal of Transport and Land Use}
+\journal{WSTLUR Symposium 2024}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -196,7 +196,7 @@ data},
 \title{Where's dinner coming from? A utility-based investigation of
 access to nutrition in Utah.}
 \author[1]{Gregory S. Macfarlane%
-%
+\corref{cor1}%
 }
  \ead{gregmacfarlane@byu.edu} 
 \author[1]{Emma Stucki%
@@ -217,10 +217,10 @@ access to nutrition in Utah.}
 
 
 \affiliation[1]{organization={Civil and Construction Engineering
-Department, Brigham Young
-University},city={Provo},postcode={84602},postcodesep={}}
+Department, Brigham Young University},city={Provo, Utah
+USA},postcode={84602},postcodesep={}}
 \affiliation[2]{organization={Public Health Department, Brigham Young
-University},city={Provo},postcode={84602},postcodesep={}}
+University},city={Provo, Utah USA},postcode={84602},postcodesep={}}
 
 \cortext[cor1]{Corresponding author}
 
@@ -259,7 +259,7 @@ activity-based methods of measuring resource access.
     Passive location data
 \end{keyword}
 \end{frontmatter}
-    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}, frame hidden, enhanced, boxrule=0pt, breakable]}{\end{tcolorbox}}\fi
+    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, frame hidden, breakable, boxrule=0pt, sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
 
 \bookmarksetup{startatroot}
 
@@ -291,11 +291,12 @@ researcher to make a series of assumptions and assertions: why is 30
 minutes chosen instead of 40? Is that time by transit or highway or
 walking? Should these definitions change for individuals in different
 socioeconomic groups? And people do not always go to the closest grocery
-store to begin with Hillier et al. (2011); how much further are people
-willing to travel to go to a store that is cheaper or that has a wider
-variety of goods? And perhaps the home location isn't the only spatial
-point of reference (Liu et al., 2022). A measure that potentially
-combines many of these different considerations is desirable.
+store to begin with (Clifton, 2004; Hillier et al., 2011); how much
+further are people willing to travel to go to a store that is cheaper or
+that has a wider variety of goods? And perhaps the home location isn't
+the only spatial point of reference (Liu et al., 2022). A measure that
+potentially combines many of these different considerations is
+desirable.
 
 In this research, we develop and explore an accessibility measure based
 on destination choice models estimated for three distinct communities in
@@ -306,11 +307,11 @@ between three extensive data sources:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  A detailed survey of the nutrition market in three Utah communities
+  A detailed survey of the nutrition market in three Utah communities.
 \item
   Location-based services data derived from mobile phone records
   revealing which grocery stores are frequented by residents of
-  different neighborhoods
+  different neighborhoods.
 \item
   Multi-modal network data providing detailed mobility data by car,
   walking, and public transit.
@@ -388,7 +389,7 @@ the ready availability of simpler methods on one hand (Logan et al.,
 2019), and the difficulty in obtaining a suitable estimation dataset for
 particular land uses on the other (Kaczynski et al., 2016). This second
 limitation has been somewhat improved by a new methodology developed by
-Macfarlane et al. (2022) , relying on commercial location-based services
+Macfarlane et al. (2022), relying on commercial location-based services
 data to estimate the affinity for simulated agents to visit destinations
 of varying attributes and distances.
 
@@ -399,7 +400,7 @@ In this research, we develop a unique dataset to estimate the
 destination choice utility coefficients for grocery store choice in
 three different communities in Utah. The three communities were selected
 to maximize potential observed differences in utility between community
-residents. The three communities are Utah County, West Salt Lake Valley,
+residents. The three communities are Utah County, West Salt Lake County,
 and San Juan County. Note that in this document we refer to the second
 community as ``Salt Lake'' even though this does not refer to the entire
 Salt Lake County nor to Salt Lake City, rather, we focus on communities
@@ -440,16 +441,15 @@ grocery stores requires three interrelated data elements:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  an inventory of grocery store attributes \(X_j\),
+  An inventory of grocery store attributes \(X_j\);
 \item
-  a representative travel impedance matrix \(K\) composed of all
-  combinations of origin \(i\) and destination \(j\).
+  A representative travel impedance matrix \(K\) composed of all
+  combinations of origin \(i\) and destination \(j\);
 \item
-  a database of observed person flows between \(i\) and \(j\) by which
-  to estimate the \(\beta\) coefficients.
+  A database of observed person flows between \(i\) and \(j\) by which
+  to estimate the \(\beta\) coefficients. We describe each of these
+  elements in turn in the following sections.
 \end{enumerate}
-
-We describe each of these elements in turn in the following sections.
 
 \hypertarget{store-attributes}{%
 \subsubsection{Store Attributes}\label{store-attributes}}
@@ -494,19 +494,20 @@ particular items as well as lower-calorie options; and a cost score
 describing the spread between prices of these options. These score
 values are described in Lunsford et al. (2021), and we developed an R
 package to compute the scores; this package is available at
-\url{https://github.com/byu-transpolab/nemsr}. In the availability score
-each store is given a value for whether or not there are more healthful
-options available in the store, such as low-calorie chips, or low-fat
-milk. If the store does not have a more healthful option in a category
-it receives a lower score, so stores with more availability of healthful
-food options will receive a higher availability score. For the cost
-score, the measure is the price spread between healthful and less
-healful options: if the price of whole wheat bread is cheaper than white
-bread, the store receives positive points for the cost option, if the
-price is the same then zero points are awarded, and if the wheat bread
-is more expensive then the store receives negative points. Thus a store
-with a higher availability and cost score will have both more healthful
-options, and a more advantageous pricing scheme towards those options.
+\url{https://github.com/byu-transpolab/nemsr}. In the availability
+score, each store is given a value for whether or not there are more
+healthful options available in the store, such as low-calorie chips, or
+low-fat milk. If the store does not have a more healthful option in a
+category it receives a lower score, so stores with more availability of
+healthful food options will receive a higher availability score. For the
+cost score, the measure is the price spread between healthful and less
+healthful options: if the price of whole wheat bread is cheaper than
+white bread, the store receives positive points for the cost option, if
+the price is the same then zero points are awarded, and if the wheat
+bread is more expensive then the store receives negative points. Thus a
+store with a higher availability and cost score will have both more
+healthful options, and a more advantageous pricing scheme towards those
+options.
 
 One important store attribute that the NEMS-S instrument does not
 collect or compute directly is a measure of the cost of common goods
@@ -565,11 +566,11 @@ Other merchandise sold & FALSE & 52 & 82.5 & 35 & 89.7 & 47 & 94.0\\
 Table~\ref{tbl-nems} presents the store attribute data collected for
 each community. Utah County generally has the largest average store size
 (as measured by the number of checkout registers) while having the
-lowest market basket cost, the highest availability of health food (the
-NEMS-S availability score) and the lowest difference between healthy and
-unhealthy food (the NEMS-S cost score). San Juan County has the smallest
-average stores, highest costs and the lowest availability of healthy
-options, and Salt Lake falls in between.
+lowest market basket cost, the highest availability of healthful food
+(measured by the NEMS-S availability score) and the lowest difference
+between healthy and unhealthy food (the NEMS-S cost score). San Juan
+County has the smallest average stores, highest costs, and the lowest
+availability of healthy options, and Salt Lake falls in between.
 
 \hypertarget{imputation-of-missing-store-data}{%
 \subsubsection{Imputation of Missing Store
@@ -592,7 +593,7 @@ this information, we built a multiple imputation model using the
 The predictor variables in the imputation included the store brand and
 type, as well as the average income and housing density in the nine
 closest block groups to the store location (based on population-weighted
-centroids).
+block group centroids and Euclidean distances).
 
 \begin{figure}
 
@@ -671,7 +672,7 @@ contributes no utility to the log-sum.
 \subsubsection{Mobile Device Data}\label{mobile-device-data}}
 
 The final element of destination utility presented in
-Equation~\ref{eq-utility} are the coefficients, which are often
+Equation~\ref{eq-utility} is the set of coefficients, which are often
 estimated from household travel surveys in a travel demand context. It
 is unlikely, however, that typical household diaries would include
 enough trips to grocery stores and similar destinations to create a
@@ -836,21 +837,20 @@ higher proportion of mobile devices residing in that block group are
 observed to travel to that store. The NEMS model shows a positive
 relationship between both environment variables and utility, indicating
 that people are more likely to choose stores with higher availability of
-healthy goods and more advantagous prices for those goods, all else
-equal. The Attributes model suggests that\\
-people are less willing to visit stores with higher prices, fewer
-registers, and convenience stores or other non-standard grocery stores
-with the exception of dollar stores, which they are \emph{more}
-attracted to. Combining all of these variables in the All model retain
-the significance, direction, and basic scale of all previous estimates
-with the exception of the NEMS availability variable. In this case, it
-seems that the previous positive relationship may have been a result of
-correlation between NEMS availability and other variables such as cost
-or the number of registers. And when controlling for all other
-variables, the role of transportation access becomes somewhat more
-important than considering only distance alone, implying that people are
-willing to travel somewhat further for stores with attributes they
-value.
+healthy goods and more advantageous prices for those goods, all else
+equal. The Attributes model suggests that people are less willing to
+visit stores with higher prices, fewer registers, and convenience stores
+or other non-standard grocery stores with the exception of dollar
+stores, which they are \emph{more} attracted to. Combining all of these
+variables in the All model retain the significance, direction, and basic
+scale of all previous estimates with the exception of the NEMS
+availability variable. In this case, it seems that the previous positive
+relationship may have been a result of correlation between NEMS
+availability and other variables such as cost or the number of
+registers. And when controlling for all other variables, the role of
+transportation access becomes somewhat more important than considering
+only distance alone, implying that people are willing to travel somewhat
+further for stores with attributes they value.
 
 The overall fit of the four models in Table~\ref{tbl-utah-models} is
 also revealing: the model with only NEMS variables against almost no
@@ -926,7 +926,7 @@ $\rho^2_0$ & 0.188 & 0.295 & 0.248 & 0.535\\
 \end{table}
 
 Table~\ref{tbl-sl-models} presents the estimated coefficients in the
-west Salt Lake Valley community, and Table~\ref{tbl-sj-models} presents
+west Salt Lake County community, and Table~\ref{tbl-sj-models} presents
 the estimated coefficients in San Juan County. The same general story
 about coefficient direction and hypotheses applies in both of these
 communities, except in regards to the NEMS variables. In Salt Lake, the
@@ -1062,8 +1062,8 @@ constructed to ascertain what may be the best strategy to improve
 nutrition access in a community. We first describe how each scenario was
 constructed, and then discuss the results together.
 
-The accessibility of each scenario was to be determined using the
-approximated utility coefficients of the All model estimated in
+The accessibility of each scenario is determined using the approximated
+utility coefficients of the All model estimated in
 Section~\ref{sec-results},
 \begin{equation}\protect\hypertarget{eq-scenu}{}{
 U_{ij}= \beta_{MCLS}( k_{ij}) +  \beta_{n-a} (\mathrm{NEMS-Availability}) +
@@ -1080,7 +1080,7 @@ In actuality, the utility formula in Equation~\ref{eq-scenu} is a
 relative utility added by an unknown constant,
 \(U_{ij} = f(\mathbf{\beta}, X_{ij}) + C\), but this \(C\) term is
 included in all the alternatives and therefore cancels out (Train, 2009)
-in estimation. This means we cannot asses the \emph{absolute} value of
+in estimation. This means we cannot assess the \emph{absolute} value of
 utility, but we can assess the \emph{relative} monetary benefit of the
 difference between two scenarios as \[
 \mathrm{Benefit} = \sum_{i}\left(-\frac{\omega_i}{\beta_{mkt}}(CS_i^1 - CS_i^1)\right)
@@ -1163,12 +1163,11 @@ transport}\label{improve-transit-and-non-motorized-transport}}
 
 This strategy assumes that people cannot easily travel to existing
 stores because they cannot or do not drive for a variety of reasons, and
-that the public and and active transport networks provide an
-insufficient level of service. To examine the potential for this
-strategy to improve access to nutrition, we improve the travel time
-costs in the Salt Lake community for non-motorized and public
-transportation in the region and calculate the change in destination
-choice log-sum.
+that the public and active transport networks provide an insufficient
+level of service. To examine the potential for this strategy to improve
+access to nutrition, we improve the travel time costs in the Salt Lake
+community for non-motorized and public transportation in the region and
+calculate the change in destination choice log-sum.
 
 For active transportation, the lack of pedestrian facilities across and
 alongside roads both in reality and in the OpenStreetMap dataset may
@@ -1379,11 +1378,11 @@ access have perhaps limited efforts at developing solutions.
 In this research, the model we developed and informed with
 location-based services data suggested that policies that increased the
 availability and quality of grocery stores would do more to enhance
-access nutrition than strategies that increased the transit level of
-service and travel times in three different Utah communities. These
-findings may not be general, but they largely support the review of food
-desert literature in (\textbf{beulac2009?}) as well as critical
-evaluations by Shannon (2014) and Wright et al. (2016).
+access to nutrition than strategies that increased the transit level of
+service and lowered active transport travel times in three different
+Utah communities. These findings may not be general, but they largely
+support the review of food desert literature in Beaulac et al. (2009) as
+well as critical evaluations by Shannon (2014) and Wright et al. (2016).
 
 \hypertarget{sec-limitations}{%
 \subsection{Limitations}\label{sec-limitations}}
@@ -1434,8 +1433,8 @@ the AM peak hour; though this time maximizes the availability of transit
 options, it is not a typical peak time for grocery shopping. All of
 these limitations could potentially be relaxed by using a synthetic
 population with detailed socioeconomic data and parcel-level locations
-determined by an activity-based model, as proposed by (Dong et al.,
-2006). In this exercise, which we leave to future research, the grocery
+determined by an activity-based model, as proposed by Dong et al.
+(2006). In this exercise, which we leave to future research, the grocery
 maintenance trips could be explicitly modeled, with synthetic
 individuals of unique characteristics choosing destinations that are
 available on the course of their other daily activities, using their
@@ -1461,11 +1460,7 @@ to future research.
 \markboth{Acknowledgments}{Acknowledgments}
 
 The authors acknowledge the Utah Department of Transportation (UDOT) for
-funding this research, and the following individuals from UDOT and
-partner agencies on the Technical Advisory Committee for helping to
-guide the research: Kevin Nichol, Angelo Papastamos, Laura Holtrop-Kohl,
-Brad Loveless, Chris Hall, Jay Aguilar, Jordan Backmon, Heidi LeBlanc,
-Lea Palmer, and Ted Knowlton. The authors alone are responsible for the
+funding this research. The authors alone are responsible for the
 preparation and accuracy of the information, data, analysis,
 discussions, recommendations, and conclusions presented herein. The
 contents do not necessarily reflect the views, opinions, endorsements,
