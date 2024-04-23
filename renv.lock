@@ -17,6 +17,14 @@
       "Hash": "68122010f01c4dcfbe58ce7112f2433d",
       "Requirements": []
     },
+    "CRediTas": {
+      "Package": "CRediTas",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4677727cf569ac0daaa07d0c5fbe0452",
+      "Requirements": []
+    },
     "DBI": {
       "Package": "DBI",
       "Version": "1.1.3",
@@ -389,14 +397,6 @@
       "Hash": "f20c47fd52fae58b4e377c37bb8c335b",
       "Requirements": []
     },
-    "commonmark": {
-      "Package": "commonmark",
-      "Version": "1.9.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "d691c61bff84bd63c383874d2d0c3307",
-      "Requirements": []
-    },
     "concaveman": {
       "Package": "concaveman",
       "Version": "1.1.0",
@@ -438,19 +438,6 @@
       "Repository": "CRAN",
       "Hash": "e8a1e41acf02548751f45c718d55aa6a",
       "Requirements": []
-    },
-    "crosstalk": {
-      "Package": "crosstalk",
-      "Version": "1.2.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "6aa54f69598c32177e920eb3402e8293",
-      "Requirements": [
-        "R6",
-        "htmltools",
-        "jsonlite",
-        "lazyeval"
-      ]
     },
     "curl": {
       "Package": "curl",
@@ -1120,44 +1107,6 @@
       "Hash": "0b8a6d63c8770f02a8b5635f3c431e6b",
       "Requirements": []
     },
-    "lazyeval": {
-      "Package": "lazyeval",
-      "Version": "0.2.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "d908914ae53b04d4c0c0fd72ecc35370",
-      "Requirements": []
-    },
-    "leaflet": {
-      "Package": "leaflet",
-      "Version": "2.1.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "ac2c7f21c2a6d2579eed8aaae4c42610",
-      "Requirements": [
-        "RColorBrewer",
-        "base64enc",
-        "crosstalk",
-        "htmltools",
-        "htmlwidgets",
-        "leaflet.providers",
-        "magrittr",
-        "markdown",
-        "png",
-        "raster",
-        "scales",
-        "sp",
-        "viridis"
-      ]
-    },
-    "leaflet.providers": {
-      "Package": "leaflet.providers",
-      "Version": "1.9.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "d3082a7beac4a1aeb96100ff06265d7e",
-      "Requirements": []
-    },
     "lifecycle": {
       "Package": "lifecycle",
       "Version": "1.0.3",
@@ -1216,17 +1165,6 @@
       "Repository": "CRAN",
       "Hash": "7ce2733a9826b3aeb1775d56fd305472",
       "Requirements": []
-    },
-    "markdown": {
-      "Package": "markdown",
-      "Version": "1.7",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "0ffaea87c070a56d140ce00b0727b278",
-      "Requirements": [
-        "commonmark",
-        "xfun"
-      ]
     },
     "memoise": {
       "Package": "memoise",
@@ -1684,18 +1622,6 @@
       "Hash": "5e3c5dc0b071b21fa128676560dbe94d",
       "Requirements": []
     },
-    "raster": {
-      "Package": "raster",
-      "Version": "3.6-23",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "337d6d70f7d6bf78df236a5a53f09db0",
-      "Requirements": [
-        "Rcpp",
-        "sp",
-        "terra"
-      ]
-    },
     "rbibutils": {
       "Package": "rbibutils",
       "Version": "2.2.13",
@@ -2071,10 +1997,10 @@
     },
     "targets": {
       "Package": "targets",
-      "Version": "1.2.0",
+      "Version": "1.4.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "a1e56d84e94c41a03391aea66c32b732",
+      "Hash": "760c8dcdf3a21b7131c181f02705101c",
       "Requirements": [
         "R6",
         "base64url",
@@ -2090,16 +2016,6 @@
         "tidyselect",
         "vctrs",
         "yaml"
-      ]
-    },
-    "terra": {
-      "Package": "terra",
-      "Version": "1.7-39",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "6037d18193ca3f16900646e773937094",
-      "Requirements": [
-        "Rcpp"
       ]
     },
     "testthat": {
