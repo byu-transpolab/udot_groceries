@@ -79,10 +79,11 @@ format:
   elsevier-pdf:
     journal:
       name: WSTLUR Symposium 2024
-      cite-style: authoryear
       formatting: review
       model: 3p
     cite-method: citeproc
+    include-in-header: 
+      - preamble.tex
     crossref:
       chapters: false
     keep-tex: true
