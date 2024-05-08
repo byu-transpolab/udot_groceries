@@ -92,7 +92,7 @@ utility equations:
 \begin{align*}
 \mathrm{Access} &= \beta_{MCLS}( k_{ij})\\
 \mathrm{NEMS} &= \beta_{n-a} (\mathrm{NEMS-Availability}) + \beta_{n-c}\mathrm({NEMS-Cost})\\
-\mathrm{Attributes} &= \beta_{mkt} (\mathrm{Market Basket}) + \mathbf{\beta}_{type}(\mathrm{Type})\\
+\mathrm{Attributes} &= \beta_{mkt} (\mathrm{Market Basket}) + \beta_{reg} (\mathrm{Registers}) + \mathbf{\beta}_{type}(\mathrm{Type})\\
 \mathrm{All} &= \mathrm{Access} + \mathrm{NEMS} + \mathrm{Attributes}\\
 \end{align*} 
 The Access model includes only the mode choice logsum described in
