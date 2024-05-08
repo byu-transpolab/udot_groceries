@@ -243,7 +243,7 @@ Euclidean distances).
 
 ```{r marketimp}
 #| label: fig-marketimp
-#| fig-cap: Imputed market price values for 15 random grocery stores.
+#| fig-cap: Imputed market price values for 12 random grocery stores.
 #| out-width: "5in"
 tar_load(imputed_groceries)
 combined <-  mice::complete(imputed_groceries, "long") |> 
@@ -264,7 +264,7 @@ ggplot(aes(x = market)) +
 
 Thirty iterations of the multiple imputation algorithm were run for each of ten
 independent imputations. @fig-marketimp shows the density of the ten imputed
-market basket prices for a randomly selected set of 15 stores. As the figure
+market basket prices for a randomly selected set of 12 stores. As the figure
 reveals, there is some general peaking in the predicted market price for most
 stores, but the imputation model still predicts a wide range of possible prices
 for most stores. When using the imputed data for analysis, we take the mean of
