@@ -299,8 +299,8 @@ between $i$ and $j$. The transit utility function additionally includes the wait
 time for transit as well as the time necessary to access the transit mode on
 both ends by walking. The walk utility includes a per-mile distance disutility
 that increases for distances greater than 1.5 miles. These equations and
-coefficients are adapted from a statewide mode choice model developed for UDOT
-research [@barnes2021].
+coefficients are adapted from a statewide mode choice model for home-based non-work
+trips in urban and rural regions developed for UDOT research [@barnes2021].
 
 The log-sum, or total weighted impedance by all modes is therefore $$
 k_{ij} = \ln(e^{V_{\mathrm{auto}, ij}} + e^{V_{\mathrm{bus}, ij}} + e^{V_{\mathrm{walk},ij}})

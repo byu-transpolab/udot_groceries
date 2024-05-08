@@ -57,8 +57,10 @@ population-weighted block group centroid, which may vary substantially from the
 actual distance traveled, especially in large block groups. The methodology also
 used travel times calculated in the AM peak hour; though this time maximizes the
 availability of transit options, it is not a typical peak time for grocery
-shopping. All of these limitations could potentially be relaxed by using a
-synthetic population with detailed socioeconomic data and parcel-level locations
+shopping. The mode choice model was also selected for general convenience, and
+not fully calibrated to grocery trips in the specific regions. All of these
+limitations could potentially be relaxed by using a synthetic population with
+detailed socioeconomic data and parcel-level location choices
 determined by an activity-based model, as proposed by @dong2006. In this
 exercise, which we leave to future research, the grocery maintenance trips could
 be explicitly modeled, with synthetic individuals of unique characteristics
