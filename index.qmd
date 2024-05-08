@@ -48,4 +48,6 @@ of the nutrition environment and choice models estimates follows in
 @sec-results. @sec-scenarios presents a series of scenarios to which we apply
 the models estimated in @sec-results, illustrating the interrelated elements of
 nutrition quality and transportation infrastructure in developing more complete
-access to nutrition. 
+access to nutrition. @sec-conclude places the findings of this research in 
+context, while discussing limitations to the methodology and associated future
+research opportunities.
