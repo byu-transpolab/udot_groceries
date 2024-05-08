@@ -219,11 +219,16 @@ lowest availability of healthy options, and Salt Lake falls in between.
 
 ### Imputation of Missing Store Data
 
-We collected detailed store attributes for stores in Utah County, San Juan
-County, and a portion of Salt Lake County using the NEMS-S survey instrument.
-These attributes form the basis of the choice models used to determine access,
-but understanding access in other parts of Salt Lake City or the state of Utah
-requires us to impute the attributes onto the stores that we did not collect.
+We collected detailed store attributes for a complete census of stores in Utah
+County, San Juan County, and a portion of Salt Lake County using the NEMS-S
+survey instrument.
+These attributes form the basis of the choice models used to determine access and
+provide a complete picture of access in those communities, assuming people do not 
+leave the communities for grocery trips. 
+But understanding access in other parts of Salt Lake County -- including how stores
+outside of the West Salt Lake County area might shape access inside that community --- 
+requires us to impute the measured attributes onto the stores that we did not
+directly measure. 
 
 To do this, we used web-based mapping databases (including OpenStreetMap and
 Google Maps) to obtain a list of grocery stores, dollar stores, and appropriate
