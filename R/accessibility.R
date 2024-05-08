@@ -1,3 +1,76 @@
+#' Calculate marginal elasticities for the models
+#' 
+#' @param model_list A list of mlogit models
+#' 
+make_elasticities <- function(model_list) {
+  
+  difference <-lapply(model_list, function(m) {
+    
+    vars <- list("mclogsum", "availability", "cost", "market", "total_registers")
+    
+    altspecs <- lapply(vars, function(x) {
+      mx <- m$model[[x]]
+      altspec <- data.frame(
+        low = mx,
+        # increase by 100 pct
+        high = ifelse(m$model$chosen == TRUE, mx + 1, mx)
+      )
+    }) |> set_names(vars)
+    
+    # I really wish there was a way to loop this, but i'm about to lose my mind
+    # dealing with variable redirection
+    outlist <- list()
+    
+    # this command gets the average change in utility resulting from a 100% increase in the 
+    # relevant variable of the chosen alternative. In other words, the marginal 
+    # elasticity of the choice utilty with respect to the variable.
+    outlist[["mclogsum"]] <- avg_comparisons(m, variables = list(
+      mclogsum = altspecs[["mclogsum"]]),  
+      comparison = "difference")
+    outlist[["availability"]] <- avg_comparisons(m, variables = list(
+      availability = altspecs[["availability"]]),  
+      comparison = "difference") 
+    outlist[["market"]] <- avg_comparisons(m, variables = list(
+      market = altspecs[["market"]]),  
+      comparison = "difference")
+    outlist[["market"]] <- avg_comparisons(m, variables = list(
+      market = altspecs[["market"]]),  
+      comparison = "difference")
+    outlist[["cost"]] <- avg_comparisons(m, variables = list(
+      cost = altspecs[["cost"]]),  
+      comparison = "difference")
+    outlist[["total_registers"]] <- avg_comparisons(m, variables = list(
+      total_registers = altspecs[["total_registers"]]),  
+      comparison = "difference") 
+    
+    lapply(outlist, function(x){
+      x |> 
+        mutate(
+          estimate = exp(estimate) / sum(exp(estimate)) - 1/n(),
+          conf.low = exp(conf.low) / sum(exp(conf.low)) - 1/n(),
+          conf.high = exp(conf.high) / sum(exp(conf.high)) - 1/n(),
+        )  |> 
+        filter(group == "alt_0")
+    }) |>  
+      bind_rows()
+  }) 
+  
+  
+  difference |> set_names(names(model_list))
+}
+
+
+get_delta_prob <- function(avcomp) {
+  v <- avcomp$estimate
+  tr <- exp(v) / sum(exp(v)) 
+  bs <- exp(0) / length(v)
+  tr - bs
+}
+
+
+
+
+
 #' Calculate costs for a scenario
 #' 
 #' @param base Base scenario DCLS

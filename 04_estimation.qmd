@@ -202,10 +202,12 @@ model fit than the transportation impedance term.
 
 ```{r all-comp}
 #| label: fig-all-comp
-#| fig-cap: Comparison of county model coefficient estimates. Absolute square root transformation applied to improve visibility.
+#| fig-cap:  Average change in the probability of the chosen alternative
+#| with respect to a 100% change in model variables.
 #| out-width: "6in"
 
-# use a square root transformation, but have it work in both directions.
+tar_load(elasticities)
+
 absqrt <- scales::trans_new(
   "absqrt",
   function(x){sign(x) * sqrt(abs(x))},
@@ -215,29 +217,29 @@ absqrt <- scales::trans_new(
   format = scales::format_format(),
   domain = c(-Inf, Inf)
 )
-list(
-  "Utah County"      = ut_models[["All"]],
-  "Salt Lake"        = sl_models[["All"]],
-  "San Juan"         = sj_models[["All"]]
-) |> 
+
+elasticities |> 
   modelplot(coef_map = cm) +
-  scale_x_continuous(trans = absqrt, breaks = c(-1, 0, 1, 3, 5, 10)) +
+  scale_x_continuous(trans = absqrt, breaks = c(-0.01, 0, 0.01, 0.05, 1)) +
+  xlab("Average change in probability with 95\\% confidence interval.") +
   scale_color_manual(values = wesanderson::wes_palette('Darjeeling1'))
 ```
 
 To better visualize how the preferences in the three communities differ from
-each other, @fig-all-comp plots the coefficient estimates from the All model in
-each community. The mode choice log-sum is strongly significant in all three
-communities, but it has its smallest value in San Juan County where people often
+each other, @fig-all-comp plots the average marginal elasticity on the choice
+probability of the chosen store with respect to many variables in the "All"
+model for each county. Specifically, we increased the variable of interest by 100%
+for all synthetic choice makers, and then calculated the average change in the probability of the
+chosen alternative for all choice makers with its sample confidence interval.
+The mode choice log-sum elasticity is strongly significant in all three
+communities (and is the most influential variable on choice), but it has its smallest value in San Juan County where people often
 must travel long distances to reach any stores. The highest mode choice log-sum
 value is in Salt Lake, but this explains a smaller proportion of the model
 outcomes than the lower value in Utah County; a possible hypothesis for this
 observation may include the higher density of stores in Salt Lake --- attributes
 are more important when so many stores are close together --- paired with the
 somewhat lower vehicle ownership in that community driving up the coefficient
-value. Most other estimates are somewhat consistent across counties, with the
-exception of the NEMS variables discussed previously and the role of dollar
-stores and other stores in each community.
+value. 
 
 ## Accessibility {#sec-access}
 

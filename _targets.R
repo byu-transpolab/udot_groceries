@@ -12,7 +12,7 @@ options(java.parameters = '-Xmx14G')
 # Set target options:
 tar_option_set(
   packages = c("tibble", "dplyr", "sf", "jsonlite", "nngeo", "r5r",
-               "mlogit", "nemsr",
+               "mlogit", "nemsr", "marginaleffects",
                "processx", "readr", "stringr", "tidycensus"), # packages that your targets need to run
   format = "rds" # default storage format
   # Set other options as needed.
@@ -133,6 +133,10 @@ list(
   # 3.4 Maps
   tar_target(utbgaccess, make_utbgaccess(access, bg, bg_acs)),
   tar_target(nocaraccess, make_nocaraccess(access, slnocar_access, bg, bg_acs)),
+  
+  # 3.5 marginal effects / elasticities
+  tar_target(elasticities, make_elasticities(model_list = list(
+    "Salt Lake" = sl_dc, "Utah County" = ut_dc, "San Juan" = sj_dc))),
   
   # 4. Scenarios =================================
   tar_target(mkt_betas, get_costbetas(sl_models, ut_models, sj_models)),
