@@ -189,5 +189,16 @@ list(
   tar_target(s3_data, make_access_data(
     bg_acs, imputed_groceries, s3_mcls,
     geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID))),
-  tar_target(s3_access, compute_dclogsum(s3_data, sl_dc))
+  tar_target(s3_access, compute_dclogsum(s3_data, sl_dc)),
+  
+  # 4.4 Food delivery
+  tar_target(s4_stores, make_delivery_stores(nems_groceries)),
+  tar_target(s4_times, make_delivery_times(times, dists, s4_stores)),
+  tar_target(s4_mcls, calculate_logsums(s4_times, utilities)),
+  tar_target(s4_data, make_access_data(
+    bg_acs, imputed_groceries, s4_mcls,
+    geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID),
+    improved_stores = s4_stores)),
+  tar_target(s4_access, compute_dclogsum(s4_data, sl_dc))
+  
 )

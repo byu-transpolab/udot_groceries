@@ -52,9 +52,10 @@ There are three general strategies we develop scenarios around:
 2.  Improve an existing convenience store or dollar store so that it has the
     attributes of a full-service grocery store.
 3.  Improve the transit and non-motorized access to stores in a region.
+4.  Increase the availability of grocery delivery in the region.
 
 We implement all three strategies in scenarios on the west Salt Lake valley
-community. We also implement strategy 1 (a new store) in the San Juan and Utah
+community. We also implement strategy 2 (an improved store) in the San Juan and Utah
 County communities for comparison.
 
 ### Erect a new store
@@ -121,6 +122,21 @@ initial wait times are at most 5 minutes, and that no person must walk more than
 
 Travel times are improved in this way for all block group --- store pairs in the
 west Salt Lake Valley community.
+
+### Grocery delivery services
+
+This strategy assumes that the most effective way to bring quality nutrition to an 
+inaccessible is not to change the distribution of stores or transport, but to
+support and enable delivery services that will bring the nutrition to individuals.
+To model this scenario, we assume that 30% of the full-service grocery stores in 
+the west Salt Lake Valley community offer a delivery service. This raises the
+price of the market basket by $10, but reduces the travel time on all modes to 0
+if the store is within 5 kilometers.
+All of these assumptions are imperfect: a local grocery chain presently offers
+services at a $7 delivery fee, which is not paid by all customers; additionally, 
+delivery services require that customers expend time placing online orders; and 
+service providers typically place a long-distance charge rather than a service area
+limit. Regardless, these assumptions will work for the purpose of this exercise.
 
 ## Scenario Results
 
@@ -296,6 +312,34 @@ ggplot(s3cost, aes(fill = diff)) +
   scale_fill_gradientn("Benefit [$]", colours = pal)
 ```
 
+```{r s4results}
+#| label: fig-s4results
+#| fig-cap: Estimated per-household benefits of grocery deliveries in Salt Lake Valley.
+#| out-width: "6in"
+s4_altd <- tar_read(s4_access)
+
+s4cost <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "035") |> 
+  left_join(bg_acs, by = c("id" = "geoid")) |> 
+  sf::st_transform(4326) |> 
+  left_join(sl_base |> rename(base = dclogsum)) |> 
+  left_join(s4_altd |> rename(alt = dclogsum)) |> 
+  mutate(diff = (base - alt) / mkt_betas["SaltLake.market"])
+
+pal <- wesanderson::wes_palette("Zissou1", 100, type = "continuous")
+
+ggplot(s4cost, aes(fill = diff)) + 
+  ggspatial::annotation_map_tile(type = "cartolight", zoom = 12) +
+  geom_sf(lwd = 0, alpha = 0.5) +
+  scale_x_continuous(limits = c(-112.11, -111.7)) + 
+  scale_y_continuous(limits = c(40.5, 40.8)) + 
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()) +
+  scale_fill_gradientn("Benefit [$]", colours = pal)
+```
+
+
 ```{r scenarios}
 #| label: tbl-scenarios
 #| tbl-cap: Scenario Benefits
@@ -304,7 +348,8 @@ df <- list(
   "Salt Lake Valley" = s2cost,
   "Utah County" = s2cost_ut,
   "San Juan County" = s2cost_sj,
-  "Improved Transport" = s3cost
+  "Improved Transport" = s3cost,
+  "Delivery Services" = s4cost
 ) |> 
   bind_rows(.id = "Scenario") |> 
   sf::st_set_geometry(NULL) |> 

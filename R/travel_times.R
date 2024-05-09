@@ -40,6 +40,31 @@ make_newtimes <- function(times, dists, bgs){
   bind_rows(unadjusted, adjusted)
 }
 
+#' Update times so that there are no travel costs to reach stores with deliveries.
+#' 
+#' @param times
+#' @param dists
+#' @param stores
+make_delivery_times <- function(times, dists, stores){
+  times <- mutate(times, id = row_number())
+  
+  threshold <- 5000
+  units(threshold) <- "m"
+  unadjusted <- times |> 
+    left_join(dists, by = c("blockgroup" = "bg", "resource")) |> 
+    filter((! resource %in% stores$id) |  distance_meters > threshold)
+  
+  adjusted <- times |> 
+    filter(!id %in% unadjusted$id) |> 
+    mutate(duration = 0,
+           transfers = 0,
+           walktime = 0,
+           waittime = 0,
+           transittime = 0)
+  
+  bind_rows(unadjusted, adjusted) |> select(-id)
+}
+
 
 #' Calculate euclidean distances between blockgroups and stores
 #' 

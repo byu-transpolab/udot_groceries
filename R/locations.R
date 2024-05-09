@@ -128,6 +128,26 @@ make_improved_stores <- function(nems_groceries){
   
 }
 
+#' Make stores with increased costs but that will have 
+#' no cost of travel
+#' 
+make_delivery_stores <- function(nems_groceries){
+  nems_groceries |> 
+    ungroup() |> 
+    
+    # get 30% of full-service grocery stores
+    filter(type == "Grocery Store") |> 
+    filter(county == "Salt Lake") |> 
+    filter(!ethnic) |> 
+    sample_frac(0.3) |> 
+    
+    
+    # add 10 dollars to the cost of the market basket
+    mutate(
+      market = market + 10
+    )
+}
+
 
 #' Get WV block groups
 #' 
