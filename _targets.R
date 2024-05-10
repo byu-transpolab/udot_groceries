@@ -155,8 +155,7 @@ list(
   tar_target(s1_access_sl, make_access_data(
     bg_acs, imputed_groceries, s1_mcls,  
     geoids = ut_counties |> filter(NAME == "Salt Lake") |> pull(GEOID),
-    new_store = s1_stores,
-    completed_id = 1)),
+    new_store = s1_stores)),
   tar_target(s1_access, compute_dclogsum(s1_access_sl, sl_dc)),
   
   
