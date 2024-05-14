@@ -11,7 +11,7 @@ options(java.parameters = '-Xmx14G')
 
 # Set target options:
 tar_option_set(
-  packages = c("tibble", "dplyr", "sf", "jsonlite", "nngeo", "r5r",
+  packages = c("tibble", "dplyr", "sf", "jsonlite", "nngeo", "r5r", "tidytransit",
                "mlogit", "nemsr", "marginaleffects",
                "processx", "readr", "stringr", "tidycensus"), # packages that your targets need to run
   format = "rds" # default storage format
@@ -62,6 +62,8 @@ list(
   tar_target(osmium_script, "sh/get_osm.sh", format = "file"),
   tar_target(merged_osm_file, run_shell_script(osmium_script, "r5/merged.osm.pbf"), format = "file"),
   tar_target(gtfs, get_gtfs("r5/gtfs.zip"), format = "file"),
+  
+  tar_target(gtfs_shape, get_gtfs_shape(gtfs)),
   
   # 2.2 Build travel times
   tar_target(dists, make_dists(bgcentroids, all_groceries)),

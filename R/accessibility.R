@@ -394,3 +394,57 @@ read_sl_data <- function(path, mcls, edit_dest = ""){
     dplyr::inner_join(available, by = c("geoid" = "blockgroup", "dest" = "resource"))
 }
 
+#' Read a GTFS object into a shapefile
+#' 
+#' @param gtfs path to gtfs object
+#' 
+get_gtfs_shape <- function(gtfs_feed){
+  gtfs <- read_gtfs(gtfs_feed) |>  set_servicepattern() |> 
+    gtfs_as_sf()
+  
+  # find the service pattern id for teh most comon service
+  # gtfs$shapes$length <- st_length(gtfs$shapes)
+  # shape_lengths <- gtfs$shapes %>% 
+  #   as.data.frame() %>% 
+  #   select(shape_id, length, -geometry)
+  # 
+  # am_route_freq <- tidytransit::get_route_frequency(gt, service_ids = service_ids, 
+  #                                      start_time = 6*3600, end_time = 10*3600) 
+  # 
+  # service_pattern_summary <- gtfs$trips %>%
+  #   left_join(gtfs$.$servicepatterns, by="service_id") %>% 
+  #   left_join(shape_lengths, by="shape_id") %>%
+  #   left_join(gtfs$stop_times, by="trip_id") %>% 
+  #   group_by(servicepattern_id) %>% 
+  #   summarise(
+  #     trips = n(), 
+  #     routes = n_distinct(route_id),
+  #     total_distance_per_day_km = sum(as.numeric(length), na.rm=TRUE)/1e3,
+  #     route_avg_distance_km = (sum(as.numeric(length), na.rm=TRUE)/1e3)/(trips*routes),
+  #     stops=(n_distinct(stop_id)/2))
+  
+  service_ids <- gtfs$.$servicepattern %>% 
+    filter(servicepattern_id == 's_91f01a4') %>% 
+    pull(service_id)
+  
+  
+  am_route_freq <- get_route_frequency(gtfs, service_ids = service_ids, 
+                                       start_time = 6*3600, end_time = 10*3600) |> 
+    filter(total_departures > 100) |> 
+    transmute(route_id, headway = median_headways/60)
+  
+  routes_sf <- get_route_geometry(gtfs, service_ids = service_ids) |> 
+    inner_join(am_route_freq, by = 'route_id') |> 
+    left_join(gtfs$routes |> select(route_id, route_long_name, route_type, route_color), by = "route_id") |> 
+    mutate(
+      mode = case_when(
+        route_long_name %in% c("FrontRunner") ~ "Commuter Rail",
+        route_long_name %in% c("Blue Line", "Red Line", "Green Line", "S-Line") ~ "LRT",
+        route_long_name %in% c("Ogden Express (OGX)", "UTAH VALLEY EXPRESS") ~ "BRT",
+        TRUE ~ "Bus")
+      )
+    
+    
+  routes_sf
+  
+}
