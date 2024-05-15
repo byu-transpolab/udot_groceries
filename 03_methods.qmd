@@ -1,12 +1,13 @@
 # Methods {#sec-methods}
 
-```{r setup, file = "R/chapter_start.R", include = FALSE}
+```{r setup, file = "R/chapter_start.R", include = FALSE, cache = FALSE}
 # a number of commands need to run at the beginning of each chapter. This
 # includes loading libraries that I always use, as well as options for 
 # displaying numbers and text.
 library(mlogit)
 library(wesanderson)
 library(kableExtra)
+library(ggspatial)
 ```
 
 This section describes how we construct a model of access to grocery stores in
@@ -67,7 +68,29 @@ Utah County, West Salt Lake County, and San Juan County. Note that in this
 document we refer to the second community as "Salt Lake" even though this does
 not refer to the entire Salt Lake County nor to Salt Lake City, rather, we focus
 on communities in the western part of the valley, such as Magna, Kearns, and
-West Valley City.
+West Valley City. The communities are shown in a wider context in @fig-communities.
+
+```{r communities, message = FALSE}
+#| label: fig-communities
+#| fig-cap: Location of study regions in Utah.
+tar_load(all_groceries)
+tar_load(ut)
+
+ggplot(ut) +
+  geom_sf(lwd = 0) +
+  ggspatial::annotation_map_tile("cartolight", zoom = 7) +
+  geom_sf(color = "black", fill = NA) +
+  ggspatial::annotation_scale() +
+  ggspatial::annotation_north_arrow(style =  ggspatial::north_arrow_minimal) +
+  geom_sf(data = all_groceries |> filter(!is.na(total_registers)), 
+       aes(color = county))+
+    theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()) +
+  scale_color_manual("Region", values = wesanderson::wes_palette('Darjeeling1'))
+```
+
 
 @tbl-acsdata shows several key population statistics based on 2021 American
 Community Survey data for block groups in the three communities of interest.
