@@ -28,7 +28,8 @@ for (file in list.files("R", full.names = TRUE)) source(file)
 # source("other_functions.R") # Source other scripts as needed. # nolint
 
 this_crs = 3675
-ut_counties = tigris::counties("Utah") |> dplyr::select(NAME, GEOID)
+ut_counties = tigris::counties("Utah", year = 2019) |> dplyr::select(NAME, GEOID)
+
 
 # Replace the target list below with your own:
 list(
@@ -38,6 +39,7 @@ list(
   # 1.1 Block group centroids
   tar_target(bgcentroids, get_bgcentroids()),
   tar_target(bg, tigris::block_groups("UT", year = 2019)),
+  tar_target(ut, tigris::states() |> filter(STUSPS == "UT")),
   # 1.2 Block group ACS data
   tar_target(bg_acs, get_acsdata(bgcentroids)),
   tar_target(wvareafile, "data/west_valley_boundary.geojson", format = "file"),

@@ -358,7 +358,19 @@ get_acsdata <- function(bgcentroids) {
   states <- unique(substr(bgcentroids$id, 1, 2))
   counties <- unique(substr(bgcentroids$id, 3, 5))
   
-  tidycensus::get_acs(
+  # HOUSEHOLD SIZE BY VEHICLES AVAILABLE at tract level
+  tv_acs <- tidycensus::get_acs(
+    geography = "tract", variables = c("zero_vehicle" = "B08201_002", "households" = "B19001_001" ),
+    geometry = TRUE, state = states, year = 2019, county = counties) |> 
+    dplyr::select(-moe) |>
+    tidyr::spread(variable, estimate) |> 
+    dplyr::transmute(
+      tract = GEOID, zero_vehicle = 100 * zero_vehicle/households
+    ) |>    
+    sf::st_set_geometry(NULL) 
+  
+  
+  bg_acs <- tidycensus::get_acs(
     geography = "block group", 
     variables = variables, 
     geometry = TRUE,
@@ -373,6 +385,7 @@ get_acsdata <- function(bgcentroids) {
     dplyr::mutate(area = as.numeric(st_area(geometry) * 1e-6)) |>
     dplyr::transmute(
       geoid = GEOID,
+      tract = substr(geoid, 1, 11),
       group = 1,
       population, households, housing_units, 
       density = households / area,
@@ -388,10 +401,14 @@ get_acsdata <- function(bgcentroids) {
       black        = 100 * black / population,
       asian        = 100 * asian / population,
       hispanic     = 100 * hispanic / population,
-      white        = 100 * white / population
-    ) |>
+      white        = 100 * white / population,
+    ) |> 
+    sf::st_set_geometry(NULL) 
+  
+  
+  
+  left_join(bg_acs, tv_acs, by = "tract") |>
     dplyr::filter(population > 0) |>
-    sf::st_set_geometry(NULL) |>
     tibble::as_tibble()
 }
 
