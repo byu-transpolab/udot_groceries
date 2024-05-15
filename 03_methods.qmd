@@ -16,7 +16,7 @@ Complete --- though somewhat dated --- reviews of this literature can be had
 from @beaulac2009 and @walker2010. More recent work has extended the description
 and refinement of the measures used to evaluate food access and control for
 confounding variables. @widener2014 considered that temporal access to quality food is as important as spatial access.
-@aggarwal suggested that spatial access was not as important as store choice, given that most people were not observed to shop at the nearest vendor. 
+@aggarwal2014 suggested that spatial access was not as important as store choice, given that most people were not observed to shop at the nearest vendor. 
 By contrast, @chen2016 compared spatial access to quality food vendors with
 observed food expenditures and showed poor access explained obesity even when controlling for consumption. @cooksey-stowers2017 jointly pursued spatial 
 proximity with quality of offerings and showed the latter might be more predictive of obesity rates.
