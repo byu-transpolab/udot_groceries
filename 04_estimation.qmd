@@ -218,7 +218,7 @@ absqrt <- scales::trans_new(
 )
 
 elasticities |> 
-  modelplot(coef_map = cm) +
+  modelplot(coef_map = rev(cm)) +
   scale_x_continuous(trans = absqrt, breaks = c(-0.01, 0, 0.01, 0.05, 1)) +
   xlab("Average change in probability with 95% confidence interval.") +
   scale_color_manual(values = wesanderson::wes_palette('Darjeeling1'))
