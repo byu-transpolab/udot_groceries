@@ -9,6 +9,26 @@ library(wesanderson)
 library(kableExtra)
 library(ggspatial)
 ```
+The nutrition access literature is long and has been approached from numerous
+angles including public health, urban science and economics, and social justice.
+In general, researchers have sought to link spatial access to nutrition with health outcomes including obesity, caloric intake, and the like.
+Complete --- though somewhat dated --- reviews of this literature can be had
+from @beaulac2009 and @walker2010. More recent work has extended the description
+and refinement of the measures used to evaluate food access and control for
+confounding variables. @widener2014 considered that temporal access to quality food is as important as spatial access.
+@aggarwal suggested that spatial access was not as important as store choice, given that most people were not observed to shop at the nearest vendor. 
+By contrast, @chen2016 compared spatial access to quality food vendors with
+observed food expenditures and showed poor access explained obesity even when controlling for consumption. @cooksey-stowers2017 jointly pursued spatial 
+proximity with quality of offerings and showed the latter might be more predictive of obesity rates.
+
+What has not been frequently attempted in the nutrition access literature,
+however, is a serious comparison of multiple alternative policies to address the
+problem, which would require a multi-dimensional analysis of spatial access,
+store quality, and observed tradeoffs between the two. @macfarlane2021b
+illustrated the potential for a utility-based model of access to establish
+relationships between urban green space access and health, and then continued 
+that methodology into a policy analysis of park space during Covid-19 [@macfarlane2022a]. The potential for application of this methodology to the nutrition literature is well-motivated by the previous attempts as well as
+the lack of clear policy solutions [@wright2016].
 
 This section describes how we construct a model of access to grocery stores in
 communities in Utah. We first describe the theoretical model, and then describe
