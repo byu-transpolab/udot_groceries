@@ -102,7 +102,7 @@ for the Navajo Tribe.
 
 ```{r acsdata}
 #| label: tbl-acsdata
-#| tbl-cap: Demographic Statistics of Study Region
+#| tbl-cap: Demographic Statistics of Study Regions
 tar_load(neighbor_acs) 
 df <- neighbor_acs |> 
   mutate(county = relevel(factor(county), ref = "Utah")) |> 
@@ -240,7 +240,7 @@ the lowest difference between healthy and unhealthy food (the NEMS-S cost
 score). San Juan County has the smallest average stores, highest costs, and the
 lowest availability of healthy options, and Salt Lake falls in between.
 
-### Imputation of Missing Store Data
+#### Imputation of Missing Store Data
 
 We collected detailed store attributes for a complete census of stores in Utah
 County, San Juan County, and a portion of Salt Lake County using the NEMS-S
