@@ -111,7 +111,7 @@ For active transportation, the lack of pedestrian facilities across and
 alongside roads both in reality and in the OpenStreetMap dataset may
 substantially increase measured walk distances and times. In this scenario, we
 replace the times measured from OpenStreetMap using R5 with an idealized
-Euclidean distance function, $$
+distance function, $$
 t_{\mathrm{walk}} = \frac{\sqrt{2} * d'_{ij}}{v_{\mathrm{walk}}}
 $$ {#eq-newwalk} where $d'_{ij}$ is the Euclidean (straight-line) distance
 between $i$ and $j$ and $v_{ij}$ is an average walking speed equivalent to 3.5
@@ -122,7 +122,9 @@ radically understate the real walking distance, we are trying to create an
 idealized scenario of effectively frictionless active transport. For public
 transit, we assume that the frequency of service is such that all transfer and
 initial wait times are at most 5 minutes, and that no person must walk more than
-10 minutes to access their first public transport service.
+10 minutes to access their first public transport service. Presently, the
+*mean* walk access time in the scenario region is over 20 minutes, and the
+wait time over 10 minutes.
 
 Travel times are improved in this way for all block group --- store pairs in the
 west Salt Lake Valley community.
