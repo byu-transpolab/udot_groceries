@@ -48,7 +48,7 @@ make_newtimes <- function(times, dists, bgs){
 make_delivery_times <- function(times, dists, stores){
   times <- mutate(times, id = row_number())
   
-  threshold <- 5000
+  threshold <- 3000
   units(threshold) <- "m"
   unadjusted <- times |> 
     left_join(dists, by = c("blockgroup" = "bg", "resource")) |> 

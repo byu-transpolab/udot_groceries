@@ -36,6 +36,8 @@ impute_store_data <- function(all_groceries, bgcentroids, bg_acs) {
       dplyr::select(id, county, type, pharmacy:brand, population:income) |> 
       sf::st_set_geometry(NULL)
   
+  set.seed(42)
+
   
   # impute missing data ==================
   imp <- mice::mice(knn_groceries, maxit = 30, printFlag = FALSE, m = 10)
@@ -139,7 +141,7 @@ make_delivery_stores <- function(nems_groceries){
     filter(type == "Grocery Store") |> 
     filter(county == "Salt Lake") |> 
     filter(!ethnic) |> 
-    sample_frac(0.3) |> 
+    sample_frac(0.2) |> 
     
     
     # add 10 dollars to the cost of the market basket
