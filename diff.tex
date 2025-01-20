@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted.tex                                                                                   Tue Apr 23 02:55:37 2024
-%DIF ADD Where-s-dinner-coming-from--A-utility-based-investigation-of-access-to-nutrition-in-Utah..tex   Tue May 14 20:44:08 2024
+%DIF ADD Where-s-dinner-coming-from--A-utility-based-investigation-of-access-to-nutrition-in-Utah..tex   Mon Jan 20 14:16:34 2025
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -47,14 +47,40 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
+%DIF 47a47
+\makeatletter %DIF > 
+%DIF -------
 \ifx\paragraph\undefined\else
   \let\oldparagraph\paragraph
-  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+%DIF 49c50-56
+%DIF <   \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+%DIF -------
+  \renewcommand{\paragraph}{ %DIF > 
+    \@ifstar %DIF > 
+      \xxxParagraphStar %DIF > 
+      \xxxParagraphNoStar %DIF > 
+  } %DIF > 
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}} %DIF > 
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}} %DIF > 
+%DIF -------
 \fi
 \ifx\subparagraph\undefined\else
   \let\oldsubparagraph\subparagraph
-  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+%DIF 53c60-66
+%DIF <   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+%DIF -------
+  \renewcommand{\subparagraph}{ %DIF > 
+    \@ifstar %DIF > 
+      \xxxSubParagraphStar %DIF > 
+      \xxxSubParagraphNoStar %DIF > 
+  } %DIF > 
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}} %DIF > 
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}} %DIF > 
+%DIF -------
 \fi
+%DIF 55a68
+\makeatother %DIF > 
+%DIF -------
 
 
 \providecommand{\tightlist}{%
@@ -70,15 +96,30 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+%DIF 70-76c84-93
+%DIF < \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+%DIF < \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+%DIF < \makeatother
+%DIF < % Scale images if necessary, so that they will not overflow the page
+%DIF < % margins by default, and it is still possible to overwrite the defaults
+%DIF < % using explicit options in \includegraphics[width, height, ...]{}
+%DIF < \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+%DIF -------
+\newsavebox\pandoc@box %DIF > 
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width %DIF > 
+  \sbox\pandoc@box{#1}% %DIF > 
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}% %DIF > 
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}% %DIF > 
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both %DIF > 
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}% %DIF > 
+  \else\usebox{\pandoc@box}% %DIF > 
+  \fi% %DIF > 
+} %DIF > 
+%DIF -------
 % Set default figure placement to htbp
-\makeatletter
+%DIF 78d95
+%DIF < \makeatletter
+%DIF -------
 \def\fps@figure{htbp}
 \makeatother
 % definitions for citeproc citations
@@ -116,6 +157,22 @@
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \usepackage{rotating}
+%DIF 116a132-145
+\usepackage{booktabs} %DIF > 
+\usepackage{longtable} %DIF > 
+\usepackage{array} %DIF > 
+\usepackage{multirow} %DIF > 
+\usepackage{wrapfig} %DIF > 
+\usepackage{float} %DIF > 
+\usepackage{colortbl} %DIF > 
+\usepackage{pdflscape} %DIF > 
+\usepackage{tabu} %DIF > 
+\usepackage{threeparttable} %DIF > 
+\usepackage{threeparttablex} %DIF > 
+\usepackage[normalem]{ulem} %DIF > 
+\usepackage{makecell} %DIF > 
+\usepackage{xcolor} %DIF > 
+%DIF -------
 \makeatletter
 \@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
 \makeatother
@@ -161,9 +218,13 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 \journal{WSTLUR Symposium 2024}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
+%DIF 161-163c191
+%DIF < \ifLuaTeX
+%DIF <   \usepackage{selnolig}  % disable illegal ligatures
+%DIF < \fi
+%DIF -------
+ %DIF > 
+%DIF -------
 \usepackage{bookmark}
 
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -171,7 +232,7 @@
 \hypersetup{
   pdftitle={Where's dinner coming from? A utility-based investigation of access to nutrition in Utah.},
   pdfauthor={Gregory S. Macfarlane; Emma Stucki; Myrranda Salmon; Alisha H. Redelfs; Lori A. Spruance},
-%DIF 171-172c171-172
+%DIF 171-172c199-200
 %DIF <   pdfkeywords={Accessibility, Access to nutrition, Passive location
 %DIF < data},
 %DIF -------
@@ -184,6 +245,9 @@ nutrition, Passive location data}, %DIF >
   citecolor={Blue},
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
+%DIF 179a207
+ %DIF > 
+%DIF -------
 
 \setlength{\parindent}{6pt}
 %DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
@@ -191,7 +255,7 @@ nutrition, Passive location data}, %DIF >
 \RequirePackage[normalem]{ulem} %DIF PREAMBLE
 \RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
 \providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
-\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}} %DIF PREAMBLE
 %DIF SAFE PREAMBLE %DIF PREAMBLE
 \providecommand{\DIFaddbegin}{} %DIF PREAMBLE
 \providecommand{\DIFaddend}{} %DIF PREAMBLE
@@ -247,6 +311,11 @@ nutrition, Passive location data}, %DIF >
 \DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
 \DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
 \DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF AMSMATHULEM PREAMBLE %DIF PREAMBLE
+\makeatletter %DIF PREAMBLE
+\let\sout@orig\sout %DIF PREAMBLE
+\renewcommand{\sout}[1]{\ifmmode\text{\sout@orig{\ensuremath{#1}}}\else\sout@orig{#1}\fi} %DIF PREAMBLE
+\makeatother %DIF PREAMBLE
 %DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
 \RequirePackage{listings} %DIF PREAMBLE
 \RequirePackage{color} %DIF PREAMBLE
@@ -263,6 +332,8 @@ nutrition, Passive location data}, %DIF >
 } %DIF PREAMBLE
 \lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
 \lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+\lstset{extendedchars=\true,inputencoding=utf8}
+
 %DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
@@ -335,6 +406,7 @@ nutrition \sep
     Passive location data
 \end{keyword}
 \end{frontmatter}
+
 
 \bookmarksetup{startatroot}
 
@@ -436,11 +508,11 @@ showed the latter might be more predictive of obesity rates.
 literature, however, is a serious comparison of multiple alternative
 policies to address the problem, which would require a multi-dimensional
 analysis of spatial access, store quality, and observed tradeoffs
-between the two. (G. S. Macfarlane et al., 2021) illustrated the
-potential for a utility-based model of access to establish relationships
-between urban green space access and health, and then continued that
-methodology into a policy analysis of park space during Covid-19 (G.
-Macfarlane et al., 2022). The potential for application of this
+between the two. (Macfarlane et al., 2021) illustrated the potential for
+a utility-based model of access to establish relationships between urban
+green space access and health, and then continued that methodology into
+a policy analysis of park space during Covid-19
+(}\textbf{\DIFadd{macfarlane2022a?}}\DIFadd{). The potential for application of this
 methodology to the nutrition literature is well-motivated by the
 previous attempts as well as the lack of clear policy solutions (Wright
 et al., 2016).
@@ -497,7 +569,7 @@ the ready availability of simpler methods on one hand (Logan et al.,
 2019), and the difficulty in obtaining a suitable estimation dataset for
 particular land uses on the other (Kaczynski et al., 2016). This second
 limitation has been somewhat improved by a new methodology developed by
-(\DIFaddbegin \DIFadd{G. }\DIFaddend Macfarlane et al., 2022), relying on commercial location-based
+(\DIFdelbegin \DIFdel{Macfarlane et al., 2022}\DIFdelend \DIFaddbegin \textbf{\DIFadd{macfarlane2022a?}}\DIFaddend ), relying on commercial location-based
 services data to estimate the affinity for simulated agents to visit
 destinations of varying attributes and distances.
 
@@ -520,7 +592,7 @@ Figure~\ref{fig-communities}.
 
 \centering{
 
-\includegraphics{03_methods_files/figure-pdf/fig-communities-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{03_methods_files/figure-pdf/fig-communities-1.pdf}}
 
 }
 
@@ -660,10 +732,43 @@ general affordability comparisons between stores.
 
 \caption{\label{tbl-nems}Grocery Store Attributes}
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\centering
-\resizebox{\linewidth}{!}{
+%DIFDELCMD < \centering
+%DIFDELCMD < \resizebox{\linewidth}{!}{
+%DIFDELCMD < \begin{tabular}[t]{llrrrrrr}
+%DIFDELCMD < \toprule
+%DIFDELCMD < \multicolumn{2}{c}{ } & \multicolumn{2}{c}{Utah (N=63)} & \multicolumn{2}{c}{Salt Lake (N=39)} & \multicolumn{2}{c}{San Juan (N=50)} \\
+%DIFDELCMD < \cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6} \cmidrule(l{3pt}r{3pt}){7-8}
+%DIFDELCMD <   &    & Mean & Std. Dev. & Mean & Std. Dev. & Mean & Std. Dev.\\
+%DIFDELCMD < \midrule
+%DIFDELCMD < Registers (incl. self checkout) &  & 12.5 & 11.7 & 9.9 & 8.9 & 6.1 & 8.8\\
+%DIFDELCMD < NEMS-S availability score &  & 18.7 & 8.4 & 16.2 & 8.1 & 13.2 & 7.6\\
+%DIFDELCMD < NEMS-S cost score &  & 1.9 & 2.3 & 2.3 & 2.2 & 1.9 & 1.9\\
+%DIFDELCMD < Market basket cost &  & 126.1 & 21.5 & 141.6 & 19.2 & 157.6 & 16.8\\
+%DIFDELCMD < \midrule
+%DIFDELCMD <  &  & N & Pct. & N & Pct. & N & Pct.\\
+%DIFDELCMD < Type & Convenience Store & 2 & 3.2 & 0 & 0.0 & 10 & 20.0\\
+%DIFDELCMD <  & Dollar Store & 5 & 7.9 & 11 & 28.2 & 15 & 30.0\\
+%DIFDELCMD <  & Grocery Store & 50 & 79.4 & 27 & 69.2 & 19 & 38.0\\
+%DIFDELCMD <  & Other & 6 & 9.5 & 1 & 2.6 & 6 & 12.0\\
+%DIFDELCMD < Pharmacy & FALSE & 42 & 66.7 & 32 & 82.1 & 43 & 86.0\\
+%DIFDELCMD <  & TRUE & 21 & 33.3 & 7 & 17.9 & 7 & 14.0\\
+%DIFDELCMD < Ethnic market & FALSE & 55 & 87.3 & 30 & 76.9 & 47 & 94.0\\
+%DIFDELCMD <  & TRUE & 8 & 12.7 & 9 & 23.1 & 3 & 6.0\\
+%DIFDELCMD < Other merchandise sold & FALSE & 52 & 82.5 & 35 & 89.7 & 47 & 94.0\\
+%DIFDELCMD <  & TRUE & 11 & 17.5 & 4 & 10.3 & 3 & 6.0\\
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \end{tabular}}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \centering{
+
+\centering\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llrrrrrr}
 \toprule
 \multicolumn{2}{c}{ } & \multicolumn{2}{c}{Utah (N=63)} & \multicolumn{2}{c}{Salt Lake (N=39)} & \multicolumn{2}{c}{San Juan (N=50)} \\
@@ -674,7 +779,7 @@ Registers (incl. self checkout) &  & 12.5 & 11.7 & 9.9 & 8.9 & 6.1 & 8.8\\
 NEMS-S availability score &  & 18.7 & 8.4 & 16.2 & 8.1 & 13.2 & 7.6\\
 NEMS-S cost score &  & 1.9 & 2.3 & 2.3 & 2.2 & 1.9 & 1.9\\
 Market basket cost &  & 126.1 & 21.5 & 141.6 & 19.2 & 157.6 & 16.8\\
-\midrule
+\midrule\\
  &  & N & Pct. & N & Pct. & N & Pct.\\
 Type & Convenience Store & 2 & 3.2 & 0 & 0.0 & 10 & 20.0\\
  & Dollar Store & 5 & 7.9 & 11 & 28.2 & 15 & 30.0\\
@@ -690,6 +795,7 @@ Other merchandise sold & FALSE & 52 & 82.5 & 35 & 89.7 & 47 & 94.0\\
 \end{tabular}}
 
 }
+\DIFaddendFL 
 
 \end{table}%
 
@@ -733,11 +839,20 @@ block group centroids and Euclidean distances).
 
 \begin{figure}
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=5in,height=\textheight]{03_methods_files/figure-pdf/fig-marketimp-1.pdf}
+%DIFDELCMD < \includegraphics[width=5in,height=\textheight]{03_methods_files/figure-pdf/fig-marketimp-1.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \centering{
+
+\includegraphics[width=5in,height=\textheight,keepaspectratio]{03_methods_files/figure-pdf/fig-marketimp-1.pdf}
 
 }
+\DIFaddendFL 
 
 \caption{\label{fig-marketimp}Imputed market price values for \DIFdelbeginFL \DIFdelFL{15 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{12 }\DIFaddendFL random
 grocery stores.}
@@ -816,7 +931,7 @@ representative sample.
 
 Emerging mobile device data, however, could reveal the typical home
 locations for people who are observed in the space of a particular
-store. (\DIFaddbegin \DIFadd{G. }\DIFaddend Macfarlane et al., 2022) present a method for estimating
+store. (\DIFdelbegin \DIFdel{Macfarlane et al., 2022}\DIFdelend \DIFaddbegin \textbf{\DIFadd{macfarlane2022a?}}\DIFaddend ) present a method for estimating
 destination choice models from such data, which we repeat in this study.
 We provided a set of geometric polygons for the grocery stores of
 interest to StreetLight Data, Inc., a commercial location-based services
@@ -853,11 +968,20 @@ these three communities.
 
 \begin{figure}
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics{04_estimation_files/figure-pdf/fig-nems-market-avail-1.pdf}
+%DIFDELCMD < \includegraphics{04_estimation_files/figure-pdf/fig-nems-market-avail-1.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{04_estimation_files/figure-pdf/fig-nems-market-avail-1.pdf}}
 
 }
+\DIFaddendFL 
 
 \caption{\label{fig-nems-market-avail}Relationship between NEMS
 availability score and market basket score in each study community. Utah
@@ -882,11 +1006,20 @@ March 2021 and March 2022 in food products (Bureau of Labor Statistics,
 
 \begin{figure}
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics{04_estimation_files/figure-pdf/fig-nems-cost-avail-1.pdf}
+%DIFDELCMD < \includegraphics{04_estimation_files/figure-pdf/fig-nems-cost-avail-1.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{04_estimation_files/figure-pdf/fig-nems-cost-avail-1.pdf}}
 
 }
+\DIFaddendFL 
 
 \caption{\label{fig-nems-cost-avail}Relationship between NEMS
 availability score and cost score in each study community.}
@@ -1206,7 +1339,7 @@ explain more of the model fit than the transportation impedance term.
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \centering{
 
-\includegraphics{04_estimation_files/figure-pdf/fig-all-comp-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04_estimation_files/figure-pdf/fig-all-comp-1.pdf}}
 
 }
 \DIFaddendFL 
@@ -1261,11 +1394,20 @@ ethnic minorities in the region.
 
 \begin{figure}
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=6in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-ut-1.pdf}
+%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-ut-1.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \centering{
+
+\includegraphics[width=6in,height=\textheight,keepaspectratio]{04_estimation_files/figure-pdf/fig-map-ut-1.pdf}
 
 }
+\DIFaddendFL 
 
 \caption{\label{fig-map-ut}Modeled access to grocery stores in Utah
 County}
@@ -1297,11 +1439,20 @@ for non-vehicle users.
 
 \begin{minipage}{0.50\linewidth}
 
-\centering{
+\DIFdelbegin %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=4in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-nocar-1.pdf}
+%DIFDELCMD < \includegraphics[width=4in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-nocar-1.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \centering{
+
+\includegraphics[width=4in,height=\textheight,keepaspectratio]{04_estimation_files/figure-pdf/fig-map-nocar-1.pdf}
 
 }
+\DIFaddend 
 
 \subcaption{\label{fig-map-nocar-1}With vehicles}
 
@@ -1309,11 +1460,20 @@ for non-vehicle users.
 %
 \begin{minipage}{0.50\linewidth}
 
-\centering{
+\DIFdelbegin %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=4in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-nocar-2.pdf}
+%DIFDELCMD < \includegraphics[width=4in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-nocar-2.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \centering{
+
+\includegraphics[width=4in,height=\textheight,keepaspectratio]{04_estimation_files/figure-pdf/fig-map-nocar-2.pdf}
 
 }
+\DIFaddend 
 
 \subcaption{\label{fig-map-nocar-2}Without vehicles}
 
@@ -1495,11 +1655,20 @@ compared the change in accessibility resulting from the improvement.
 
 \begin{figure}
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s1results-1.pdf}
+%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s1results-1.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \centering{
+
+\includegraphics[width=6in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s1results-1.pdf}
 
 }
+\DIFaddendFL 
 
 \caption{\label{fig-s1results}Estimated per-household benefits of adding
 new full-service store in west Salt Lake Valley}
@@ -1514,11 +1683,20 @@ a trip to a grocery store.
 
 \begin{figure}
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2results-1.pdf}
+%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2results-1.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \centering{
+
+\includegraphics[width=6in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s2results-1.pdf}
 
 }
+\DIFaddendFL 
 
 \caption{\label{fig-s2results}Estimated per-household benefits of
 improving an existing store in west Salt Lake Valley}
@@ -1545,11 +1723,20 @@ close to you are already sufficient.
 
 \begin{minipage}{0.50\linewidth}
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-1.pdf}
+%DIFDELCMD < \includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-1.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \centering{
+
+\includegraphics[width=4in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s2sjut-1.pdf}
 
 }
+\DIFaddendFL 
 
 \subcaption{\label{fig-s2sjut-1}Utah County (in Santaquin)}
 
@@ -1557,11 +1744,20 @@ close to you are already sufficient.
 %
 \begin{minipage}{0.50\linewidth}
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-2.pdf}
+%DIFDELCMD < \includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-2.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \centering{
+
+\includegraphics[width=4in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s2sjut-2.pdf}
 
 }
+\DIFaddendFL 
 
 \subcaption{\label{fig-s2sjut-2}San Juan County (in Blanding)}
 
@@ -1583,11 +1779,20 @@ on the order of \$0.25.
 
 \begin{figure}
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s3results-1.pdf}
+%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s3results-1.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \centering{
+
+\includegraphics[width=6in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s3results-1.pdf}
 
 }
+\DIFaddendFL 
 
 \caption{\label{fig-s3results}Estimated per-household benefits of
 improving non-motorized and public transport access to groceries in Salt
@@ -1599,7 +1804,7 @@ Lake Valley.}
 
 \centering{
 
-\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s4results-1.pdf}
+\includegraphics[width=6in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s4results-1.pdf}
 
 }
 
@@ -2024,18 +2229,20 @@ Options} in {Denver}, {CO Grocery Stores}. \emph{Journal of Hunger \&
 Environmental Nutrition}, \emph{16}(3), 297--303.
 \url{https://doi.org/10.1080/19320248.2020.1741482}
 
-\DIFaddbegin \bibitem[\citeproctext]{ref-macfarlane2021b}
-\DIFadd{Macfarlane, G. S., Boyd, N., Taylor, J. E., \& Watkins, K. (2021).
-Modeling the impacts of park access on health outcomes: }{\DIFadd{A}}
-\DIFadd{utility-based accessibility approach. }\emph{\DIFadd{Environment and Planning B:
-Urban Analytics and City Science}}\DIFadd{, }\emph{48}(8)\DIFadd{, 2289--2306.
+\DIFdelbegin \bibitem[\citeproctext]{ref-macfarlane2022a}
+\DIFdelend \DIFaddbegin \bibitem[\citeproctext]{ref-macfarlane2021b}
+\DIFaddend Macfarlane, G. \DIFdelbegin \DIFdel{, Voulgaris, C.T. , \& Tapia, T. (2022).
+City parks and
+slow streets}\DIFdelend \DIFaddbegin \DIFadd{S., Boyd, N., Taylor, J. E., \& Watkins, K. (2021).
+Modeling the impacts of park access on health outcomes}\DIFaddend : {A}
+utility-based \DIFdelbegin \DIFdel{access and equity analysis. }\DIFdelend \DIFaddbegin \DIFadd{accessibility approach. }\DIFaddend \emph{\DIFdelbegin \DIFdel{Journal of Transport }\DIFdelend \DIFaddbegin \DIFadd{Environment }\DIFaddend and \DIFdelbegin \DIFdel{Land Use}\DIFdelend \DIFaddbegin \DIFadd{Planning B:
+Urban Analytics and City Science}\DIFaddend }, \DIFdelbegin %DIFDELCMD < \emph{15}(1)%%%
+\DIFdel{, 587--612.
+}%DIFDELCMD < \url{https://doi.org/10.5198/jtlu.2022.2009}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \emph{48}(8)\DIFadd{, 2289--2306.
 }\url{https://doi.org/10.1177/2399808320974027}
-
-\DIFaddend \bibitem[\citeproctext]{ref-macfarlane2022a}
-Macfarlane, G., Voulgaris, C. T., \& Tapia, T. (2022). City parks and
-slow streets: {A} utility-based access and equity analysis.
-\emph{Journal of Transport and Land Use}, \emph{15}(1), 587--612.
-\url{https://doi.org/10.5198/jtlu.2022.2009}
+\DIFaddend 
 
 \bibitem[\citeproctext]{ref-mcfadden1974}
 McFadden, D. (1974). Conditional logit analysis of qualitative choice
@@ -2102,6 +2309,7 @@ Wright, J. D., Donley, A. M., Gualtieri, M. C., \& Strickhouser, S. M.
 \url{https://doi.org/10.1007/s12115-016-9993-8}
 
 \end{CSLReferences}
+
 
 
 

@@ -19,3 +19,6 @@ nohup.out
 *.log
 *.synctex.gz
 *.toc
+*.aux
+*.fdb_latexmk
+*.fls

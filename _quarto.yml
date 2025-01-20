@@ -18,9 +18,6 @@ book:
     - name: Emma Stucki
       affiliations: 
         - ref: byucivil 
-    - name: Myrranda Salmon
-      affiliations: 
-        - ref: byucivil
     - name: Alisha H. Redelfs
       orcid: 0000-0002-3533-6044
       affiliations:
