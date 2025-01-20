@@ -69,6 +69,8 @@ keywords:
   - Access to nutrition
   - Passive location data
 
+execute: 
+  cache: true
 
 format:
   html:
@@ -76,7 +78,7 @@ format:
     html-math-method: katex
   elsevier-pdf:
     journal:
-      name: WSTLUR Symposium 2024
+      name: Journal of Transport and Land Use
       formatting: review
       model: 3p
     cite-method: citeproc
