@@ -27,7 +27,8 @@ problem, which would require a multi-dimensional analysis of spatial access,
 store quality, and observed tradeoffs between the two. @macfarlane2021b
 illustrated the potential for a utility-based model of access to establish
 relationships between urban green space access and health, and then continued 
-that methodology into a policy analysis of park space during Covid-19 [@macfarlane2022a]. The potential for application of this methodology to the nutrition literature is well-motivated by the previous attempts as well as
+that methodology into a policy analysis of park space during Covid-19 [@macfarlane2022]. 
+The potential for application of this methodology to the nutrition literature is well-motivated by the previous attempts as well as
 the lack of clear policy solutions [@wright2016].
 
 This section describes how we construct a model of access to grocery stores in
@@ -74,7 +75,7 @@ analyses [@geurs2010]. The rarity is likely explained by an unfamiliarity with
 destination choice models and the ready availability of simpler methods on one
 hand [@logan2019], and the difficulty in obtaining a suitable estimation dataset
 for particular land uses on the other [@kaczynski2016]. This second limitation
-has been somewhat improved by a new methodology developed by @macfarlane2022a,
+has been somewhat improved by a new methodology developed by @macfarlane2022,
 relying on commercial location-based services data to estimate the affinity for
 simulated agents to visit destinations of varying attributes and distances.
 
@@ -373,7 +374,7 @@ would include enough trips to grocery stores and similar destinations to create
 a representative sample.
 
 Emerging mobile device data, however, could reveal the typical home locations
-for people who are observed in the space of a particular store. @macfarlane2022a
+for people who are observed in the space of a particular store. @macfarlane2022
 present a method for estimating destination choice models from such data, which
 we repeat in this study. We provided a set of geometric polygons for the grocery
 stores of interest to StreetLight Data, Inc., a commercial location-based
