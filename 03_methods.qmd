@@ -9,6 +9,7 @@ library(wesanderson)
 library(kableExtra)
 library(ggspatial)
 ```
+
 The nutrition access literature is long and has been approached from numerous
 angles including public health, urban science and economics, and social justice.
 In general, researchers have sought to link spatial access to nutrition with health outcomes including obesity, caloric intake, and the like.
@@ -40,15 +41,19 @@ data collection efforts to estimate this model and apply it.
 A typical model of destination choice [@recker1978] can be described as a random
 utility maximization model where the utility of an individual $i$ choosing a
 particular destination $j$ is
-$$ U_{ij} = \beta_{s}f(k_{ij}) + \beta_{x}(X_j) $$ {#eq-utility} where
-$f(k_{ij})$ is a function of the travel impedance or costs from $i$ to $j$ and
+$$
+ U_{ij} = \beta_{s}f(k_{ij}) + \beta_{x}(X_j) 
+$$ {#eq-utility} 
+where $f(k_{ij})$ is a function of the travel impedance or costs from $i$ to $j$ and
 $X_{j}$ represents the location attributes of $j$. The coefficients $\beta$ can
 be estimated given sufficient data revealing the choices of individuals. The
 probability that individual at location $i$ will choose alternative $j$ from a
 choice set $J$ can be estimated with a multinomial logit model (MNL)
 [@mcfadden1974],
-$$ P_i(j) = \frac{\exp(U_{ij})}{\sum_{j' \in J}{\exp(U_{ij'})}}$$ {#eq-mnl} The
-overall fit of the model can be described with the Akaike Information Criterion
+$$ 
+P_i(j) = \frac{\exp(U_{ij})}{\sum_{j' \in J}{\exp(U_{ij'})}}
+$$ {#eq-mnl} 
+The overall fit of the model can be described with the Akaike Information Criterion
 (AIC) --- which should be minimized --- or by the McFadden likelihood ratio
 $\rho^2_0 = 1 - \ln\mathcal{L} / \ln\mathcal{L}_0$. In this ratio
 $\ln{\mathcal{L}}$ is the model log-likelihood and $\ln{\mathcal{L}_0}$ the
@@ -60,9 +65,9 @@ The idea of using destination choice logsums as accessibility terms is not new,
 and the theory for doing so is described in @ben-akiva1985 [p.301]. Effectively,
 the natural logarithm of the denominator in @eq-mnl represents the consumer
 surplus --- or total benefit --- available to person $i$:
-
-$$ CS_i = \ln\left(\sum_{j \in J} \exp(U_{ij})\right)$$ {#eq-cs}
-
+$$ 
+CS_i = \ln\left(\sum_{j \in J} \exp(U_{ij})\right)
+$$ {#eq-cs}
 A difference in logsum measures may exist for a number of reasons that affect
 the utility functions described in @eq-utility. For example, individuals at
 different locations or with different mobility will see different impedance
@@ -91,7 +96,7 @@ not refer to the entire Salt Lake County nor to Salt Lake City, rather, we focus
 on communities in the western part of the valley, such as Magna, Kearns, and
 West Valley City. The communities are shown in a wider context in @fig-communities.
 
-```{r communities, message = FALSE}
+```{r message = FALSE}
 #| label: fig-communities
 #| fig-cap: Location of study regions in Utah.
 tar_load(all_groceries)
@@ -121,11 +126,11 @@ incomes and household sizes but a high share of minority individuals. San Juan
 County is primarily rural, with a few small communities and a large reservation
 for the Navajo Tribe.
 
-```{r acsdata}
+```{r} 
 #| label: tbl-acsdata
 #| tbl-cap: Demographic Statistics of Study Regions
 tar_load(neighbor_acs) 
-df <- neighbor_acs |> 
+df <- tibble(neighbor_acs) |> 
   mutate(county = relevel(factor(county), ref = "Utah")) |> 
   group_by(county) |> 
   summarise(
@@ -135,13 +140,12 @@ df <- neighbor_acs |>
     `Median income` = Hmisc::wtd.quantile(income, weights = households, probs = .5),
     `Percent minority individuals` = weighted.mean(100 - white, population)
   ) |> 
-  data.table::transpose(make.names = 'county', keep.names = 'measure')
+  data.table::transpose(make.names = 'county', keep.names = 'measure') |> 
+  as_tibble()
 
-if(!knitr::pandoc_to("docx")){
-  kbl(df, col.names = c("", "Utah", "Salt Lake", "San Juan"), digits = 0, 
+kableExtra::kbl(df, col.names = c(" ", "Utah", "Salt Lake", "San Juan"), digits = 0, 
       format.args = list(big.mark = ','), booktabs = TRUE) |> 
   kable_styling()
-}
 ```
 
 Estimating the utility model described in @eq-mnl for grocery stores requires
@@ -230,11 +234,9 @@ basket score is the total cost of all foods in the market basket. These costs
 can then be compared from store to store to understand general affordability
 comparisons between stores.
 
-```{r tbl-nems}
+```{r}
 #| label: tbl-nems
 #| tbl-cap: Grocery Store Attributes
-tar_load(nems_groceries)
-
 balnems <- nems_groceries |> 
   ungroup() |> 
   transmute(Type = ifelse(type == "Trading Post", "Other", type),
@@ -247,10 +249,8 @@ balnems <- nems_groceries |>
             `Market basket cost` = market, 
             County = factor(county, levels = c("Utah", "Salt Lake", "San Juan")))
 
-if(!knitr::pandoc_to("docx")){
-  datasummary_balance(~County, data = balnems) |> 
-    kable_styling(latex_options = "scale_down")
-}
+datasummary_balance(~County, data = balnems, output = "kableExtra") |> 
+  kable_styling(latex_options = "scale_down")
 ```
 
 @tbl-nems presents the store attribute data collected for each community. Utah
@@ -346,7 +346,8 @@ that increases for distances greater than 1.5 miles. These equations and
 coefficients are adapted from a statewide mode choice model for home-based non-work
 trips in urban and rural regions developed for UDOT research [@barnes2021].
 
-The log-sum, or total weighted impedance by all modes is therefore $$
+The log-sum, or total weighted impedance by all modes is therefore 
+$$
 k_{ij} = \ln(e^{V_{\mathrm{auto}, ij}} + e^{V_{\mathrm{bus}, ij}} + e^{V_{\mathrm{walk},ij}})
 $$ {#eq-mcls}
 

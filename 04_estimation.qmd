@@ -139,7 +139,7 @@ cm <- c(
 modelsummary(ut_models, gof_map = gm, coef_map = cm, 
              stars = c('*' = 0.05, '**' = 0.01),
              statistic = "({statistic})",
-             notes = list("t-statistics in parentheses"))
+             notes = list("t-statistics in parentheses"), output="kableExtra")
 ```
 
 @tbl-utah-models presents the estimated coefficients in the Utah County
@@ -179,7 +179,7 @@ the bulk of model explanatory power is due to transportation proximity.
 modelsummary(sl_models, gof_map = gm, coef_map = cm,
              stars = c('*' = 0.05, '**' = 0.01),
              statistic = "({statistic})",
-             notes = list("t-statistics in parentheses"))
+             notes = list("t-statistics in parentheses"), output = "kableExtra")
 ```
 
 ```{r sj-models}
@@ -188,7 +188,7 @@ modelsummary(sl_models, gof_map = gm, coef_map = cm,
 modelsummary(sj_models, gof_map = gm, coef_map = cm,
              stars = c('*' = 0.05, '**' = 0.01),
              statistic = "({statistic})",
-             notes = list("t-statistics in parentheses"))
+             notes = list("t-statistics in parentheses"), output = "kableExtra")
 ```
 
 @tbl-sl-models presents the estimated coefficients in the west Salt Lake County
