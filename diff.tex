@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL submitted.tex                                                                                   Tue Apr 23 02:55:37 2024
-%DIF ADD Where-s-dinner-coming-from--A-utility-based-investigation-of-access-to-nutrition-in-Utah..tex   Mon Jan 20 14:16:34 2025
+%DIF DEL submitted.tex                                                                                   Fri Jun 13 10:02:29 2025
+%DIF ADD Where-s-dinner-coming-from--A-utility-based-investigation-of-access-to-nutrition-in-Utah..tex   Thu Jun 12 14:48:38 2025
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -47,40 +47,14 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
-%DIF 47a47
-\makeatletter %DIF > 
-%DIF -------
 \ifx\paragraph\undefined\else
   \let\oldparagraph\paragraph
-%DIF 49c50-56
-%DIF <   \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-%DIF -------
-  \renewcommand{\paragraph}{ %DIF > 
-    \@ifstar %DIF > 
-      \xxxParagraphStar %DIF > 
-      \xxxParagraphNoStar %DIF > 
-  } %DIF > 
-  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}} %DIF > 
-  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}} %DIF > 
-%DIF -------
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
 \fi
 \ifx\subparagraph\undefined\else
   \let\oldsubparagraph\subparagraph
-%DIF 53c60-66
-%DIF <   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-%DIF -------
-  \renewcommand{\subparagraph}{ %DIF > 
-    \@ifstar %DIF > 
-      \xxxSubParagraphStar %DIF > 
-      \xxxSubParagraphNoStar %DIF > 
-  } %DIF > 
-  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}} %DIF > 
-  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}} %DIF > 
-%DIF -------
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
-%DIF 55a68
-\makeatother %DIF > 
-%DIF -------
 
 
 \providecommand{\tightlist}{%
@@ -96,30 +70,15 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-%DIF 70-76c84-93
-%DIF < \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-%DIF < \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-%DIF < \makeatother
-%DIF < % Scale images if necessary, so that they will not overflow the page
-%DIF < % margins by default, and it is still possible to overwrite the defaults
-%DIF < % using explicit options in \includegraphics[width, height, ...]{}
-%DIF < \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-%DIF -------
-\newsavebox\pandoc@box %DIF > 
-\newcommand*\pandocbounded[1]{% scales image to fit in text height/width %DIF > 
-  \sbox\pandoc@box{#1}% %DIF > 
-  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}% %DIF > 
-  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}% %DIF > 
-  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both %DIF > 
-  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}% %DIF > 
-  \else\usebox{\pandoc@box}% %DIF > 
-  \fi% %DIF > 
-} %DIF > 
-%DIF -------
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 % Set default figure placement to htbp
-%DIF 78d95
-%DIF < \makeatletter
-%DIF -------
+\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 % definitions for citeproc citations
@@ -157,22 +116,6 @@
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \usepackage{rotating}
-%DIF 116a132-145
-\usepackage{booktabs} %DIF > 
-\usepackage{longtable} %DIF > 
-\usepackage{array} %DIF > 
-\usepackage{multirow} %DIF > 
-\usepackage{wrapfig} %DIF > 
-\usepackage{float} %DIF > 
-\usepackage{colortbl} %DIF > 
-\usepackage{pdflscape} %DIF > 
-\usepackage{tabu} %DIF > 
-\usepackage{threeparttable} %DIF > 
-\usepackage{threeparttablex} %DIF > 
-\usepackage[normalem]{ulem} %DIF > 
-\usepackage{makecell} %DIF > 
-\usepackage{xcolor} %DIF > 
-%DIF -------
 \makeatletter
 \@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
 \makeatother
@@ -217,37 +160,25 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
-\journal{WSTLUR Symposium 2024}
-%DIF 161-163c191
-%DIF < \ifLuaTeX
-%DIF <   \usepackage{selnolig}  % disable illegal ligatures
-%DIF < \fi
-%DIF -------
- %DIF > 
-%DIF -------
+\journal{Journal of Transport and Land Use}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 \usepackage{bookmark}
 
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={Where's dinner coming from? A utility-based investigation of access to nutrition in Utah.},
-  pdfauthor={Gregory S. Macfarlane; Emma Stucki; Myrranda Salmon; Alisha H. Redelfs; Lori A. Spruance},
-%DIF 171-172c199-200
-%DIF <   pdfkeywords={Accessibility, Access to nutrition, Passive location
-%DIF < data},
-%DIF -------
-  pdfkeywords={Accessibility, Utility-based access, Access to %DIF > 
-nutrition, Passive location data}, %DIF > 
-%DIF -------
+  pdfauthor={Gregory S. Macfarlane; Emma Stucki; Alisha H. Redelfs; Lori A. Spruance},
+  pdfkeywords={Accessibility, Utility-based access, Access to
+nutrition, Passive location data},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
   citecolor={Blue},
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
-%DIF 179a207
- %DIF > 
-%DIF -------
 
 \setlength{\parindent}{6pt}
 %DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
@@ -349,10 +280,6 @@ access to nutrition in Utah.}
 %
 }
 
-\author[1]{Myrranda Salmon%
-%
-}
-
 \author[2]{Alisha H. Redelfs%
 %
 }
@@ -369,7 +296,6 @@ USA},postcode={84602},postcodesep={}}
 University},city={Provo, Utah USA},postcode={84602},postcodesep={}}
 
 \cortext[cor1]{Corresponding author}
-
 
 
 
@@ -401,12 +327,11 @@ activity-based methods of measuring resource access.
 
 
 \begin{keyword}
-    Accessibility \sep \DIFaddbegin \DIFadd{Utility-based access }\sep \DIFaddend Access to
+    Accessibility \sep Utility-based access \sep Access to
 nutrition \sep 
     Passive location data
 \end{keyword}
 \end{frontmatter}
-
 
 \bookmarksetup{startatroot}
 
@@ -476,16 +401,15 @@ follows in Section~\ref{sec-results}. Section~\ref{sec-scenarios}
 presents a series of scenarios to which we apply the models estimated in
 Section~\ref{sec-results}, illustrating the interrelated elements of
 nutrition quality and transportation infrastructure in developing more
-complete access to nutrition. \DIFaddbegin \DIFadd{Section~\ref{sec-conclude} places the
+complete access to nutrition. Section~\ref{sec-conclude} places the
 findings of this research in context, while discussing limitations to
 the methodology and associated future research opportunities.
-}\DIFaddend 
 
 \bookmarksetup{startatroot}
 
 \section{Methods}\label{sec-methods}
 
-\DIFaddbegin \DIFadd{The nutrition access literature is long and has been approached from
+The nutrition access literature is long and has been approached from
 numerous angles including public health, urban science and economics,
 and social justice. In general, researchers have sought to link spatial
 access to nutrition with health outcomes including obesity, caloric
@@ -502,23 +426,20 @@ vendors with observed food expenditures and showed poor access explained
 obesity even when controlling for consumption. (Cooksey-Stowers et al.,
 2017) jointly pursued spatial proximity with quality of offerings and
 showed the latter might be more predictive of obesity rates.
-}
 
-\DIFadd{What has not been frequently attempted in the nutrition access
+What has not been frequently attempted in the nutrition access
 literature, however, is a serious comparison of multiple alternative
 policies to address the problem, which would require a multi-dimensional
 analysis of spatial access, store quality, and observed tradeoffs
-between the two. (Macfarlane et al., 2021) illustrated the potential for
-a utility-based model of access to establish relationships between urban
-green space access and health, and then continued that methodology into
-a policy analysis of park space during Covid-19
-(}\textbf{\DIFadd{macfarlane2022a?}}\DIFadd{). The potential for application of this
-methodology to the nutrition literature is well-motivated by the
-previous attempts as well as the lack of clear policy solutions (Wright
-et al., 2016).
-}
+between the two. (\textbf{macfarlane2021b?}) illustrated the potential
+for a utility-based model of access to establish relationships between
+urban green space access and health, and then continued that methodology
+into a policy analysis of park space during Covid-19 (Macfarlane et al.,
+2022). The potential for application of this methodology to the
+nutrition literature is well-motivated by the previous attempts as well
+as the lack of clear policy solutions (Wright et al., 2016).
 
-\DIFaddend This section describes how we construct a model of access to grocery
+This section describes how we construct a model of access to grocery
 stores in communities in Utah. We first describe the theoretical model,
 and then describe data collection efforts to estimate this model and
 apply it.
@@ -528,17 +449,20 @@ apply it.
 A typical model of destination choice (Recker \& Kostyniuk, 1978) can be
 described as a random utility maximization model where the utility of an
 individual \(i\) choosing a particular destination \(j\) is
-\begin{equation}\phantomsection\label{eq-utility}{ U_{ij} = \beta_{s}f(k_{ij}) + \beta_{x}(X_j) }\end{equation}
-where \(f(k_{ij})\) is a function of the travel impedance or costs from
-\(i\) to \(j\) and \(X_{j}\) represents the location attributes of
-\(j\). The coefficients \(\beta\) can be estimated given sufficient data
-revealing the choices of individuals. The probability that individual at
-location \(i\) will choose alternative \(j\) from a choice set \(J\) can
-be estimated with a multinomial logit model (MNL) (McFadden, 1974),
-\begin{equation}\phantomsection\label{eq-mnl}{ P_i(j) = \frac{\exp(U_{ij})}{\sum_{j' \in J}{\exp(U_{ij'})}}}\end{equation}
-The overall fit of the model can be described with the Akaike
-Information Criterion (AIC) --- which should be minimized --- or by the
-McFadden likelihood ratio
+\begin{equation}\phantomsection\label{eq-utility}{
+ U_{ij} = \beta_{s}f(k_{ij}) + \beta_{x}(X_j) 
+}\end{equation} where \(f(k_{ij})\) is a function of the travel
+impedance or costs from \(i\) to \(j\) and \(X_{j}\) represents the
+location attributes of \(j\). The coefficients \(\beta\) can be
+estimated given sufficient data revealing the choices of individuals.
+The probability that individual at location \(i\) will choose
+alternative \(j\) from a choice set \(J\) can be estimated with a
+multinomial logit model (MNL) (McFadden, 1974),
+\begin{equation}\phantomsection\label{eq-mnl}{ 
+P_i(j) = \frac{\exp(U_{ij})}{\sum_{j' \in J}{\exp(U_{ij'})}}
+}\end{equation} The overall fit of the model can be described with the
+Akaike Information Criterion (AIC) --- which should be minimized --- or
+by the McFadden likelihood ratio
 \(\rho^2_0 = 1 - \ln\mathcal{L} / \ln\mathcal{L}_0\). In this ratio
 \(\ln{\mathcal{L}}\) is the model log-likelihood and
 \(\ln{\mathcal{L}_0}\) the log-likelihood of an alternative model where
@@ -551,15 +475,14 @@ not new, and the theory for doing so is described in (Ben-Akiva \&
 Lerman, 1985, p. 301). Effectively, the natural logarithm of the
 denominator in Equation~\ref{eq-mnl} represents the consumer surplus ---
 or total benefit --- available to person \(i\):
-
-\begin{equation}\phantomsection\label{eq-cs}{ CS_i = \ln\left(\sum_{j \in J} \exp(U_{ij})\right)}\end{equation}
-
-A difference in logsum measures may exist for a number of reasons that
-affect the utility functions described in Equation~\ref{eq-utility}. For
-example, individuals at different locations or with different mobility
-will see different impedance values \(k_{ij}\) and therefore affected
-utility. Changes to the attributes of the destinations \(X_j\) will
-likewise affect the utility.
+\begin{equation}\phantomsection\label{eq-cs}{ 
+CS_i = \ln\left(\sum_{j \in J} \exp(U_{ij})\right)
+}\end{equation} A difference in logsum measures may exist for a number
+of reasons that affect the utility functions described in
+Equation~\ref{eq-utility}. For example, individuals at different
+locations or with different mobility will see different impedance values
+\(k_{ij}\) and therefore affected utility. Changes to the attributes of
+the destinations \(X_j\) will likewise affect the utility.
 
 Despite the relative maturity of this theory, applications of
 utility-based access in the literature are still rare, outside of public
@@ -569,9 +492,9 @@ the ready availability of simpler methods on one hand (Logan et al.,
 2019), and the difficulty in obtaining a suitable estimation dataset for
 particular land uses on the other (Kaczynski et al., 2016). This second
 limitation has been somewhat improved by a new methodology developed by
-(\DIFdelbegin \DIFdel{Macfarlane et al., 2022}\DIFdelend \DIFaddbegin \textbf{\DIFadd{macfarlane2022a?}}\DIFaddend ), relying on commercial location-based
-services data to estimate the affinity for simulated agents to visit
-destinations of varying attributes and distances.
+(Macfarlane et al., 2022), relying on commercial location-based services
+data to estimate the affinity for simulated agents to visit destinations
+of varying attributes and distances.
 
 \subsection{Data}\label{data}
 
@@ -584,23 +507,22 @@ and San Juan County. Note that in this document we refer to the second
 community as ``Salt Lake'' even though this does not refer to the entire
 Salt Lake County nor to Salt Lake City, rather, we focus on communities
 in the western part of the valley, such as Magna, Kearns, and West
-Valley City. \DIFaddbegin \DIFadd{The communities are shown in a wider context in
+Valley City. The communities are shown in a wider context in
 Figure~\ref{fig-communities}.
-}\DIFaddend 
 
-\DIFaddbegin \begin{figure}
+\begin{figure}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{03_methods_files/figure-pdf/fig-communities-1.pdf}}
+\includegraphics{03_methods_files/figure-pdf/fig-communities-1.pdf}
 
 }
 
-\caption{\label{fig-communities}\DIFaddFL{Location of study regions in Utah.}}
+\caption{\label{fig-communities}Location of study regions in Utah.}
 
-\end{figure}%DIF > 
+\end{figure}%
 
-\DIFaddend Table~\ref{tbl-acsdata} shows several key population statistics based on
+Table~\ref{tbl-acsdata} shows several key population statistics based on
 2021 American Community Survey data for block groups in the three
 communities of interest. Utah County is a largely suburban county with
 high incomes and a low percentage of minority individuals. The Salt Lake
@@ -611,14 +533,14 @@ Navajo Tribe.
 
 \begin{table}
 
-\caption{\label{tbl-acsdata}Demographic Statistics of Study \DIFdelbeginFL \DIFdelFL{Region}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Regions}\DIFaddendFL }
+\caption{\label{tbl-acsdata}Demographic Statistics of Study Regions}
 
 \centering{
 
 \centering
 \begin{tabular}[t]{lrrr}
 \toprule
- & Utah & Salt Lake & San Juan\\
+  & Utah & Salt Lake & San Juan\\
 \midrule
 Total population & 627,098 & 655,830 & 7,091\\
 Total households & 171,538 & 216,731 & 2,090\\
@@ -732,40 +654,7 @@ general affordability comparisons between stores.
 
 \caption{\label{tbl-nems}Grocery Store Attributes}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering
-%DIFDELCMD < \resizebox{\linewidth}{!}{
-%DIFDELCMD < \begin{tabular}[t]{llrrrrrr}
-%DIFDELCMD < \toprule
-%DIFDELCMD < \multicolumn{2}{c}{ } & \multicolumn{2}{c}{Utah (N=63)} & \multicolumn{2}{c}{Salt Lake (N=39)} & \multicolumn{2}{c}{San Juan (N=50)} \\
-%DIFDELCMD < \cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6} \cmidrule(l{3pt}r{3pt}){7-8}
-%DIFDELCMD <   &    & Mean & Std. Dev. & Mean & Std. Dev. & Mean & Std. Dev.\\
-%DIFDELCMD < \midrule
-%DIFDELCMD < Registers (incl. self checkout) &  & 12.5 & 11.7 & 9.9 & 8.9 & 6.1 & 8.8\\
-%DIFDELCMD < NEMS-S availability score &  & 18.7 & 8.4 & 16.2 & 8.1 & 13.2 & 7.6\\
-%DIFDELCMD < NEMS-S cost score &  & 1.9 & 2.3 & 2.3 & 2.2 & 1.9 & 1.9\\
-%DIFDELCMD < Market basket cost &  & 126.1 & 21.5 & 141.6 & 19.2 & 157.6 & 16.8\\
-%DIFDELCMD < \midrule
-%DIFDELCMD <  &  & N & Pct. & N & Pct. & N & Pct.\\
-%DIFDELCMD < Type & Convenience Store & 2 & 3.2 & 0 & 0.0 & 10 & 20.0\\
-%DIFDELCMD <  & Dollar Store & 5 & 7.9 & 11 & 28.2 & 15 & 30.0\\
-%DIFDELCMD <  & Grocery Store & 50 & 79.4 & 27 & 69.2 & 19 & 38.0\\
-%DIFDELCMD <  & Other & 6 & 9.5 & 1 & 2.6 & 6 & 12.0\\
-%DIFDELCMD < Pharmacy & FALSE & 42 & 66.7 & 32 & 82.1 & 43 & 86.0\\
-%DIFDELCMD <  & TRUE & 21 & 33.3 & 7 & 17.9 & 7 & 14.0\\
-%DIFDELCMD < Ethnic market & FALSE & 55 & 87.3 & 30 & 76.9 & 47 & 94.0\\
-%DIFDELCMD <  & TRUE & 8 & 12.7 & 9 & 23.1 & 3 & 6.0\\
-%DIFDELCMD < Other merchandise sold & FALSE & 52 & 82.5 & 35 & 89.7 & 47 & 94.0\\
-%DIFDELCMD <  & TRUE & 11 & 17.5 & 4 & 10.3 & 3 & 6.0\\
-%DIFDELCMD < \bottomrule
-%DIFDELCMD < \end{tabular}}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
+\centering{
 
 \centering\centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
@@ -795,7 +684,6 @@ Other merchandise sold & FALSE & 52 & 82.5 & 35 & 89.7 & 47 & 94.0\\
 \end{tabular}}
 
 }
-\DIFaddendFL 
 
 \end{table}%
 
@@ -808,22 +696,19 @@ between healthy and unhealthy food (the NEMS-S cost score). San Juan
 County has the smallest average stores, highest costs, and the lowest
 availability of healthy options, and Salt Lake falls in between.
 
-\DIFdelbegin \subsubsection{\DIFdel{Imputation of Missing Store
-Data}}%DIFAUXCMD
-\addtocounter{subsubsection}{-1}%DIFAUXCMD
-\DIFdelend \DIFaddbegin \paragraph{\DIFadd{Imputation of Missing Store
-Data}}\DIFaddend \label{imputation-of-missing-store-data}
+\paragraph{Imputation of Missing Store
+Data}\label{imputation-of-missing-store-data}
 
-We collected detailed store attributes for \DIFaddbegin \DIFadd{a complete census of }\DIFaddend stores
+We collected detailed store attributes for a complete census of stores
 in Utah County, San Juan County, and a portion of Salt Lake County using
 the NEMS-S survey instrument. These attributes form the basis of the
-choice models used to determine access \DIFdelbegin \DIFdel{, but }\DIFdelend \DIFaddbegin \DIFadd{and provide a complete picture of
+choice models used to determine access and provide a complete picture of
 access in those communities, assuming people do not leave the
-communities for grocery trips. But }\DIFaddend understanding access in other parts
-of Salt Lake \DIFdelbegin \DIFdel{City or the state of Utah }\DIFdelend \DIFaddbegin \DIFadd{County -- including how stores outside of the West Salt
-Lake County area might shape access inside that community --- }\DIFaddend requires
-us to impute the \DIFaddbegin \DIFadd{measured }\DIFaddend attributes onto the stores that we did not
-\DIFdelbegin \DIFdel{collect}\DIFdelend \DIFaddbegin \DIFadd{directly measure}\DIFaddend .
+communities for grocery trips. But understanding access in other parts
+of Salt Lake County -- including how stores outside of the West Salt
+Lake County area might shape access inside that community --- requires
+us to impute the measured attributes onto the stores that we did not
+directly measure.
 
 To do this, we used web-based mapping databases (including OpenStreetMap
 and Google Maps) to obtain a list of grocery stores, dollar stores, and
@@ -839,22 +724,13 @@ block group centroids and Euclidean distances).
 
 \begin{figure}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics[width=5in,height=\textheight]{03_methods_files/figure-pdf/fig-marketimp-1.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
-
-\includegraphics[width=5in,height=\textheight,keepaspectratio]{03_methods_files/figure-pdf/fig-marketimp-1.pdf}
+\includegraphics[width=5in,height=\textheight]{03_methods_files/figure-pdf/fig-marketimp-1.pdf}
 
 }
-\DIFaddendFL 
 
-\caption{\label{fig-marketimp}Imputed market price values for \DIFdelbeginFL \DIFdelFL{15 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{12 }\DIFaddendFL random
+\caption{\label{fig-marketimp}Imputed market price values for 12 random
 grocery stores.}
 
 \end{figure}%
@@ -862,7 +738,7 @@ grocery stores.}
 Thirty iterations of the multiple imputation algorithm were run for each
 of ten independent imputations. Figure~\ref{fig-marketimp} shows the
 density of the ten imputed market basket prices for a randomly selected
-set of \DIFdelbegin \DIFdel{15 }\DIFdelend \DIFaddbegin \DIFadd{12 }\DIFaddend stores. As the figure reveals, there is some general peaking
+set of 12 stores. As the figure reveals, there is some general peaking
 in the predicted market price for most stores, but the imputation model
 still predicts a wide range of possible prices for most stores. When
 using the imputed data for analysis, we take the mean of the ten
@@ -895,8 +771,8 @@ additionally includes the wait time for transit as well as the time
 necessary to access the transit mode on both ends by walking. The walk
 utility includes a per-mile distance disutility that increases for
 distances greater than 1.5 miles. These equations and coefficients are
-adapted from a statewide mode choice model \DIFaddbegin \DIFadd{for home-based non-work trips
-in urban and rural regions }\DIFaddend developed for UDOT research (Barnes, 2021).
+adapted from a statewide mode choice model for home-based non-work trips
+in urban and rural regions developed for UDOT research (Barnes, 2021).
 
 The log-sum, or total weighted impedance by all modes is therefore
 \begin{equation}\phantomsection\label{eq-mcls}{
@@ -931,7 +807,7 @@ representative sample.
 
 Emerging mobile device data, however, could reveal the typical home
 locations for people who are observed in the space of a particular
-store. (\DIFdelbegin \DIFdel{Macfarlane et al., 2022}\DIFdelend \DIFaddbegin \textbf{\DIFadd{macfarlane2022a?}}\DIFaddend ) present a method for estimating
+store. (Macfarlane et al., 2022) present a method for estimating
 destination choice models from such data, which we repeat in this study.
 We provided a set of geometric polygons for the grocery stores of
 interest to StreetLight Data, Inc., a commercial location-based services
@@ -968,20 +844,11 @@ these three communities.
 
 \begin{figure}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics{04_estimation_files/figure-pdf/fig-nems-market-avail-1.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{04_estimation_files/figure-pdf/fig-nems-market-avail-1.pdf}}
+\includegraphics{04_estimation_files/figure-pdf/fig-nems-market-avail-1.pdf}
 
 }
-\DIFaddendFL 
 
 \caption{\label{fig-nems-market-avail}Relationship between NEMS
 availability score and market basket score in each study community. Utah
@@ -1006,20 +873,11 @@ March 2021 and March 2022 in food products (Bureau of Labor Statistics,
 
 \begin{figure}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics{04_estimation_files/figure-pdf/fig-nems-cost-avail-1.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{04_estimation_files/figure-pdf/fig-nems-cost-avail-1.pdf}}
+\includegraphics{04_estimation_files/figure-pdf/fig-nems-cost-avail-1.pdf}
 
 }
-\DIFaddendFL 
 
 \caption{\label{fig-nems-cost-avail}Relationship between NEMS
 availability score and cost score in each study community.}
@@ -1049,7 +907,7 @@ destination choice, we develop and estimate four different utility
 equations: \begin{align*}
 \mathrm{Access} &= \beta_{MCLS}( k_{ij})\\
 \mathrm{NEMS} &= \beta_{n-a} (\mathrm{NEMS-Availability}) + \beta_{n-c}\mathrm({NEMS-Cost})\\
-\mathrm{Attributes} &= \beta_{mkt} (\mathrm{Market Basket}) + \DIFaddbegin \DIFadd{\beta_{reg} (\mathrm{Registers}) + }\DIFaddend \mathbf{\beta}_{type}(\mathrm{Type})\\
+\mathrm{Attributes} &= \beta_{mkt} (\mathrm{Market Basket}) + \beta_{reg} (\mathrm{Registers}) + \mathbf{\beta}_{type}(\mathrm{Type})\\
 \mathrm{All} &= \mathrm{Access} + \mathrm{NEMS} + \mathrm{Attributes}\\
 \end{align*} The Access model includes only the mode choice logsum
 described in Equation~\ref{eq-mcls}. The NEMS model includes the NEMS
@@ -1065,42 +923,7 @@ other three sets of estimated coefficients.
 
 \caption{\label{tbl-utah-models}Estimated Models of Utah County}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering
-%DIFDELCMD < \begin{tabular}[t]{lcccc}
-%DIFDELCMD < \toprule
-%DIFDELCMD <   & Access & NEMS & Attributes & All\\
-%DIFDELCMD < \midrule
-%DIFDELCMD < Mode Choice Log-sum & 8.090** &  &  & 8.592**\\
-%DIFDELCMD <  & (95.354) &  &  & (87.875)\\
-%DIFDELCMD < NEMS Availability Score &  & 0.034** &  & -0.010**\\
-%DIFDELCMD <  &  & (23.136) &  & (-3.191)\\
-%DIFDELCMD < NEMS Cost Score &  & 0.029** &  & 0.035**\\
-%DIFDELCMD <  &  & (6.344) &  & (5.075)\\
-%DIFDELCMD < USDA Market Basket &  &  & -0.007** & -0.008**\\
-%DIFDELCMD <  &  &  & (-8.943) & (-8.756)\\
-%DIFDELCMD < Registers &  &  & 0.057** & 0.062**\\
-%DIFDELCMD <  &  &  & (55.241) & (39.579)\\
-%DIFDELCMD < Store Type: Dollar Store &  &  & 1.955** & 2.136**\\
-%DIFDELCMD <  &  &  & (57.226) & (41.639)\\
-%DIFDELCMD < Store Type: Convenience Store &  &  & -1.637** & -1.769**\\
-%DIFDELCMD <  &  &  & (-7.256) & (-7.351)\\
-%DIFDELCMD < Store Type: Other &  &  & -1.604** & -1.560**\\
-%DIFDELCMD <  &  &  & (-12.267) & (-11.076)\\
-%DIFDELCMD < \midrule
-%DIFDELCMD < AIC & 31,798.55 & 49,021.43 & 42,045.1 & 25,587.52\\
-%DIFDELCMD < $\rho^2_0$ & 0.36 & 0.014 & 0.154 & 0.485\\
-%DIFDELCMD < \bottomrule
-%DIFDELCMD < \multicolumn{5}{l}{\rule{0pt}{1em}* p $<$ 0.05, ** p $<$ 0.01}\\
-%DIFDELCMD < \multicolumn{5}{l}{\rule{0pt}{1em}t-statistics in parentheses}\\
-%DIFDELCMD < \end{tabular}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
+\centering{
 
 \centering
 \begin{tabular}[t]{lcccc}
@@ -1125,14 +948,13 @@ Store Type: Other &  &  & -1.785** & -1.813**\\
  &  &  & (-12.641) & (-11.991)\\
 \midrule
 AIC & 31,874.44 & 49,051.55 & 41,985.6 & 25,402.43\\
-$\rho^2_0$ & 0.359 & 0.013 & 0.155 & 0.489\\
+\$\textbackslash{}rho\textasciicircum{}2\_0\$ & 0.359 & 0.013 & 0.155 & 0.489\\
 \bottomrule
 \multicolumn{5}{l}{\rule{0pt}{1em}* p $<$ 0.05, ** p $<$ 0.01}\\
 \multicolumn{5}{l}{\rule{0pt}{1em}t-statistics in parentheses}\\
 \end{tabular}
 
 }
-\DIFaddendFL 
 
 \end{table}%
 
@@ -1174,40 +996,7 @@ explanatory power is due to transportation proximity.
 
 \caption{\label{tbl-sl-models}Estimated Models of West Salt Lake Valley}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering
-%DIFDELCMD < \begin{tabular}[t]{lcccc}
-%DIFDELCMD < \toprule
-%DIFDELCMD <   & Access & NEMS & Attributes & All\\
-%DIFDELCMD < \midrule
-%DIFDELCMD < Mode Choice Log-sum & 9.767** &  &  & 11.924**\\
-%DIFDELCMD <  & (73.003) &  &  & (73.366)\\
-%DIFDELCMD < NEMS Availability Score &  & 0.135** &  & 0.010**\\
-%DIFDELCMD <  &  & (73.114) &  & (2.627)\\
-%DIFDELCMD < NEMS Cost Score &  & -0.039** &  & 0.049**\\
-%DIFDELCMD <  &  & (-8.534) &  & (8.223)\\
-%DIFDELCMD < USDA Market Basket &  &  & -0.009** & -0.006**\\
-%DIFDELCMD <  &  &  & (-12.442) & (-6.686)\\
-%DIFDELCMD < Registers &  &  & 0.106** & 0.128**\\
-%DIFDELCMD <  &  &  & (71.242) & (51.661)\\
-%DIFDELCMD < Store Type: Dollar Store &  &  & 0.301** & 0.530**\\
-%DIFDELCMD <  &  &  & (6.618) & (9.354)\\
-%DIFDELCMD < Store Type: Other &  &  & -0.024 & 0.320*\\
-%DIFDELCMD <  &  &  & (-0.184) & (2.323)\\
-%DIFDELCMD < \midrule
-%DIFDELCMD < AIC & 43,025.99 & 42,037.02 & 39,775.88 & 31,636.5\\
-%DIFDELCMD < $\rho^2_0$ & 0.134 & 0.154 & 0.2 & 0.364\\
-%DIFDELCMD < \bottomrule
-%DIFDELCMD < \multicolumn{5}{l}{\rule{0pt}{1em}* p $<$ 0.05, ** p $<$ 0.01}\\
-%DIFDELCMD < \multicolumn{5}{l}{\rule{0pt}{1em}t-statistics in parentheses}\\
-%DIFDELCMD < \end{tabular}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
+\centering{
 
 \centering
 \begin{tabular}[t]{lcccc}
@@ -1230,14 +1019,13 @@ Store Type: Other &  &  & 0.248* & 0.556**\\
  &  &  & (2.211) & (4.614)\\
 \midrule
 AIC & 42,820.66 & 42,541.44 & 40,195.01 & 31,863.31\\
-$\rho^2_0$ & 0.138 & 0.144 & 0.191 & 0.359\\
+\$\textbackslash{}rho\textasciicircum{}2\_0\$ & 0.138 & 0.144 & 0.191 & 0.359\\
 \bottomrule
 \multicolumn{5}{l}{\rule{0pt}{1em}* p $<$ 0.05, ** p $<$ 0.01}\\
 \multicolumn{5}{l}{\rule{0pt}{1em}t-statistics in parentheses}\\
 \end{tabular}
 
 }
-\DIFaddendFL 
 
 \end{table}%
 
@@ -1245,42 +1033,7 @@ $\rho^2_0$ & 0.138 & 0.144 & 0.191 & 0.359\\
 
 \caption{\label{tbl-sj-models}Estimated Models of San Juan County}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering
-%DIFDELCMD < \begin{tabular}[t]{lcccc}
-%DIFDELCMD < \toprule
-%DIFDELCMD <   & Access & NEMS & Attributes & All\\
-%DIFDELCMD < \midrule
-%DIFDELCMD < Mode Choice Log-sum & 0.732** &  &  & 1.233**\\
-%DIFDELCMD <  & (83.411) &  &  & (74.178)\\
-%DIFDELCMD < NEMS Availability Score &  & 0.134** &  & 0.049**\\
-%DIFDELCMD <  &  & (61.893) &  & (10.191)\\
-%DIFDELCMD < NEMS Cost Score &  & 0.249** &  & 0.072**\\
-%DIFDELCMD <  &  & (38.689) &  & (8.690)\\
-%DIFDELCMD < USDA Market Basket &  &  & -0.010** & -0.031**\\
-%DIFDELCMD <  &  &  & (-13.568) & (-23.484)\\
-%DIFDELCMD < Registers &  &  & 0.022** & 0.052**\\
-%DIFDELCMD <  &  &  & (20.793) & (27.317)\\
-%DIFDELCMD < Store Type: Dollar Store &  &  & -2.126** & -1.443**\\
-%DIFDELCMD <  &  &  & (-47.105) & (-20.779)\\
-%DIFDELCMD < Store Type: Convenience Store &  &  & -3.720** & -1.376**\\
-%DIFDELCMD <  &  &  & (-31.352) & (-9.810)\\
-%DIFDELCMD < Store Type: Other &  &  & -1.567** & -1.574**\\
-%DIFDELCMD <  &  &  & (-29.544) & (-22.209)\\
-%DIFDELCMD < \midrule
-%DIFDELCMD < AIC & 40,351.12 & 35,021.59 & 37,361.16 & 23,143.56\\
-%DIFDELCMD < $\rho^2_0$ & 0.188 & 0.295 & 0.248 & 0.535\\
-%DIFDELCMD < \bottomrule
-%DIFDELCMD < \multicolumn{5}{l}{\rule{0pt}{1em}* p $<$ 0.05, ** p $<$ 0.01}\\
-%DIFDELCMD < \multicolumn{5}{l}{\rule{0pt}{1em}t-statistics in parentheses}\\
-%DIFDELCMD < \end{tabular}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
+\centering{
 
 \centering
 \begin{tabular}[t]{lcccc}
@@ -1305,14 +1058,13 @@ Store Type: Other &  &  & -1.451** & -1.331**\\
  &  &  & (-28.680) & (-19.097)\\
 \midrule
 AIC & 40,811.4 & 35,119.64 & 37,230.81 & 23,556.77\\
-$\rho^2_0$ & 0.179 & 0.293 & 0.251 & 0.526\\
+\$\textbackslash{}rho\textasciicircum{}2\_0\$ & 0.179 & 0.293 & 0.251 & 0.526\\
 \bottomrule
 \multicolumn{5}{l}{\rule{0pt}{1em}* p $<$ 0.05, ** p $<$ 0.01}\\
 \multicolumn{5}{l}{\rule{0pt}{1em}t-statistics in parentheses}\\
 \end{tabular}
 
 }
-\DIFaddendFL 
 
 \end{table}%
 
@@ -1329,38 +1081,26 @@ explain more of the model fit than the transportation impedance term.
 
 \begin{figure}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{04_estimation_files/figure-pdf/fig-all-comp-1.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{04_estimation_files/figure-pdf/fig-all-comp-1.pdf}}
+\includegraphics{04_estimation_files/figure-pdf/fig-all-comp-1.pdf}
 
 }
-\DIFaddendFL 
 
-\caption{\label{fig-all-comp}\DIFdelbeginFL \DIFdelFL{Comparison }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Average change in the probability }\DIFaddendFL of \DIFdelbeginFL \DIFdelFL{county }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{the
-chosen alternative with respect to a 100\% change in }\DIFaddendFL model \DIFdelbeginFL \DIFdelFL{coefficient
-estimates}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{variables}\DIFaddendFL .\DIFdelbeginFL \DIFdelFL{Absolute square root transformation applied to improve
-visibility.}\DIFdelendFL }
+\caption{\label{fig-all-comp}Average change in the probability of the
+chosen alternative with respect to a 100\% change in model variables.}
 
 \end{figure}%
 
 To better visualize how the preferences in the three communities differ
-from each other, Figure~\ref{fig-all-comp} plots the \DIFdelbegin \DIFdel{coefficient
-estimates from the All model in each community. }\DIFdelend \DIFaddbegin \DIFadd{average marginal
+from each other, Figure~\ref{fig-all-comp} plots the average marginal
 elasticity on the choice probability of the chosen store with respect to
 many variables in the ``All'' model for each county. Specifically, we
 increased the variable of interest by 100\% for all synthetic choice
 makers, and then calculated the average change in the probability of the
 chosen alternative for all choice makers with its sample confidence
-interval. }\DIFaddend The mode choice log-sum \DIFaddbegin \DIFadd{elasticity }\DIFaddend is strongly significant in
-all three communities \DIFaddbegin \DIFadd{(and is the most influential variable on choice)}\DIFaddend ,
+interval. The mode choice log-sum elasticity is strongly significant in
+all three communities (and is the most influential variable on choice),
 but it has its smallest value in San Juan County where people often must
 travel long distances to reach any stores. The highest mode choice
 log-sum value is in Salt Lake, but this explains a smaller proportion of
@@ -1369,11 +1109,6 @@ hypothesis for this observation may include the higher density of stores
 in Salt Lake --- attributes are more important when so many stores are
 close together --- paired with the somewhat lower vehicle ownership in
 that community driving up the coefficient value.
-\DIFdelbegin \DIFdel{Most other estimates are somewhat
-consistent across counties, with the exception of the NEMS variables
-discussed previously and the role of dollar stores and other stores in
-each community.
-}\DIFdelend 
 
 \subsection{Accessibility}\label{sec-access}
 
@@ -1394,20 +1129,11 @@ ethnic minorities in the region.
 
 \begin{figure}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-ut-1.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
-
-\includegraphics[width=6in,height=\textheight,keepaspectratio]{04_estimation_files/figure-pdf/fig-map-ut-1.pdf}
+\includegraphics[width=6in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-ut-1.pdf}
 
 }
-\DIFaddendFL 
 
 \caption{\label{fig-map-ut}Modeled access to grocery stores in Utah
 County}
@@ -1439,20 +1165,11 @@ for non-vehicle users.
 
 \begin{minipage}{0.50\linewidth}
 
-\DIFdelbegin %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics[width=4in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-nocar-1.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \centering{
-
-\includegraphics[width=4in,height=\textheight,keepaspectratio]{04_estimation_files/figure-pdf/fig-map-nocar-1.pdf}
+\includegraphics[width=4in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-nocar-1.pdf}
 
 }
-\DIFaddend 
 
 \subcaption{\label{fig-map-nocar-1}With vehicles}
 
@@ -1460,20 +1177,11 @@ for non-vehicle users.
 %
 \begin{minipage}{0.50\linewidth}
 
-\DIFdelbegin %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics[width=4in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-nocar-2.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \centering{
-
-\includegraphics[width=4in,height=\textheight,keepaspectratio]{04_estimation_files/figure-pdf/fig-map-nocar-2.pdf}
+\includegraphics[width=4in,height=\textheight]{04_estimation_files/figure-pdf/fig-map-nocar-2.pdf}
 
 }
-\DIFaddend 
 
 \subcaption{\label{fig-map-nocar-2}Without vehicles}
 
@@ -1515,12 +1223,11 @@ included in all the alternatives and therefore cancels out (Train, 2009)
 in estimation. This means we cannot assess the \emph{absolute} value of
 utility, but we can assess the \emph{relative} monetary benefit of the
 difference between two scenarios as \[
-\mathrm{Benefit} = \sum_{i}\left(-\frac{\omega_i}{\beta_{mkt}}(CS_i\DIFdelbegin \DIFdel{^1 }\DIFdelend \DIFaddbegin \DIFadd{' }\DIFaddend - CS_i\DIFdelbegin \DIFdel{^1}\DIFdelend )\right)
-\] \DIFdelbegin \DIFdel{where }\DIFdelend \DIFaddbegin \DIFadd{with the consumer surplus of the ``improved'' scenario in each origin
+\mathrm{Benefit} = \sum_{i}\left(-\frac{\omega_i}{\beta_{mkt}}(CS_i' - CS_i)\right)
+\] with the consumer surplus of the ``improved'' scenario in each origin
 zone \(i\) indicated as \(CS_i'\) and the unimproved counterpart as
-\(CS_i\), }\DIFaddend a weight \(\omega\) accounts for the population in \DIFdelbegin \DIFdel{each origin
-zone\(i\) }\DIFdelend \DIFaddbegin \DIFadd{the zone,
-}\DIFaddend and the \(\beta_{mkt}\) converts the difference in utility into a dollar
+\(CS_i\), a weight \(\omega\) accounts for the population in the zone,
+and the \(\beta_{mkt}\) converts the difference in utility into a dollar
 amount.
 
 \subsection{Scenario Descriptions}\label{scenario-descriptions}
@@ -1538,12 +1245,12 @@ There are three general strategies we develop scenarios around:
   the attributes of a full-service grocery store.
 \item
   Improve the transit and non-motorized access to stores in a region.
-\DIFaddbegin \item
-  \DIFadd{Increase the availability of grocery delivery in the region.
-}\DIFaddend \end{enumerate}
+\item
+  Increase the availability of grocery delivery in the region.
+\end{enumerate}
 
 We implement all three strategies in scenarios on the west Salt Lake
-valley community. We also implement strategy \DIFdelbegin \DIFdel{1 (a new }\DIFdelend \DIFaddbegin \DIFadd{2 (an improved }\DIFaddend store) in
+valley community. We also implement strategy 2 (an improved store) in
 the San Juan and Utah County communities for comparison.
 
 \subsubsection{Erect a new store}\label{erect-a-new-store}
@@ -1606,7 +1313,7 @@ For active transportation, the lack of pedestrian facilities across and
 alongside roads both in reality and in the OpenStreetMap dataset may
 substantially increase measured walk distances and times. In this
 scenario, we replace the times measured from OpenStreetMap using R5 with
-an idealized \DIFdelbegin \DIFdel{Euclidean }\DIFdelend distance function,
+an idealized distance function,
 \begin{equation}\phantomsection\label{eq-newwalk}{
 t_{\mathrm{walk}} = \frac{\sqrt{2} * d'_{ij}}{v_{\mathrm{walk}}}
 }\end{equation} where \(d'_{ij}\) is the Euclidean (straight-line)
@@ -1620,17 +1327,16 @@ of effectively frictionless active transport. For public transit, we
 assume that the frequency of service is such that all transfer and
 initial wait times are at most 5 minutes, and that no person must walk
 more than 10 minutes to access their first public transport service.
-\DIFaddbegin \DIFadd{Presently, the }\emph{\DIFadd{mean}} \DIFadd{walk access time in the scenario region is
+Presently, the \emph{mean} walk access time in the scenario region is
 over 20 minutes, and the wait time over 10 minutes.
-}\DIFaddend 
 
 Travel times are improved in this way for all block group --- store
 pairs in the west Salt Lake Valley community.
 
-\DIFaddbegin \subsubsection{\DIFadd{Grocery delivery
-services}}\label{grocery-delivery-services}
+\subsubsection{Grocery delivery
+services}\label{grocery-delivery-services}
 
-\DIFadd{This strategy assumes that the most effective way to bring quality
+This strategy assumes that the most effective way to bring quality
 nutrition to an inaccessible location is not to change the distribution
 of stores or the quality of transport, but to support and enable
 delivery services that will bring the nutrition to individuals. To model
@@ -1645,9 +1351,8 @@ placing online orders; and service providers in the region typically
 place a long-distance charge rather than a service area limit.
 Regardless, these assumptions will work for the purpose of this
 exercise.
-}
 
-\DIFaddend \subsection{Scenario Results}\label{scenario-results}
+\subsection{Scenario Results}\label{scenario-results}
 
 Using the methodology described above, we recalculated the destination
 choice log-sum value for each block group under each scenario, and
@@ -1655,20 +1360,11 @@ compared the change in accessibility resulting from the improvement.
 
 \begin{figure}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s1results-1.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
-
-\includegraphics[width=6in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s1results-1.pdf}
+\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s1results-1.pdf}
 
 }
-\DIFaddendFL 
 
 \caption{\label{fig-s1results}Estimated per-household benefits of adding
 new full-service store in west Salt Lake Valley}
@@ -1678,25 +1374,16 @@ new full-service store in west Salt Lake Valley}
 Figure~\ref{fig-s1results} shows the geographic distribution of benefits
 associated with locating a new store at a site in the Salt Lake
 community. The benefits are largest immediately next to the new store,
-where they exceed \DIFdelbegin \DIFdel{\(317\) }\DIFdelend \DIFaddbegin \DIFadd{\(3\) }\DIFaddend for each household each time the household makes
+where they exceed \(3\) for each household each time the household makes
 a trip to a grocery store.
 
 \begin{figure}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2results-1.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
-
-\includegraphics[width=6in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s2results-1.pdf}
+\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2results-1.pdf}
 
 }
-\DIFaddendFL 
 
 \caption{\label{fig-s2results}Estimated per-household benefits of
 improving an existing store in west Salt Lake Valley}
@@ -1723,20 +1410,11 @@ close to you are already sufficient.
 
 \begin{minipage}{0.50\linewidth}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-1.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
-
-\includegraphics[width=4in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s2sjut-1.pdf}
+\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-1.pdf}
 
 }
-\DIFaddendFL 
 
 \subcaption{\label{fig-s2sjut-1}Utah County (in Santaquin)}
 
@@ -1744,20 +1422,11 @@ close to you are already sufficient.
 %
 \begin{minipage}{0.50\linewidth}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-2.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
-
-\includegraphics[width=4in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s2sjut-2.pdf}
+\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-2.pdf}
 
 }
-\DIFaddendFL 
 
 \subcaption{\label{fig-s2sjut-2}San Juan County (in Blanding)}
 
@@ -1779,20 +1448,11 @@ on the order of \$0.25.
 
 \begin{figure}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
+\centering{
 
-%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s3results-1.pdf}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
-
-\includegraphics[width=6in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s3results-1.pdf}
+\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s3results-1.pdf}
 
 }
-\DIFaddendFL 
 
 \caption{\label{fig-s3results}Estimated per-household benefits of
 improving non-motorized and public transport access to groceries in Salt
@@ -1800,47 +1460,24 @@ Lake Valley.}
 
 \end{figure}%
 
-\DIFaddbegin \begin{figure}
+\begin{figure}
 
 \centering{
 
-\includegraphics[width=6in,height=\textheight,keepaspectratio]{05_scenarios_files/figure-pdf/fig-s4results-1.pdf}
+\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s4results-1.pdf}
 
 }
 
-\caption{\label{fig-s4results}\DIFaddFL{Estimated per-household benefits of
-grocery deliveries in Salt Lake Valley.}}
+\caption{\label{fig-s4results}Estimated per-household benefits of
+grocery deliveries in Salt Lake Valley.}
 
-\end{figure}%DIF > 
+\end{figure}%
 
-\DIFaddend \begin{table}
+\begin{table}
 
 \caption{\label{tbl-scenarios}Scenario Benefits}
 
-\DIFdelbeginFL %DIFDELCMD < \centering{
-%DIFDELCMD < 
-
-%DIFDELCMD < \centering
-%DIFDELCMD < \begin{tabular}[t]{llll}
-%DIFDELCMD < \toprule
-%DIFDELCMD < \multicolumn{1}{c}{ } & \multicolumn{3}{c}{Weighted by} \\
-%DIFDELCMD < \cmidrule(l{3pt}r{3pt}){2-4}
-%DIFDELCMD < Scenario & Households & Non-white & Low-Income\\
-%DIFDELCMD < \midrule
-%DIFDELCMD < New Store & \$11,145,542,384 & \$3,051,365,881 & \$1,766,485,839\\
-%DIFDELCMD < \addlinespace[0.3em]
-%DIFDELCMD < \multicolumn{4}{l}{\textbf{Improved Store}}\\
-%DIFDELCMD < \hspace{1em}Salt Lake Valley & \$8,597,772 & \$4,187,114 & \$1,760,422\\
-%DIFDELCMD < \hspace{1em}Utah County & \$1,621,027 & \$260,360 & \$249,142\\
-%DIFDELCMD < \hspace{1em}San Juan County & \$355,512 & \$157,715 & \$114,897\\
-%DIFDELCMD < Improved Transport & \$2,024,639 & \$922,766 & \$287,064\\
-%DIFDELCMD < \bottomrule
-%DIFDELCMD < \end{tabular}
-%DIFDELCMD < 
-
-%DIFDELCMD < }
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centering{
+\centering{
 
 \centering
 \begin{tabular}[t]{lllll}
@@ -1861,7 +1498,6 @@ Delivery Services & \$228,192,080 & \$88,977,055 & \$26,216,631 & \$5,474,393\\
 \end{tabular}
 
 }
-\DIFaddendFL 
 
 \end{table}%
 
@@ -1875,16 +1511,16 @@ communities). The Households column multiplies the difference in
 destination choice log-sum at each block group by the number of
 households in that block group, while the non-white and low-income
 columns weight the difference by the share of non-white individuals and
-low-income \DIFdelbegin \DIFdel{households }\DIFdelend \DIFaddbegin \DIFadd{and zero-vehicle zero-vehicle }\DIFaddend respectively. All demographic
-data comes from the American Community Survey \DIFaddbegin \DIFadd{(ACS) }\DIFaddend 5-year aggregations\DIFaddbegin \DIFadd{;
+low-income and zero-vehicle zero-vehicle respectively. All demographic
+data comes from the American Community Survey (ACS) 5-year aggregations;
 the ACS discloses households by vehicles available at the tract level,
 while all other household characteristics are at the more spatially
-refined block group level}\DIFaddend .
+refined block group level.
 
 These alternate weighting schemes help to illustrate the potential
 equity of the benefit distribution should each scenario be pursued. The
 new store scenario in the Salt Lake community, for example, has a total
-benefit of approximately \$\DIFdelbegin \DIFdel{5.5 }\DIFdelend \DIFaddbegin \DIFadd{13 }\DIFaddend million. Of this amount, somewhat less
+benefit of approximately \$13 million. Of this amount, somewhat less
 than half the benefits go to non-white individuals and less than
 one-fifth to low-income households. These ratios are more or less the
 same for the store improvement scenario and the improved transport
@@ -1910,7 +1546,7 @@ within the envelope of the existing store; it may be that such
 improvements would meet or exceed the cost of building a new store on a
 new site, along with stocking, staffing, and operating the store.
 
-\DIFaddbegin \DIFadd{By far the highest benefit observed in these scenarios is the increased
+By far the highest benefit observed in these scenarios is the increased
 availability of delivery services, but this scenario must be treated
 with some skepticism. Delivery services place costs on shoppers that are
 not well-quantified in the existing model: potential increases in
@@ -1922,9 +1558,8 @@ achieve profitability later (Moore, 2022). Resolving all of these issues
 cannot be handled in the present analysis, but it must be at least
 considered that grocery delivery may have the greatest consumer surplus
 of these four strategies by a wide margin.
-}
 
-\DIFaddend \bookmarksetup{startatroot}
+\bookmarksetup{startatroot}
 
 \section{Conclusions and Recommendations}\label{sec-conclude}
 
@@ -1988,13 +1623,12 @@ every trip was from the population-weighted block group centroid, which
 may vary substantially from the actual distance traveled, especially in
 large block groups. The methodology also used travel times calculated in
 the AM peak hour; though this time maximizes the availability of transit
-options, it is not a typical peak time for grocery shopping. \DIFaddbegin \DIFadd{The mode
+options, it is not a typical peak time for grocery shopping. The mode
 choice model was also selected for general convenience, and not fully
-calibrated to grocery trips in the specific regions. }\DIFaddend All of these
+calibrated to grocery trips in the specific regions. All of these
 limitations could potentially be relaxed by using a synthetic population
-with detailed socioeconomic data and parcel-level \DIFdelbegin \DIFdel{locations
-}\DIFdelend \DIFaddbegin \DIFadd{location choices
-}\DIFaddend determined by an activity-based model, as proposed by (Dong et al.,
+with detailed socioeconomic data and parcel-level location choices
+determined by an activity-based model, as proposed by (Dong et al.,
 2006). In this exercise, which we leave to future research, the grocery
 maintenance trips could be explicitly modeled, with synthetic
 individuals of unique characteristics choosing destinations that are
@@ -2062,14 +1696,14 @@ Methodology, Resources, Writing - review \& editing
 
 \phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
-\DIFaddbegin \bibitem[\citeproctext]{ref-aggarwal2014}
-\DIFadd{Aggarwal, A., Cook, A. J., Jiao, J., Seguin, R. A., Vernez Moudon, A.,
-Hurvitz, P. M., \& Drewnowski, A. (2014). Access to }{\DIFadd{Supermarkets}} \DIFadd{and
-}{\DIFadd{Fruit}} \DIFadd{and }{\DIFadd{Vegetable Consumption}}\DIFadd{. }\emph{\DIFadd{American Journal of Public
-Health}}\DIFadd{, }\emph{104}(5)\DIFadd{, 917--923.
-}\url{https://doi.org/10.2105/AJPH.2013.301763}
+\bibitem[\citeproctext]{ref-aggarwal2014}
+Aggarwal, A., Cook, A. J., Jiao, J., Seguin, R. A., Vernez Moudon, A.,
+Hurvitz, P. M., \& Drewnowski, A. (2014). Access to {Supermarkets} and
+{Fruit} and {Vegetable Consumption}. \emph{American Journal of Public
+Health}, \emph{104}(5), 917--923.
+\url{https://doi.org/10.2105/AJPH.2013.301763}
 
-\DIFaddend \bibitem[\citeproctext]{ref-modelsummary}
+\bibitem[\citeproctext]{ref-modelsummary}
 Arel-Bundock, V. (2022). {modelsummary}: Data and model summaries in
 {R}. \emph{Journal of Statistical Software}, \emph{103}(1), 1--23.
 \url{https://doi.org/10.18637/jss.v103.i01}
@@ -2229,31 +1863,21 @@ Options} in {Denver}, {CO Grocery Stores}. \emph{Journal of Hunger \&
 Environmental Nutrition}, \emph{16}(3), 297--303.
 \url{https://doi.org/10.1080/19320248.2020.1741482}
 
-\DIFdelbegin \bibitem[\citeproctext]{ref-macfarlane2022a}
-\DIFdelend \DIFaddbegin \bibitem[\citeproctext]{ref-macfarlane2021b}
-\DIFaddend Macfarlane, G. \DIFdelbegin \DIFdel{, Voulgaris, C.T. , \& Tapia, T. (2022).
-City parks and
-slow streets}\DIFdelend \DIFaddbegin \DIFadd{S., Boyd, N., Taylor, J. E., \& Watkins, K. (2021).
-Modeling the impacts of park access on health outcomes}\DIFaddend : {A}
-utility-based \DIFdelbegin \DIFdel{access and equity analysis. }\DIFdelend \DIFaddbegin \DIFadd{accessibility approach. }\DIFaddend \emph{\DIFdelbegin \DIFdel{Journal of Transport }\DIFdelend \DIFaddbegin \DIFadd{Environment }\DIFaddend and \DIFdelbegin \DIFdel{Land Use}\DIFdelend \DIFaddbegin \DIFadd{Planning B:
-Urban Analytics and City Science}\DIFaddend }, \DIFdelbegin %DIFDELCMD < \emph{15}(1)%%%
-\DIFdel{, 587--612.
-}%DIFDELCMD < \url{https://doi.org/10.5198/jtlu.2022.2009}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \emph{48}(8)\DIFadd{, 2289--2306.
-}\url{https://doi.org/10.1177/2399808320974027}
-\DIFaddend 
+\bibitem[\citeproctext]{ref-macfarlane2022}
+Macfarlane, G. S., Voulgaris, C. T., \& Tapia, T. (2022). City parks and
+slow streets: {A} utility-based access and equity analysis.
+\emph{Journal of Transport and Land Use}, \emph{15}(1), 587--612.
+\url{https://doi.org/10.5198/jtlu.2022.2009}
 
 \bibitem[\citeproctext]{ref-mcfadden1974}
 McFadden, D. (1974). Conditional logit analysis of qualitative choice
 behavior. In P. Zarembka (Ed.), \emph{Frontiers in {Econometrics}} (pp.
-105--142). Academic Press\DIFaddbegin \DIFadd{.
-}
+105--142). Academic Press.
 
 \bibitem[\citeproctext]{ref-moore2022}
-\DIFadd{Moore, D. V. (2022). Predatory }{\DIFadd{Pricing}}\DIFadd{, }{\DIFadd{Network Effects}}\DIFadd{, and the
-}{\DIFadd{Food Delivery Industry}}\DIFadd{: }{\DIFadd{A Case Study}}\DIFadd{. }\emph{\DIFadd{Northern Kentucky Law
-Review}}\DIFadd{, }\emph{49}(1)\DIFadd{, 93--114}\DIFaddend .
+Moore, D. V. (2022). Predatory {Pricing}, {Network Effects}, and the
+{Food Delivery Industry}: {A Case Study}. \emph{Northern Kentucky Law
+Review}, \emph{49}(1), 93--114.
 
 \bibitem[\citeproctext]{ref-pereira2021}
 Pereira, R. H. M., Saraiva, M., Herszenhut, D., Braga, C. K. V., \&
@@ -2309,7 +1933,6 @@ Wright, J. D., Donley, A. M., Gualtieri, M. C., \& Strickhouser, S. M.
 \url{https://doi.org/10.1007/s12115-016-9993-8}
 
 \end{CSLReferences}
-
 
 
 
