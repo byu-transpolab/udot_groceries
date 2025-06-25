@@ -281,27 +281,30 @@ get_nems_groceries <- function(nems_list, brands, this_crs) {
     
   # brands were stored separately  
   brands_df <- readr::read_csv(brands)
-  
   nems <- dplyr::left_join(nems, brands_df, by = "id")
   
   geojson <- lapply(
     list("Salt Lake" = "data/groceries_saltlake.geojson", 
          "San Juan"  = "data/groceries_sanjuan.geojson",
          "Utah" = "data/groceries_utah.geojson"),
-    function(x) sf::st_read(x) 
+    function(x) {
+      sf::st_read(x) |> 
+      dplyr::select(id = ID_1) |>
+      dplyr::filter(sf::st_geometry_type(geometry) == "MULTIPOLYGON" | sf::st_geometry_type(geometry) == "POLYGON")
+    }
   ) |> 
-    dplyr::bind_rows() |> 
-    dplyr::filter(sf::st_geometry_type(geometry) == "MULTIPOLYGON") |> 
-    dplyr::select(id = ID_1) 
+    dplyr::bind_rows() 
   
-  geojson <- geojson[!duplicated(geojson),]
+  geojson2 <- geojson[!duplicated(geojson),]
   
-  dplyr::inner_join(nems, geojson, by = "id") |> 
+  dplyr::left_join(nems, geojson2, by = "id") |> 
     sf::st_as_sf() |> 
     sf::st_transform(this_crs) |> 
     sf::st_make_valid() |> 
-    sf::st_centroid()
+    sf::st_centroid() |>
+    dplyr::filter(!st_is_empty(geometry))
 }
+
 
 #' Get the ACS data for block groups in the vicinity of NEMS-S collected stores
 #' 
