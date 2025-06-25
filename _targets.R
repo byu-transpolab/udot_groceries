@@ -40,6 +40,7 @@ list(
   tar_target(bgcentroids, get_bgcentroids()),
   tar_target(bg, tigris::block_groups("UT", year = 2019)),
   tar_target(ut, tigris::states() |> filter(STUSPS == "UT")),
+  tar_target(regions, tigris::counties("UT") |> filter(NAME %in% c("Salt Lake", "Utah", "San Juan"))),
   # 1.2 Block group ACS data
   tar_target(bg_acs, get_acsdata(bgcentroids)),
   tar_target(wvareafile, "data/west_valley_boundary.geojson", format = "file"),
