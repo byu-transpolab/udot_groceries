@@ -98,23 +98,52 @@ West Valley City. The communities are shown in a wider context in @fig-communiti
 
 ```{r message = FALSE}
 #| label: fig-communities
-#| fig-cap: Location of study regions in Utah.
+#| fig-cap: Location of surveyed stores in three comunities in Utah, with housing density at block group level and size of store measured by number of registers.
+#| fig-height: 7
+#| out-width: "100%"
 tar_load(all_groceries)
-tar_load(ut)
+tar_load(neighbor_acs)
+tar_load(bg)
 
-ggplot(ut) +
-  geom_sf(lwd = 0) +
-  ggspatial::annotation_map_tile("cartolight", zoom = 7) +
-  geom_sf(color = "black", fill = NA) +
-  ggspatial::annotation_scale() +
-  ggspatial::annotation_north_arrow(style =  ggspatial::north_arrow_minimal) +
-  geom_sf(data = all_groceries |> filter(!is.na(total_registers)), 
-       aes(color = county))+
+bg_regions <- bg |> 
+  inner_join(neighbor_acs, by = c("GEOID" = "geoid")) |> 
+  nest(data = everything(), .by = c("county")) |>
+  rename(region = data)
+
+grocery_regions <- all_groceries |>
+  filter(!is.na(total_registers)) |>
+  # cap number of registers
+  mutate(total_registers = cut(total_registers, breaks = c(-Inf, 5, 10, 25, Inf), 
+    labels = c("<5", "5-10", "10-25", ">25"))) |>
+  nest(data = everything(), .by = c("county")) |>
+  rename(grocery = data)
+
+map_regions <- bg_regions |> left_join(grocery_regions, by = "county") |> 
+  mutate(zoom_level = c(11, 12, 8))
+
+p <- lapply(seq_along(1:nrow(map_regions)), function(i){
+  bbox <- st_bbox(map_regions$grocery[[i]])
+  ggplot() +
+    ggspatial::annotation_map_tile("cartolight", zoom = map_regions$zoom_level[i]) +
+    ggspatial::annotation_scale(location = "tr") +
+    ggspatial::annotation_north_arrow(style =  ggspatial::north_arrow_minimal, 
+      location = "tr", pad_y = unit(0.5, "in")) +
+    theme_minimal(base_size = 8) +
+    ggtitle(map_regions$county[i]) +
     theme(axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank()) +
-  scale_color_manual("Region", values = wesanderson::wes_palette('Darjeeling1'))
+    geom_sf(data = map_regions$region[[i]], alpha = 0.3, mapping = aes(fill = density), lwd = 0.01) +
+    geom_sf(data = map_regions$grocery[[i]], mapping = aes(size = total_registers), color = "grey40", alpha = 0.5) +
+    coord_sf(xlim = bbox[c(1,3)], ylim = bbox[c(2,4)], crs = st_crs(map_regions$grocery[[i]])) +
+    scale_fill_viridis_c("Density [Housing Units / sqkm] ", direction = -1, 
+      limits = c(0, 2000), oob = scales::squish,
+      breaks = c(0, 100, 500, 1000, 2000), transform = "sqrt", na.value = NA, option = "A") +
+    scale_size_manual("Total Registers", values = c("<5" = 1, "5-10" = 2, "10-25" = 3, ">25" = 4), na.value = NA)
+})
+
+(p[[1]] | (p[[2]]/p[[3]])) + plot_layout(guides = "collect")
 ```
 
 
@@ -129,7 +158,6 @@ for the Navajo Tribe.
 ```{r} 
 #| label: tbl-acsdata
 #| tbl-cap: Demographic Statistics of Study Regions
-tar_load(neighbor_acs) 
 df <- tibble(neighbor_acs) |> 
   mutate(county = relevel(factor(county), ref = "Utah")) |> 
   group_by(county) |> 
