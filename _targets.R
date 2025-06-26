@@ -40,7 +40,6 @@ list(
   tar_target(bgcentroids, get_bgcentroids()),
   tar_target(bg, tigris::block_groups("UT", year = 2019)),
   tar_target(ut, tigris::states() |> filter(STUSPS == "UT")),
-  tar_target(regions, tigris::counties("UT") |> filter(NAME %in% c("Salt Lake", "Utah", "San Juan"))),
   # 1.2 Block group ACS data
   tar_target(bg_acs, get_acsdata(bgcentroids)),
   tar_target(wvareafile, "data/west_valley_boundary.geojson", format = "file"),
@@ -51,7 +50,9 @@ list(
   tar_target(brands, "data/brands.csv", format = "file"),
   tar_target(nems_groceries, get_nems_groceries(list(n1, n2), brands, this_crs)),
   tar_target(neighbor_acs, get_neighbor_acs(bg_acs, bgcentroids, nems_groceries)),
+  tar_target(map_regions, make_mapregions(bg, neighbor_acs, all_groceries)),
   
+
   # 1.4 Other grocery stores
   tar_target(grocery_sourcedata, "data/utah_allgroceries.geojson", format = "file"),
   tar_target(all_groceries, get_all_groceries(grocery_sourcedata, nems_groceries, bg_acs, this_crs)),

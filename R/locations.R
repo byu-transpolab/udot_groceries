@@ -327,6 +327,31 @@ get_neighbor_acs <- function(bg_acs, bgcentroids, nems_groceries){
   
 }
 
+#' make map regions chart data
+#' 
+#' @param bg
+#' @param neighbor_acs
+#' @param all_groceries
+#' 
+make_mapregions <- function(bg, neighbor_acs, all_groceries){
+  bg_regions <- bg |> 
+    inner_join(neighbor_acs, by = c("GEOID" = "geoid")) |> 
+    nest(data = everything(), .by = c("county")) |>
+    rename(region = data)
+
+  grocery_regions <- all_groceries |>
+    filter(!is.na(total_registers)) |>
+    # cap number of registers
+    mutate(total_registers = cut(total_registers, breaks = c(-Inf, 5, 10, 25, Inf), 
+      labels = c("<5", "5-10", "10-25", ">25"))) |>
+    nest(data = everything(), .by = c("county")) |>
+    rename(grocery = data)
+
+  bg_regions |> left_join(grocery_regions, by = "county") |> 
+    mutate(zoom_level = c(11, 12, 8))
+  
+}
+
 
 #' Get American Community Survey data for the study.
 #' 
