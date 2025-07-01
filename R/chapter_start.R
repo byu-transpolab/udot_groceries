@@ -11,6 +11,15 @@ library(modelsummary)
 library(targets)
 options(dplyr.summarise.inform = FALSE)
 
+my_theme <- theme_bw(base_size = 12) +
+  theme(
+    legend.title = element_text(size = rel(1)),
+    legend.text = element_text(size = rel(0.8)),
+    axis.title = element_text(size = rel(1)),
+    axis.text = element_text(size = rel(0.8)),
+    plot.title = element_text(size = rel(2))
+  )
+theme_set(my_theme)
 
 # Instructions and options =========
 # doesn't wrap numbers in tags latex can't handle
@@ -29,7 +38,7 @@ knitr::knit_hooks$set(inline = inline_hook)
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 # options for latex-only output
 if(knitr::is_latex_output()) {
-  knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev = 'tikz', sanitize = TRUE)
+  knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, sanitize = TRUE)
 } 
 if(knitr::pandoc_to("docx")) {
   knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
