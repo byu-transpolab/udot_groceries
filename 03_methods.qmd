@@ -155,6 +155,7 @@ for the Navajo Tribe.
 ```{r} 
 #| label: tbl-acsdata
 #| tbl-cap: Demographic Statistics of Study Regions
+tar_load(neighbor_acs)
 df <- tibble(neighbor_acs) |> 
   mutate(county = relevel(factor(county), ref = "Utah")) |> 
   group_by(county) |> 
