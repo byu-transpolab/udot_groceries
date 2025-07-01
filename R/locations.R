@@ -9,8 +9,8 @@ impute_store_data <- function(all_groceries, bgcentroids, bg_acs) {
   
   
   # make a coherent block group matcher ==============
-  bg <- left_join(bgcentroids, bg_acs, by = c("id" = "geoid")) |> 
-    filter(population > 0, !is.na(population))
+  bg <- dplyr::left_join(bgcentroids, bg_acs, by = c("id" = "geoid")) |> 
+    dplyr::filter(population > 0, !is.na(population))
   
   # compute statistics for knn data list =====================
   knn <- nngeo::st_nn( all_groceries, bg, k = 9, returnDist = TRUE, 
@@ -256,7 +256,7 @@ get_nems_groceries <- function(nems_list, brands, this_crs) {
     mkt <- nemsr::calculate_market_basket(stores)
     
     stores |> 
-      transmute(
+      dplyr::transmute(
         id = STORE_ID, 
         type = store_type,
         pharmacy = as.logical(pharmacy), 
@@ -349,7 +349,7 @@ make_mapregions <- function(bg, neighbor_acs, all_groceries){
 
   bg_regions |> left_join(grocery_regions, by = "county") |> 
     mutate(zoom_level = c(11, 12, 8))
-  
+
 }
 
 

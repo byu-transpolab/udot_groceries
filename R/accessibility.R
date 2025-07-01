@@ -318,8 +318,8 @@ make_estdata <- function(flows, lsums, ludata, acsdata, n_obs = 50, n_alts = 5,
     dplyr::filter(time %in% time, day %in% day) %>%
     dplyr::mutate(weight = flow / sum(flow)) %>%
     dplyr::sample_n(n_obs, replace = TRUE, weight = weight) %>%
-    dplyr::transmute(obs_id = as.character(row_number()), geoid, dest,
-              validation = sample(c(TRUE,FALSE), n(), TRUE, prob = c(0.2, 0.8))) %>%
+    dplyr::transmute(obs_id = as.character(dplyr::row_number()), geoid, dest,
+              validation = sample(c(TRUE,FALSE), dplyr::n(), TRUE, prob = c(0.2, 0.8))) %>%
     dplyr::rename(alt_0 = dest) %>%
     dplyr::filter(alt_0 %in% ludata$id)
   

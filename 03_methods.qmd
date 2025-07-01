@@ -121,8 +121,8 @@ p <- lapply(seq_along(1:nrow(map_regions)), function(i){
       legend.text = element_text(size = rel(0.8)),
       plot.title = element_text(size = rel(1.2)),
       axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.text.y = element_blank(),
+      axis.ticks.x = element_blank(),
+      axis.text.y = element_blank(),
       axis.ticks.y = element_blank(),
     ) + 
     geom_sf(data = map_regions$region[[i]], alpha = 0.3, mapping = aes(fill = density), lwd = 0.01) +
