@@ -164,7 +164,7 @@ Using the methodology described above, we recalculated the destination choice
 log-sum value for each block group under each scenario, and compared the change
 in accessibility resulting from the improvement.
 
-```{r s1results}
+```{r}
 #| label: fig-s1results
 #| fig-cap: Estimated per-household benefits of adding new full-service store in west Salt Lake Valley
 #| out-width: "6in"
@@ -199,7 +199,7 @@ largest immediately next to the new store, where they exceed
 $`r floor(max(s1cost$diff, na.rm = TRUE))`$ for each household each time the
 household makes a trip to a grocery store.
 
-```{r s2results_sl}
+```{r}
 #| label: fig-s2results
 #| fig-cap: Estimated per-household benefits of improving an existing store in
 #|   west Salt Lake Valley
@@ -244,7 +244,7 @@ a per-household-trip benefit well over \$2, considerably more than the maximum
 benefit in Salt Lake. This is intuitive, as the improvement of a store matters
 less if the stores close to you are already sufficient.
 
-```{r s2results-utsj}
+```{r}
 #| label: fig-s2sjut
 #| fig-cap: Estimated per-household benefits of improving an existing store in Utah and San Juan Counties.
 #| layout-ncol: 2
@@ -313,7 +313,7 @@ frequency transit service to large grocery stores on the corridor. The
 per-household-trip benefit is very small however, with a maximum benefit on the
 order of \$0.25.
 
-```{r s3results}
+```{r}
 #| label: fig-s3results
 #| fig-cap: Estimated per-household benefits of improving non-motorized and public transport access to groceries in Salt Lake Valley.
 #| out-width: "6in"
@@ -346,7 +346,7 @@ ggplot() +
 
 ```
 
-```{r s4results}
+```{r}
 #| label: fig-s4results
 #| fig-cap: Estimated per-household benefits of grocery deliveries in Salt Lake Valley.
 #| out-width: "6in"
@@ -377,7 +377,7 @@ ggplot() +
 ```
 
 
-```{r scenarios}
+```{r}
 #| label: tbl-scenarios
 #| tbl-cap: Scenario Benefits
 these_betas <- c(rep(mkt_betas["SaltLake.market"] , 2),

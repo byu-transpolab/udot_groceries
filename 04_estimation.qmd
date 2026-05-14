@@ -194,7 +194,7 @@ selecting any store in the community (as revealed by the $\rho_0^2$ statistic).
 Though all sets of variables contribute to the overall fit, it is apparent that
 the bulk of model explanatory power is due to transportation proximity.
 
-```{r sl-models}
+```{r}
 #| label: tbl-sl-models
 #| tbl-cap: Estimated Models of West Salt Lake Valley
 modelsummary(sl_models, gof_map = gm, coef_map = cm,
@@ -203,7 +203,7 @@ modelsummary(sl_models, gof_map = gm, coef_map = cm,
              notes = list("t-statistics in parentheses"), output = "kableExtra")
 ```
 
-```{r sj-models}
+```{r}
 #| label: tbl-sj-models
 #| tbl-cap: Estimated Models of San Juan County
 modelsummary(sj_models, gof_map = gm, coef_map = cm,
