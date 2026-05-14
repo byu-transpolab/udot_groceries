@@ -157,7 +157,7 @@ return {
   },
   {
     Cite = function(cite)
-      if bibstyle == 'number' then
+      if quarto.doc.cite_method() ~= 'citeproc' and bibstyle == 'number' then
         -- If we are numbered, force citations into normal mode
         -- as the author styles don't make sense
         for i, v in ipairs(cite.citations) do
