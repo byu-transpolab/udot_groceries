@@ -83,7 +83,9 @@ is at 4100 S and 2700 W in West Valley City.
 
 This strategy assumes that existing stores are in locations that the community
 values and can access, but that those stores may not have high availability of
-quality goods. To examine the potential for this strategy to improve access to
+quality goods. In response, some public agencies and community groups have executed programs
+to improve the offerings and display of more nutritive products [@young2018; @haboush2023healthy].
+To examine the potential for this strategy to improve access to
 nutrition, we improve the attributes of an existing dollar store in the
 community so that it has the size, prices, and availability of goods as a
 full-service grocery store. As above, we create a full-service grocery store
@@ -272,7 +274,6 @@ site in the Salt Lake community (@fig-scenario-results-1) are largest
 immediately next to the new store, where they exceed
 $`r floor(max(s1cost$diff, na.rm = TRUE))`$ for each household each time the
 household makes a trip to a grocery store.
-
 The improved-store scenario (@fig-scenario-results-2) is similar in shape, but
 the scale of the benefits are not as substantial (a maximum
 per-household-trip benefit of less than \$1), and seem to not cover quite as

@@ -4,15 +4,25 @@ Access to nutrition is a critical topic that has been a frequent focus of
 academic literature in public health, community planning, and engineering, but
 the varying and incomplete quantitative definitions of access have perhaps
 limited efforts at developing solutions.
-
-In this research, the model we developed and informed with location-based
-services data suggested that policies that increased the availability and
-quality of grocery stores would do more to enhance access to nutrition than
-strategies that increased the transit level of service and lowered active transport 
-travel times in three
-different Utah communities. These findings may not be general, but they largely
+In this research, a model of nutrition resource access that includes attributes of
+the store --- especially its size and the price of its goods --- improves model fit 
+over a model that only includes the transportation accessibility information. This more
+sensitive model can be used in policy evaluations to compare more targeted 
+interventions along varied dimensions. Travel time proximity is still seen as a driving 
+attribute of access, explaining most of the variation in choice and leading to a
+high evaluation of grocery deliveries that effectively eliminate this barrier.
+These findings may not be general, but they largely
 support the review of food desert literature in @beaulac2009 as well as 
 critical evaluations by @shannon2014 and @wright2016.
+
+The broad literature of attempts to evaluate the nutrition environment --- in the end ---
+must be motivated by attempts to improve not merely access to nutrition resources 
+but to improve health outcomes. To this end, it would be useful to understand if 
+the more comprehensive measures pursued in this paper are more strongly correlated
+with health outcomes than the less comprehensive measures currently used in 
+policy evaluations. This has been shown to be the case with urban green spaces
+[@macfarlane2021modeling], but an examination of this effect for
+health outcomes is left to future research.
 
 ## Limitations {#sec-limitations}
 
