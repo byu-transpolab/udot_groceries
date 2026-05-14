@@ -22,7 +22,7 @@ proximity with quality of offerings and showed the latter might be more predicti
 What has not been frequently attempted in the nutrition access literature,
 however, is a serious comparison of multiple alternative policies to address the
 problem, which would require a multi-dimensional analysis of spatial access,
-store quality, and observed tradeoffs between the two. @macfarlane2021b
+store quality, and observed tradeoffs between the two. @macfarlane2021modeling
 illustrated the potential for a utility-based model of access to establish
 relationships between urban green space access and health, and then continued 
 that methodology into a policy analysis of park space during Covid-19 [@macfarlane2022]. 
