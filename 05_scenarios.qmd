@@ -159,11 +159,24 @@ log-sum value for each block group under each scenario, and compared the change
 in accessibility resulting from the improvement.
 
 ```{r}
-#| label: fig-s1results
-#| fig-cap: Estimated per-household benefits of adding new full-service store in west Salt Lake Valley
-#| out-width: "6in"
+#| label: fig-scenario-results
+#| fig-env: sidewaysfigure
+#| fig-cap: Estimated per-household benefits under the four Salt Lake Valley scenarios.
+#| fig-subcap:
+#|   - "New full-service store"
+#|   - "Improved existing store"
+#|   - "Improved non-motorized and transit access"
+#|   - "Expanded grocery delivery"
+#| layout-ncol: 2
+#| out-width: "4in"
 s1_altd <- tar_read(s1_access)
 tar_load(s1_stores)
+s2_altd <- tar_read(s2_access)
+tar_load(s2_stores)
+s3_altd <- tar_read(s3_access)
+tar_load(gtfs_shape)
+s4_altd <- tar_read(s4_access)
+tar_load(s4_stores)
 
 s1cost <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "035") |> 
   left_join(bg_acs, by = c("id" = "geoid")) |> 
@@ -172,7 +185,37 @@ s1cost <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "035") |>
   left_join(s1_altd |> rename(alt = dclogsum)) |> 
   mutate(diff = (base - alt) / mkt_betas["SaltLake.market"])
 
-ggplot() +
+s2cost <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "035") |>
+  left_join(bg_acs, by = c("id" = "geoid")) |>
+  sf::st_transform(4326) |>
+  left_join(sl_base |> rename(base = dclogsum)) |>
+  left_join(s2_altd |> rename(alt = dclogsum)) |>
+  mutate(diff = (base - alt) / mkt_betas["SaltLake.market"])
+
+s3cost <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "035") |>
+  left_join(bg_acs, by = c("id" = "geoid")) |>
+  sf::st_transform(4326) |>
+  left_join(sl_base |> rename(base = dclogsum)) |>
+  left_join(s3_altd |> rename(alt = dclogsum)) |>
+  mutate(diff = (base - alt) / mkt_betas["SaltLake.market"])
+
+gtfs_shape <- sf::st_simplify(gtfs_shape, dTolerance = 10)
+
+s4cost <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "035") |>
+  left_join(bg_acs, by = c("id" = "geoid")) |>
+  sf::st_transform(4326) |>
+  left_join(sl_base |> rename(base = dclogsum)) |>
+  left_join(s4_altd |> rename(alt = dclogsum)) |>
+  mutate(diff = (base - alt) / mkt_betas["SaltLake.market"])
+
+scenario_map_theme <- theme(
+  axis.text.x = element_blank(),
+  axis.ticks.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks.y = element_blank()
+)
+
+plot_s1 <- ggplot() +
   geom_sf(data = s1cost, aes(fill = diff), lwd = 0) + 
   ggspatial::annotation_map_tile(type = "cartolight", zoom = 11, alpha = 0.6) +
   ggspatial::annotation_north_arrow(style = north_arrow_minimal, location = "tl") +
@@ -180,36 +223,10 @@ ggplot() +
   geom_sf(data = s1_stores, color = "black", shape = 21, size = 3, fill = "white") +
   scale_x_continuous(limits = c(-112.11, -111.7)) + 
   scale_y_continuous(limits = c(40.5, 40.8)) + 
-  theme(axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank()) +
+  scenario_map_theme +
   scale_fill_viridis_c("Benefit", direction = -1, na.value = NA)
-```
 
-@fig-s1results shows the geographic distribution of benefits associated with
-locating a new store at a site in the Salt Lake community. The benefits are
-largest immediately next to the new store, where they exceed
-$`r floor(max(s1cost$diff, na.rm = TRUE))`$ for each household each time the
-household makes a trip to a grocery store.
-
-```{r}
-#| label: fig-s2results
-#| fig-cap: Estimated per-household benefits of improving an existing store in
-#|   west Salt Lake Valley
-#| out-width: "6in"
-s2_altd <- tar_read(s2_access)
-tar_load(s2_stores)
-
-s2cost <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "035") |> 
-  left_join(bg_acs, by = c("id" = "geoid")) |> 
-  sf::st_transform(4326) |> 
-  left_join(sl_base |> rename(base = dclogsum)) |> 
-  left_join(s2_altd |> rename(alt = dclogsum)) |> 
-  mutate(diff = (base - alt) / mkt_betas["SaltLake.market"])
-pal <- wesanderson::wes_palette("Zissou1", 100, type = "continuous")
-
-ggplot() +
+plot_s2 <- ggplot() +
   geom_sf(data = s2cost, aes(fill = diff), lwd = 0) +
   ggspatial::annotation_map_tile(type = "cartolight", zoom = 11, alpha = 0.6) +
   ggspatial::annotation_north_arrow(style = north_arrow_minimal, location = "tl") +
@@ -217,68 +234,22 @@ ggplot() +
   scale_x_continuous(limits = c(-112.11, -111.7)) + 
   scale_y_continuous(limits = c(40.5, 40.8)) + 
   geom_sf(data = s2_stores, color = "black", shape = 21, size = 3, fill = "white") +
-  theme(axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank()) +
+  scenario_map_theme +
   scale_fill_viridis_c("Benefit", direction = -1, na.value = NA)
-```
 
-@fig-s2results shows the results of the scenario improving an existing store in
-the Salt Lake community. Compared to the results of the new store scenario, the
-scale of the benefits are not as substantial (a maximum per-household-trip
-benefit of less than \$1), and seem to not cover quite as large a geographic
-region.  
-
-```{r}
-#| label: fig-s3results
-#| fig-cap: Estimated per-household benefits of improving non-motorized and public transport access to groceries in Salt Lake Valley.
-#| out-width: "6in"
-s3_altd <- tar_read(s3_access)
-
-s3cost <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "035") |> 
-  left_join(bg_acs, by = c("id" = "geoid")) |> 
-  sf::st_transform(4326) |> 
-  left_join(sl_base |> rename(base = dclogsum)) |> 
-  left_join(s3_altd |> rename(alt = dclogsum)) |> 
-  mutate(diff = (base - alt) / mkt_betas["SaltLake.market"])
-
-tar_load(gtfs_shape)
-gtfs_shape <- sf::st_simplify(gtfs_shape, dTolerance = 10)
-
-ggplot() + 
-  geom_sf(data = s3cost, aes(fill = diff), lwd = 0) + 
+plot_s3 <- ggplot() +
+  geom_sf(data = s3cost, aes(fill = diff), lwd = 0) +
   ggspatial::annotation_map_tile("cartolight", zoom = 10, alpha = 0.6) +
   ggspatial::annotation_north_arrow(style = north_arrow_minimal, location = "tl") +
   ggspatial::annotation_scale() +
   geom_sf(data = gtfs_shape |> filter(mode != "BRT"), aes(color = mode)) +
   scale_x_continuous(limits = c(-112.11, -111.7)) + 
   scale_y_continuous(limits = c(40.5, 40.8)) + 
-  theme(axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank()) +
-  scale_fill_viridis_c("Benefit", direction = -1, na.value = NA)+
+  scenario_map_theme +
+  scale_fill_viridis_c("Benefit", direction = -1, na.value = NA) +
   scale_color_manual("Transit", values = c("gray80", "black", "gray50"))
 
-```
-
-```{r}
-#| label: fig-s4results
-#| fig-cap: Estimated per-household benefits of grocery deliveries in Salt Lake Valley.
-#| out-width: "6in"
-s4_altd <- tar_read(s4_access)
-tar_load(s4_stores)
-
-s4cost <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "035") |> 
-  left_join(bg_acs, by = c("id" = "geoid")) |> 
-  sf::st_transform(4326) |> 
-  left_join(sl_base |> rename(base = dclogsum)) |> 
-  left_join(s4_altd |> rename(alt = dclogsum)) |> 
-  mutate(diff = (base - alt) / mkt_betas["SaltLake.market"])
-
-
-ggplot() +
+plot_s4 <- ggplot() +
   geom_sf(data = s4cost, aes(fill = diff), lwd = 0) +
   ggspatial::annotation_map_tile("cartolight", zoom = 10, alpha = 0.6) +
   ggspatial::annotation_north_arrow(style = north_arrow_minimal, location = "tl") +
@@ -286,13 +257,51 @@ ggplot() +
   geom_sf(data = s4_stores, color = "black", shape = 21, size = 3, fill = "white") +
   scale_x_continuous(limits = c(-112.11, -111.7)) + 
   scale_y_continuous(limits = c(40.5, 40.8)) + 
-  theme(axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank()) +
+  scenario_map_theme +
   scale_fill_viridis_c("Benefit", direction = -1, na.value = NA)
+
+plot_s1
+plot_s2
+plot_s3
+plot_s4
 ```
 
+@fig-scenario-results shows the geographic distribution of benefits associated
+with each Salt Lake Valley scenario. The benefits from locating a new store at a
+site in the Salt Lake community (@fig-scenario-results-1) are largest
+immediately next to the new store, where they exceed
+$`r floor(max(s1cost$diff, na.rm = TRUE))`$ for each household each time the
+household makes a trip to a grocery store.
+
+The improved-store scenario (@fig-scenario-results-2) is similar in shape, but
+the scale of the benefits are not as substantial (a maximum
+per-household-trip benefit of less than \$1), and seem to not cover quite as
+large a geographic region. The transit and non-motorized access scenario
+(@fig-scenario-results-3) spreads smaller benefits over a larger area, while the
+grocery-delivery scenario (@fig-scenario-results-4) produces the largest and
+most broadly distributed gains.
+
+
+```{r scenario-table-data, include=FALSE}
+ut_base <- tar_read(wf_access)
+sj_base <- tar_read(ru_access)
+s2_altd_ut <- tar_read(s2_access_ut)
+s2_altd_sj <- tar_read(s2_access_sj)
+
+s2cost_ut <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "049") |>
+  left_join(bg_acs, by = c("id" = "geoid")) |>
+  sf::st_transform(4326) |>
+  left_join(ut_base |> rename(base = dclogsum)) |>
+  left_join(s2_altd_ut |> rename(alt = dclogsum)) |>
+  mutate(diff = (base - alt) / mkt_betas["Utah.market"])
+
+s2cost_sj <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "037") |>
+  left_join(bg_acs, by = c("id" = "geoid")) |>
+  sf::st_transform(4326) |>
+  left_join(sj_base |> rename(base = dclogsum)) |>
+  left_join(s2_altd_sj |> rename(alt = dclogsum)) |>
+  mutate(diff = (base - alt) / mkt_betas["SanJuan.market"])
+```
 
 ```{r}
 #| label: tbl-scenarios
