@@ -22,7 +22,10 @@ different outcomes.
 
 In selecting a survey instrument with which to collect the store attribute data,
 we selected an existing and validated instrument from the nutrition environment
-literature. The NEMS-S focus on low-calorie and low-fat alternatives may be
+literature. We acknowledge that NEMS-S measures may not capture the full range
+of nutritional needs across populations and reflect a constrained but standardized
+proxy for diet-related healthfulness. 
+The NEMS-S focus on low-calorie and low-fat alternatives may be
 somewhat outdated in view of modern nutritional guidelines. For example, the
 NEMS-S does not track the availability and price of poultry, as "lean" poultry
 is not a goods category in the way that ground beef comes with multiple fat

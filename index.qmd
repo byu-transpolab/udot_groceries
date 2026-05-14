@@ -1,6 +1,6 @@
 # Introduction
 
-The ability of people to access quality nutrition has been studied at length in
+The ability of people to access nutrition resources has been studied at length in
 public health and urban geography for decades [@beaulac2009;@walker2010]. 
 This interest is motivated in large part by an observed spatial disparity in
 nutrition access in many communities --- though this issue may be particularly
@@ -8,19 +8,20 @@ pronounced in the United States [@beaulac2009]. The spatial disparity has been l
 [@chen2016; @cooksey-stowers2017], though other complicating factors including prices and habits may be present as well [@ghosh-dastidar2014].
 
 
-At the same time, access to nutrition and to community resources in general is 
+At the same time, access to nutrition resources and to community resources in general is 
 frustratingly hard to define. "Accessibility" is an abstract concept without a
 specific quantitative definition [@handy1997]. However, using accessibility as 
 a policy measure requires comparative quantification, and transportation and
-public health researchers have constructed several quantitative measures, such 
-as presence of a store within a travel time buffer, or the distance to the 
-nearest store. These measures are relatively easy to calculate using 
+public health researchers have constructed several quantitative measures. These measures include
+presence of a store --- or counts of stores --- within a travel time limit by a particular mode, or the distance to the 
+nearest store. 
+These measures are relatively easy to calculate using 
 readily available GIS software, but elide much useful information [@dong2006; @logan2019].
 These types of measures require the researcher to make a series of assumptions
 and assertions: why is 30 minutes chosen instead of 40? Is that time by transit
 or highway or walking? Should these definitions change for individuals in
 different socioeconomic groups? And people do not always go to the closest grocery
-store to begin with [@clifton2004; @hillier2011]; how much further are people
+store to begin with [@clifton2004; @hillier2011]; how much farther are people
 willing to travel to go to a store that is cheaper or that has a wider variety
 of goods? And perhaps the home location isn't the only spatial point of 
 reference [@liu2022]. A measure that potentially combines many of these different
@@ -31,16 +32,15 @@ measure based on destination choice models estimated for three distinct
 communities in Utah. This methodology is based on a unique dataset made by 
 linking between three extensive data sources:
 
-  1. A detailed survey of the nutrition market in three Utah communities.
+  1. A detailed survey of the nutrition market in three Utah communities, operationalized using the NEMS-S framework [@glanz2007].
   2. Location-based services data derived from mobile phone records revealing
      which grocery stores are frequented by residents of different neighborhoods.
-  3. Multi-modal network data providing detailed mobility data by car, walking,
-  and public transit.
+  3. Multi-modal network data providing detailed mobility data by car, walking, and public transit.
 
-These data will be combined in order to develop accurate logit models that
-demonstrate the variables that are significant to grocery store choice in Utah.
-These models could then be used to find accessibility to stores and impact
-transportation policy to improve quality of life for all communities in Utah.
+These data are linked through simulation to develop a simultaneous multinomial logit mode and destination choice model that
+measures variables significant to grocery store choice in Utah.
+These models are then used to measure neighborhood-level accessibility to stores and evaluate 
+potential transportation, land use, and related policies.
 
 This paper is organized in a typical manner. A methodology
 for data collection and modeling is described in @sec-methods and a description

@@ -192,8 +192,9 @@ tar_load(nems_groceries)
 
 The store attributes were collected using the Nutritional Environment Measures
 Survey --- Stores (NEMS-S) tool [@glanz2007]. This tool was developed to reveal
-significant differences in the availability and cost of healthy foods in an
-environment, and has been validated for this purpose. Beyond superficial
+significant differences in the availability and cost of foods identified as 
+more healthful within the NEMS-S framework, and has been validated for this purpose. 
+Beyond superficial
 attributes such as the store category (dollar store, convenience store, ethnic
 market, etc.) and the number of registers, the NEMS-S collects detailed
 information about numerous store offerings such as the availability of produce,
@@ -201,7 +202,13 @@ dairy products, lean meats, juices, and canned and dry goods of various specific
 types. Of particular interest to the survey are availability and price
 differentials of lower-fat alternatives: for example, the survey instrument
 requests the shelf space allocated to milk products of various fat levels and
-the price of each product.
+the price of each product. 
+Within the NEMS-S framework, "healthful" options are operationalized primarily
+through the availability and relative pricing of lower-fat and lower-calorie
+alternatives;
+NEMS-S captures one dimension of diet-related healthfulness but does not
+represent a comprehensive assessment of nutritional quality across all
+populations.
 
 Student research assistants collected the store attributes by visiting grocery
 stores, dollar stores, ethnic markets, and other food markets in the three
@@ -224,21 +231,25 @@ lower prices.
 
 Using the information in the NEMS-S survey, two measures of a store can be
 calculated: an availability score based on whether stores stock particular items
-as well as lower-calorie options; and a cost score describing the spread between
+as well as NEMS-S defined more healthful options; and a cost score describing the spread between
 prices of these options. These score values are described in @lunsford2021, and
 we developed an R package to compute the scores; this package is available at
 <https://github.com/byu-transpolab/nemsr>. In the availability score, each store
 is given a value for whether or not there are more healthful options available
-in the store, such as low-calorie chips, or low-fat milk. If the store does not
+in the store as defined by the NEEMS-S framework (i.e., low-calorie chips or low-fat milk).
+If the store does not
 have a more healthful option in a category it receives a lower score, so stores
 with more availability of healthful food options will receive a higher
 availability score. For the cost score, the measure is the price spread between
-healthful and less healthful options: if the price of whole wheat bread is cheaper
+healthful and less healthful options as defined by the NEMS-S framework: if the price of whole wheat bread is cheaper
 than white bread, the store receives positive points for the cost option, if the
 price is the same then zero points are awarded, and if the wheat bread is more
 expensive then the store receives negative points. Thus a store with a higher
 availability and cost score will have both more healthful options, and a more
-advantageous pricing scheme towards those options.
+advantageous pricing scheme towards those options. Accordingly, higher scores
+reflect greater availability and more favorable pricing of these NEMS-S defined
+healthful options, rather than a comprehensive measure of overall nutritional
+quality.
 
 One important store attribute that the NEMS-S instrument does not collect or
 compute directly is a measure of the cost of common goods that can be compared
@@ -250,7 +261,7 @@ is based on the US Department of Agriculture (USDA) 2021 Thrifty Food Plan
 Because this market basket contains more (and sometimes different) items than
 what the NEMS-S instrument requests, we chose relevant items from our NEMS-S
 data as replacements. For example, the USDA market basket contains a certain
-amount of poultry, but the NEMS-S score collects the per-pound cost of ground
+amount of poultry, but the NEMS-S instrument collects the per-pound cost of ground
 beef at various fat contents. For any stores that were missing any of the
 elements in the market basket, we first substituted with another ingredient that
 would fit the nutritional requirements. If no substitute was available, we
