@@ -17,10 +17,11 @@ pal <- wesanderson::wes_palette("Zissou1", 100, type = "continuous")
 ```
 
 In this section, we develop a series of scenarios to which we apply the models
-estimated in @sec-results. These scenarios are constructed to ascertain what may
-be the best strategy to improve nutrition access in a community. We first
-describe how each scenario was constructed, and then discuss the results
-together.
+estimated in @sec-results. These scenarios are constructed to illustrate 
+potential applications of a utility-based model, and not as an evaluation
+of proposed policies. 
+We first describe how each scenario was constructed, and then discuss the
+results together.
 
 The accessibility of each scenario is determined using the approximated
 utility coefficients of the All model estimated in @sec-results, 
@@ -36,11 +37,10 @@ given in @eq-cs. Note that this benefit is denominated in units of utility
 units of the variable and utility. Specifically, the $\beta_{mkt}$ coefficient
 represents how many dollars of grocery cost a person is willing to spend to
 increase their utility by one unit.
-
 In actuality, the utility formula in @eq-scenu is a relative utility added by an
 unknown constant, $U_{ij} = f(\mathbf{\beta}, X_{ij}) + C$, but this $C$ term is
-included in all the alternatives and therefore cancels out [@train2009] in
-estimation. This means we cannot assess the *absolute* value of utility, but we
+included in all the alternatives and therefore cancels out in estimation [@train2009].
+This means we cannot assess the *absolute* value of utility, but we
 can assess the *relative* monetary benefit of the difference between two
 scenarios as 
 $$
@@ -63,8 +63,7 @@ There are three general strategies we develop scenarios around:
 4.  Increase the availability of grocery delivery in the region.
 
 We implement all three strategies in scenarios on the west Salt Lake valley
-community. We also implement strategy 2 (an improved store) in the San Juan and Utah
-County communities for comparison.
+community. 
 
 ### Erect a new store
 
@@ -93,13 +92,8 @@ community, and NEMS availability score, NEMS cost score, and market basket cost
 equivalent to the 75$^{th}$ percentile for the community. Thus the store is
 expected to be better-than-average quality as perceived by the residents of the
 community; the difference from the previous scenario is that the improved store
-takes the place of an existing convenience store or dollar store.
-
-The improved stores are at the following locations in each community:
-
--   An ethnic store near 2700 W 3500 S in West Valley City (Salt Lake)
--   A small grocery store in Santaquin (Utah County)
--   A dollar store in Blanding (San Juan County)
+takes the place of an existing convenience store or dollar store. In this scenario,
+we improve the attributes of an existing ethnic store near 2700 W 3500 S in West Valley City.
 
 ### Improve transit and non-motorized transport
 
@@ -234,84 +228,7 @@ ggplot() +
 the Salt Lake community. Compared to the results of the new store scenario, the
 scale of the benefits are not as substantial (a maximum per-household-trip
 benefit of less than \$1), and seem to not cover quite as large a geographic
-region. @fig-s2sjut shows the results of improving a store in Utah and San Juan
-Counties. As in Salt Lake, the benefits are most strongly concentrated in the
-immediate vicinity of the improved store. One interesting observation ---
-especially in Utah County --- is that the improvements are felt more strongly in
-the block groups near the improved store that have lower availability of other
-options. The block group in Utah County directly containing the improvement sees
-a per-household-trip benefit well over \$2, considerably more than the maximum
-benefit in Salt Lake. This is intuitive, as the improvement of a store matters
-less if the stores close to you are already sufficient.
-
-```{r}
-#| label: fig-s2sjut
-#| fig-cap: Estimated per-household benefits of improving an existing store in Utah and San Juan Counties.
-#| layout-ncol: 2
-#| fig-subcap: 
-#|   - Utah County (in Santaquin)
-#|   - San Juan County (in Blanding)
-#| out-width: "4in"
-tar_load(wf_access)
-tar_load(ru_access)
-tar_load(s2_access_ut)
-tar_load(s2_access_sj)
-
-
-pal <- wesanderson::wes_palette("Zissou1", 100, type = "continuous")
-
-s2cost_ut <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "049") |> 
-  left_join(bg_acs, by = c("id" = "geoid")) |> 
-  sf::st_transform(4326) |> 
-  left_join(wf_access |> rename(base = dclogsum)) |> 
-  left_join(s2_access_ut |> rename(alt = dclogsum)) |> 
-  mutate(diff = (base - alt) / mkt_betas["Utah.market"])
-
-ggplot() + 
-  geom_sf(data = s2cost_ut, aes(fill = diff), lwd = 0) +
-  scale_fill_viridis_c("Benefit [$]", direction = -1) + 
-  ggspatial::annotation_map_tile(type = "cartolight", zoom = 10, alpha = 0.5) +
-  ggspatial::annotation_north_arrow(style = north_arrow_minimal, location = "tl") +
-  ggspatial::annotation_scale() +  
-  scale_x_continuous(limits = c(-112.1, -111.5)) +
-  scale_y_continuous(limits = c(39.9, 40.48)) + 
-  geom_sf(data = s2_stores, color = "black", shape = 21, size = 3, fill = "white") +
-  theme(axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank()) 
-
-
-s2cost_sj <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "037") |> 
-  left_join(bg_acs, by = c("id" = "geoid")) |> 
-  sf::st_transform(4326) |> 
-  left_join(ru_access |> rename(base = dclogsum)) |> 
-  left_join(s2_access_sj |> rename(alt = dclogsum)) |> 
-  mutate(diff = (base - alt) / mkt_betas["SanJuan.market"])
-
-
-ggplot() + 
-  geom_sf(data = s2cost_sj, aes(fill = diff), lwd = 0) +
-  scale_fill_viridis_c("Benefit [$]", direction = -1, na.value = NA) +
-  ggspatial::annotation_map_tile("cartolight", zoom = 9, alpha = 0.5) +
-  ggspatial::annotation_north_arrow(style = north_arrow_minimal, location = "tl") +
-  ggspatial::annotation_scale() +  
-  scale_x_continuous(limits = st_bbox(s2cost_sj)[c(1,3)]) +
-  scale_y_continuous(limits = st_bbox(s2cost_sj)[c(2,4)]) +
-  geom_sf(data = s2_stores, color = "black", shape = 21, size = 3, fill = "white") +
-  theme(axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank())
-```
-
-The results of the third scenario, improving the access of non-motorized and
-public transit access to stores, are shown in @fig-s3results. This benefit is
-spread over a larger area, and is concentrated on the 35 MAX bus rapid transit
-corridor where the improvement in walk access time to transit couples with high
-frequency transit service to large grocery stores on the corridor. The
-per-household-trip benefit is very small however, with a maximum benefit on the
-order of \$0.25.
+region.  
 
 ```{r}
 #| label: fig-s3results

@@ -213,22 +213,22 @@ University},city={Provo, Utah USA},postcode={84602},postcodesep={}}
 
         
 \begin{abstract}
-Convenient access to high-quality nutrition is a critical element of
-public health as well as an important interface between communities and
-the transportation system. In this research, we seek to construct a
-detailed picture of the nutrition environment in three communities in
-Utah, alongside the community members' ability to access that
-environment through multiple transportation modes. In doing so we
-construct a utility-based accessiblity model enabled by modern mobility
-device data. This model reveals the tradeoffs between the quality and
-price of goods on one hand and the distance traveled to reach them on
-the other. We then apply this model to a series of potential
-access-improving policies: building a new store, improving an existing
-store, and improving the non-automobile transport network between
-residents and existing stores. The results show that new or improved
-store locations bring substantially higher benefits than improvements to
-the transportation system, at likely lower costs. The findings suggest
-that transportation agencies work to increase the availability of
+Convenient access to nutrition resources is a critical element of public
+health as well as an important interface between communities and the
+transportation system. In this research, we seek to construct a detailed
+picture of the nutrition environment in three communities in Utah,
+alongside the community members' ability to access that environment
+through multiple transportation modes. In doing so we construct a
+utility-based accessiblity model enabled by modern mobility device data.
+This model reveals the tradeoffs between the quality and price of goods
+on one hand and the distance traveled to reach them on the other. We
+then apply this model to a series of potential access-improving
+policies: building a new store, improving an existing store, and
+improving the non-automobile transport network between residents and
+existing stores. The results show that new or improved store locations
+bring substantially higher benefits than improvements to the
+transportation system, at likely lower costs. The findings suggest that
+transportation agencies work to increase the availability of
 community-sized grocery stores in low-access areas, and consider
 activity-based methods of measuring resource access.
 \end{abstract}
@@ -248,7 +248,7 @@ nutrition \sep
 
 \section{Introduction}\label{introduction}
 
-The ability of people to access quality nutrition has been studied at
+The ability of people to access nutrition resources has been studied at
 length in public health and urban geography for decades (Beaulac et al.,
 2009; Walker et al., 2010). This interest is motivated in large part by
 an observed spatial disparity in nutrition access in many communities
@@ -259,22 +259,23 @@ an aggregate level with negative public health outcomes (Chen et al.,
 including prices and habits may be present as well (Ghosh-Dastidar et
 al., 2014).
 
-At the same time, access to nutrition and to community resources in
-general is frustratingly hard to define. ``Accessibility'' is an
-abstract concept without a specific quantitative definition (Handy \&
-Niemeier, 1997). However, using accessibility as a policy measure
+At the same time, access to nutrition resources and to community
+resources in general is frustratingly hard to define. ``Accessibility''
+is an abstract concept without a specific quantitative definition (Handy
+\& Niemeier, 1997). However, using accessibility as a policy measure
 requires comparative quantification, and transportation and public
-health researchers have constructed several quantitative measures, such
-as presence of a store within a travel time buffer, or the distance to
-the nearest store. These measures are relatively easy to calculate using
-readily available GIS software, but elide much useful information (Dong
-et al., 2006; Logan et al., 2019). These types of measures require the
+health researchers have constructed several quantitative measures. These
+measures include presence of a store --- or counts of stores --- within
+a travel time limit by a particular mode, or the distance to the nearest
+store. These measures are relatively easy to calculate using readily
+available GIS software, but elide much useful information (Dong et al.,
+2006; Logan et al., 2019). These types of measures require the
 researcher to make a series of assumptions and assertions: why is 30
 minutes chosen instead of 40? Is that time by transit or highway or
 walking? Should these definitions change for individuals in different
 socioeconomic groups? And people do not always go to the closest grocery
 store to begin with (Clifton, 2004; Hillier et al., 2011); how much
-further are people willing to travel to go to a store that is cheaper or
+farther are people willing to travel to go to a store that is cheaper or
 that has a wider variety of goods? And perhaps the home location isn't
 the only spatial point of reference (Liu et al., 2022). A measure that
 potentially combines many of these different considerations is
@@ -289,7 +290,8 @@ between three extensive data sources:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  A detailed survey of the nutrition market in three Utah communities.
+  A detailed survey of the nutrition market in three Utah communities,
+  operationalized using the NEMS-S framework (Glanz et al., 2007).
 \item
   Location-based services data derived from mobile phone records
   revealing which grocery stores are frequented by residents of
@@ -299,26 +301,26 @@ between three extensive data sources:
   walking, and public transit.
 \end{enumerate}
 
-These data will be combined in order to develop accurate logit models
-that demonstrate the variables that are significant to grocery store
-choice in Utah. These models could then be used to find accessibility to
-stores and impact transportation policy to improve quality of life for
-all communities in Utah.
+These data are linked through simulation to develop a simultaneous
+multinomial logit mode and destination choice model that measures
+variables significant to grocery store choice in Utah. These models are
+then used to measure neighborhood-level accessibility to stores and
+evaluate potential transportation, land use, and related policies.
 
 This paper is organized in a typical manner. A methodology for data
 collection and modeling is described in Section~\ref{sec-methods} and a
 description of the nutrition environment and choice models estimates
-follows in Section~\ref{sec-results}. \textbf{?@sec-scenarios} presents
-a series of scenarios to which we apply the models estimated in
+follows in Section~\ref{sec-results}. Section~\ref{sec-scenarios}
+presents a series of scenarios to which we apply the models estimated in
 Section~\ref{sec-results}, illustrating the interrelated elements of
 nutrition quality and transportation infrastructure in developing more
-complete access to nutrition. \textbf{?@sec-conclude} places the
+complete access to nutrition. Section~\ref{sec-conclude} places the
 findings of this research in context, while discussing limitations to
 the methodology and associated future research opportunities.
 
 \bookmarksetup{startatroot}
 
-\section{Methods}\label{sec-methods}
+\section{Literature Review}\label{sec-literature}
 
 The nutrition access literature is long and has been approached from
 numerous angles including public health, urban science and economics,
@@ -349,6 +351,118 @@ into a policy analysis of park space during Covid-19 (Macfarlane et al.,
 2022). The potential for application of this methodology to the
 nutrition literature is well-motivated by the previous attempts as well
 as the lack of clear policy solutions (Wright et al., 2016).
+
+organization (1) the inconsistent parameters used across studies, (2)
+the lack of consideration for multi-modal travel, (3) the lack of
+behavior components to reflect the decision-making process such as mode
+choice and destination selection, and (4) the need to distinguish
+various stores in the study area.
+
+Equitable access to community resources has been a topic of research and
+study, especially when looking at the impacts on measures of well-being
+and economic opportunity. Current social issues, economic opportunity
+and equity are significant topics that can help us ensure that each
+population demographic can have similar opportunities. Equity as a term
+is being fair and impartial, different from equality. Equality is
+providing the exact same thing to all people, whereas equity would
+provide different things to different people because of their
+circumstances in order to create a fair system. Lower-income populations
+frequently sit at a different level of advantage than higher-income
+populations, including when looking at accessibility (Witten et al.,
+2003). It is important to discover how different transportation policies
+can improve accessibility to create better equity. Creating equitable
+societies and equitable transportation policies is important in order to
+remove any discrimination already present in the transportation network.
+In this way states can decrease the disparity that is common when
+looking at different neighborhoods and demographics. Perhaps there are
+low-income neighborhoods that do not have the same economic opportunity
+or resource accessibility as high-income neighborhoods. If we increase
+the accessibility of low-income neighborhoods, could that then increase
+the quality of life and health for those neighborhoods as well?
+
+In addition to economic opportunity, the connection between well-being
+and opportunity is also significant, discovering who has access to which
+resources and how that access corresponds to their health (Schwanen et
+al., 2015). A subjective sense of positive well-being correlates with
+increased access to more community resources: increased access was
+specifically connected with variety of resources, not necessarily number
+of the same type of resource. This increased access is true for both
+high- and low-income populations. However, high-income demographics
+frequently tend have better access to a variety of resources because of
+such variables as available child care, a transportation source
+available, or even time available to do things (Liu et al., 2022) . In
+addition, increased access to resources such as parks or other
+greenspace have been found to decrease likelihood of mental health
+disorders, as well as improve physical activity (Madzia et al., 2019).
+Different age groups each have a different response to access to
+greenspace. However, among all age groups there is a positive
+correlation.In addition to health impacts, lack of accessibility also
+affects economic opportunity when considering access to employment,
+affordable care, and other stores and shops (Hu, 2015).
+
+\subsubsection{Food Deserts and Swamps}\label{food-deserts-and-swamps}
+
+While there are many different community resources that can be the
+center of study, such as libraries, green space, hospitals, etc., this
+project will focus on the resource of grocery stores and discovering any
+correlation between accessibility to good nutrition environments such as
+healthy grocery stores and the demographic makeup of specific block
+groups, such as economic bracket and different ethnic groups. Lack of
+accessibility to grocery stores can have an effect on physical health
+and well-being (Aggarwal et al., 2014). This access is related directly
+with consumption of healthy foods, as well as indirectly with perceived
+sense of well-being.
+
+Much of the current research that has been done has shown a different
+level of accessibility for different demographics, such as low income
+populations. Low income populations have been shown to frequently have
+less access to fresh fruits and vegetables (Losada-Rojas et al., 2021).
+This may not be directly correlated to the physical distance from a
+grocery store, but the store that was chosen for these demographics. In
+a study analyzing grocery store choice in Seattle it was found that in
+some instances, there is a closer store with better produce, but for
+some reason it was not chosen and instead a store that was further away
+was chosen that did not have the same quantity and variety of fresh
+produce. This was found again in a different study, that frequently
+people will travel to a store that is not the closest store for
+different reasons (Hillier et al., 2011). This study will help to
+determine that choice pattern and identify which variables are important
+when choosing a store to help improve accessibility more than simple
+distance measures.
+
+However, areas that do not have any full service grocery stores however
+are also important to look at, with those areas being known as food
+swamps. These food swamps are an idea that there are locations where
+there is not healthy food available, so the only option that is readily
+accessible for food or meals would be fast food or convenience stores.
+There have been studies analyzing the different food swamp areas and
+what could be done to improve those areas, such as adding grocery stores
+or corner markets (Bao et al., 2020). These food swamps are areas that
+discriminate between those without readily available transit options and
+those with easy access to cars, creating a barrier to equity. In
+addition, these food swamp areas are especially significant when looking
+at the public health impacts of food accessibility and discovering how
+we can improve the quality of food available to those in every
+demographic to create an equitable solution to health differences.
+
+Past research done clearly shows that location of store, quality of
+store, and price of store all have an impact on choice of grocery store
+and accessibility to grocery stores. This impacts the quality of life
+and overall health and well-being of individuals and shows the
+importance of discovering which variables are most significant in
+grocery store choice in order to improve accessibility and equity. What
+much existing research suffers from, however, is the wide variety of
+measures of access and the definitions used to describe a ``grocery
+store.'' Certainly convenience stores do not typically provide the same
+variety and quality of goods, but simply excluding them from analyses
+ignores how many people obtain a large share of their daily and weekly
+nutrition, for better or worse. A measure that can incorporate
+multimodal access to stores as well as qualitatively describe the stores
+along a continuous array of measures is desirable.
+
+\bookmarksetup{startatroot}
+
+\section{Methods}\label{sec-methods}
 
 This section describes how we construct a model of access to grocery
 stores in communities in Utah. We first describe the theoretical model,
@@ -489,16 +603,21 @@ grocery stores requires three interrelated data elements:
 The store attributes were collected using the Nutritional Environment
 Measures Survey --- Stores (NEMS-S) tool (Glanz et al., 2007). This tool
 was developed to reveal significant differences in the availability and
-cost of healthy foods in an environment, and has been validated for this
-purpose. Beyond superficial attributes such as the store category
-(dollar store, convenience store, ethnic market, etc.) and the number of
-registers, the NEMS-S collects detailed information about numerous store
-offerings such as the availability of produce, dairy products, lean
-meats, juices, and canned and dry goods of various specific types. Of
-particular interest to the survey are availability and price
-differentials of lower-fat alternatives: for example, the survey
-instrument requests the shelf space allocated to milk products of
-various fat levels and the price of each product.
+cost of foods identified as more healthful within the NEMS-S framework,
+and has been validated for this purpose. Beyond superficial attributes
+such as the store category (dollar store, convenience store, ethnic
+market, etc.) and the number of registers, the NEMS-S collects detailed
+information about numerous store offerings such as the availability of
+produce, dairy products, lean meats, juices, and canned and dry goods of
+various specific types. Of particular interest to the survey are
+availability and price differentials of lower-fat alternatives: for
+example, the survey instrument requests the shelf space allocated to
+milk products of various fat levels and the price of each product.
+Within the NEMS-S framework, ``healthful'' options are operationalized
+primarily thorugh the availability and relative pricing of lower-fat and
+lower-calorie alternatives; NEMS-S captures one dimension of
+diet-related healthfulness but does not represent a comprehensive
+assessment of nutritional quality across all populations.
 
 Student research assistants collected the store attributes by visiting
 grocery stores, dollar stores, ethnic markets, and other food markets in
@@ -522,24 +641,28 @@ periodic shopping with greater availability and lower prices.
 
 Using the information in the NEMS-S survey, two measures of a store can
 be calculated: an availability score based on whether stores stock
-particular items as well as lower-calorie options; and a cost score
-describing the spread between prices of these options. These score
-values are described in (Lunsford et al., 2021), and we developed an R
-package to compute the scores; this package is available at
+particular items as well as NEMS-S defined more healthful options; and a
+cost score describing the spread between prices of these options. These
+score values are described in (Lunsford et al., 2021), and we developed
+an R package to compute the scores; this package is available at
 \url{https://github.com/byu-transpolab/nemsr}. In the availability
 score, each store is given a value for whether or not there are more
-healthful options available in the store, such as low-calorie chips, or
-low-fat milk. If the store does not have a more healthful option in a
-category it receives a lower score, so stores with more availability of
-healthful food options will receive a higher availability score. For the
-cost score, the measure is the price spread between healthful and less
-healthful options: if the price of whole wheat bread is cheaper than
-white bread, the store receives positive points for the cost option, if
-the price is the same then zero points are awarded, and if the wheat
-bread is more expensive then the store receives negative points. Thus a
-store with a higher availability and cost score will have both more
-healthful options, and a more advantageous pricing scheme towards those
-options.
+healthful options available in the store as defined by the NEEMS-S
+framework (i.e., low-calorie chips or low-fat milk). If the store does
+not have a more healthful option in a category it receives a lower
+score, so stores with more availability of healthful food options will
+receive a higher availability score. For the cost score, the measure is
+the price spread between healthful and less healthful options as defined
+by the NEMS-S framework: if the price of whole wheat bread is cheaper
+than white bread, the store receives positive points for the cost
+option, if the price is the same then zero points are awarded, and if
+the wheat bread is more expensive then the store receives negative
+points. Thus a store with a higher availability and cost score will have
+both more healthful options, and a more advantageous pricing scheme
+towards those options. Accordingly, higher scores reflect greater
+availability and more favorable pricing of these NEMS-S defined
+healthful options, rather than a comprehensive measure of overall
+nutritional quality.
 
 One important store attribute that the NEMS-S instrument does not
 collect or compute directly is a measure of the cost of common goods
@@ -552,7 +675,7 @@ based on the US Department of Agriculture (USDA) 2021 Thrifty Food Plan
 four. Because this market basket contains more (and sometimes different)
 items than what the NEMS-S instrument requests, we chose relevant items
 from our NEMS-S data as replacements. For example, the USDA market
-basket contains a certain amount of poultry, but the NEMS-S score
+basket contains a certain amount of poultry, but the NEMS-S instrument
 collects the per-pound cost of ground beef at various fat contents. For
 any stores that were missing any of the elements in the market basket,
 we first substituted with another ingredient that would fit the
@@ -1089,6 +1212,466 @@ with and without a vehicle.}
 
 \bookmarksetup{startatroot}
 
+\section{Application}\label{sec-scenarios}
+
+In this section, we develop a series of scenarios to which we apply the
+models estimated in Section~\ref{sec-results}. These scenarios are
+constructed to ascertain what may be the best strategy to improve
+nutrition access in a community. We first describe how each scenario was
+constructed, and then discuss the results together.
+
+The accessibility of each scenario is determined using the approximated
+utility coefficients of the All model estimated in
+Section~\ref{sec-results},
+
+\begin{equation}\phantomsection\label{eq-scenu}{
+U_{ij}= \beta_{MCLS}( k_{ij}) +  \beta_{n-a} (\mathrm{NEMS-Availability}) +
+  \beta_{n-c}\mathrm({NEMS-Cost}) + \\ \beta_{mkt} (\mathrm{Market Basket}) + \pmb{\beta}_{type}(\mathrm{Type})  
+}\end{equation}
+
+and the total access benefit is defined as the consumer surplus given in
+Equation~\ref{eq-cs}. Note that this benefit is denominated in units of
+utility (Ben-Akiva \& Lerman, 1985), and the coefficients in
+Equation~\ref{eq-scenu} serve to convert between the units of the
+variable and utility. Specifically, the \(\beta_{mkt}\) coefficient
+represents how many dollars of grocery cost a person is willing to spend
+to increase their utility by one unit.
+
+In actuality, the utility formula in Equation~\ref{eq-scenu} is a
+relative utility added by an unknown constant,
+\(U_{ij} = f(\mathbf{\beta}, X_{ij}) + C\), but this \(C\) term is
+included in all the alternatives and therefore cancels out (Train, 2009)
+in estimation. This means we cannot assess the \emph{absolute} value of
+utility, but we can assess the \emph{relative} monetary benefit of the
+difference between two scenarios as \[
+\mathrm{Benefit} = \sum_{i}\left(-\frac{\omega_i}{\beta_{mkt}}(CS_i' - CS_i)\right)
+\] with the consumer surplus of the ``improved'' scenario in each origin
+zone \(i\) indicated as \(CS_i'\) and the unimproved counterpart as
+\(CS_i\), a weight \(\omega\) accounts for the population in the zone,
+and the \(\beta_{mkt}\) converts the difference in utility into a dollar
+amount.
+
+\subsection{Scenario Descriptions}\label{scenario-descriptions}
+
+There are three general strategies we develop scenarios around:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Erect a new grocery store in the community, in a place where one does
+  not already exist.
+\item
+  Improve an existing convenience store or dollar store so that it has
+  the attributes of a full-service grocery store.
+\item
+  Improve the transit and non-motorized access to stores in a region.
+\item
+  Increase the availability of grocery delivery in the region.
+\end{enumerate}
+
+We implement all three strategies in scenarios on the west Salt Lake
+valley community. We also implement strategy 2 (an improved store) in
+the San Juan and Utah County communities for comparison.
+
+\subsubsection{Erect a new store}\label{erect-a-new-store}
+
+This strategy assumes that the nutrition environment would benefit from
+a new store located in a place that presently has low grocery store
+access. To examine the potential for this strategy to improve access to
+nutrition in each community, we calculate the change in destination
+choice log-sum when a new store is added to the region in a location
+where access is currently poor. The new store is a full-service grocery
+store with a number of registers equal to the mean of other grocery
+stores in the community, and NEMS availability score, NEMS cost score,
+and market basket cost equivalent to the 75\(^{th}\) percentile for the
+community. Thus the store is expected to be better-than-average quality
+as perceived by the residents of the community. The location for this
+new store is at 4100 S and 2700 W in West Valley City.
+
+\subsubsection{Improve an existing
+store}\label{improve-an-existing-store}
+
+This strategy assumes that existing stores are in locations that the
+community values and can access, but that those stores may not have high
+availability of quality goods. To examine the potential for this
+strategy to improve access to nutrition, we improve the attributes of an
+existing dollar store in the community so that it has the size, prices,
+and availability of goods as a full-service grocery store. As above, we
+create a full-service grocery store with a number of registers equal to
+the mean of other grocery stores in the community, and NEMS availability
+score, NEMS cost score, and market basket cost equivalent to the
+75\(^{th}\) percentile for the community. Thus the store is expected to
+be better-than-average quality as perceived by the residents of the
+community; the difference from the previous scenario is that the
+improved store takes the place of an existing convenience store or
+dollar store.
+
+The improved stores are at the following locations in each community:
+
+\begin{itemize}
+\tightlist
+\item
+  An ethnic store near 2700 W 3500 S in West Valley City (Salt Lake)
+\item
+  A small grocery store in Santaquin (Utah County)
+\item
+  A dollar store in Blanding (San Juan County)
+\end{itemize}
+
+\subsubsection{Improve transit and non-motorized
+transport}\label{improve-transit-and-non-motorized-transport}
+
+This strategy assumes that people cannot easily travel to existing
+stores because they cannot or do not drive for a variety of reasons, and
+that the public and active transport networks provide an insufficient
+level of service. To examine the potential for this strategy to improve
+access to nutrition, we improve the travel time costs in the Salt Lake
+community for non-motorized and public transportation in the region and
+calculate the change in destination choice log-sum.
+
+For active transportation, the lack of pedestrian facilities across and
+alongside roads both in reality and in the OpenStreetMap dataset may
+substantially increase measured walk distances and times. In this
+scenario, we replace the times measured from OpenStreetMap using R5 with
+an idealized distance function,
+\begin{equation}\phantomsection\label{eq-newwalk}{ 
+t_{\mathrm{walk}} = \frac{\sqrt{2} * d'_{ij}}{v_{\mathrm{walk}}}
+}\end{equation} where \(d'_{ij}\) is the Euclidean (straight-line)
+distance between \(i\) and \(j\) and \(v_{ij}\) is an average walking
+speed equivalent to 3.5 feet per second (Fitzpatrick et al., 2006). The
+distance is multiplied by the square root of 2 to reflect the Manhattan
+distance (along a gridded street system). We retain the cap on walking
+distance at 10 kilometers. Though this distance may radically understate
+the real walking distance, we are trying to create an idealized scenario
+of effectively frictionless active transport. For public transit, we
+assume that the frequency of service is such that all transfer and
+initial wait times are at most 5 minutes, and that no person must walk
+more than 10 minutes to access their first public transport service.
+Presently, the \emph{mean} walk access time in the scenario region is
+over 20 minutes, and the wait time over 10 minutes.
+
+Travel times are improved in this way for all block group --- store
+pairs in the west Salt Lake Valley community.
+
+\subsubsection{Grocery delivery
+services}\label{grocery-delivery-services}
+
+This strategy assumes that the most effective way to bring quality
+nutrition to an inaccessible location is not to change the distribution
+of stores or the quality of transport, but to support and enable
+delivery services that will bring the nutrition to individuals. To model
+this scenario, we assume that 20\% of the full-service grocery stores in
+the west Salt Lake Valley community offer a delivery service. This
+raises the price of the market basket by \$10, but reduces the travel
+time on all modes to 0 if the store is within 3 kilometers. All of these
+assumptions are imperfect: a local grocery chain presently offers
+services at a \$7 delivery fee, which is not paid by all customers;
+additionally, delivery services require that customers expend time
+placing online orders; and service providers in the region typically
+place a long-distance charge rather than a service area limit.
+Regardless, these assumptions will work for the purpose of this
+exercise.
+
+\subsection{Scenario Results}\label{scenario-results}
+
+Using the methodology described above, we recalculated the destination
+choice log-sum value for each block group under each scenario, and
+compared the change in accessibility resulting from the improvement.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s1results-1.pdf}
+
+}
+
+\caption{\label{fig-s1results}Estimated per-household benefits of adding
+new full-service store in west Salt Lake Valley}
+
+\end{figure}%
+
+Figure~\ref{fig-s1results} shows the geographic distribution of benefits
+associated with locating a new store at a site in the Salt Lake
+community. The benefits are largest immediately next to the new store,
+where they exceed \(3\) for each household each time the household makes
+a trip to a grocery store.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2results-1.pdf}
+
+}
+
+\caption{\label{fig-s2results}Estimated per-household benefits of
+improving an existing store in west Salt Lake Valley}
+
+\end{figure}%
+
+Figure~\ref{fig-s2results} shows the results of the scenario improving
+an existing store in the Salt Lake community. Compared to the results of
+the new store scenario, the scale of the benefits are not as substantial
+(a maximum per-household-trip benefit of less than \$1), and seem to not
+cover quite as large a geographic region. Figure~\ref{fig-s2sjut} shows
+the results of improving a store in Utah and San Juan Counties. As in
+Salt Lake, the benefits are most strongly concentrated in the immediate
+vicinity of the improved store. One interesting observation ---
+especially in Utah County --- is that the improvements are felt more
+strongly in the block groups near the improved store that have lower
+availability of other options. The block group in Utah County directly
+containing the improvement sees a per-household-trip benefit well over
+\$2, considerably more than the maximum benefit in Salt Lake. This is
+intuitive, as the improvement of a store matters less if the stores
+close to you are already sufficient.
+
+\begin{figure}
+
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-1.pdf}
+
+}
+
+\subcaption{\label{fig-s2sjut-1}Utah County (in Santaquin)}
+
+\end{minipage}%
+%
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-2.pdf}
+
+}
+
+\subcaption{\label{fig-s2sjut-2}San Juan County (in Blanding)}
+
+\end{minipage}%
+
+\caption{\label{fig-s2sjut}Estimated per-household benefits of improving
+an existing store in Utah and San Juan Counties.}
+
+\end{figure}%
+
+The results of the third scenario, improving the access of non-motorized
+and public transit access to stores, are shown in
+Figure~\ref{fig-s3results}. This benefit is spread over a larger area,
+and is concentrated on the 35 MAX bus rapid transit corridor where the
+improvement in walk access time to transit couples with high frequency
+transit service to large grocery stores on the corridor. The
+per-household-trip benefit is very small however, with a maximum benefit
+on the order of \$0.25.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s3results-1.pdf}
+
+}
+
+\caption{\label{fig-s3results}Estimated per-household benefits of
+improving non-motorized and public transport access to groceries in Salt
+Lake Valley.}
+
+\end{figure}%
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s4results-1.pdf}
+
+}
+
+\caption{\label{fig-s4results}Estimated per-household benefits of
+grocery deliveries in Salt Lake Valley.}
+
+\end{figure}%
+
+\begin{table}
+
+\caption{\label{tbl-scenarios}Scenario Benefits}
+
+\centering{
+
+\centering
+\begin{tabular}[t]{lllll}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{4}{c}{Weighted by} \\
+\cmidrule(l{3pt}r{3pt}){2-5}
+Scenario & Households & Non-white & Low-Income & Zero-Vehicle\\
+\midrule
+New Store & \$12,860,857 & \$5,612,293 & \$2,217,757 & \$555,185\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Improved Store}}\\
+\hspace{1em}Salt Lake Valley & \$6,273,501 & \$3,019,389 & \$1,255,096 & \$333,377\\
+\hspace{1em}Utah County & \$8,413,589 & \$1,340,090 & \$1,319,575 & \$163,353\\
+\hspace{1em}San Juan County & \$79,343 & \$35,482 & \$25,767 & \$5,383\\
+Improved Transport & \$1,686,717 & \$767,224 & \$234,676 & \$52,085\\
+Delivery Services & \$228,192,080 & \$88,977,055 & \$26,216,631 & \$5,474,393\\
+\bottomrule
+\end{tabular}
+
+}
+
+\end{table}%
+
+Although comparing the geographic distribution of benefits is helpful,
+the aggregate benefit is more likely to guide policy. Additionally, the
+aggregate benefits can be weighted in different ways to understand the
+effects of the various policies on different populations.
+Table~\ref{tbl-scenarios} presents the aggregate benefit from each of
+the three scenarios (and the result of the second scenario in all three
+communities). The Households column multiplies the difference in
+destination choice log-sum at each block group by the number of
+households in that block group, while the non-white and low-income
+columns weight the difference by the share of non-white individuals and
+low-income and zero-vehicle zero-vehicle respectively. All demographic
+data comes from the American Community Survey (ACS) 5-year aggregations;
+the ACS discloses households by vehicles available at the tract level,
+while all other household characteristics are at the more spatially
+refined block group level.
+
+These alternate weighting schemes help to illustrate the potential
+equity of the benefit distribution should each scenario be pursued. The
+new store scenario in the Salt Lake community, for example, has a total
+benefit of approximately \$13 million. Of this amount, somewhat less
+than half the benefits go to non-white individuals and less than
+one-fifth to low-income households. These ratios are more or less the
+same for the store improvement scenario and the improved transport
+scenario in the Salt Lake Valley. The Utah County store improvement, on
+the other hand, has a somewhat higher proportion of benefits going to
+low-income households relative to non-white households. This is a
+reflection of the lower minority population in southern Utah County vis
+a vis west Salt Lake valley, but is nonetheless a metric that program
+evaluators might pay attention to.
+
+Overall, the improved store brings more than twice the benefits of
+improving non-automobile transportation, and the new store more than
+five times the benefits. Understanding the costs of these various
+alternatives is outside the scope of this research, but the level of
+infrastructure investment required to increase transportation level of
+service to that constructed in the simulation is likely an order of
+magnitude higher than the cost of a single new grocery store. It should
+also be acknowledged that improving non-automobile infrastructure and
+services would have benefits beyond just grocery store trips that we do
+not attempt to enumerate here. It is also not clear whether the level of
+improvement simulated in the second scenario could be accomplished
+within the envelope of the existing store; it may be that such
+improvements would meet or exceed the cost of building a new store on a
+new site, along with stocking, staffing, and operating the store.
+
+By far the highest benefit observed in these scenarios is the increased
+availability of delivery services, but this scenario must be treated
+with some skepticism. Delivery services place costs on shoppers that are
+not well-quantified in the existing model: potential increases in
+shopping time, uncertainty over selection, inability to inspect goods
+prior to purchase, delays in delivery, and so forth. Additionally, low
+extant delivery prices may be a function of predatory pricing strategies
+by application developers seeking to capture market share first, and
+achieve profitability later (Moore, 2022). Resolving all of these issues
+cannot be handled in the present analysis, but it must be at least
+considered that grocery delivery may have the greatest consumer surplus
+of these four strategies by a wide margin.
+
+\bookmarksetup{startatroot}
+
+\section{Conclusions and Recommendations}\label{sec-conclude}
+
+Access to nutrition is a critical topic that has been a frequent focus
+of academic literature in public health, community planning, and
+engineering, but the varying and incomplete quantitative definitions of
+access have perhaps limited efforts at developing solutions.
+
+In this research, the model we developed and informed with
+location-based services data suggested that policies that increased the
+availability and quality of grocery stores would do more to enhance
+access to nutrition than strategies that increased the transit level of
+service and lowered active transport travel times in three different
+Utah communities. These findings may not be general, but they largely
+support the review of food desert literature in (Beaulac et al., 2009)
+as well as critical evaluations by (Shannon, 2014) and (Wright et al.,
+2016).
+
+\subsection{Limitations}\label{sec-limitations}
+
+A number of assumptions made in Section~\ref{sec-methods} lead to
+limitations that other reasonable researchers might pursue differently,
+and thereby obtain marginally different outcomes.
+
+In selecting a survey instrument with which to collect the store
+attribute data, we selected an existing and validated instrument from
+the nutrition environment literature. We acknowledge that NEMS-S
+measures may not capture the full range of nutritional needs across
+populations and reflect a constrained but standardized proxy for
+diet-related healthfulness. The NEMS-S focus on low-calorie and low-fat
+alternatives may be somewhat outdated in view of modern nutritional
+guidelines. For example, the NEMS-S does not track the availability and
+price of poultry, as ``lean'' poultry is not a goods category in the way
+that ground beef comes with multiple fat contents. Thus a major source
+of protein in typical American diets (FNS, 2021) was not traced across
+stores in each community. On a more basic level, the NEMS-S attempts to
+measure a store's stocking of goods that researchers believe are
+beneficial, and does not measure either what people wish to buy, or what
+they are actually buying at a store. Future research might attempt to
+survey shoppers on what they actually purchased at each store --- or
+collect receipts of their purchases --- though this would substantially
+raise the difficulty of collecting data.
+
+Most households do not obtain all their groceries at a single store,
+though this research of necessity assumed that a simulated person chose
+exactly one store from stores available to them. Similarly, the
+location-based services data provided by StreetLight and used to
+identify which stores people traveled to only reveal whether a device
+was identified inside a geographic polygon, and not what they were
+actually doing in that polygon. This research had no way of
+distinguishing, for example, whether an individual device observed at a
+dollar store or a super market (e.g.~Wal-Mart) was there to purchase
+groceries or some other household goods that might not be offered at
+more traditional food markets.
+
+A number of simplifying assumptions concern the socioeconomic and
+spatio-temporal detail supplied to the choice models and accessibility
+calculators. The StreetLight data do not contain any demographic
+information on the individuals making trips, beyond the inferences made
+possible by the residence block group. This makes it difficult to
+estimate whether lower income households are more or less sensitive to
+travel distances or prices. Additionally, the research assumed that
+every trip was from the population-weighted block group centroid, which
+may vary substantially from the actual distance traveled, especially in
+large block groups. The methodology also used travel times calculated in
+the AM peak hour; though this time maximizes the availability of transit
+options, it is not a typical peak time for grocery shopping. The mode
+choice model was also selected for general convenience, and not fully
+calibrated to grocery trips in the specific regions. All of these
+limitations could potentially be relaxed by using a synthetic population
+with detailed socioeconomic data and parcel-level location choices
+determined by an activity-based model, as proposed by (Dong et al.,
+2006). In this exercise, which we leave to future research, the grocery
+maintenance trips could be explicitly modeled, with synthetic
+individuals of unique characteristics choosing destinations that are
+available on the course of their other daily activities, using their
+chosen travel modes. This proposal would effectively extend the methods
+of (Widener \& Shannon, 2014) within the framework of explicit
+activity-travel modeling.
+
+Finally, the scenarios presented in Section~\ref{sec-scenarios} are
+designed to illustrate potential applications of this accessibility
+methodology, with a comparative analysis of strategies to improve access
+to nutrition. Selecting different sites, attribute levels, or transport
+policies might substantially change the scale or rank-ordering of the
+estimated benefits. A comprehensive search for the location that would
+maximize benefits would be an interesting exercise, which we also leave
+to future research.
+
+\bookmarksetup{startatroot}
+
 \section*{Acknowledgments}\label{acknowledgments}
 \addcontentsline{toc}{section}{Acknowledgments}
 
@@ -1144,10 +1727,22 @@ Hurvitz, P. M., \& Drewnowski, A. (2014). Access to {Supermarkets} and
 Health}, \emph{104}(5), 917--923.
 \url{https://doi.org/10.2105/AJPH.2013.301763}
 
+\bibitem[\citeproctext]{ref-algert2006}
+Algert, S. J., Agrawal, A., \& Lewis, D. S. (2006). Disparities in
+{Access} to {Fresh Produce} in {Low-Income Neighborhoods} in {Los
+Angeles}. \emph{American Journal of Preventive Medicine}, \emph{30}(5),
+365--370. \url{https://doi.org/10.1016/j.amepre.2006.01.009}
+
 \bibitem[\citeproctext]{ref-modelsummary}
 Arel-Bundock, V. (2022). {modelsummary}: Data and model summaries in
 {R}. \emph{Journal of Statistical Software}, \emph{103}(1), 1--23.
 \url{https://doi.org/10.18637/jss.v103.i01}
+
+\bibitem[\citeproctext]{ref-bao2020}
+Bao, K. Y., Tong, D., Plane, D. A., \& Buechler, S. (2020). Urban food
+accessibility and diversity: {Exploring} the role of small non-chain
+grocers. \emph{Applied Geography}, \emph{125}, 102275.
+\url{https://doi.org/10.1016/j.apgeog.2020.102275}
 
 \bibitem[\citeproctext]{ref-barnes2021}
 Barnes, M. (2021). \emph{Resiliency of {Utah}'s {Road Network}: {A
@@ -1170,6 +1765,11 @@ Bureau of Labor Statistics. (2023). 12-month percentage change,
 {Consumer Price Index}, selected categories. In \emph{Consumer Price
 Index}.
 https://www.bls.gov/charts/consumer-price-index/consumer-price-index-by-category-line-chart.htm.
+
+\bibitem[\citeproctext]{ref-cass2005}
+Cass, N., Shove, E., \& Urry, J. (2005). Social {Exclusion}, {Mobility}
+and {Access}. \emph{The Sociological Review}, \emph{53}(3), 539--555.
+\url{https://doi.org/10.1111/j.1467-954X.2005.00565.x}
 
 \bibitem[\citeproctext]{ref-chen2016}
 Chen, D., Jaenicke, E. C., \& Volpe, R. J. (2016). Food {Environments}
@@ -1215,6 +1815,11 @@ Croissant, Y. (2020). Estimation of random utility models in {R}: The
 {mlogit} package. \emph{Journal of Statistical Software}, \emph{95}(11),
 1--41. \url{https://doi.org/10.18637/jss.v095.i11}
 
+\bibitem[\citeproctext]{ref-currie2010}
+Currie, G., \& Delbosc, A. (2010). Modelling the social and
+psychological impacts of transport disadvantage. \emph{Transportation},
+\emph{37}(6), 953--966. \url{https://doi.org/10.1007/s11116-010-9280-2}
+
 \bibitem[\citeproctext]{ref-dong2006}
 Dong, X., Ben-Akiva, M. E., Bowman, J. L., \& Walker, J. L. (2006).
 Moving from trip-based to activity-based measures of accessibility.
@@ -1225,9 +1830,28 @@ Moving from trip-based to activity-based measures of accessibility.
 Dunnington, D. (2023). \emph{Ggspatial: Spatial data framework for
 ggplot2}. \url{https://CRAN.R-project.org/package=ggspatial}
 
+\bibitem[\citeproctext]{ref-ermagun2020}
+Ermagun, A., \& Tilahun, N. (2020). Equity of transit accessibility
+across {Chicago}. \emph{Transportation Research Part D: Transport and
+Environment}, \emph{86}, 102461.
+\url{https://doi.org/10.1016/j.trd.2020.102461}
+
+\bibitem[\citeproctext]{ref-fitzpatrick2006}
+Fitzpatrick, K., Brewer, M. A., \& Turner, S. (2006). Another {Look} at
+{Pedestrian Walking Speed}. \emph{Transportation Research Record},
+\emph{1982}(1), 21--29.
+\url{https://doi.org/10.1177/0361198106198200104}
+
 \bibitem[\citeproctext]{ref-fns2021}
 FNS. (2021). \emph{Thrifty {Food Plan}}. {Food and Nutrition Service,
 United States Department of Agriculture}.
+
+\bibitem[\citeproctext]{ref-francis2012}
+Francis, J., Wood, L. J., Knuiman, M., \& Giles-Corti, B. (2012).
+Quality or quantity? {Exploring} the relationship between {Public Open
+Space} attributes and mental health in {Perth}, {Western Australia}.
+\emph{Social Science \& Medicine}, \emph{74}(10), 1570--1577.
+\url{https://doi.org/10.1016/j.socscimed.2012.01.032}
 
 \bibitem[\citeproctext]{ref-geurs2010}
 Geurs, K., Zondag, B., de Jong, G., \& de Bok, M. (2010). Accessibility
@@ -1250,6 +1874,11 @@ Nutrition {Environment Measures Survey} in {Stores} ({NEMS-S}):
 Medicine}, \emph{32}(4), 282--289.
 \url{https://doi.org/10.1016/j.amepre.2006.12.019}
 
+\bibitem[\citeproctext]{ref-grengs2015}
+Grengs, J. (2015). Nonwork {Accessibility} as a {Social Equity
+Indicator}. \emph{International Journal of Sustainable Transportation},
+\emph{9}(1), 1--14. \url{https://doi.org/10.1080/15568318.2012.719582}
+
 \bibitem[\citeproctext]{ref-handy1997}
 Handy, S. L., \& Niemeier, D. A. (1997). Measuring accessibility: {An}
 exploration of issues and alternatives. \emph{Environment and Planning
@@ -1269,6 +1898,11 @@ Hillier, A., Cannuscio, C. C., Karpyn, A., McLaughlin, J., Chilton, M.,
 for {Food}? {Empirical Evidence} from {Two Urban Neighborhoods}.
 \emph{Urban Geography}, \emph{32}(5), 712--729.
 \url{https://doi.org/10.2747/0272-3638.32.5.712}
+
+\bibitem[\citeproctext]{ref-hu2015}
+Hu, L. (2015). Job {Accessibility} of the {Poor} in {Los Angeles}.
+\emph{Journal of the American Planning Association}, \emph{81}(1),
+30--45. \url{https://doi.org/10.1080/01944363.2015.1042014}
 
 \bibitem[\citeproctext]{ref-kaczynski2016}
 Kaczynski, A. T., Schipperijn, J., Hipp, J. A., Besenyi, G. M., Wilhelm
@@ -1291,6 +1925,12 @@ and analytics to overcome existing limitations. \emph{Environment and
 Planning B: Urban Analytics and City Science}, \emph{46}(5), 897--913.
 \url{https://doi.org/10.1177/2399808317736528}
 
+\bibitem[\citeproctext]{ref-losada-rojas2021}
+Losada-Rojas, L. L., Ke, Y., Pyrialakou, V. D., \& Konstantina Gkritza.
+(2021). Access to healthy food in urban and rural areas: {An} empirical
+analysis. \emph{Journal of Transport \& Health}, \emph{23}, 101245.
+\url{https://doi.org/10.1016/j.jth.2021.101245}
+
 \bibitem[\citeproctext]{ref-lunsford2021}
 Lunsford, J., Brunt, A., Foote, J., Rhee, Y., Strand, M., \& Segall, M.
 (2021). Analysis of {Availability}, {Quality}, and {Price} of {Food
@@ -1304,10 +1944,21 @@ slow streets: {A} utility-based access and equity analysis.
 \emph{Journal of Transport and Land Use}, \emph{15}(1), 587--612.
 \url{https://doi.org/10.5198/jtlu.2022.2009}
 
+\bibitem[\citeproctext]{ref-madzia2019}
+Madzia, J., Ryan, P., Yolton, K., Percy, Z., Newman, N., LeMasters, G.,
+\& Brokamp, C. (2019). Residential {Greenspace Association} with
+{Childhood Behavioral Outcomes}. \emph{The Journal of Pediatrics},
+\emph{207}, 233--240. \url{https://doi.org/10.1016/j.jpeds.2018.10.061}
+
 \bibitem[\citeproctext]{ref-mcfadden1974}
 McFadden, D. (1974). Conditional logit analysis of qualitative choice
 behavior. In P. Zarembka (Ed.), \emph{Frontiers in {Econometrics}} (pp.
 105--142). Academic Press.
+
+\bibitem[\citeproctext]{ref-moore2022}
+Moore, D. V. (2022). Predatory {Pricing}, {Network Effects}, and the
+{Food Delivery Industry}: {A Case Study}. \emph{Northern Kentucky Law
+Review}, \emph{49}(1), 93--114.
 
 \bibitem[\citeproctext]{ref-pereira2021}
 Pereira, R. H. M., Saraiva, M., Herszenhut, D., Braga, C. K. V., \&
@@ -1324,6 +1975,18 @@ Recker, W. W., \& Kostyniuk, L. P. (1978). Factors influencing
 destination choice for the urban grocery shopping trip.
 \emph{Transportation}, \emph{7}(1), 19--33.
 \url{https://doi.org/10.1007/BF00148369}
+
+\bibitem[\citeproctext]{ref-schwanen2015}
+Schwanen, T., Lucas, K., Akyelken, N., Cisternas Solsona, D., Carrasco,
+J.-A., \& Neutens, T. (2015). Rethinking the links between social
+exclusion and transport disadvantage through the lens of social capital.
+\emph{Transportation Research Part A: Policy and Practice}, \emph{74},
+123--135. \url{https://doi.org/10.1016/j.tra.2015.02.012}
+
+\bibitem[\citeproctext]{ref-shannon2014}
+Shannon, J. (2014). Food deserts: {Governing} obesity in the neoliberal
+city. \emph{Progress in Human Geography}, \emph{38}(2), 248--266.
+\url{https://doi.org/10.1177/0309132513484378}
 
 \bibitem[\citeproctext]{ref-train2009}
 Train, K. E. (2009). \emph{Discrete {Choice Methods} with {Simulation}}
@@ -1350,6 +2013,12 @@ Widener, M. J., \& Shannon, J. (2014). When are food deserts?
 {Integrating} time into research on food accessibility. \emph{Health \&
 Place}, \emph{30}, 1--3.
 \url{https://doi.org/10.1016/j.healthplace.2014.07.011}
+
+\bibitem[\citeproctext]{ref-witten2003}
+Witten, K., Exeter, D., \& Field, A. (2003). The {Quality} of {Urban
+Environments}: {Mapping Variation} in {Access} to {Community Resources}.
+\emph{Urban Studies}, \emph{40}(1), 161--177.
+\url{https://doi.org/10.1080/00420980220080221}
 
 \bibitem[\citeproctext]{ref-wright2016}
 Wright, J. D., Donley, A. M., Gualtieri, M. C., \& Strickhouser, S. M.
