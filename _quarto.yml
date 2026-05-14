@@ -33,11 +33,11 @@ book:
   date: "1/15/2024"
   chapters:
     - index.qmd
-    # - 02_litreview.qmd
+    - 02_litreview.qmd
     - 03_methods.qmd
     - 04_estimation.qmd
-    # - 05_scenarios.qmd
-    # - 06_conclusion.qmd
+    - 05_scenarios.qmd
+    - 06_conclusion.qmd
     - acknowledgments.qmd
     - references.qmd
   abstract: | 
@@ -73,9 +73,6 @@ execute:
   cache: true
 
 format:
-  html:
-    theme: cosmo
-    html-math-method: katex
   elsevier-pdf:
     journal:
       name: Journal of Transport and Land Use
