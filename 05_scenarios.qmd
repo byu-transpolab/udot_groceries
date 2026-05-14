@@ -282,40 +282,16 @@ grocery-delivery scenario (@fig-scenario-results-4) produces the largest and
 most broadly distributed gains.
 
 
-```{r scenario-table-data, include=FALSE}
-ut_base <- tar_read(wf_access)
-sj_base <- tar_read(ru_access)
-s2_altd_ut <- tar_read(s2_access_ut)
-s2_altd_sj <- tar_read(s2_access_sj)
-
-s2cost_ut <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "049") |>
-  left_join(bg_acs, by = c("id" = "geoid")) |>
-  sf::st_transform(4326) |>
-  left_join(ut_base |> rename(base = dclogsum)) |>
-  left_join(s2_altd_ut |> rename(alt = dclogsum)) |>
-  mutate(diff = (base - alt) / mkt_betas["Utah.market"])
-
-s2cost_sj <- bg |>  select(id = GEOID) |> filter(substr(id, 3, 5) == "037") |>
-  left_join(bg_acs, by = c("id" = "geoid")) |>
-  sf::st_transform(4326) |>
-  left_join(sj_base |> rename(base = dclogsum)) |>
-  left_join(s2_altd_sj |> rename(alt = dclogsum)) |>
-  mutate(diff = (base - alt) / mkt_betas["SanJuan.market"])
-```
 
 ```{r}
 #| label: tbl-scenarios
 #| tbl-cap: Scenario Benefits
-these_betas <- c(rep(mkt_betas["SaltLake.market"] , 2),
-                 mkt_betas["Utah.market"], mkt_betas["SanJuan.market"],
-                 rep(mkt_betas["SaltLake.market"], 2))
+these_betas <- mkt_betas["SaltLake.market"]
 
 
 df <- list(
   "New Store" = s1cost,
-  "Salt Lake Valley" = s2cost,
-  "Utah County" = s2cost_ut,
-  "San Juan County" = s2cost_sj,
+  "Improved Store" = s2cost,
   "Improved Transport" = s3cost,
   "Delivery Services" = s4cost
 ) |> 
@@ -341,7 +317,6 @@ if(!knitr::pandoc_to("docx")){
   kbl(df, booktabs = TRUE, col.names = c("Scenario", "Households", "Non-white", "Low-Income", "Zero-Vehicle"),
       digits = 0) |> 
   add_header_above(c(" " = 1, "Weighted by" = 4)) |> 
-  group_rows(group_label = "Improved Store", start_row = 2, end_row = 4) |> 
   kable_styling()
 }
 ```
@@ -350,8 +325,8 @@ Although comparing the geographic distribution of benefits is helpful, the
 aggregate benefit is more likely to guide policy. Additionally, the aggregate
 benefits can be weighted in different ways to understand the effects of the
 various policies on different populations. @tbl-scenarios presents the aggregate
-benefit from each of the three scenarios (and the result of the second scenario
-in all three communities). The Households column multiplies the difference in
+benefit from each of the four scenarios 
+The Households column multiplies the difference in
 destination choice log-sum at each block group by the number of households in
 that block group, while the non-white and low-income columns weight the
 difference by the share of non-white individuals and low-income 
@@ -366,12 +341,7 @@ the Salt Lake community, for example, has a total benefit of approximately \$13
 million. Of this amount, somewhat less than half the benefits go to non-white
 individuals and less than one-fifth to low-income households. These ratios are
 more or less the same for the store improvement scenario and the improved
-transport scenario in the Salt Lake Valley. The Utah County store improvement,
-on the other hand, has a somewhat higher proportion of benefits going to
-low-income households relative to non-white households. This is a reflection of
-the lower minority population in southern Utah County vis a vis west Salt Lake
-valley, but is nonetheless a metric that program evaluators might pay attention
-to.
+transport scenario in the Salt Lake Valley. 
 
 Overall, the improved store brings more than twice the benefits of improving
 non-automobile transportation, and the new store more than five times the
@@ -379,9 +349,10 @@ benefits. Understanding the costs of these various alternatives is outside the
 scope of this research, but the level of infrastructure investment required to
 increase transportation level of service to that constructed in the simulation
 is likely an order of magnitude higher than the cost of a single new grocery
-store. It should also be acknowledged that improving non-automobile
-infrastructure and services would have benefits beyond just grocery store trips
-that we do not attempt to enumerate here. It is also not clear whether the level
+store. It is acknowledged that improving non-automobile
+infrastructure and services would have benefits for all trip types --- beyond just the grocery store trips ---
+that we do not attempt to enumerate here. 
+It is also not clear whether the level
 of improvement simulated in the second scenario could be accomplished within the
 envelope of the existing store; it may be that such improvements would meet or
 exceed the cost of building a new store on a new site, along with stocking,
