@@ -36,8 +36,8 @@ book:
     # - 02_litreview.qmd
     - 03_methods.qmd
     - 04_estimation.qmd
-    - 05_scenarios.qmd
-    - 06_conclusion.qmd
+    # - 05_scenarios.qmd
+    # - 06_conclusion.qmd
     - acknowledgments.qmd
     - references.qmd
   abstract: | 

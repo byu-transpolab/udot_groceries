@@ -38,7 +38,7 @@ knitr::knit_hooks$set(inline = inline_hook)
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 # options for latex-only output
 if(knitr::is_latex_output()) {
-  knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, sanitize = TRUE)
+  knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, sanitize = FALSE)
 } 
 if(knitr::pandoc_to("docx")) {
   knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)

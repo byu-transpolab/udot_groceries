@@ -24,10 +24,12 @@ together.
 
 The accessibility of each scenario is determined using the approximated
 utility coefficients of the All model estimated in @sec-results, 
+
 $$
 U_{ij}= \beta_{MCLS}( k_{ij}) +  \beta_{n-a} (\mathrm{NEMS-Availability}) +
   \beta_{n-c}\mathrm({NEMS-Cost}) + \\ \beta_{mkt} (\mathrm{Market Basket}) + \pmb{\beta}_{type}(\mathrm{Type})  
 $$ {#eq-scenu} 
+
 and the total access benefit is defined as the consumer surplus
 given in @eq-cs. Note that this benefit is denominated in units of utility
 [@ben-akiva1985], and the coefficients in @eq-scenu serve to convert between the
@@ -40,9 +42,11 @@ unknown constant, $U_{ij} = f(\mathbf{\beta}, X_{ij}) + C$, but this $C$ term is
 included in all the alternatives and therefore cancels out [@train2009] in
 estimation. This means we cannot assess the *absolute* value of utility, but we
 can assess the *relative* monetary benefit of the difference between two
-scenarios as $$
+scenarios as 
+$$
 \mathrm{Benefit} = \sum_{i}\left(-\frac{\omega_i}{\beta_{mkt}}(CS_i' - CS_i)\right)
-$$ with the consumer surplus of the "improved" scenario in each origin zone $i$ 
+$$ 
+with the consumer surplus of the "improved" scenario in each origin zone $i$ 
 indicated as $CS_i'$ and the unimproved counterpart as $CS_i$, a weight $\omega$
 accounts for the population in the zone, and the $\beta_{mkt}$ converts the
 difference in utility into a dollar amount.
@@ -111,9 +115,11 @@ For active transportation, the lack of pedestrian facilities across and
 alongside roads both in reality and in the OpenStreetMap dataset may
 substantially increase measured walk distances and times. In this scenario, we
 replace the times measured from OpenStreetMap using R5 with an idealized
-distance function, $$
+distance function, 
+$$ 
 t_{\mathrm{walk}} = \frac{\sqrt{2} * d'_{ij}}{v_{\mathrm{walk}}}
-$$ {#eq-newwalk} where $d'_{ij}$ is the Euclidean (straight-line) distance
+$$ {#eq-newwalk} 
+where $d'_{ij}$ is the Euclidean (straight-line) distance
 between $i$ and $j$ and $v_{ij}$ is an average walking speed equivalent to 3.5
 feet per second [@fitzpatrick2006]. The distance is multiplied by the square
 root of 2 to reflect the Manhattan distance (along a gridded street system). We
@@ -184,7 +190,7 @@ ggplot() +
         axis.ticks.x = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank()) +
-  scale_fill_viridis_c("Benefit [$]", direction = -1, na.value = NA)
+  scale_fill_viridis_c("Benefit", direction = -1, na.value = NA)
 ```
 
 @fig-s1results shows the geographic distribution of benefits associated with
@@ -221,7 +227,7 @@ ggplot() +
         axis.ticks.x = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank()) +
-  scale_fill_viridis_c("Benefit [$]", direction = -1, na.value = NA)
+  scale_fill_viridis_c("Benefit", direction = -1, na.value = NA)
 ```
 
 @fig-s2results shows the results of the scenario improving an existing store in
@@ -335,7 +341,7 @@ ggplot() +
         axis.ticks.x = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank()) +
-  scale_fill_viridis_c("Benefit [$]", direction = -1, na.value = NA)+
+  scale_fill_viridis_c("Benefit", direction = -1, na.value = NA)+
   scale_color_manual("Transit", values = c("gray80", "black", "gray50"))
 
 ```
@@ -367,7 +373,7 @@ ggplot() +
         axis.ticks.x = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank()) +
-  scale_fill_viridis_c("Benefit [$]", direction = -1, na.value = NA)
+  scale_fill_viridis_c("Benefit", direction = -1, na.value = NA)
 ```
 
 
