@@ -285,7 +285,9 @@ per-household-trip benefit of less than \$1), and seem to not cover quite as
 large a geographic region. The transit and non-motorized access scenario
 (@fig-scenario-results-3) spreads smaller benefits over a larger area, while the
 grocery-delivery scenario (@fig-scenario-results-4) produces the largest and
-most broadly distributed gains.
+most broadly distributed gains. In this figures the distribution of benefits is shown in color,
+but the reader should note that the scale of benefits is not uniform across the
+scenarios, and is marked instead by the numeric values on the legend.
 
 
 

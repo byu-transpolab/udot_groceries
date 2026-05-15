@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted.tex                                                                                   Fri Jun 13 10:02:29 2025
-%DIF ADD Where-s-dinner-coming-from--A-utility-based-investigation-of-access-to-nutrition-in-Utah..tex   Thu May 14 11:21:45 2026
+%DIF ADD Where-s-dinner-coming-from--A-utility-based-investigation-of-access-to-nutrition-in-Utah..tex   Thu May 14 17:33:08 2026
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -721,7 +721,7 @@ availability and price differentials of lower-fat alternatives: for
 example, the survey instrument requests the shelf space allocated to
 milk products of various fat levels and the price of each product.
 \DIFaddbegin \DIFadd{Within the NEMS-S framework, ``healthful'' options are operationalized
-primarily thorugh the availability and relative pricing of lower-fat and
+primarily through the availability and relative pricing of lower-fat and
 lower-calorie alternatives; NEMS-S captures one dimension of
 diet-related healthfulness but does not represent a comprehensive
 assessment of nutritional quality across all populations.
@@ -1358,9 +1358,11 @@ with and without a vehicle.}
 
 In this section, we develop a series of scenarios to which we apply the
 models estimated in Section~\ref{sec-results}. These scenarios are
-constructed to ascertain what may be the best strategy to improve
-nutrition access in a community. We first describe how each scenario was
-constructed, and then discuss the results together.
+constructed to \DIFdelbegin \DIFdel{ascertain what may be the best strategy to improve
+nutrition access in a community}\DIFdelend \DIFaddbegin \DIFadd{illustrate potential applications of a utility-based
+model, and not as an evaluation of proposed policies}\DIFaddend . We first describe
+how each scenario was constructed, and then discuss the results
+together.
 
 The accessibility of each scenario is determined using the approximated
 utility coefficients of the All model estimated in
@@ -1379,15 +1381,16 @@ utility (Ben-Akiva \& Lerman, 1985), and the coefficients in
 Equation~\ref{eq-scenu} serve to convert between the units of the
 variable and utility. Specifically, the \(\beta_{mkt}\) coefficient
 represents how many dollars of grocery cost a person is willing to spend
-to increase their utility by one unit.
+to increase their utility by one unit. \DIFdelbegin %DIFDELCMD < 
 
-In actuality, the utility formula in Equation~\ref{eq-scenu} is a
-relative utility added by an unknown constant,
-\(U_{ij} = f(\mathbf{\beta}, X_{ij}) + C\), but this \(C\) term is
-included in all the alternatives and therefore cancels out (Train, 2009)
-in estimation. This means we cannot assess the \emph{absolute} value of
-utility, but we can assess the \emph{relative} monetary benefit of the
-difference between two scenarios as \[
+%DIFDELCMD < %%%
+\DIFdelend In actuality, the utility formula
+in Equation~\ref{eq-scenu} is a relative utility added by an unknown
+constant, \(U_{ij} = f(\mathbf{\beta}, X_{ij}) + C\), but this \(C\)
+term is included in all the alternatives and therefore cancels out \DIFaddbegin \DIFadd{in
+estimation }\DIFaddend (Train, 2009)\DIFdelbegin \DIFdel{in estimation}\DIFdelend . This means we cannot assess the
+\emph{absolute} value of utility, but we can assess the \emph{relative}
+monetary benefit of the difference between two scenarios as \[
 \mathrm{Benefit} = \sum_{i}\left(-\frac{\omega_i}{\beta_{mkt}}(CS_i' - CS_i)\right)
 \] with the consumer surplus of the ``improved'' scenario in each origin
 zone \(i\) indicated as \(CS_i'\) and the unimproved counterpart as
@@ -1415,8 +1418,10 @@ There are three general strategies we develop scenarios around:
 \end{enumerate}
 
 We implement all three strategies in scenarios on the west Salt Lake
-valley community. We also implement strategy 2 (an improved store) in
+valley community.
+\DIFdelbegin \DIFdel{We also implement strategy 2 (an improved store) in
 the San Juan and Utah County communities for comparison.
+}\DIFdelend 
 
 \subsubsection{Erect a new store}\label{erect-a-new-store}
 
@@ -1438,30 +1443,42 @@ store}\label{improve-an-existing-store}
 
 This strategy assumes that existing stores are in locations that the
 community values and can access, but that those stores may not have high
-availability of quality goods. To examine the potential for this
-strategy to improve access to nutrition, we improve the attributes of an
-existing dollar store in the community so that it has the size, prices,
-and availability of goods as a full-service grocery store. As above, we
-create a full-service grocery store with a number of registers equal to
-the mean of other grocery stores in the community, and NEMS availability
-score, NEMS cost score, and market basket cost equivalent to the
-75\(^{th}\) percentile for the community. Thus the store is expected to
-be better-than-average quality as perceived by the residents of the
+availability of quality goods. \DIFaddbegin \DIFadd{In response, some public agencies and
+community groups have executed programs to improve the offerings and
+display of more nutritive products (Haboush-Deloye et al., 2023; Young
+et al., 2018). }\DIFaddend To examine the potential for this strategy to improve
+access to nutrition, we improve the attributes of an existing dollar
+store in the community so that it has the size, prices, and availability
+of goods as a full-service grocery store. As above, we create a
+full-service grocery store with a number of registers equal to the mean
+of other grocery stores in the community, and NEMS availability score,
+NEMS cost score, and market basket cost equivalent to the 75\(^{th}\)
+percentile for the community. Thus the store is expected to be
+better-than-average quality as perceived by the residents of the
 community; the difference from the previous scenario is that the
 improved store takes the place of an existing convenience store or
-dollar store.
+dollar store. \DIFdelbegin %DIFDELCMD < 
 
-The improved stores are at the following locations in each community:
+%DIFDELCMD < %%%
+\DIFdel{The improved stores are at the following locations in each community:
+}%DIFDELCMD < 
 
-\begin{itemize}
-\tightlist
-\item
-  An ethnic store near 2700 W 3500 S in West Valley City (Salt Lake)
-\item
-  A small grocery store in Santaquin (Utah County)
-\item
-  A dollar store in Blanding (San Juan County)
-\end{itemize}
+%DIFDELCMD < \begin{itemize}
+%DIFDELCMD < \tightlist
+%DIFDELCMD < \item
+%DIFDELCMD <   %%%
+\DIFdel{An }\DIFdelend \DIFaddbegin \DIFadd{In this scenario, we improve the attributes of an existing
+}\DIFaddend ethnic store near 2700 W 3500 S in West Valley City\DIFdelbegin \DIFdel{(Salt Lake)
+}%DIFDELCMD < \item
+%DIFDELCMD <   %%%
+\DIFdel{A small grocery store in Santaquin (Utah County)
+}%DIFDELCMD < \item
+%DIFDELCMD <   %%%
+\DIFdel{A dollar store in Blanding (San Juan County)
+}%DIFDELCMD < \end{itemize}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \DIFadd{.
+}\DIFaddend 
 
 \subsubsection{Improve transit and non-motorized
 transport}\label{improve-transit-and-non-motorized-transport}
@@ -1523,43 +1540,123 @@ Using the methodology described above, we recalculated the destination
 choice log-sum value for each block group under each scenario, and
 compared the change in accessibility resulting from the improvement.
 
-\begin{figure}
+\DIFdelbegin %DIFDELCMD < \begin{figure}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \begin{sidewaysfigure}
+\DIFaddendFL 
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s1results-1.pdf}
+%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s1results-1.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \begin{minipage}{0.50\linewidth}
+\DIFaddendFL 
+
+\DIFdelbeginFL %DIFDELCMD < \caption{%
+{%DIFAUXCMD
+%DIFDELCMD < \label{fig-s1results}%%%
+\DIFdelFL{Estimated per-household benefits of adding
+new full-service store in west Salt Lake Valley}}
+%DIFAUXCMD
+\DIFdelendFL \DIFaddbeginFL \centering{
+
+\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-scenario-results-1.pdf}
+
+}
+\DIFaddendFL 
+
+\DIFdelbeginFL %DIFDELCMD < \end{figure}%%%
+\DIFdelend \DIFaddbegin \subcaption{\label{fig-scenario-results-1}\DIFadd{New full-service store}}
+
+\end{minipage}\DIFaddend %
+%DIF > 
+\DIFaddbegin \begin{minipage}{0.50\linewidth}
+\DIFaddend 
+
+\DIFdelbegin \DIFdel{Figure~\ref{fig-s1results} }\DIFdelend \DIFaddbegin \centering{
+
+\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-scenario-results-2.pdf}
 
 }
 
-\caption{\label{fig-s1results}Estimated per-household benefits of adding
-new full-service store in west Salt Lake Valley}
+\subcaption{\label{fig-scenario-results-2}\DIFadd{Improved existing store}}
 
-\end{figure}%
-
-Figure~\ref{fig-s1results} shows the geographic distribution of benefits
-associated with locating a new store at a site in the Salt Lake
-community. The benefits are largest immediately next to the new store,
-where they exceed \(3\) for each household each time the household makes
-a trip to a grocery store.
-
-\begin{figure}
+\end{minipage}%DIF > 
+\newline
+\begin{minipage}{0.50\linewidth}
 
 \centering{
 
-\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2results-1.pdf}
+\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-scenario-results-3.pdf}
 
 }
 
-\caption{\label{fig-s2results}Estimated per-household benefits of
-improving an existing store in west Salt Lake Valley}
+\subcaption{\label{fig-scenario-results-3}\DIFadd{Improved non-motorized and
+transit access}}
 
-\end{figure}%
+\end{minipage}%DIF > 
+%DIF > 
+\begin{minipage}{0.50\linewidth}
 
-Figure~\ref{fig-s2results} shows the results of the scenario improving
+\centering{
+
+\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-scenario-results-4.pdf}
+
+}
+
+\subcaption{\label{fig-scenario-results-4}\DIFadd{Expanded grocery delivery}}
+
+\end{minipage}%DIF > 
+
+\caption{\label{fig-scenario-results}\DIFadd{Estimated per-household benefits
+under the four Salt Lake Valley scenarios.}}
+
+\end{sidewaysfigure}%DIF > 
+
+\DIFadd{Figure~\ref{fig-scenario-results} }\DIFaddend shows the geographic distribution of
+benefits associated with \DIFaddbegin \DIFadd{each Salt Lake Valley scenario. The benefits
+from }\DIFaddend locating a new store at a site in the Salt Lake community
+\DIFdelbegin \DIFdel{. The benefits }\DIFdelend \DIFaddbegin \DIFadd{(Figure~\ref{fig-scenario-results-1}) }\DIFaddend are largest immediately next to
+the new store, where they exceed \(3\) for each household each time the
+household makes a trip to a grocery store. \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < \centering{
+%DIFDELCMD < 
+
+%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2results-1.pdf}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+%DIFDELCMD < \label{fig-s2results}%%%
+\DIFdelFL{Estimated per-household benefits of
+improving an existing store in west Salt Lake Valley}}
+%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < \end{figure}%%%
+%DIF < 
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Figure~\ref{fig-s2results} shows the results of the scenario improving
 an existing store in the Salt Lake community. Compared to the results of
-the new store scenario, the scale of the benefits are not as substantial
-(a maximum per-household-trip benefit of less than \$1), and seem to not
-cover quite as large a geographic region. Figure~\ref{fig-s2sjut} shows
+the new store scenario, }\DIFdelend \DIFaddbegin \DIFadd{The improved-store scenario
+(Figure~\ref{fig-scenario-results-2}) is similar in shape, but }\DIFaddend the scale
+of the benefits are not as substantial (a maximum per-household-trip
+benefit of less than \$1), and seem to not cover quite as large a
+geographic region. \DIFdelbegin \DIFdel{Figure~\ref{fig-s2sjut} shows
 the results of improving a store in Utah and San Juan Counties. As in
 Salt Lake, the benefits are most strongly concentrated in the immediate
 vicinity of the improved store. One interesting observation ---
@@ -1570,79 +1667,167 @@ containing the improvement sees a per-household-trip benefit well over
 \$2, considerably more than the maximum benefit in Salt Lake. This is
 intuitive, as the improvement of a store matters less if the stores
 close to you are already sufficient.
+}%DIFDELCMD < 
 
-\begin{figure}
+%DIFDELCMD < \begin{figure}
+%DIFDELCMD < 
 
-\begin{minipage}{0.50\linewidth}
+%DIFDELCMD < \begin{minipage}{0.50\linewidth}
+%DIFDELCMD < 
 
-\centering{
+%DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-1.pdf}
+%DIFDELCMD < \includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-1.pdf}
+%DIFDELCMD < 
 
-}
+%DIFDELCMD < }
+%DIFDELCMD < 
 
-\subcaption{\label{fig-s2sjut-1}Utah County (in Santaquin)}
+%DIFDELCMD < %%%
+%DIFDELCMD < \subcaption{%
+{%DIFAUXCMD
+%DIFDELCMD < \label{fig-s2sjut-1}%%%
+\DIFdelFL{Utah County (in Santaquin)}}
+%DIFAUXCMD
+%DIFDELCMD < 
 
-\end{minipage}%
-%
-\begin{minipage}{0.50\linewidth}
+%DIFDELCMD < \end{minipage}%%%
+%DIF < 
+%DIF < 
+%DIFDELCMD < \begin{minipage}{0.50\linewidth}
+%DIFDELCMD < 
 
-\centering{
+%DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-2.pdf}
+%DIFDELCMD < \includegraphics[width=4in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s2sjut-2.pdf}
+%DIFDELCMD < 
 
-}
+%DIFDELCMD < }
+%DIFDELCMD < 
 
-\subcaption{\label{fig-s2sjut-2}San Juan County (in Blanding)}
+%DIFDELCMD < %%%
+%DIFDELCMD < \subcaption{%
+{%DIFAUXCMD
+%DIFDELCMD < \label{fig-s2sjut-2}%%%
+\DIFdelFL{San Juan County (in Blanding)}}
+%DIFAUXCMD
+%DIFDELCMD < 
 
-\end{minipage}%
+%DIFDELCMD < \end{minipage}%%%
+%DIF < 
+%DIFDELCMD < 
 
-\caption{\label{fig-s2sjut}Estimated per-household benefits of improving
-an existing store in Utah and San Juan Counties.}
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+%DIFDELCMD < \label{fig-s2sjut}%%%
+\DIFdelFL{Estimated per-household benefits of improving
+an existing store in Utah and San Juan Counties.}}
+%DIFAUXCMD
+%DIFDELCMD < 
 
-\end{figure}%
+%DIFDELCMD < \end{figure}%%%
+%DIF < 
+%DIFDELCMD < 
 
-The results of the third scenario, improving the access of non-motorized
+%DIFDELCMD < %%%
+\DIFdel{The results of the third scenario, improving the access of non-motorized
 and public transit access to stores, are shown in
-Figure~\ref{fig-s3results}. This benefit is spread over a larger area,
-and is concentrated on the 35 MAX bus rapid transit corridor where the
-improvement in walk access time to transit couples with high frequency
-transit service to large grocery stores on the corridor. The
+Figure~\ref{fig-s3results}. This benefit is spread }\DIFdelend \DIFaddbegin \DIFadd{The transit and non-motorized access scenario
+(Figure~\ref{fig-scenario-results-3}) spreads smaller benefits }\DIFaddend over a
+larger area, \DIFdelbegin \DIFdel{and is concentrated on the 35 MAX bus rapid transit corridor where the improvement in walk access time to transit couples with high frequency
+transit service to large grocery stores on the corridor.
+The
 per-household-trip benefit is very small however, with a maximum benefit
 on the order of \$0.25.
+}\DIFdelend \DIFaddbegin \DIFadd{while the grocery-delivery scenario
+(Figure~\ref{fig-scenario-results-4}) produces the largest and most
+broadly distributed gains.
+}\DIFaddend 
 
-\begin{figure}
+\DIFdelbegin %DIFDELCMD < \begin{figure}
+%DIFDELCMD < 
 
-\centering{
+%DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s3results-1.pdf}
+%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s3results-1.pdf}
+%DIFDELCMD < 
 
-}
+%DIFDELCMD < }
+%DIFDELCMD < 
 
-\caption{\label{fig-s3results}Estimated per-household benefits of
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+%DIFDELCMD < \label{fig-s3results}%%%
+\DIFdelFL{Estimated per-household benefits of
 improving non-motorized and public transport access to groceries in Salt
-Lake Valley.}
+Lake Valley.}}
+%DIFAUXCMD
+%DIFDELCMD < 
 
-\end{figure}%
+%DIFDELCMD < \end{figure}%%%
+%DIF < 
+%DIFDELCMD < 
 
-\begin{figure}
+%DIFDELCMD < \begin{figure}
+%DIFDELCMD < 
 
-\centering{
+%DIFDELCMD < \centering{
+%DIFDELCMD < 
 
-\includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s4results-1.pdf}
+%DIFDELCMD < \includegraphics[width=6in,height=\textheight]{05_scenarios_files/figure-pdf/fig-s4results-1.pdf}
+%DIFDELCMD < 
 
-}
+%DIFDELCMD < }
+%DIFDELCMD < 
 
-\caption{\label{fig-s4results}Estimated per-household benefits of
-grocery deliveries in Salt Lake Valley.}
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+%DIFDELCMD < \label{fig-s4results}%%%
+\DIFdelFL{Estimated per-household benefits of
+grocery deliveries in Salt Lake Valley.}}
+%DIFAUXCMD
+%DIFDELCMD < 
 
-\end{figure}%
+%DIFDELCMD < \end{figure}%%%
+%DIF < 
+%DIFDELCMD < 
 
-\begin{table}
+%DIFDELCMD < %%%
+\DIFdelend \begin{table}
 
 \caption{\label{tbl-scenarios}Scenario Benefits}
 
-\centering{
+\DIFdelbeginFL %DIFDELCMD < \centering{
+%DIFDELCMD < 
+
+%DIFDELCMD < \centering
+%DIFDELCMD < \begin{tabular}[t]{lllll}
+%DIFDELCMD < \toprule
+%DIFDELCMD < \multicolumn{1}{c}{ } & \multicolumn{4}{c}{Weighted by} \\
+%DIFDELCMD < \cmidrule(l{3pt}r{3pt}){2-5}
+%DIFDELCMD < Scenario & Households & Non-white & Low-Income & Zero-Vehicle\\
+%DIFDELCMD < \midrule
+%DIFDELCMD < New Store & \$12,860,857 & \$5,612,293 & \$2,217,757 & \$555,185\\
+%DIFDELCMD < \addlinespace[0.3em]
+%DIFDELCMD < \multicolumn{5}{l}{\textbf{Improved Store}}\\
+%DIFDELCMD < \hspace{1em}Salt Lake Valley & \$6,273,501 & \$3,019,389 & \$1,255,096 & \$333,377\\
+%DIFDELCMD < \hspace{1em}Utah County & \$8,413,589 & \$1,340,090 & \$1,319,575 & \$163,353\\
+%DIFDELCMD < \hspace{1em}San Juan County & \$79,343 & \$35,482 & \$25,767 & \$5,383\\
+%DIFDELCMD < Improved Transport & \$1,686,717 & \$767,224 & \$234,676 & \$52,085\\
+%DIFDELCMD < Delivery Services & \$228,192,080 & \$88,977,055 & \$26,216,631 & \$5,474,393\\
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \end{tabular}
+%DIFDELCMD < 
+
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \centering{
 
 \centering
 \begin{tabular}[t]{lllll}
@@ -1652,17 +1837,14 @@ grocery deliveries in Salt Lake Valley.}
 Scenario & Households & Non-white & Low-Income & Zero-Vehicle\\
 \midrule
 New Store & \$12,860,857 & \$5,612,293 & \$2,217,757 & \$555,185\\
-\addlinespace[0.3em]
-\multicolumn{5}{l}{\textbf{Improved Store}}\\
-\hspace{1em}Salt Lake Valley & \$6,273,501 & \$3,019,389 & \$1,255,096 & \$333,377\\
-\hspace{1em}Utah County & \$8,413,589 & \$1,340,090 & \$1,319,575 & \$163,353\\
-\hspace{1em}San Juan County & \$79,343 & \$35,482 & \$25,767 & \$5,383\\
+Improved Store & \$6,273,501 & \$3,019,389 & \$1,255,096 & \$333,377\\
 Improved Transport & \$1,686,717 & \$767,224 & \$234,676 & \$52,085\\
 Delivery Services & \$228,192,080 & \$88,977,055 & \$26,216,631 & \$5,474,393\\
 \bottomrule
 \end{tabular}
 
 }
+\DIFaddendFL 
 
 \end{table}%
 
@@ -1671,8 +1853,8 @@ the aggregate benefit is more likely to guide policy. Additionally, the
 aggregate benefits can be weighted in different ways to understand the
 effects of the various policies on different populations.
 Table~\ref{tbl-scenarios} presents the aggregate benefit from each of
-the three scenarios (and the result of the second scenario in all three
-communities). The Households column multiplies the difference in
+the \DIFdelbegin \DIFdel{three scenarios (and the result of the second scenario in all three
+communities). }\DIFdelend \DIFaddbegin \DIFadd{four scenarios }\DIFaddend The Households column multiplies the difference in
 destination choice log-sum at each block group by the number of
 households in that block group, while the non-white and low-income
 columns weight the difference by the share of non-white individuals and
@@ -1689,12 +1871,14 @@ benefit of approximately \$13 million. Of this amount, somewhat less
 than half the benefits go to non-white individuals and less than
 one-fifth to low-income households. These ratios are more or less the
 same for the store improvement scenario and the improved transport
-scenario in the Salt Lake Valley. The Utah County store improvement, on
+scenario in the Salt Lake Valley.
+\DIFdelbegin \DIFdel{The Utah County store improvement, on
 the other hand, has a somewhat higher proportion of benefits going to
 low-income households relative to non-white households. This is a
 reflection of the lower minority population in southern Utah County vis
 a vis west Salt Lake valley, but is nonetheless a metric that program
 evaluators might pay attention to.
+}\DIFdelend 
 
 Overall, the improved store brings more than twice the benefits of
 improving non-automobile transportation, and the new store more than
@@ -1702,14 +1886,16 @@ five times the benefits. Understanding the costs of these various
 alternatives is outside the scope of this research, but the level of
 infrastructure investment required to increase transportation level of
 service to that constructed in the simulation is likely an order of
-magnitude higher than the cost of a single new grocery store. It should
-also be acknowledged that improving non-automobile infrastructure and
-services would have benefits beyond just grocery store trips that we do
-not attempt to enumerate here. It is also not clear whether the level of
-improvement simulated in the second scenario could be accomplished
-within the envelope of the existing store; it may be that such
-improvements would meet or exceed the cost of building a new store on a
-new site, along with stocking, staffing, and operating the store.
+magnitude higher than the cost of a single new grocery store. It \DIFdelbegin \DIFdel{should
+also be }\DIFdelend \DIFaddbegin \DIFadd{is
+}\DIFaddend acknowledged that improving non-automobile infrastructure and services
+would have benefits \DIFdelbegin \DIFdel{beyond just }\DIFdelend \DIFaddbegin \DIFadd{for all trip types --- beyond just the }\DIFaddend grocery store
+trips \DIFaddbegin \DIFadd{--- }\DIFaddend that we do not attempt to enumerate here. It is also not clear
+whether the level of improvement simulated in the second scenario could
+be accomplished within the envelope of the existing store; it may be
+that such improvements would meet or exceed the cost of building a new
+store on a new site, along with stocking, staffing, and operating the
+store.
 
 By far the highest benefit observed in these scenarios is the increased
 availability of delivery services, but this scenario must be treated
@@ -1731,19 +1917,37 @@ of these four strategies by a wide margin.
 Access to nutrition is a critical topic that has been a frequent focus
 of academic literature in public health, community planning, and
 engineering, but the varying and incomplete quantitative definitions of
-access have perhaps limited efforts at developing solutions.
+access have perhaps limited efforts at developing solutions. \DIFdelbegin %DIFDELCMD < 
 
-In this research, the model we developed and informed with
-location-based services data suggested that policies that increased the
-availability and quality of grocery stores would do more to enhance
-access to nutrition than strategies that increased the transit level of
-service and lowered active transport travel times in three different
-Utah communities. These findings may not be general, but they largely
-support the review of food desert literature in (Beaulac et al., 2009)
-as well as critical evaluations by (Shannon, 2014) and (Wright et al.,
-2016).
+%DIFDELCMD < %%%
+\DIFdelend In this
+research, \DIFdelbegin \DIFdel{the model we developed and informed with
+location-based services data suggested that policies that increased the availability and quality of grocery stores would do more to enhance
+accessto nutrition than strategies that increased the transit level of service and lowered active transport travel times in three different
+Utah communities}\DIFdelend \DIFaddbegin \DIFadd{a model of nutrition resource access that includes attributes
+of the store --- especially its size and the price of its goods ---
+improves model fit over a model that only includes the transportation
+accessibility information. This more sensitive model can be used in
+policy evaluations to compare more targeted interventions along varied
+dimensions. Travel time proximity is still seen as a driving attribute
+of access, explaining most of the variation in choice and leading to a
+high evaluation of grocery deliveries that effectively eliminate this
+barrier}\DIFaddend . These findings may not be general, but they largely support the
+review of food desert literature in (Beaulac et al., 2009) as well as
+critical evaluations by (Shannon, 2014) and (Wright et al., 2016).
 
-\subsection{Limitations}\label{sec-limitations}
+\DIFaddbegin \DIFadd{The broad literature of attempts to evaluate the nutrition environment
+--- in the end --- must be motivated by attempts to improve not merely
+access to nutrition resources but to improve health outcomes. To this
+end, it would be useful to understand if the more comprehensive measures
+pursued in this paper are more strongly correlated with health outcomes
+than the less comprehensive measures currently used in policy
+evaluations. This has been shown to be the case with urban green spaces
+(Macfarlane et al., 2021), but an examination of this effect for health
+outcomes is left to future research.
+}
+
+\DIFaddend \subsection{Limitations}\label{sec-limitations}
 
 A number of assumptions made in Section~\ref{sec-methods} lead to
 limitations that other reasonable researchers might pursue differently,
@@ -2023,6 +2227,12 @@ Medicine}, \emph{32}(4), 282--289.
 Indicator}}\DIFadd{. }\emph{\DIFadd{International Journal of Sustainable Transportation}}\DIFadd{,
 }\emph{9}(1)\DIFadd{, 1--14. }\url{https://doi.org/10.1080/15568318.2012.719582}
 
+\bibitem[\citeproctext]{ref-haboush2023healthy}
+\DIFadd{Haboush-Deloye, A. L., Knight, M. A., Bungum, N., \& Spendlove, S.
+(2023). Healthy foods in convenience stores: Benefits, barriers, and
+best practices. }\emph{\DIFadd{Health Promotion Practice}}\DIFadd{, }\emph{\DIFadd{24}}\DIFadd{(1\_suppl),
+108S--111S. }\url{https://doi.org/10.1177/15248399221147878}
+
 \DIFaddend \bibitem[\citeproctext]{ref-handy1997}
 Handy, S. L., \& Niemeier, D. A. (1997). Measuring accessibility: {An}
 exploration of issues and alternatives. \emph{Environment and Planning
@@ -2082,7 +2292,14 @@ Options} in {Denver}, {CO Grocery Stores}. \emph{Journal of Hunger \&
 Environmental Nutrition}, \emph{16}(3), 297--303.
 \url{https://doi.org/10.1080/19320248.2020.1741482}
 
-\bibitem[\citeproctext]{ref-macfarlane2022}
+\DIFaddbegin \bibitem[\citeproctext]{ref-macfarlane2021modeling}
+\DIFadd{Macfarlane, G. S., Boyd, N., Taylor, J. E., \& Watkins, K. (2021).
+Modeling the impacts of park access on health outcomes: A utility-based
+accessibility approach. }\emph{\DIFadd{Environment and Planning B: Urban
+Analytics and City Science}}\DIFadd{, }\emph{48}(8)\DIFadd{, 2289--2306.
+}\url{https://doi.org/10.1177/2399808320974027}
+
+\DIFaddend \bibitem[\citeproctext]{ref-macfarlane2022}
 Macfarlane, G. S., Voulgaris, C. T., \& Tapia, T. (2022). City parks and
 slow streets: {A} utility-based access and equity analysis.
 \emph{Journal of Transport and Land Use}, \emph{15}(1), 587--612.
@@ -2157,20 +2374,26 @@ Widener, M. J., \& Shannon, J. (2014). When are food deserts?
 {Integrating} time into research on food accessibility. \emph{Health \&
 Place}, \emph{30}, 1--3.
 \url{https://doi.org/10.1016/j.healthplace.2014.07.011}
-\DIFaddbegin 
 
-\bibitem[\citeproctext]{ref-witten2003}
+\DIFaddbegin \bibitem[\citeproctext]{ref-witten2003}
 \DIFadd{Witten, K., Exeter, D., \& Field, A. (2003). The }{\DIFadd{Quality}} \DIFadd{of }{\DIFadd{Urban
 Environments}}\DIFadd{: }{\DIFadd{Mapping Variation}} \DIFadd{in }{\DIFadd{Access}} \DIFadd{to }{\DIFadd{Community Resources}}\DIFadd{.
 }\emph{\DIFadd{Urban Studies}}\DIFadd{, }\emph{40}(1)\DIFadd{, 161--177.
 }\url{https://doi.org/10.1080/00420980220080221}
-\DIFaddend 
 
-\bibitem[\citeproctext]{ref-wright2016}
+\DIFaddend \bibitem[\citeproctext]{ref-wright2016}
 Wright, J. D., Donley, A. M., Gualtieri, M. C., \& Strickhouser, S. M.
 (2016). Food {Deserts}: {What} is the {Problem}? {What} is the
 {Solution}? \emph{Society}, \emph{53}(2), 171--181.
 \url{https://doi.org/10.1007/s12115-016-9993-8}
+\DIFaddbegin 
+
+\bibitem[\citeproctext]{ref-young2018}
+\DIFadd{Young, S., DeNomie, M., Sabir, J., Gass, E., \& Tobin, J. (2018). Around
+the corner to better health: A milwaukee corner store initiative.
+}\emph{\DIFadd{American Journal of Health Promotion}}\DIFadd{, }\emph{32}(6)\DIFadd{, 1353--1356.
+}\url{https://doi.org/10.1177/0890117117736970}
+\DIFaddend 
 
 \end{CSLReferences}
 
