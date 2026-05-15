@@ -784,17 +784,18 @@ is the travel impedance between \(i\) and \(j\). Many possibilities for
 representing this impedance exist, from basic euclidean distance to
 complex network paths. A primary purpose of the model we are developing
 in this research is to study comparative tradeoffs between
-infrastructure-focused and environment-focused improvements to the
-nutrition access of households. It is therefore essential that we use a
-travel impedance measure that can combine and compare the cost of
-traveling by multiple modes so that highway improvements and transit /
-active transport improvements can be compared in the same basic model.
+transportation-focused and nutrition environment-focused improvements.
+It is therefore essential that the measure of travel impedance
+incorporate travel by multiple modes of transportation, so that highway
+improvements and transit or active transport improvements can be
+compared.
 
 Just as the log-sum of a destination choice model is a measure that sums
-the utility of multiple destination attributes and costs in a rigorous
-manner, the log-sum of a mode choice model combines the utilities of all
-available travel modes. In this study we assert the following mode
-choice utility equations: \begin{align*} 
+the utility of multiple destination attributes and costs, the log-sum of
+a mode choice model is the expected maximum utility of all available
+travel modes, weighted by preferences and costs (Ben-Akiva \& Lerman,
+1985). In this study we assert the following mode choice utility
+equations: \begin{align*} 
   V_{\mathrm{auto}, ij} &= -0.028(t_{\mathrm{auto}, ij})\\
   V_{\mathrm{bus}, ij} &= -4 -0.028(t_{\mathrm{bus}, ij}) -0.056(t_{\mathrm{wait}, ij}) -0.056(t_{\mathrm{access}, ij})\\
   V_{\mathrm{walk, ij}} &= -5 -0.028(t_{\mathrm{walk}, ij}) -1.116(d_{ij<1.5}) -5.58(d_{ij>1.5})\\
@@ -823,11 +824,13 @@ transit service files --- to simulate multiple realistic route options
 by all requested modes. We obtained OpenStreetMap networks and the Utah
 Transit Authority GTFS file valid for May 2023 and requested the minimum
 total travel time by each mode of auto, transit, and walking for a
-departure between 8 AM and 9 AM on May 10, 2023. The total allowable
-trip time by any mode was set to 120 minutes, and the walk distance was
-capped at 10 kilometers; if a particular \(i,j\) pair exceeded these
-parameters then the mode was presumed to not be available and
-contributes no utility to the log-sum.
+departure between 8 AM and 9 AM on May 10, 2023; this period on a
+Tuesday morning in the AM peak provides the highest level of service
+possible in the transit system. The total allowable trip time by any
+mode was set to 120 minutes, and the walk distance was capped at 10
+kilometers, mirroring limits set in the regional travel model. If a
+particular \(i,j\) pair exceeded these parameters then the mode was
+presumed to not be available and contributes no utility to the log-sum.
 
 \subsubsection{Mobile Device Data}\label{mobile-device-data}
 
@@ -1601,6 +1604,20 @@ distinguishing, for example, whether an individual device observed at a
 dollar store or a super market (e.g.~Wal-Mart) was there to purchase
 groceries or some other household goods that might not be offered at
 more traditional food markets.
+
+This research implemented travel impedance measures calculated using an
+asserted mode choice utility equation, with assumed limits on the walk
+distance and total travel time by all modes. These assumptions are
+necessary to render the problem tractable, but more information could be
+incorporated in future research. The authors are unaware of travel
+behavior data in San Juan County that could be used to estimate mode
+choice model parameters, but it is likely that sensitivities to
+distances and costs are different in that region than in the urbanized
+areas of the Wasatch Front. The limits applied to non-motorized distance
+and travel time similarly will affect the numeric results presented in
+this paper, but are unlikely to have a significant impact on the
+interpretation or the scale of the results. A sensitivity analysis to
+these assumptions would be a useful step in implementing this research.
 
 A number of simplifying assumptions concern the socioeconomic and
 spatio-temporal detail supplied to the choice models and accessibility

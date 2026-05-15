@@ -59,6 +59,19 @@ store or a super market (e.g. Wal-Mart) was there to purchase groceries or some
 other household goods that might not be offered at more traditional food
 markets.
 
+This research implemented travel impedance measures calculated using an asserted 
+mode choice utility equation, with assumed limits on the walk distance and total travel time 
+by all modes. These assumptions are necessary to render the problem tractable, but 
+more information could be incorporated in future research. The authors are unaware of
+travel behavior data in San Juan County that could be used to estimate mode choice
+model parameters, but it is likely that sensitivities to distances and costs are different
+in that region than in the urbanized areas of the Wasatch Front. The limits applied to
+non-motorized distance and travel time similarly will affect the numeric results presented
+in this paper, but are unlikely to have a significant impact on the interpretation or the scale
+of the results. A sensitivity analysis to these assumptions would be a useful
+step in implementing this research.
+
+
 A number of simplifying assumptions concern the socioeconomic and
 spatio-temporal detail supplied to the choice models and accessibility
 calculators. The StreetLight data do not contain any demographic information on

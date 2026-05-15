@@ -361,20 +361,19 @@ The second element of the utility equation in @eq-utility is the travel
 impedance between $i$ and $j$. Many possibilities for representing this
 impedance exist, from basic euclidean distance to complex network paths. A
 primary purpose of the model we are developing in this research is to study
-comparative tradeoffs between infrastructure-focused and environment-focused
-improvements to the nutrition access of households. It is therefore essential
-that we use a travel impedance measure that can combine and compare the cost of
-traveling by multiple modes so that highway improvements and transit / active
-transport improvements can be compared in the same basic model.
+comparative tradeoffs between transportation-focused and nutrition environment-focused
+improvements. It is therefore essential that the measure of travel impedance incorporate 
+travel by multiple modes of transportation, so that highway improvements and transit or
+active transport improvements can be compared.
 
 ```{r utilities}
 tar_load(utilities)
 ```
 
 Just as the log-sum of a destination choice model is a measure that sums the
-utility of multiple destination attributes and costs in a rigorous manner, the
-log-sum of a mode choice model combines the utilities of all available travel
-modes. In this study we assert the following mode choice utility equations:
+utility of multiple destination attributes and costs, the
+log-sum of a mode choice model is the expected maximum utility of all available travel modes, 
+weighted by preferences and costs [@ben-akiva1985]. In this study we assert the following mode choice utility equations:
 \begin{align*} 
   V_{\mathrm{auto}, ij} &= `r utilities$CAR['ivtt']`(t_{\mathrm{auto}, ij})\\
   V_{\mathrm{bus}, ij} &= `r utilities$TRANSIT['constant']` `r utilities$TRANSIT['ivtt']`(t_{\mathrm{bus}, ij}) `r utilities$TRANSIT['wait']`(t_{\mathrm{wait}, ij}) `r utilities$TRANSIT['wait']`(t_{\mathrm{access}, ij})\\
@@ -402,8 +401,10 @@ files --- to simulate multiple realistic route options by all requested modes.
 We obtained OpenStreetMap networks and the Utah Transit Authority GTFS file
 valid for May 2023 and requested the minimum total travel time by each mode of
 auto, transit, and walking for a departure between 8 AM and 9 AM on May 10,
-2023. The total allowable trip time by any mode was set to 120 minutes, and the
-walk distance was capped at 10 kilometers; if a particular $i,j$ pair exceeded
+2023; this period on a Tuesday morning in the AM peak provides the highest level of
+service possible in the transit system. The total allowable trip time by any mode was set to 120 minutes, and the
+walk distance was capped at 10 kilometers, mirroring limits set in the regional travel model. 
+If a particular $i,j$ pair exceeded
 these parameters then the mode was presumed to not be available and contributes
 no utility to the log-sum.
 
