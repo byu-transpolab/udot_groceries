@@ -156,7 +156,7 @@ glance_custom.mlogit <- function(x, ...){
 f <- function(x) format(round(x, 3), big.mark=",")
 gm <- list(
   list("raw" = "AIC", "clean" = "AIC", "fmt" = f),
-  list("raw" = "rho20", "clean" = "$\\rho^2_0$", "fmt" = f))
+  list("raw" = "rho20", "clean" = "$\\rho_0^2$", "fmt" = f))
 
 cm <- c(
   "duration_CAR" = "Automobile Travel Time",
@@ -177,7 +177,8 @@ cm <- c(
 modelsummary(ut_models, gof_map = gm, coef_map = cm, 
              stars = c('*' = 0.05, '**' = 0.01),
              statistic = "({statistic})",
-             notes = list("t-statistics in parentheses"), output="kableExtra")
+             notes = list("t-statistics in parentheses"), escape = FALSE,
+             output="kableExtra")
 ```
 
 @tbl-utah-models presents the estimated coefficients in the Utah County
@@ -217,7 +218,8 @@ the bulk of model explanatory power is due to transportation proximity.
 modelsummary(sl_models, gof_map = gm, coef_map = cm,
              stars = c('*' = 0.05, '**' = 0.01),
              statistic = "({statistic})",
-             notes = list("t-statistics in parentheses"), output = "kableExtra")
+             notes = list("t-statistics in parentheses"), escape = FALSE,
+             output = "kableExtra")
 ```
 
 ```{r}
@@ -226,7 +228,8 @@ modelsummary(sl_models, gof_map = gm, coef_map = cm,
 modelsummary(sj_models, gof_map = gm, coef_map = cm,
              stars = c('*' = 0.05, '**' = 0.01),
              statistic = "({statistic})",
-             notes = list("t-statistics in parentheses"), output = "kableExtra")
+             notes = list("t-statistics in parentheses"), escape = FALSE,
+             output = "kableExtra")
 ```
 
 @tbl-sl-models presents the estimated coefficients in the west Salt Lake County
