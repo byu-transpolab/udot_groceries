@@ -1,15 +1,32 @@
 # Results {#sec-results}
 
-```{r setup, file = "R/chapter_start.R", include = FALSE, cache = FALSE}
+```{r setup, include = FALSE, cache = FALSE}
 # a number of commands need to run at the beginning of each chapter. This
 # includes loading libraries that I always use, as well as options for 
 # displaying numbers and text.
+source("R/chapter_start.R")
 library(mlogit)
 library(wesanderson)
 library(sf)
 library(ggspatial)
 library(viridisLite)
 knitr::opts_chunk$set(cache = FALSE)
+```
+
+```{r map-legend-theme, include = FALSE, cache = FALSE}
+map_legend_theme <- theme(
+  legend.title = element_text(size = 8),
+  legend.text = element_text(size = 7),
+  legend.key.height = grid::unit(0.14, "in"),
+  legend.key.width = grid::unit(0.10, "in")
+)
+
+map_legend_theme_wide <- theme(
+  legend.title = element_text(size = 6),
+  legend.text = element_text(size = 5.5),
+  legend.key.height = grid::unit(0.10, "in"),
+  legend.key.width = grid::unit(0.08, "in")
+)
 ```
 
 This section presents results on the nutrition environment in each of the three
@@ -226,6 +243,7 @@ model fit than the transportation impedance term.
 #| label: fig-all-comp
 #| dev: "tikz"
 #| fig-cap:  Average change in the probability of the chosen alternative with respect to a 100% change in model variables.
+#| fig-pos: "!t"
 library(marginaleffects)
 tar_load(elasticities)
 
@@ -291,8 +309,11 @@ neighborhoods with the lowest concentrations of ethnic minorities in the region.
 
 ```{r}
 #| label: fig-map-ut
+#| dev: "tikz"
 #| fig-cap: Modeled access to grocery stores in Utah County
-#| out-width: "6in"
+#| fig-pos: "!t"
+#| out-width: "4in"
+#| out-height: "4in"
 ggplot(utbgaccess, aes(fill = access)) +
   ggspatial::annotation_north_arrow(style = ggspatial::north_arrow_minimal, location = "tl") +
   ggspatial::annotation_scale() +
@@ -302,7 +323,8 @@ ggplot(utbgaccess, aes(fill = access)) +
         axis.ticks.x = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank()) +
-  scale_fill_viridis_c("Access", direction = -1)
+  scale_fill_viridis_c("Access", direction = -1) +
+  map_legend_theme_wide
 ```
 
 Of course, much of this high access in the urban core of Utah County is achieved
@@ -325,6 +347,7 @@ both cases, this represents a serious additional cost for non-vehicle users.
 
 ```{r}
 #| label: fig-map-nocar
+#| dev: "tikz"
 #| fig-env: sidewaysfigure
 #| fig-cap: "Access to groceries in Salt Lake County with and without a vehicle."
 #| fig-subcap: 
@@ -345,7 +368,8 @@ ggplot(nocaraccess, aes(fill = dclogsum)) +
         axis.ticks.x = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank()) +
-  scale_fill_viridis_c("Access", direction = -1)
+  scale_fill_viridis_c("Access", direction = -1) +
+  map_legend_theme
 
 ggplot(nocaraccess |> filter(!is.na(nocarlogsum)), aes(fill = nocarlogsum)) +
   ggspatial::annotation_map_tile("cartolight", zoom = 10) +
@@ -358,5 +382,6 @@ ggplot(nocaraccess |> filter(!is.na(nocarlogsum)), aes(fill = nocarlogsum)) +
         axis.ticks.x = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank()) +
-  scale_fill_viridis_c("Access", direction = -1)
+  scale_fill_viridis_c("Access", direction = -1) +
+  map_legend_theme
 ```

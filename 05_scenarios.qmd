@@ -162,6 +162,7 @@ in accessibility resulting from the improvement.
 
 ```{r}
 #| label: fig-scenario-results
+#| dev: "tikz"
 #| fig-env: sidewaysfigure
 #| fig-cap: Estimated per-household benefits under the four Salt Lake Valley scenarios.
 #| fig-subcap:
@@ -214,7 +215,11 @@ scenario_map_theme <- theme(
   axis.text.x = element_blank(),
   axis.ticks.x = element_blank(),
   axis.text.y = element_blank(),
-  axis.ticks.y = element_blank()
+  axis.ticks.y = element_blank(),
+  legend.title = element_text(size = 8),
+  legend.text = element_text(size = 7),
+  legend.key.height = grid::unit(0.14, "in"),
+  legend.key.width = grid::unit(0.10, "in")
 )
 
 plot_s1 <- ggplot() +
