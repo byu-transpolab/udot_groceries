@@ -75,7 +75,9 @@ Utah County, West Salt Lake County, and San Juan County. Note that in this
 document we refer to the second community as "Salt Lake" even though this does
 not refer to the entire Salt Lake County nor to Salt Lake City, rather, we focus
 on communities in the western part of the valley, such as Magna, Kearns, and
-West Valley City. The communities are shown in a wider context in @fig-communities.
+West Valley City. The housing density and locations of stores in each community are shown in @fig-communities,
+and the context of each community in Utah is shown in @fig-community-context.
+
 
 ```{r}
 #| label: fig-communities
@@ -105,12 +107,12 @@ p <- lapply(seq_along(1:nrow(map_regions)), function(i){
       axis.ticks.y = element_blank(),
     ) + 
     geom_sf(data = map_regions$region[[i]], alpha = 0.3, mapping = aes(fill = density), lwd = 0.01) +
-    geom_sf(data = map_regions$grocery[[i]], mapping = aes(size = total_registers), color = "grey40", alpha = 0.5) +
+    geom_sf(data = map_regions$grocery[[i]], mapping = aes(size = total_registers), color = "grey40", alpha = 0.7) +
     coord_sf(xlim = bbox[c(1,3)], ylim = bbox[c(2,4)], crs = sf::st_crs(map_regions$grocery[[i]])) +
     scale_fill_viridis_c("Density [Housing Units / sqkm] ", direction = -1, 
       limits = c(0, 2000), oob = scales::squish,
       breaks = c(0, 100, 500, 1000, 2000), transform = "sqrt", na.value = NA, option = "A") +
-    scale_size_manual("Total Registers", values = c("<5" = 1, "5-10" = 2, "10-25" = 3, ">25" = 4), na.value = NA,
+    scale_size_manual("Stores: Total Registers", values = c("<5" = 1, "5-10" = 2, "10-25" = 3, ">25" = 4), na.value = NA,
       labels = c("\\textless 5", "5-10", "10-25", "\\textgreater 25"))
 })
 
@@ -122,6 +124,54 @@ patch <- (p1 | (p2/p3)) + plot_layout(guides = "collect", widths =  c(1, 1))
 patch
 ```
 
+```{r message=FALSE}
+#| label: fig-community-context
+#| fig-cap: Context of communities in @fig-communities within the state of Utah.
+#| 
+bbox_polygon <- function(grocery) {
+  bbox <- sf::st_bbox(grocery)
+
+  sf::st_polygon(list(matrix(
+    c(
+      bbox[["xmin"]], bbox[["ymin"]],
+      bbox[["xmax"]], bbox[["ymin"]],
+      bbox[["xmax"]], bbox[["ymax"]],
+      bbox[["xmin"]], bbox[["ymax"]],
+      bbox[["xmin"]], bbox[["ymin"]]
+    ),
+    ncol = 2,
+    byrow = TRUE
+  )))
+}
+
+community_context_box_geoms <- map_regions$grocery |>
+  purrr::map(bbox_polygon) |>
+  do.call(what = sf::st_sfc, args = _) |>
+  sf::st_set_crs(sf::st_crs(map_regions$grocery[[1]]))
+
+regions <- sf::st_sf(
+  county = map_regions$county,
+  geometry = community_context_box_geoms
+)
+utah <- tigris::states(progress_bar = FALSE) |> filter(STUSPS == "UT")
+
+ggplot() +
+  ggspatial::annotation_map_tile("cartolight", zoom = 7) +
+  ggspatial::annotation_scale(location = "tr") +
+  ggspatial::annotation_north_arrow(style =  ggspatial::north_arrow_minimal,
+        location = "tr", pad_y = unit(0.5, "in")) +
+  geom_sf(data = utah, fill = NA, color = "black", alpha = 0.5) +
+  geom_sf(data = regions, fill = "white", color = "red", alpha = 0.5) +
+  theme(
+    legend.title = element_text(size = rel(1)),
+    legend.text = element_text(size = rel(0.8)),
+    plot.title = element_text(size = rel(1.2)),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+  )
+```
 
 @tbl-acsdata shows several key population statistics based on 2021 American
 Community Survey data for block groups in the three communities of interest.

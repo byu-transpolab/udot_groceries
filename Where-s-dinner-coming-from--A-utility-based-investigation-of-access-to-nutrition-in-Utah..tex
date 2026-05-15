@@ -533,8 +533,9 @@ and San Juan County. Note that in this document we refer to the second
 community as ``Salt Lake'' even though this does not refer to the entire
 Salt Lake County nor to Salt Lake City, rather, we focus on communities
 in the western part of the valley, such as Magna, Kearns, and West
-Valley City. The communities are shown in a wider context in
-Figure~\ref{fig-communities}.
+Valley City. The housing density and locations of stores in each
+community are shown in Figure~\ref{fig-communities}, and the context of
+each community in Utah is shown in Figure~\ref{fig-community-context}.
 
 \begin{sidewaysfigure}
 
@@ -549,6 +550,19 @@ comunities in Utah, with housing density at block group level and size
 of store measured by number of registers.}
 
 \end{sidewaysfigure}%
+
+\begin{figure}
+
+\centering{
+
+\includegraphics{03_methods_files/figure-pdf/fig-community-context-1.pdf}
+
+}
+
+\caption{\label{fig-community-context}Context of communities in
+Figure~\ref{fig-communities} within the state of Utah.}
+
+\end{figure}%
 
 Table~\ref{tbl-acsdata} shows several key population statistics based on
 2021 American Community Survey data for block groups in the three
@@ -967,7 +981,7 @@ Store Type: Other &  &  & -1.785** & -1.813**\\
  &  &  & (-12.641) & (-11.991)\\
 \midrule
 AIC & 31,874.44 & 49,051.55 & 41,985.6 & 25,402.43\\
-\$\textbackslash{}rho\textasciicircum{}2\_0\$ & 0.359 & 0.013 & 0.155 & 0.489\\
+$\rho_0^2$ & 0.359 & 0.013 & 0.155 & 0.489\\
 \bottomrule
 \multicolumn{5}{l}{\rule{0pt}{1em}* p $<$ 0.05, ** p $<$ 0.01}\\
 \multicolumn{5}{l}{\rule{0pt}{1em}t-statistics in parentheses}\\
@@ -1038,7 +1052,7 @@ Store Type: Other &  &  & 0.248* & 0.556**\\
  &  &  & (2.211) & (4.614)\\
 \midrule
 AIC & 42,820.66 & 42,541.44 & 40,195.01 & 31,863.31\\
-\$\textbackslash{}rho\textasciicircum{}2\_0\$ & 0.138 & 0.144 & 0.191 & 0.359\\
+$\rho_0^2$ & 0.138 & 0.144 & 0.191 & 0.359\\
 \bottomrule
 \multicolumn{5}{l}{\rule{0pt}{1em}* p $<$ 0.05, ** p $<$ 0.01}\\
 \multicolumn{5}{l}{\rule{0pt}{1em}t-statistics in parentheses}\\
@@ -1077,7 +1091,7 @@ Store Type: Other &  &  & -1.451** & -1.331**\\
  &  &  & (-28.680) & (-19.097)\\
 \midrule
 AIC & 40,811.4 & 35,119.64 & 37,230.81 & 23,556.77\\
-\$\textbackslash{}rho\textasciicircum{}2\_0\$ & 0.179 & 0.293 & 0.251 & 0.526\\
+$\rho_0^2$ & 0.179 & 0.293 & 0.251 & 0.526\\
 \bottomrule
 \multicolumn{5}{l}{\rule{0pt}{1em}* p $<$ 0.05, ** p $<$ 0.01}\\
 \multicolumn{5}{l}{\rule{0pt}{1em}t-statistics in parentheses}\\
@@ -1439,7 +1453,10 @@ geographic region. The transit and non-motorized access scenario
 (Figure~\ref{fig-scenario-results-3}) spreads smaller benefits over a
 larger area, while the grocery-delivery scenario
 (Figure~\ref{fig-scenario-results-4}) produces the largest and most
-broadly distributed gains.
+broadly distributed gains. In this figures the distribution of benefits
+is shown in color, but the reader should note that the scale of benefits
+is not uniform across the scenarios, and is marked instead by the
+numeric values on the legend.
 
 \begin{table}
 
