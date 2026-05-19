@@ -7,122 +7,63 @@
 library(mlogit)
 library(ggnewscale)
 ```
+
 The nutrition access literature is long and has been approached from numerous
 angles including public health, urban science and economics, and social justice.
-In general, researchers have sought to link spatial access to nutrition with health outcomes including obesity, caloric intake, and the like.
+In general, researchers have sought to link spatial disparities in access to nutrition 
+resources with observed spatial disparities in economic resources or health indicators including obesity rates, 
+caloric intake, and other outcomes. 
 Complete --- though somewhat dated --- reviews of this literature can be had
-from @beaulac2009 and @walker2010. More recent work has extended the description
-and refinement of the measures used to evaluate food access and control for
-confounding variables. @widener2014 considered that temporal access to quality food is as important as spatial access.
-@aggarwal2014 suggested that spatial access was not as important as store choice, given that most people were not observed to shop at the nearest vendor. 
-By contrast, @chen2016 compared spatial access to quality food vendors with
-observed food expenditures and showed poor access explained obesity even when controlling for consumption. @cooksey-stowers2017 jointly pursued spatial 
-proximity with quality of offerings and showed the latter might be more predictive of obesity rates.
+from @beaulac2009 and @walker2010. @park2025 present a more recent systematic review of this literature, 
+aided by an large language model-informed analysis of more than 800 articles; this more recent review 
+emphasizes the wide variety of measures and methods that have been applied to the problem, with
+a focus on differences between global regions. 
 
-What has not been frequently attempted in the nutrition access literature,
-however, is a serious comparison of multiple alternative policies to address the
-problem, which would require a multi-dimensional analysis of spatial access,
-store quality, and observed tradeoffs between the two. @macfarlane2021modeling
-illustrated the potential for a utility-based model of access to establish
-relationships between urban green space access and health, and then continued 
-that methodology into a policy analysis of park space during Covid-19 [@macfarlane2022]. 
-The potential for application of this methodology to the nutrition literature is well-motivated by the previous attempts as well as
-the lack of clear policy solutions [@wright2016].
+The existing nutrition environment literature has been somewhat inconsistent in its 
+application of spatial or travel impedance units. @charreire2010 provides a categorization of
+measures in the literature to that point: almost all studies used Euclidean or
+occasionally network distance buffers, most frequently of one kilometer; 
+a few studies used network travel time by an assumed travel mode, kernel density [@moore2008], or spatial clustering. 
+In the last few years, a number of studies have attempted to explore more complex measures of
+spatial access.
+@cetateanu2016 and @widener2018 each pursue measures of time and space described by a
+person's observed activity pattern and use it to explain food retail and purchasing
+behaviors. These measures have not entered policy analysis at scale, however. 
+Public health agencies in the United States continue to use Euclidean distance
+to the nearest store as the basis for policy analysis [@rhone2017; @economicresearchservice2025].
+When using travel times, the literature most often selects a single mode of travel, usually car or 
+walking [@bennion2022]. When researchers consider multiple modes, it is usually done as a comparison [@burns2007; @kostopoulou2024]
+or as multiple independent covariates in a large model [@murphy2017] rather than as a combined measure. 
+This difference in methodological approaches matters substantially: @jaskiewicz2016 found little agreement
+in definitions of good and poor food access between six different measures of access in Chicago.
 
-organization
-(1) the inconsistent parameters used across studies, (2) the lack of consideration for multi-modal travel, (3) the lack of behavior components to reflect the decision-making process such as mode choice and destination selection, and (4) the need to distinguish various stores in the study area.
+Measures of the nutrition environment beyond spatial proximity are similarly inconsistent, though some validated methods have 
+been developed [@baker2024]. A primary obstacle in developing such measures is the complexity
+of the nutrition environment; many people obtain food from widely varying sources including convenience 
+stores, supermarkets, small grocery stores, and restaurants of all kinds [@ansai2023]. 
+Non-spatial measures of this environment are important for policy analysis given that many people do not shop
+at their nearest store alone [@aggarwal2014], and that the quality of offerings at stores
+may explain obesity rates as much as spatial access to stores  [@cooksey-stowers2017; @chen2016].
+Foremost among the validated measures of the nutrition environment is the NEMS-S
+framework [@glanz2007; @glanz2023], in which trained surveyors record the
+presence, price, and shelf space allocated to various food items in stores. 
+But even the NEMS-S is not entirely comprehensive: separate instruments exist for stores (NEMS-S),
+corner stores (NEMS-CS), and restaurants (NEMS-R), vending machines (NEMS-V), and quick service prepared food stores (NEMS-GG). 
+Applying one measure to the entire spatial environment is not a viable approach, and may result in
+discontinuities. As a result of these discontinuities, researchers frequently
+segment the environment, asserting which stores are to be included and which are
+to be excluded. For example, @widener2018 develop a complex time-and-activity space measure 
+respondent's spatial proximity, but apply this measure to discrete segments of
+grocery stores, convenience stores, etc. rather than to a holistic picture of the nutrition environment.
+More simplistic measures of spatial access --- e.g., Euclidean distance to nearest store --- require researchers to assert what 
+they will include and what they will exclude. 
 
-Equitable access to community resources has been a topic of research and study,
-especially when looking at the impacts on measures of well-being and economic
-opportunity. Current social issues, economic opportunity and equity are
-significant topics that can help us ensure that each population demographic can
-have similar opportunities. Equity as a term is being fair and impartial,
-different from equality. Equality is providing the exact same thing to all
-people, whereas equity would provide different things to different people
-because of their circumstances in order to create a fair system. Lower-income
-populations frequently sit at a different level of advantage than higher-income
-populations, including when looking at accessibility [@grengs2015, @hu2015,
-@witten2003]. It is important to discover how different transportation policies
-can improve accessibility to create better equity. Creating equitable societies
-and equitable transportation policies is important in order to remove any
-discrimination already present in the transportation network. In this way states
-can decrease the disparity that is common when looking at different
-neighborhoods and demographics. Perhaps there are low-income neighborhoods that
-do not have the same economic opportunity or resource accessibility as
-high-income neighborhoods. If we increase the accessibility of low-income
-neighborhoods, could that then increase the quality of life and health for those
-neighborhoods as well?
 
-In addition to economic opportunity, the connection between well-being and
-opportunity is also significant, discovering who has access to which resources
-and how that access corresponds to their health [@cass2005, @ermagun2020,
-@handy1997, @schwanen2015]. A subjective sense of positive well-being correlates
-with increased access to more community resources: increased access was
-specifically connected with variety of resources, not necessarily number of the
-same type of resource. This increased access is true for both high- and
-low-income populations. However, high-income demographics frequently tend have
-better access to a variety of resources because of such variables as available
-child care, a transportation source available, or even time available to do
-things [@currie2010, @liu2022] . In addition, increased access to resources such
-as parks or other greenspace have been found to decrease likelihood of mental
-health disorders, as well as improve physical activity [@francis2012,
-@madzia2019]. Different age groups each have a different response to access to
-greenspace. However, among all age groups there is a positive correlation.In
-addition to health impacts, lack of accessibility also affects economic
-opportunity when considering access to employment, affordable care, and other
-stores and shops [@currie2010, @hu2015].
+What has not been pursued in the literature to this point is an approach that
+considers how the multi-modal travel behavior of individuals with respect to 
+transportation infrastructure shapes spatial access to nutrition resources
+*as well as* the availability and quality of foods at the relevant destinations. Such an
+approach has been shown to improve the correlation between spatial disparities in health
+outcomes and access to urban green spaces [@macfarlane2021modeling] and to better inform
+parks-related policy analysis [@macfarlane2022]. It is this combination that we pursue in this study.
 
-### Food Deserts and Swamps
-
-While there are many different community resources that can be the center of
-study, such as libraries, green space, hospitals, etc., this project will focus
-on the resource of grocery stores and discovering any correlation between
-accessibility to good nutrition environments such as healthy grocery stores and
-the demographic makeup of specific block groups, such as economic bracket and
-different ethnic groups. Lack of accessibility to grocery stores can have an
-effect on physical health and well-being [@aggarwal2014]. This access is related
-directly with consumption of healthy foods, as well as indirectly with perceived
-sense of well-being.
-
-Much of the current research that has been done has shown a different level of
-accessibility for different demographics, such as low income populations. Low
-income populations have been shown to frequently have less access to fresh
-fruits and vegetables [@algert2006, @losada-rojas2021]. This may not be directly
-correlated to the physical distance from a grocery store, but the store that was
-chosen for these demographics. In a study analyzing grocery store choice in
-Seattle it was found that in some instances, there is a closer store with better
-produce, but for some reason it was not chosen and instead a store that was
-further away was chosen that did not have the same quantity and variety of fresh
-produce. This was found again in a different study, that frequently people will
-travel to a store that is not the closest store for different reasons
-[@clifton2004, @hillier2011]. This study will help to determine that choice
-pattern and identify which variables are important when choosing a store to help
-improve accessibility more than simple distance measures.
-
-However, areas that do not have any full service grocery stores however are also
-important to look at, with those areas being known as food swamps. These food
-swamps are an idea that there are locations where there is not healthy food
-available, so the only option that is readily accessible for food or meals would
-be fast food or convenience stores. There have been studies analyzing the
-different food swamp areas and what could be done to improve those areas, such
-as adding grocery stores or corner markets [@bao2020]. These food swamps are
-areas that discriminate between those without readily available transit options
-and those with easy access to cars, creating a barrier to equity. In addition,
-these food swamp areas are especially significant when looking at the public
-health impacts of food accessibility and discovering how we can improve the
-quality of food available to those in every demographic to create an equitable
-solution to health differences.
-
-Past research done clearly shows that location of store, quality of store, and
-price of store all have an impact on choice of grocery store and accessibility
-to grocery stores. This impacts the quality of life and overall health and
-well-being of individuals and shows the importance of discovering which
-variables are most significant in grocery store choice in order to improve
-accessibility and equity. What much existing research suffers from, however, is
-the wide variety of measures of access and the definitions used to describe a
-"grocery store." Certainly convenience stores do not typically provide the same
-variety and quality of goods, but simply excluding them from analyses ignores
-how many people obtain a large share of their daily and weekly nutrition, for
-better or worse. A measure that can incorporate multimodal access to stores as
-well as qualitatively describe the stores along a continuous array of measures
-is desirable.
