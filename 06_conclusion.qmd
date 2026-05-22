@@ -1,10 +1,10 @@
 # Conclusions and Recommendations {#sec-conclude}
 
-Access to nutrition is a critical topic that has been a frequent focus of
+Food access is a critical topic that has been a frequent focus of
 academic literature in public health, community planning, and engineering, but
 the varying and incomplete quantitative definitions of access have perhaps
 limited efforts at developing solutions.
-In this research, a model of nutrition resource access that includes attributes of
+In this research, a model of food resource access that includes attributes of
 the store --- especially its size and the price of its goods --- improves model fit 
 over a model that only includes the transportation accessibility information. This more
 sensitive model can be used in policy evaluations to compare more targeted 
@@ -15,8 +15,8 @@ These findings may not be general, but they largely
 support the review of food desert literature in @beaulac2009 as well as 
 critical evaluations by @shannon2014 and @wright2016.
 
-The broad literature of attempts to evaluate the nutrition environment --- in the end ---
-must be motivated by attempts to improve not merely access to nutrition resources 
+The broad literature of attempts to evaluate the food environment --- in the end ---
+must be motivated by attempts to improve not merely access to food resources
 but to improve health outcomes. To this end, it would be useful to understand if 
 the more comprehensive measures pursued in this paper are more strongly correlated
 with health outcomes than the less comprehensive measures currently used in 
@@ -31,7 +31,7 @@ reasonable researchers might pursue differently, and thereby obtain marginally
 different outcomes.
 
 In selecting a survey instrument with which to collect the store attribute data,
-we selected an existing and validated instrument from the nutrition environment
+we selected an existing and validated instrument from the food environment
 literature. We acknowledge that NEMS-S measures may not capture the full range
 of nutritional needs across populations and reflect a constrained but standardized
 proxy for diet-related healthfulness. 
@@ -97,9 +97,8 @@ activity-travel modeling.
 
 Finally, the scenarios presented in @sec-scenarios are designed to illustrate
 potential applications of this accessibility methodology, with a comparative
-analysis of strategies to improve access to nutrition. Selecting different
+analysis of strategies to improve food access. Selecting different
 sites, attribute levels, or transport policies might substantially change the
 scale or rank-ordering of the estimated benefits. A comprehensive search for the
 location that would maximize benefits would be an interesting exercise, which we
 also leave to future research.
-

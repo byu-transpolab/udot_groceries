@@ -1,14 +1,14 @@
 # Introduction
 
-The ability of people to access nutrition resources has been studied at length in
+The ability of people to access food resources has been studied at length in
 public health and urban geography for decades [@beaulac2009;@walker2010]. 
 This interest is motivated in large part by an observed spatial disparity in
-nutrition access in many communities --- though this issue may be particularly
+food access in many communities --- though this issue may be particularly
 pronounced in the United States [@beaulac2009]. The spatial disparity has been linked at an aggregate level with negative public health outcomes 
 [@chen2016; @cooksey-stowers2017], though other complicating factors including prices and habits may be present as well [@ghosh-dastidar2014].
 
 
-At the same time, access to nutrition resources and to community resources in general is 
+At the same time, access to food resources and to community resources in general is
 frustratingly hard to define. "Accessibility" is an abstract concept without a
 specific quantitative definition [@handy1997]. However, using accessibility as 
 a policy measure requires comparative quantification, and transportation and
@@ -32,7 +32,7 @@ measure based on destination choice models estimated for three distinct
 communities in Utah. This methodology is based on a unique dataset made by 
 linking between three extensive data sources:
 
-  1. A detailed survey of the nutrition market in three Utah communities, operationalized using the NEMS-S framework [@glanz2007].
+  1. A detailed survey of the food market in three Utah communities, operationalized using the NEMS-S framework [@glanz2007].
   2. Location-based services data derived from mobile phone records revealing
      which grocery stores are frequented by residents of different neighborhoods.
   3. Multi-modal network data providing detailed mobility data by car, walking, and public transit.
@@ -44,10 +44,10 @@ potential transportation, land use, and related policies.
 
 This paper is organized in a typical manner. A methodology
 for data collection and modeling is described in @sec-methods and a description
-of the nutrition environment and choice models estimates follows in
+of the food environment and choice models estimates follows in
 @sec-results. @sec-scenarios presents a series of scenarios to which we apply
 the models estimated in @sec-results, illustrating the interrelated elements of
-nutrition quality and transportation infrastructure in developing more complete
-access to nutrition. @sec-conclude places the findings of this research in 
+food quality and transportation infrastructure in developing more complete
+measures of food access. @sec-conclude places the findings of this research in
 context, while discussing limitations to the methodology and associated future
 research opportunities.

@@ -29,12 +29,12 @@ map_legend_theme_wide <- theme(
 )
 ```
 
-This section presents results on the nutrition environment in each of the three
+This section presents results on the food environment in each of the three
 communities of Utah County, West Salt Lake County, and San Juan County, along
 with destination choice model estimates and their application to creating
 accessibility maps of each community and the entire state of Utah.
 
-## Nutrition Environment {#sec-nems}
+## Food Environment {#sec-nems}
 
 ```{r} 
 #| label: loadnems
@@ -50,7 +50,7 @@ nems_groceries <- nems_groceries |>
 
 Though some basic descriptive statistics of the grocery store attributes were
 presented in @tbl-nems, some additional exploration of these attributes is
-valuable to understand the nutrition environment in these three communities.
+valuable to understand the food environment in these three communities.
 
 ```{r}
 #| label: fig-nems-market-avail
@@ -136,7 +136,7 @@ The Access model includes only the mode choice logsum described in
 @eq-mcls. The NEMS model includes the NEMS cost and availability scores
 describing the goods the store offers, while the Attributes model contains
 information that might be more conventionally available to shoppers including
-the size, type, and average prices at the store. As the nutrition environment in
+the size, type, and average prices at the store. As the food environment in
 each community contains different types of stores, the specific type
 coefficients differ by community. The All model contains all of the other three
 sets of estimated coefficients.

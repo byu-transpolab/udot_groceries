@@ -67,9 +67,9 @@ community.
 
 ### Erect a new store
 
-This strategy assumes that the nutrition environment would benefit from a new
+This strategy assumes that the food environment would benefit from a new
 store located in a place that presently has low grocery store access. To examine
-the potential for this strategy to improve access to nutrition in each
+the potential for this strategy to improve food access in each
 community, we calculate the change in destination choice log-sum when a new
 store is added to the region in a location where access is currently poor. The
 new store is a full-service grocery store with a number of registers equal to
@@ -85,8 +85,8 @@ This strategy assumes that existing stores are in locations that the community
 values and can access, but that those stores may not have high availability of
 quality goods. In response, some public agencies and community groups have executed programs
 to improve the offerings and display of more nutritive products [@young2018; @haboush2023healthy].
-To examine the potential for this strategy to improve access to
-nutrition, we improve the attributes of an existing dollar store in the
+To examine the potential for this strategy to improve food access, we improve
+the attributes of an existing dollar store in the
 community so that it has the size, prices, and availability of goods as a
 full-service grocery store. As above, we create a full-service grocery store
 with a number of registers equal to the mean of other grocery stores in the
@@ -102,8 +102,8 @@ we improve the attributes of an existing ethnic store near 2700 W 3500 S in West
 This strategy assumes that people cannot easily travel to existing stores
 because they cannot or do not drive for a variety of reasons, and that the
 public and active transport networks provide an insufficient level of
-service. To examine the potential for this strategy to improve access to
-nutrition, we improve the travel time costs in the Salt Lake community for
+service. To examine the potential for this strategy to improve food access, we
+improve the travel time costs in the Salt Lake community for
 non-motorized and public transportation in the region and calculate the change
 in destination choice log-sum.
 
@@ -133,9 +133,9 @@ west Salt Lake Valley community.
 
 ### Grocery delivery services
 
-This strategy assumes that the most effective way to bring quality nutrition to an 
+This strategy assumes that the most effective way to bring quality food to an
 inaccessible location is not to change the distribution of stores or the quality of transport, but to
-support and enable delivery services that will bring the nutrition to individuals.
+support and enable delivery services that will bring food to individuals.
 To model this scenario, we assume that 20% of the full-service grocery stores in 
 the west Salt Lake Valley community offer a delivery service. This raises the
 price of the market basket by $10, but reduces the travel time on all modes to 0

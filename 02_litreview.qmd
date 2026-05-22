@@ -8,9 +8,9 @@ library(mlogit)
 library(ggnewscale)
 ```
 
-The nutrition access literature is long and has been approached from numerous
+The food access literature is long and has been approached from numerous
 angles including public health, urban science and economics, and social justice.
-In general, researchers have sought to link spatial disparities in access to nutrition 
+In general, researchers have sought to link spatial disparities in access to food
 resources with observed spatial disparities in economic resources or health indicators including obesity rates, 
 caloric intake, and other outcomes. 
 Complete --- though somewhat dated --- reviews of this literature can be had
@@ -19,7 +19,7 @@ aided by an large language model-informed analysis of more than 800 articles; th
 emphasizes the wide variety of measures and methods that have been applied to the problem, with
 a focus on differences between global regions. 
 
-The existing nutrition environment literature has been somewhat inconsistent in its 
+The existing food environment literature has been somewhat inconsistent in its
 application of spatial or travel impedance units. @charreire2010 provides a categorization of
 measures in the literature to that point: almost all studies used Euclidean or
 occasionally network distance buffers, most frequently of one kilometer; 
@@ -37,14 +37,14 @@ or as multiple independent covariates in a large model [@murphy2017] rather than
 This difference in methodological approaches matters substantially: @jaskiewicz2016 found little agreement
 in definitions of good and poor food access between six different measures of access in Chicago.
 
-Measures of the nutrition environment beyond spatial proximity are similarly inconsistent, though some validated methods have 
+Measures of the food environment beyond spatial proximity are similarly inconsistent, though some validated methods have
 been developed [@baker2024]. A primary obstacle in developing such measures is the complexity
-of the nutrition environment; many people obtain food from widely varying sources including convenience 
+of the food environment; many people obtain food from widely varying sources including convenience
 stores, supermarkets, small grocery stores, and restaurants of all kinds [@ansai2023]. 
 Non-spatial measures of this environment are important for policy analysis given that many people do not shop
 at their nearest store alone [@aggarwal2014], and that the quality of offerings at stores
 may explain obesity rates as much as spatial access to stores  [@cooksey-stowers2017; @chen2016].
-Foremost among the validated measures of the nutrition environment is the NEMS-S
+Foremost among the validated measures of the food environment is the NEMS-S
 framework [@glanz2007; @glanz2023], in which trained surveyors record the
 presence, price, and shelf space allocated to various food items in stores. 
 But even the NEMS-S is not entirely comprehensive: separate instruments exist for stores (NEMS-S),
@@ -54,16 +54,15 @@ discontinuities. As a result of these discontinuities, researchers frequently
 segment the environment, asserting which stores are to be included and which are
 to be excluded. For example, @widener2018 develop a complex time-and-activity space measure 
 respondent's spatial proximity, but apply this measure to discrete segments of
-grocery stores, convenience stores, etc. rather than to a holistic picture of the nutrition environment.
+grocery stores, convenience stores, etc. rather than to a holistic picture of the food environment.
 More simplistic measures of spatial access --- e.g., Euclidean distance to nearest store --- require researchers to assert what 
 they will include and what they will exclude. 
 
 
 What has not been pursued in the literature to this point is an approach that
 considers how the multi-modal travel behavior of individuals with respect to 
-transportation infrastructure shapes spatial access to nutrition resources
+transportation infrastructure shapes spatial access to food resources
 *as well as* the availability and quality of foods at the relevant destinations. Such an
 approach has been shown to improve the correlation between spatial disparities in health
 outcomes and access to urban green spaces [@macfarlane2021modeling] and to better inform
 parks-related policy analysis [@macfarlane2022]. It is this combination that we pursue in this study.
-

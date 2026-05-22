@@ -250,7 +250,7 @@ eliminate the risk of surveyor bias. The store attributes were collected in the
 spring of 2021 for Utah County and spring of 2022 for Salt Lake and San Juan
 Counties. In Utah and Salt Lake Counties, we included dollar stores and grocery
 stores but did not include convenience stores. Given the rural nature of San
-Juan County, we made two adjustments to capture the entirety of the nutrition
+Juan County, we made two adjustments to capture the entirety of the food
 environment. First, we included convenience stores and trading posts if they
 were the only food market in a community. We also included full-service grocery
 stores in Cortez, Colorado, and Farmington, New Mexico in the San Juan data
@@ -361,7 +361,7 @@ The second element of the utility equation in @eq-utility is the travel
 impedance between $i$ and $j$. Many possibilities for representing this
 impedance exist, from basic euclidean distance to complex network paths. A
 primary purpose of the model we are developing in this research is to study
-comparative tradeoffs between transportation-focused and nutrition environment-focused
+comparative tradeoffs between transportation-focused and food environment-focused
 improvements. It is therefore essential that the measure of travel impedance incorporate 
 travel by multiple modes of transportation, so that highway improvements and transit or
 active transport improvements can be compared.
