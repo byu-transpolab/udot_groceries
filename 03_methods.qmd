@@ -198,9 +198,14 @@ df <- tibble(neighbor_acs) |>
   data.table::transpose(make.names = 'county', keep.names = 'measure') |> 
   as_tibble()
 
-kableExtra::kbl(df, col.names = c(" ", "Utah", "Salt Lake", "San Juan"), digits = 0, 
-      format.args = list(big.mark = ','), booktabs = TRUE) |> 
-  kable_styling()
+if (knitr::is_latex_output()) {
+  kableExtra::kbl(df, col.names = c(" ", "Utah", "Salt Lake", "San Juan"), digits = 0,
+      format.args = list(big.mark = ','), booktabs = TRUE) |>
+    kable_styling()
+} else {
+  knitr::kable(df, col.names = c(" ", "Utah", "Salt Lake", "San Juan"), digits = 0,
+      format.args = list(big.mark = ','))
+}
 ```
 
 Estimating the utility model described in @eq-mnl for grocery stores requires
@@ -315,8 +320,12 @@ balnems <- nems_groceries |>
             `Market basket cost` = market, 
             County = factor(county, levels = c("Utah", "Salt Lake", "San Juan")))
 
-datasummary_balance(~County, data = balnems, output = "kableExtra") |> 
-  kable_styling(latex_options = "scale_down")
+if (knitr::is_latex_output()) {
+  datasummary_balance(~County, data = balnems, output = "kableExtra") |>
+    kable_styling(latex_options = "scale_down")
+} else {
+  datasummary_balance(~County, data = balnems, output = "markdown")
+}
 ```
 
 @tbl-nems presents the store attribute data collected for each community. Utah
