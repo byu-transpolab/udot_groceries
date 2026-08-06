@@ -169,6 +169,8 @@ cm <- c(
   "typeConvenience Store" = "Store Type: Convenience Store",
   "typeOther" = "Store Type: Other"
 )
+
+table_output <- if (knitr::is_latex_output()) "kableExtra" else "markdown"
 ```
 
 ```{r}
@@ -178,7 +180,7 @@ modelsummary(ut_models, gof_map = gm, coef_map = cm,
              stars = c('*' = 0.05, '**' = 0.01),
              statistic = "({statistic})",
              notes = list("t-statistics in parentheses"), escape = FALSE,
-             output="kableExtra")
+             output = table_output)
 ```
 
 @tbl-utah-models presents the estimated coefficients in the Utah County
@@ -219,7 +221,7 @@ modelsummary(sl_models, gof_map = gm, coef_map = cm,
              stars = c('*' = 0.05, '**' = 0.01),
              statistic = "({statistic})",
              notes = list("t-statistics in parentheses"), escape = FALSE,
-             output = "kableExtra")
+             output = table_output)
 ```
 
 ```{r}
@@ -229,7 +231,7 @@ modelsummary(sj_models, gof_map = gm, coef_map = cm,
              stars = c('*' = 0.05, '**' = 0.01),
              statistic = "({statistic})",
              notes = list("t-statistics in parentheses"), escape = FALSE,
-             output = "kableExtra")
+             output = table_output)
 ```
 
 @tbl-sl-models presents the estimated coefficients in the west Salt Lake County
